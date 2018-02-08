@@ -1,22 +1,18 @@
-[![Bread](/images/top-logo.jpg)](https://itunes.apple.com/app/breadwallet/id885251393)
-
 ## The easy and secure bitcoin wallet
 
-Bread is the best way to get started with bitcoin. Our simple, streamlined design is easy for beginners, yet powerful enough for experienced users.
+Hodl is the best way to get started with bitcoin. Our simple, streamlined design is easy for beginners, yet powerful enough for experienced users.
 
 ### Completely decentralized
 
-Unlike other iOS bitcoin wallets, **Bread** is a standalone bitcoin client. It connects directly to the bitcoin network using [SPV](https://en.bitcoin.it/wiki/Thin_Client_Security#Header-Only_Clients) mode, and doesn't rely on servers that can be hacked or disabled. Even if Bread the company disappears, the app will continue to function, allowing users to access their money at any time.
+Unlike other iOS bitcoin wallets, **Hodl** is a standalone bitcoin client. It connects directly to the bitcoin network using [SPV](https://en.bitcoin.it/wiki/Thin_Client_Security#Header-Only_Clients) mode, and doesn't rely on servers that can be hacked or disabled. Even if Bitstop loses its grip and disappears, the app will continue to function, allowing users to access their money at any time.
 
 ### Cutting-edge security
 
-**Bread** utilizes AES hardware encryption, app sandboxing, and the latest iOS security features to protect users from malware, browser security holes, and even physical theft. Private keys are stored only in the secure enclave of the user's phone, inaccessible to anyone other than the user.
+**Hodl** utilizes AES hardware encryption, app sandboxing, and the latest iOS security features to protect users from malware, browser security holes, and even physical theft. Private keys are stored only in the secure enclave of the user's phone, inaccessible to anyone other than the user.
 
 ### Desgined with new users in mind
 
-Simplicity and ease-of-use is **Bread**'s core design principle. A simple recovery phrase (which we call a paper key) is all that is needed to restore the user's wallet if they ever lose or replace their device. **Bread** is [deterministic](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki), which means the user's balance and transaction history can be recovered just from the paper key.
-
-![screenshots](/images/screenshots.jpg)
+Simplicity and ease-of-use is **Hodl**'s core design principle. A simple recovery phrase (which we call a paper key) is all that is needed to restore the user's wallet if they ever lose or replace their device. **Hodl** is [deterministic](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki), which means the user's balance and transaction history can be recovered just from the paper key.
 
 ### Features
 
@@ -30,7 +26,7 @@ Simplicity and ease-of-use is **Bread**'s core design principle. A simple recove
 
 ### Localization
 
-**Bread** is available in the following languages:
+**Hodl** is available in the following languages:
 
 - Chinese (Simplified and traditional)
 - Danish
@@ -58,6 +54,6 @@ Any jailbreak app can grant itself access to every other app's keychain data. Th
 
 ---
 
-**Bread** is open source and available under the terms of the MIT license.
+**Hodl** is open source and available under the terms of the MIT license.
 
-Source code is available at https://github.com/breadwallet
+Source code is available at https://github.com/bitstopco
