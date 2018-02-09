@@ -9,4 +9,4 @@
 
 ## Endpoints 
 * fee-per-kb - Provides "regular" and "economy" fees [(1st vs 3rd block confirmation)](https://api.breadwallet.com/fee-per-kb)
-* rates - exchange rates similar to https://bitpay.com/api/rates
+* rates - Exchange rates similar to https://bitpay.com/api/rates
