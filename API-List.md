@@ -1,4 +1,4 @@
-## APIs:
+## APIs
 * Blockchain Explorer (Insight)
 * Bitcoin exchange
 * Bitstop ATM map
