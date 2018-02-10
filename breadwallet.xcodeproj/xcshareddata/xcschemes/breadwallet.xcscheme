@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "75A2A78F1DA5934300A983D8"
-               BuildableName = "breadwallet.app"
-               BlueprintName = "breadwallet"
+               BuildableName = "hodl-wallet.app"
+               BlueprintName = "hodl-wallet"
                ReferencedContainer = "container:breadwallet.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -64,8 +64,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "75A2A78F1DA5934300A983D8"
-            BuildableName = "breadwallet.app"
-            BlueprintName = "breadwallet"
+            BuildableName = "hodl-wallet.app"
+            BlueprintName = "hodl-wallet"
             ReferencedContainer = "container:breadwallet.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -88,8 +88,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "75A2A78F1DA5934300A983D8"
-            BuildableName = "breadwallet.app"
-            BlueprintName = "breadwallet"
+            BuildableName = "hodl-wallet.app"
+            BlueprintName = "hodl-wallet"
             ReferencedContainer = "container:breadwallet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -114,8 +114,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "75A2A78F1DA5934300A983D8"
-            BuildableName = "breadwallet.app"
-            BlueprintName = "breadwallet"
+            BuildableName = "hodl-wallet.app"
+            BlueprintName = "hodl-wallet"
             ReferencedContainer = "container:breadwallet.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

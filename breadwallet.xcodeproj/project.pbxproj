@@ -199,7 +199,7 @@
 		75A2A79B1DA5934300A983D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75A2A79A1DA5934300A983D8 /* Assets.xcassets */; };
 		75A2A79E1DA5934300A983D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75A2A79C1DA5934300A983D8 /* LaunchScreen.storyboard */; };
 		75A2A7B41DA5934300A983D8 /* breadwalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A2A7B31DA5934300A983D8 /* breadwalletUITests.swift */; };
-		75A2A7B91DA5934300A983D8 /* breadwallet WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 75A2A7B81DA5934300A983D8 /* breadwallet WatchKit App.app */; };
+		75A2A7B91DA5934300A983D8 /* hodl-wallet WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 75A2A7B81DA5934300A983D8 /* hodl-wallet WatchKit App.app */; };
 		75A2A7BF1DA5934300A983D8 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75A2A7BD1DA5934300A983D8 /* Interface.storyboard */; };
 		75A2A7C11DA5934300A983D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75A2A7C01DA5934300A983D8 /* Assets.xcassets */; };
 		75A2A7C81DA5934300A983D8 /* breadwallet WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 75A2A7C71DA5934300A983D8 /* breadwallet WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -560,7 +560,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				75A2A7B91DA5934300A983D8 /* breadwallet WatchKit App.app in Embed Watch Content */,
+				75A2A7B91DA5934300A983D8 /* hodl-wallet WatchKit App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1261,7 +1261,7 @@
 		755CD9D11DAA197C0075898E /* libBRCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBRCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		759DA09F1DAB838D008CC49B /* view.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = view.c; sourceTree = "<group>"; };
 		759DA0A01DAB838D008CC49B /* view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = view.h; sourceTree = "<group>"; };
-		75A2A7901DA5934300A983D8 /* breadwallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = breadwallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		75A2A7901DA5934300A983D8 /* hodl-wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hodl-wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75A2A7931DA5934300A983D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75A2A79A1DA5934300A983D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75A2A79D1DA5934300A983D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -1271,7 +1271,7 @@
 		75A2A7AF1DA5934300A983D8 /* breadwalletUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = breadwalletUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		75A2A7B31DA5934300A983D8 /* breadwalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = breadwalletUITests.swift; sourceTree = "<group>"; };
 		75A2A7B51DA5934300A983D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		75A2A7B81DA5934300A983D8 /* breadwallet WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "breadwallet WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		75A2A7B81DA5934300A983D8 /* hodl-wallet WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hodl-wallet WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75A2A7BE1DA5934300A983D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		75A2A7C01DA5934300A983D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75A2A7C21DA5934300A983D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -2556,7 +2556,7 @@
 		75A2A7871DA5934300A983D8 = {
 			isa = PBXGroup;
 			children = (
-				75A2A7921DA5934300A983D8 /* breadwallet */,
+				75A2A7921DA5934300A983D8 /* hodl-wallet */,
 				75A2A7A71DA5934300A983D8 /* breadwalletTests */,
 				75A2A7B21DA5934300A983D8 /* breadwalletUITests */,
 				75A2A7BC1DA5934300A983D8 /* breadwallet WatchKit App */,
@@ -2574,10 +2574,10 @@
 		75A2A7911DA5934300A983D8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				75A2A7901DA5934300A983D8 /* breadwallet.app */,
+				75A2A7901DA5934300A983D8 /* hodl-wallet.app */,
 				75A2A7A41DA5934300A983D8 /* breadwalletTests.xctest */,
 				75A2A7AF1DA5934300A983D8 /* breadwalletUITests.xctest */,
-				75A2A7B81DA5934300A983D8 /* breadwallet WatchKit App.app */,
+				75A2A7B81DA5934300A983D8 /* hodl-wallet WatchKit App.app */,
 				75A2A7C71DA5934300A983D8 /* breadwallet WatchKit Extension.appex */,
 				75A2A7F01DA5935F00A983D8 /* MessagesExtension.appex */,
 				75A2A8081DA5936F00A983D8 /* TodayExtension.appex */,
@@ -2592,7 +2592,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		75A2A7921DA5934300A983D8 /* breadwallet */ = {
+		75A2A7921DA5934300A983D8 /* hodl-wallet */ = {
 			isa = PBXGroup;
 			children = (
 				75A2A87C1DA59E4E00A983D8 /* breadwallet.entitlements */,
@@ -2634,7 +2634,7 @@
 				75A2A79C1DA5934300A983D8 /* LaunchScreen.storyboard */,
 				75A2A79F1DA5934300A983D8 /* Info.plist */,
 			);
-			path = breadwallet;
+			path = "hodl-wallet";
 			sourceTree = "<group>";
 		};
 		75A2A7A71DA5934300A983D8 /* breadwalletTests */ = {
@@ -3277,9 +3277,9 @@
 			productReference = 755CD9D11DAA197C0075898E /* libBRCore.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		75A2A78F1DA5934300A983D8 /* breadwallet */ = {
+		75A2A78F1DA5934300A983D8 /* hodl-wallet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75A2A7E31DA5934400A983D8 /* Build configuration list for PBXNativeTarget "breadwallet" */;
+			buildConfigurationList = 75A2A7E31DA5934400A983D8 /* Build configuration list for PBXNativeTarget "hodl-wallet" */;
 			buildPhases = (
 				75A2A78C1DA5934300A983D8 /* Sources */,
 				75A2A78D1DA5934300A983D8 /* Frameworks */,
@@ -3299,9 +3299,9 @@
 				22A9A99C1DF63426000F0016 /* PBXTargetDependency */,
 				752FB04F1DF8BF5C009086FB /* PBXTargetDependency */,
 			);
-			name = breadwallet;
+			name = "hodl-wallet";
 			productName = breadwallet;
-			productReference = 75A2A7901DA5934300A983D8 /* breadwallet.app */;
+			productReference = 75A2A7901DA5934300A983D8 /* hodl-wallet.app */;
 			productType = "com.apple.product-type.application";
 		};
 		75A2A7A31DA5934300A983D8 /* breadwalletTests */ = {
@@ -3340,9 +3340,9 @@
 			productReference = 75A2A7AF1DA5934300A983D8 /* breadwalletUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		75A2A7B71DA5934300A983D8 /* breadwallet WatchKit App */ = {
+		75A2A7B71DA5934300A983D8 /* hodl-wallet WatchKit App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75A2A7DF1DA5934400A983D8 /* Build configuration list for PBXNativeTarget "breadwallet WatchKit App" */;
+			buildConfigurationList = 75A2A7DF1DA5934400A983D8 /* Build configuration list for PBXNativeTarget "hodl-wallet WatchKit App" */;
 			buildPhases = (
 				75A2A7B61DA5934300A983D8 /* Resources */,
 				75A2A7DE1DA5934400A983D8 /* Embed App Extensions */,
@@ -3352,9 +3352,9 @@
 			dependencies = (
 				75A2A7CA1DA5934300A983D8 /* PBXTargetDependency */,
 			);
-			name = "breadwallet WatchKit App";
+			name = "hodl-wallet WatchKit App";
 			productName = "breadwallet WatchKit App";
-			productReference = 75A2A7B81DA5934300A983D8 /* breadwallet WatchKit App.app */;
+			productReference = 75A2A7B81DA5934300A983D8 /* hodl-wallet WatchKit App.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
 		75A2A7C61DA5934300A983D8 /* breadwallet WatchKit Extension */ = {
@@ -3587,10 +3587,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				75A2A78F1DA5934300A983D8 /* breadwallet */,
+				75A2A78F1DA5934300A983D8 /* hodl-wallet */,
 				75A2A7A31DA5934300A983D8 /* breadwalletTests */,
 				75A2A7AE1DA5934300A983D8 /* breadwalletUITests */,
-				75A2A7B71DA5934300A983D8 /* breadwallet WatchKit App */,
+				75A2A7B71DA5934300A983D8 /* hodl-wallet WatchKit App */,
 				75A2A7C61DA5934300A983D8 /* breadwallet WatchKit Extension */,
 				75A2A7EF1DA5935F00A983D8 /* MessagesExtension */,
 				75A2A8071DA5936F00A983D8 /* TodayExtension */,
@@ -4221,17 +4221,17 @@
 		};
 		75A2A7A61DA5934300A983D8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 75A2A78F1DA5934300A983D8 /* breadwallet */;
+			target = 75A2A78F1DA5934300A983D8 /* hodl-wallet */;
 			targetProxy = 75A2A7A51DA5934300A983D8 /* PBXContainerItemProxy */;
 		};
 		75A2A7B11DA5934300A983D8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 75A2A78F1DA5934300A983D8 /* breadwallet */;
+			target = 75A2A78F1DA5934300A983D8 /* hodl-wallet */;
 			targetProxy = 75A2A7B01DA5934300A983D8 /* PBXContainerItemProxy */;
 		};
 		75A2A7BB1DA5934300A983D8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 75A2A7B71DA5934300A983D8 /* breadwallet WatchKit App */;
+			target = 75A2A7B71DA5934300A983D8 /* hodl-wallet WatchKit App */;
 			targetProxy = 75A2A7BA1DA5934300A983D8 /* PBXContainerItemProxy */;
 		};
 		75A2A7CA1DA5934300A983D8 /* PBXTargetDependency */ = {
@@ -4251,7 +4251,7 @@
 		};
 		CEA7E6811F09A9D2001F8C27 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 75A2A78F1DA5934300A983D8 /* breadwallet */;
+			target = 75A2A78F1DA5934300A983D8 /* hodl-wallet */;
 			targetProxy = CEA7E6801F09A9D2001F8C27 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -5947,7 +5947,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75A2A7DF1DA5934400A983D8 /* Build configuration list for PBXNativeTarget "breadwallet WatchKit App" */ = {
+		75A2A7DF1DA5934400A983D8 /* Build configuration list for PBXNativeTarget "hodl-wallet WatchKit App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75A2A7E01DA5934400A983D8 /* Debug */,
@@ -5959,7 +5959,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75A2A7E31DA5934400A983D8 /* Build configuration list for PBXNativeTarget "breadwallet" */ = {
+		75A2A7E31DA5934400A983D8 /* Build configuration list for PBXNativeTarget "hodl-wallet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75A2A7E41DA5934400A983D8 /* Debug */,
