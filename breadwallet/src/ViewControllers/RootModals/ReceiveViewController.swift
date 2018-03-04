@@ -81,7 +81,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         qrCode.constrain([
             qrCode.constraint(.width, constant: qrSize),
             qrCode.constraint(.height, constant: qrSize),
-            qrCode.constraint(.top, toView: view, constant: C.padding[4]),
+            qrCode.constraint(.top, toView: view, constant: C.padding[3]),
             qrCode.constraint(.centerX, toView: view) ])
         address.constrain([
             address.constraint(toBottom: qrCode, constant: C.padding[1]),
@@ -109,13 +109,13 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
             border.constraint(toBottom: sharePopout, constant: 0.0),
             border.constraint(.centerX, toView: view),
             border.constraint(.height, constant: 1.0) ])
-        requestTop = request.constraint(toBottom: border, constant: C.padding[3])
-        requestBottom = request.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -C.padding[2])
+        requestTop = request.constraint(toBottom: border, constant: 0.0)
+        requestBottom = request.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0.0)
         request.constrain([
             requestTop,
-            request.constraint(.leading, toView: view, constant: C.padding[2]),
-            request.constraint(.trailing, toView: view, constant: -C.padding[2]),
-            request.constraint(.height, constant: C.Sizes.buttonHeight),
+            request.constraint(.leading, toView: view, constant: 0.0),
+            request.constraint(.trailing, toView: view, constant: 0.0),
+            request.constraint(.height, constant: 55.0),
             requestBottom ])
         addressButton.constrain([
             addressButton.leadingAnchor.constraint(equalTo: address.leadingAnchor, constant: -C.padding[1]),
@@ -125,9 +125,9 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     }
 
     private func setStyle() {
-        view.backgroundColor = .white
-        address.textColor = .grayTextTint
-        border.backgroundColor = .secondaryBorder
+        view.backgroundColor = .grayBackground
+        address.textColor = .white
+        border.backgroundColor = .black
         share.isToggleable = true
         if !isRequestAmountVisible {
             border.isHidden = true
@@ -146,7 +146,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
 
     private func setReceiveAddress() {
         address.text = wallet.receiveAddress
-        qrCode.image = UIImage.qrCode(data: "\(address.text!)".data(using: .utf8)!, color: CIColor(color: .black))?
+        qrCode.image = UIImage.qrCode(data: "\(address.text!)".data(using: .utf8)!, color: CIColor(color: .white))?
             .resize(CGSize(width: qrSize, height: qrSize))!
     }
 

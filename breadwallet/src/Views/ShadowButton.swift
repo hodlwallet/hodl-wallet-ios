@@ -77,9 +77,9 @@ class ShadowButton: UIControl {
             guard isToggleable else { return }
             if type == .tertiary || type == .search {
                 if isSelected {
-                    container.layer.borderColor = UIColor.primaryButton.cgColor
-                    imageView?.tintColor = .primaryButton
-                    label.textColor = .primaryButton
+                    container.layer.borderColor = UIColor.gradientEnd.cgColor
+                    imageView?.tintColor = .gradientEnd
+                    label.textColor = .gradientEnd
                 } else {
                     setColors()
                 }
@@ -105,7 +105,9 @@ class ShadowButton: UIControl {
             shadowView.constraint(.bottom, toView: self),
             shadowView.constraint(.centerX, toView: self),
             NSLayoutConstraint(item: shadowView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0.8, constant: 0.0) ])
-        shadowView.layer.cornerRadius = 4.0
+        if type != .secondary {
+            shadowView.layer.cornerRadius = 4.0
+        }
         shadowView.layer.shadowOffset = CGSize(width: 0, height: 4)
         shadowView.backgroundColor = .white
         shadowView.isUserInteractionEnabled = false
@@ -114,7 +116,9 @@ class ShadowButton: UIControl {
     private func addContent() {
         addSubview(container)
         container.backgroundColor = .primaryButton
-        container.layer.cornerRadius = cornerRadius
+        if type != .secondary {
+            container.layer.cornerRadius = cornerRadius
+        }
         container.isUserInteractionEnabled = false
         container.constrain(toSuperviewEdges: nil)
         label.text = title
@@ -164,6 +168,14 @@ class ShadowButton: UIControl {
             shadowView.layer.shadowOpacity = 0.3
             imageView?.tintColor = .white
         case .secondary:
+            container.backgroundColor = .black
+            label.textColor = .white
+            container.layer.borderColor = UIColor.black.cgColor
+            container.layer.borderWidth = 1.0
+            shadowView.layer.shadowColor = UIColor.black.cgColor
+            shadowView.layer.shadowOpacity = 0.15
+            imageView?.tintColor = .darkText
+        case .tertiary:
             container.backgroundColor = .secondaryButton
             label.textColor = .darkText
             container.layer.borderColor = UIColor.secondaryBorder.cgColor
@@ -171,14 +183,6 @@ class ShadowButton: UIControl {
             shadowView.layer.shadowColor = UIColor.black.cgColor
             shadowView.layer.shadowOpacity = 0.15
             imageView?.tintColor = .darkText
-        case .tertiary:
-            container.backgroundColor = .secondaryButton
-            label.textColor = .grayTextTint
-            container.layer.borderColor = UIColor.secondaryBorder.cgColor
-            container.layer.borderWidth = 1.0
-            shadowView.layer.shadowColor = UIColor.black.cgColor
-            shadowView.layer.shadowOpacity = 0.15
-            imageView?.tintColor = .grayTextTint
         case .blackTransparent:
             container.backgroundColor = .clear
             label.textColor = .darkText
@@ -188,8 +192,8 @@ class ShadowButton: UIControl {
             shadowView.isHidden = true
         case .search:
             label.font = UIFont.customBody(size: 13.0)
-            container.backgroundColor = .secondaryButton
-            label.textColor = .grayTextTint
+            container.backgroundColor = .grayBackground
+            label.textColor = .white
             container.layer.borderColor = UIColor.secondaryBorder.cgColor
             container.layer.borderWidth = 1.0
             shadowView.layer.shadowColor = UIColor.black.cgColor

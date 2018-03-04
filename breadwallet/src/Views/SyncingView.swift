@@ -48,7 +48,7 @@ class SyncingView : UIView {
         let view = UIView()
         view.layer.cornerRadius = progressHeight/2.0
         view.layer.masksToBounds = true
-        view.backgroundColor = .secondaryShadow
+        view.backgroundColor = .grayBackground
         return view
     }()
 
@@ -100,8 +100,9 @@ class SyncingView : UIView {
 
     private func setInitialData() {
         header.text = S.SyncingView.syncing
-        header.textColor = .darkText
+        header.textColor = .whiteTint
         date.text = ""
+        date.textColor = .whiteTint
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -102,7 +102,7 @@ class TransactionsTableViewController : UITableViewController, Subscriber, Track
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = 100.0
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.backgroundColor = UIColor.grayBackground
+        tableView.backgroundColor = .grayBackground
         
         store.subscribe(self, selector: { $0.walletState.transactions != $1.walletState.transactions },
                         callback: { state in

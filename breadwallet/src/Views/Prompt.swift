@@ -94,8 +94,8 @@ class Prompt : UIView {
 
     let close = UIButton.close
     let type: PromptType
-    private let title = UILabel(font: .customBold(size: 14.0), color: .darkText)
-    private let body = UILabel.wrapping(font: .customBody(size: 13.0), color: .darkText)
+    private let title = UILabel(font: .customBold(size: 14.0), color: .whiteTint)
+    private let body = UILabel.wrapping(font: .customBody(size: 13.0), color: .whiteTint)
 
     private func setup() {
         addSubview(title)
@@ -112,6 +112,7 @@ class Prompt : UIView {
             close.topAnchor.constraint(equalTo: topAnchor),
             close.trailingAnchor.constraint(equalTo: trailingAnchor) ])
         close.pin(toSize: CGSize(width: 44.0, height: 44.0))
+        close.tintColor = .white
         title.text = type.title
         body.text = type.body
     }

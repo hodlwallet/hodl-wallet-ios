@@ -67,7 +67,7 @@ class ModalHeaderView : UIView {
             border.constraint(.height, constant: 1.0) ])
         border.constrainBottomCorners(sidePadding: 0, bottomPadding: 0)
 
-        backgroundColor = .white
+        backgroundColor = .grayBackground
 
         setColors()
     }

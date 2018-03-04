@@ -162,8 +162,8 @@ class TransactionTableViewCell : UITableViewCell, Subscriber {
     private func setupStyle() {
         backgroundColor = .clear
 
-        comment.textColor = .darkText
-        status.textColor = .darkText
+        comment.textColor = .whiteTint
+        status.textColor = .whiteTint
         timestamp.textColor = .grayTextTint
 
         shadowView.backgroundColor = .clear
@@ -198,8 +198,8 @@ class TransactionTableViewCell : UITableViewCell, Subscriber {
     }
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        guard selectionStyle != .none else { container.backgroundColor = .white; return }
-        container.backgroundColor = highlighted ? .secondaryShadow : .white
+        guard selectionStyle != .none else { container.backgroundColor = .black; return }
+        container.backgroundColor = highlighted ? .grayBackground : .black
     }
 
     required init?(coder aDecoder: NSCoder) {

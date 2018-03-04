@@ -12,7 +12,7 @@ private let largeFontSize: CGFloat = 26.0
 private let smallFontSize: CGFloat = 13.0
 private let logoWidth: CGFloat = 0.22 //percentage of width
 
-class AccountHeaderView : UIView, GradientDrawable, Subscriber {
+class AccountHeaderView : UIView, /*GradientDrawable,*/ Subscriber {
 
     //MARK: - Public
     init(store: Store) {
@@ -92,11 +92,11 @@ class AccountHeaderView : UIView, GradientDrawable, Subscriber {
         setData()
         addSubviews()
         addConstraints()
-        addShadow()
         addSubscriptions()
     }
 
     private func setData() {
+        backgroundColor = .grayBackground
         name.textColor = .white
 
         manage.setTitle(S.AccountHeader.manageButtonName, for: .normal)
@@ -205,12 +205,12 @@ class AccountHeaderView : UIView, GradientDrawable, Subscriber {
         return scale.translatedBy(x: -deltaX, y: deltaY/2.0)
     }
 
-    private func addShadow() {
-        layer.shadowColor = UIColor.black.cgColor
+    /* private func addShadow() {
+        layer.shadowColor = UIColor.secondaryGrayText.cgColor
         layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
         layer.shadowOpacity = 0.15
         layer.shadowRadius = 8.0
-    }
+    } */
 
     private func addSubscriptions() {
         store.lazySubscribe(self,
@@ -312,9 +312,9 @@ class AccountHeaderView : UIView, GradientDrawable, Subscriber {
         equals.isHidden = didHide
     }
 
-    override func draw(_ rect: CGRect) {
+    /* override func draw(_ rect: CGRect) {
         drawGradient(rect)
-    }
+    } */
 
     @objc private func currencySwitchTapped() {
         layoutIfNeeded()
