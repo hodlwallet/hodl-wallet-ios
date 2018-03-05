@@ -53,7 +53,7 @@ class MenuViewController : UIViewController, Trackable {
         previousButton?.constrain([
             previousButton?.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -C.padding[2]) ])
 
-        view.backgroundColor = .white
+        view.backgroundColor = .grayBackground
 
         if BRAPIClient.featureEnabled(.buyBitcoin) {
             saveEvent("menu.buyBitcoinIsVisible")

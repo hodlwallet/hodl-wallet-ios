@@ -86,8 +86,9 @@ class ModalHeaderView : UIView {
         switch style {
         case .light:
             title.textColor = .white
-            close.tintColor = .white
+            close.tintColor = .gradientEnd
             faq?.tintColor = .white
+            border.backgroundColor = .secondaryGrayText
         case .dark:
             border.backgroundColor = .secondaryShadow
         }

@@ -53,7 +53,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
     private let descriptionCell = DescriptionSendCell(placeholder: S.Send.descriptionLabel)
     private let sendButton = ShadowButton(title: S.Send.sendLabel, type: .primary)
     private let currency: ShadowButton
-    private let currencyBorder = UIView(color: .secondaryShadow)
+    private let currencyBorder = UIView(color: .secondaryGrayText)
     private var currencySwitcherHeightConstraint: NSLayoutConstraint?
     private var pinPadHeightConstraint: NSLayoutConstraint?
     private var balance: UInt64 = 0
@@ -65,7 +65,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
     private var feeType: Fee?
 
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = .grayBackground
         view.addSubview(addressCell)
         view.addSubview(descriptionCell)
         view.addSubview(sendButton)
@@ -89,11 +89,11 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
                 descriptionCell.accessoryView.constraint(.width, constant: 0.0) ])
 
         sendButton.constrain([
-            sendButton.constraint(.leading, toView: view, constant: C.padding[2]),
-            sendButton.constraint(.trailing, toView: view, constant: -C.padding[2]),
-            sendButton.constraint(toBottom: descriptionCell, constant: verticalButtonPadding),
-            sendButton.constraint(.height, constant: C.Sizes.buttonHeight),
-            sendButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -C.padding[2]) ])
+            sendButton.constraint(.leading, toView: view, constant: C.padding[0]),
+            sendButton.constraint(.trailing, toView: view, constant: -C.padding[0]),
+            sendButton.constraint(toBottom: descriptionCell, constant: 0.0),
+            sendButton.constraint(.height, constant: 55),
+            sendButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -C.padding[0]) ])
         addButtonActions()
         store.subscribe(self, selector: { $0.walletState.balance != $1.walletState.balance },
                         callback: {

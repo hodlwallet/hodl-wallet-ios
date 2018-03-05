@@ -13,9 +13,10 @@ class DescriptionSendCell : SendCell {
     init(placeholder: String) {
         super.init()
         textView.delegate = self
-        textView.textColor = .darkText
+        textView.textColor = .whiteTint
         textView.font = .customBody(size: 20.0)
         textView.returnKeyType = .done
+        textView.backgroundColor = .grayBackground
         self.placeholder.text = placeholder
         setupViews()
     }

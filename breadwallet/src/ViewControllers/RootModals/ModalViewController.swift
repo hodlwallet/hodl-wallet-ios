@@ -92,7 +92,7 @@ class ModalViewController : UIViewController, Subscriber {
 
     private func setInitialData() {
         view.backgroundColor = .clear
-        scrollView.backgroundColor = .white
+        scrollView.backgroundColor = .grayBackground
         scrollView.delaysContentTouches = false
         if var modalPresentable = childViewController as? ModalPresentable {
             modalPresentable.parentView = view

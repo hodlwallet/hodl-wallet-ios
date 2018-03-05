@@ -105,7 +105,9 @@ class ShadowButton: UIControl {
             shadowView.constraint(.bottom, toView: self),
             shadowView.constraint(.centerX, toView: self),
             NSLayoutConstraint(item: shadowView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0.8, constant: 0.0) ])
-        if type != .secondary {
+        if type == .primary || type == .secondary {
+            shadowView.layer.cornerRadius = 0.0
+        } else {
             shadowView.layer.cornerRadius = 4.0
         }
         shadowView.layer.shadowOffset = CGSize(width: 0, height: 4)
@@ -116,7 +118,9 @@ class ShadowButton: UIControl {
     private func addContent() {
         addSubview(container)
         container.backgroundColor = .primaryButton
-        if type != .secondary {
+        if type == .primary || type == .secondary {
+            container.layer.cornerRadius = 0.0
+        } else {
             container.layer.cornerRadius = cornerRadius
         }
         container.isUserInteractionEnabled = false
@@ -160,7 +164,7 @@ class ShadowButton: UIControl {
     private func setColors() {
         switch type {
         case .primary:
-            container.backgroundColor = .primaryButton
+            container.backgroundColor = .black
             label.textColor = .primaryText
             container.layer.borderColor = nil
             container.layer.borderWidth = 0.0

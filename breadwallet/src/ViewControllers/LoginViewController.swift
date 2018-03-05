@@ -39,7 +39,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
 
     //MARK: - Private
     private let store: Store
-    private let backgroundView = LoginBackgroundView()
+    private let backgroundView = UIView() //LoginBackgroundView()
     private let pinPad = PinPadViewController(style: .clear, keyboardType: .pinPad, maxDigits: 0)
     private let pinViewContainer = UIView()
     private var pinView: PinView?
@@ -66,11 +66,11 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
         button.accessibilityLabel = S.UnlockScreen.touchIdText
         return button
     }()
-    private let subheader = UILabel(font: .customBody(size: 16.0), color: .darkText)
+    private let subheader = UILabel(font: .customBody(size: 16.0), color: .white)
     private var pinPadPottom: NSLayoutConstraint?
     private var topControlTop: NSLayoutConstraint?
     private var unlockTimer: Timer?
-    private let pinPadBackground = GradientView()
+    private let pinPadBackground = UIView() //GradientView()
     private let topControlContainer: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.white.cgColor
@@ -179,6 +179,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
 
     private func addConstraints() {
         backgroundView.constrain(toSuperviewEdges: nil)
+        backgroundView.backgroundColor = .grayBackground
         if walletManager != nil {
             addChildViewController(pinPad, layout: {
                 pinPadPottom = pinPad.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -214,6 +215,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
             logo.heightAnchor.constraint(equalTo: logo.widthAnchor, multiplier: C.Sizes.logoAspectRatio),
             logo.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.35) ])
         if walletManager != nil {
+            pinPadBackground.backgroundColor = .grayBackground
             pinPadBackground.constrain([
                 pinPadBackground.leadingAnchor.constraint(equalTo: pinPad.view.leadingAnchor),
                 pinPadBackground.trailingAnchor.constraint(equalTo: pinPad.view.trailingAnchor),

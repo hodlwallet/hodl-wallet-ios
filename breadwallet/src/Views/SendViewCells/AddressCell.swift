@@ -36,11 +36,11 @@ class AddressCell : UIView {
     let textField = UITextField()
     let paste = ShadowButton(title: S.Send.pasteLabel, type: .tertiary)
     let scan = ShadowButton(title: S.Send.scanLabel, type: .tertiary)
-    fileprivate let contentLabel = UILabel(font: .customBody(size: 14.0), color: .darkText)
+    fileprivate let contentLabel = UILabel(font: .customBody(size: 14.0), color: .whiteTint)
     private let label = UILabel(font: .customBody(size: 16.0))
     fileprivate let gr = UITapGestureRecognizer()
     fileprivate let tapView = UIView()
-    private let border = UIView(color: .secondaryShadow)
+    private let border = UIView(color: .secondaryGrayText)
 
     private func setupViews() {
         addSubviews()
@@ -96,6 +96,7 @@ class AddressCell : UIView {
         textField.returnKeyType = .done
         textField.delegate = self
         textField.clearButtonMode = .whileEditing
+        textField.tintColor = .grayTextTint
         label.textColor = .grayTextTint
         contentLabel.lineBreakMode = .byTruncatingMiddle
 

@@ -27,9 +27,9 @@ class MenuButton : UIControl {
     override var isHighlighted: Bool {
         didSet {
             if isHighlighted {
-                backgroundColor = .secondaryButton
+                backgroundColor = .secondaryGrayText
             } else {
-                backgroundColor = .white
+                backgroundColor = .grayBackground
             }
         }
     }
@@ -52,9 +52,10 @@ class MenuButton : UIControl {
             border.constraint(.height, constant: 1.0) ])
 
         label.text = type.title
+        label.textColor = .white
         image.image = type.image
         image.contentMode = .scaleAspectFit
-        border.backgroundColor = .secondaryShadow
+        border.backgroundColor = .secondaryGrayText
     }
     
     required init?(coder aDecoder: NSCoder) {

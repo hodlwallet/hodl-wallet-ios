@@ -138,7 +138,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
             requestBottom?.constant = 0.0
         }
         sharePopout.clipsToBounds = true
-        addressButton.setBackgroundImage(UIImage.imageForColor(.secondaryShadow), for: .highlighted)
+        addressButton.setBackgroundImage(UIImage.imageForColor(.secondaryGrayText), for: .highlighted)
         addressButton.layer.cornerRadius = 4.0
         addressButton.layer.masksToBounds = true
         setReceiveAddress()
