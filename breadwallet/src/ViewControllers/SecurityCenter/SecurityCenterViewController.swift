@@ -39,7 +39,7 @@ class SecurityCenterViewController : UIViewController, Subscriber {
     }
 
     fileprivate var headerBackgroundHeight: NSLayoutConstraint?
-    private let headerBackground = SecurityCenterHeader()
+    private let headerBackground = UIView() //SecurityCenterHeader()
     private let header: ModalHeaderView
     fileprivate let shield = UIImageView(image: #imageLiteral(resourceName: "shield"))
     private let scrollView = UIScrollView()
@@ -84,6 +84,8 @@ class SecurityCenterViewController : UIViewController, Subscriber {
 
     private func setupSubviewProperties() {
         view.backgroundColor = .white
+        // Separate from ModalView
+        headerBackground.backgroundColor = .secondaryGrayText
         header.closeCallback = {
             self.dismiss(animated: true, completion: nil)
         }
