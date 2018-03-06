@@ -128,6 +128,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         view.backgroundColor = .grayBackground
         address.textColor = .white
         border.backgroundColor = .black
+        share.backgroundColor = .black
         share.isToggleable = true
         if !isRequestAmountVisible {
             border.isHidden = true
@@ -138,6 +139,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
             requestBottom?.constant = 0.0
         }
         sharePopout.clipsToBounds = true
+        sharePopout.backgroundColor = .whiteTint
         addressButton.setBackgroundImage(UIImage.imageForColor(.secondaryGrayText), for: .highlighted)
         addressButton.layer.cornerRadius = 4.0
         addressButton.layer.masksToBounds = true
