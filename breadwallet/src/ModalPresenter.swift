@@ -592,9 +592,9 @@ class ModalPresenter : Subscriber, Trackable {
         guard let walletManager = self.walletManager else { return }
         let vc: BRWebViewController
         #if Debug || Testflight
-            vc = BRWebViewController(bundleName: "bread-frontend-staging", mountPoint: mountPoint, walletManager: walletManager, store: store)
+            vc = BRWebViewController(bundleName: "hodl-frontend-staging", mountPoint: mountPoint, walletManager: walletManager, store: store)
         #else
-            vc = BRWebViewController(bundleName: "bread-frontend", mountPoint: mountPoint, walletManager: walletManager, store: store)
+            vc = BRWebViewController(bundleName: "hodl-frontend", mountPoint: mountPoint, walletManager: walletManager, store: store)
         #endif
         vc.startServer()
         vc.preload()

@@ -69,14 +69,11 @@ open class BRAPIClient : NSObject, URLSessionDelegate, URLSessionTaskDelegate, B
     private var logEnabled = true
     
     // proto is the transport protocol to use for talking to the API (either http or https)
-    var proto = "https"
+    // var proto = "https"  # TODO Once we set it up we need to change this to https!
+    var proto = "http"
     
     // host is the server(s) on which the API is hosted
-    #if Testflight || Debug
-    var host = "stage.breadwallet.com"
-    #else
-    var host = "api.breadwallet.com"
-    #endif
+    var host = "precio.bitstop.co"
     
     // isFetchingAuth is set to true when a request is currently trying to renew authentication (the token)
     // it is useful because fetching auth is not idempotent and not reentrant, so at most one auth attempt

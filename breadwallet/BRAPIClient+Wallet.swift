@@ -12,7 +12,12 @@ private let fallbackRatesURL = "https://bitpay.com/api/rates"
 
 extension BRAPIClient {
     func feePerKb(_ handler: @escaping (_ fees: Fees, _ error: String?) -> Void) {
-        let req = URLRequest(url: url("/fee-per-kb"))
+        #if Testflight || Debug
+            let req = URLRequest(url: url("/hodl.staging/fee-per-kb.json"))
+        #else
+            let req = URLRequest(url: url("/hodl/fee-per-kb.json"))
+        #endif
+
         let task = self.dataTaskWithRequest(req) { (data, response, err) -> Void in
             var regularFeePerKb: uint_fast64_t = 0
             var economyFeePerKb: uint_fast64_t = 0
@@ -41,7 +46,14 @@ extension BRAPIClient {
     }
     
     func exchangeRates(isFallback: Bool = false, _ handler: @escaping (_ rates: [Rate], _ error: String?) -> Void) {
-        let request = isFallback ? URLRequest(url: URL(string: fallbackRatesURL)!) : URLRequest(url: url("/rates"))
+        #if Testflight || Debug
+            let request = isFallback ? URLRequest(url: URL(string: fallbackRatesURL)!) : URLRequest(url: url("/hodl.staging/rates.json"))
+
+        #else
+            let request = isFallback ? URLRequest(url: URL(string: fallbackRatesURL)!) : URLRequest(url: url("/hodl/rates.json"))
+
+        #endif
+
         let task = dataTaskWithRequest(request) { (data, response, error) in
             if error == nil, let data = data,
                 let parsedData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) {
