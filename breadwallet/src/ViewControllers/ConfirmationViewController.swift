@@ -152,6 +152,8 @@ class ConfirmationViewController : UIViewController, ContentBoxPresenter {
             processingTime.text = String(format: S.Confirmation.processingTime, S.FeeSelector.regularTime)
         case .economy:
             processingTime.text = String(format: S.Confirmation.processingTime, S.FeeSelector.economyTime)
+        case .current:
+            processingTime.text = String(format: S.Confirmation.processingTime, S.FeeSelector.regularTime)
         }
 
         sendLabel.text = S.Confirmation.amountLabel

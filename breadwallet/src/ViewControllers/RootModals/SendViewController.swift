@@ -146,6 +146,9 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
                 wallet.feePerKb = fees.regular
             case .economy:
                 wallet.feePerKb = fees.economy
+            case .current:
+                guard fees.current != nil else { wallet.feePerKb = fees.regular; myself.amountView.updateBalanceLabel(); return }
+                wallet.feePerKb = fees.current!
             }
             myself.amountView.updateBalanceLabel()
         }

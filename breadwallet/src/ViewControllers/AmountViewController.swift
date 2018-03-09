@@ -63,8 +63,8 @@ class AmountViewController : UIViewController, Trackable {
     private var pinPadHeight: NSLayoutConstraint?
     private var feeSelectorHeight: NSLayoutConstraint?
     private var feeSelectorTop: NSLayoutConstraint?
-    private let placeholder = UILabel(font: .customBody(size: 16.0), color: .grayTextTint)
-    private let amountLabel = UILabel(font: .customBody(size: 26.0), color: .darkText)
+    private let placeholder = UILabel(font: .customBody(size: 16.0), color: .grayText)
+    private let amountLabel = UILabel(font: .customBody(size: 26.0), color: .whiteTint)
     private let pinPad: PinPadViewController
     private let currencyToggle: ShadowButton
     private let border = UIView(color: .secondaryGrayText)

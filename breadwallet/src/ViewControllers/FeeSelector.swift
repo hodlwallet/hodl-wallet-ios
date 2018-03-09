@@ -11,6 +11,7 @@ import UIKit
 enum Fee {
     case regular
     case economy
+    case current
 }
 
 class FeeSelector : UIView {
@@ -34,10 +35,10 @@ class FeeSelector : UIView {
     }
 
     private let store: Store
-    private let header = UILabel(font: .customMedium(size: 16.0), color: .darkText)
+    private let header = UILabel(font: .customMedium(size: 16.0), color: .whiteTint)
     private let subheader = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
     private let warning = UILabel.wrapping(font: .customBody(size: 14.0), color: .red)
-    private let control = UISegmentedControl(items: [S.FeeSelector.regular, S.FeeSelector.economy])
+    private let control = UISlider()
     private var bottomConstraint: NSLayoutConstraint?
 
     private func setupViews() {
@@ -64,20 +65,27 @@ class FeeSelector : UIView {
             control.leadingAnchor.constraint(equalTo: warning.leadingAnchor),
             control.topAnchor.constraint(equalTo: subheader.bottomAnchor, constant: 4.0),
             control.widthAnchor.constraint(equalTo: widthAnchor, constant: -C.padding[4]) ])
-
+        
+        control.minimumValue = Float(store.state.fees.economy)
+        control.maximumValue = Float(store.state.fees.regular)
+        
         control.valueChanged = strongify(self) { myself in
-            if myself.control.selectedSegmentIndex == 0 {
+            if myself.control.value == Float(myself.store.state.fees.regular) {
                 myself.didUpdateFee?(.regular)
                 myself.subheader.text = String(format: S.FeeSelector.estimatedDelivery, S.FeeSelector.regularTime)
                 myself.warning.text = ""
-            } else {
+            } else if myself.control.value == Float(myself.store.state.fees.economy) {
                 myself.didUpdateFee?(.economy)
                 myself.subheader.text = String(format: S.FeeSelector.estimatedDelivery, S.FeeSelector.economyTime)
                 myself.warning.text = S.FeeSelector.economyWarning
+            } else {
+                let newFees = Fees(regular: myself.store.state.fees.regular, economy: myself.store.state.fees.economy, current: UInt64(myself.control.value))
+                myself.store.perform(action: UpdateFees.set(newFees))
+                myself.didUpdateFee?(.current)
             }
         }
 
-        control.selectedSegmentIndex = 0
+        // control.selectedSegmentIndex = 0
         clipsToBounds = true
 
     }
