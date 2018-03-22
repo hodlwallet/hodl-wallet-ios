@@ -101,7 +101,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
                                 self.balance = balance
                             }
         })
-        walletManager.wallet?.feePerKb = store.state.fees.regular
+        walletManager.wallet?.feePerKb = store.state.fees.regular.sats
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -142,12 +142,13 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
             myself.feeType = fee
             let fees = myself.store.state.fees
             switch fee {
+            case .fastest:
+                wallet.feePerKb = fees.fastest.sats
             case .regular:
-                wallet.feePerKb = fees.regular
+                guard fees.current != nil else { wallet.feePerKb = fees.regular.sats; myself.amountView.updateBalanceLabel(); return }
+                wallet.feePerKb = fees.current!
             case .economy:
-                wallet.feePerKb = fees.economy
-            case .current:
-                guard fees.current != nil else { wallet.feePerKb = fees.regular; myself.amountView.updateBalanceLabel(); return }
+                guard fees.current != nil else { wallet.feePerKb = fees.economy.sats; myself.amountView.updateBalanceLabel(); return }
                 wallet.feePerKb = fees.current!
             }
             myself.amountView.updateBalanceLabel()

@@ -96,7 +96,7 @@ class InViewAlert: UIView {
         case .primary:
             return .gradientEnd
         case .secondary:
-            return .grayBackground
+            return .black
         }
     }
 

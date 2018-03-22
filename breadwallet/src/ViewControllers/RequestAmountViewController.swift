@@ -102,11 +102,11 @@ class RequestAmountViewController : UIViewController {
     }
 
     private func setData() {
-        view.backgroundColor = .white
+        view.backgroundColor = .grayBackground
         address.text = wallet.receiveAddress
-        address.textColor = .grayTextTint
-        border.backgroundColor = .secondaryBorder
-        qrCode.image = UIImage.qrCode(data: "\(wallet.receiveAddress)".data(using: .utf8)!, color: CIColor(color: .black))?
+        address.textColor = .whiteTint
+        border.backgroundColor = .secondaryGrayText
+        qrCode.image = UIImage.qrCode(data: "\(wallet.receiveAddress)".data(using: .utf8)!, color: CIColor(color: .whiteTint))?
             .resize(qrSize)!
         share.isToggleable = true
         sharePopout.clipsToBounds = true
@@ -125,7 +125,7 @@ class RequestAmountViewController : UIViewController {
     private func setQrCode(){
         guard let amount = amount else { return }
         let request = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
-        qrCode.image = UIImage.qrCode(data: request.data(using: .utf8)!, color: CIColor(color: .black))?
+        qrCode.image = UIImage.qrCode(data: request.data(using: .utf8)!, color: CIColor(color: .whiteTint))?
             .resize(qrSize)!
     }
 

@@ -148,12 +148,30 @@ class ConfirmationViewController : UIViewController, ContentBoxPresenter {
         address.text = addressText
         address.lineBreakMode = .byTruncatingMiddle
         switch feeType {
+        case .fastest:
+            if state.fees.fastest.time < 60 {
+                processingTime.text = String(format: S.FeeSelector.estimatedDelivery,
+                       S.FeeSelector.minuteTime, "\(state.fees.fastest.time)")
+            } else {
+                processingTime.text = String(format: S.FeeSelector.estimatedDelivery,
+                       S.FeeSelector.hourTime, "\(state.fees.fastest.time / 60)")
+            }
         case .regular:
-            processingTime.text = String(format: S.Confirmation.processingTime, S.FeeSelector.regularTime)
+            if state.fees.regular.time < 60 {
+                processingTime.text = String(format: S.FeeSelector.estimatedDelivery,
+                                             S.FeeSelector.minuteTime, "\(state.fees.regular.time)")
+            } else {
+                processingTime.text = String(format: S.FeeSelector.estimatedDelivery,
+                                             S.FeeSelector.hourTime, "\(state.fees.regular.time / 60)")
+            }
         case .economy:
-            processingTime.text = String(format: S.Confirmation.processingTime, S.FeeSelector.economyTime)
-        case .current:
-            processingTime.text = String(format: S.Confirmation.processingTime, S.FeeSelector.regularTime)
+            if state.fees.economy.time < 60 {
+                processingTime.text = String(format: S.FeeSelector.estimatedDelivery,
+                                             S.FeeSelector.minuteTime, "\(state.fees.economy.time)")
+            } else {
+                processingTime.text = String(format: S.FeeSelector.estimatedDelivery,
+                                             S.FeeSelector.hourTime, "\(state.fees.economy.time / 60)")
+            }
         }
 
         sendLabel.text = S.Confirmation.amountLabel

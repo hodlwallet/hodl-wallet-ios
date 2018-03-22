@@ -126,7 +126,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
 
     private func setStyle() {
         view.backgroundColor = .grayBackground
-        address.textColor = .white
+        address.textColor = .whiteTint
         border.backgroundColor = .black
         share.backgroundColor = .black
         share.isToggleable = true
@@ -139,7 +139,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
             requestBottom?.constant = 0.0
         }
         sharePopout.clipsToBounds = true
-        sharePopout.backgroundColor = .whiteTint
+        sharePopout.backgroundColor = .grayBackground
         addressButton.setBackgroundImage(UIImage.imageForColor(.secondaryGrayText), for: .highlighted)
         addressButton.layer.cornerRadius = 4.0
         addressButton.layer.masksToBounds = true
@@ -148,7 +148,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
 
     private func setReceiveAddress() {
         address.text = wallet.receiveAddress
-        qrCode.image = UIImage.qrCode(data: "\(address.text!)".data(using: .utf8)!, color: CIColor(color: .white))?
+        qrCode.image = UIImage.qrCode(data: "\(address.text!)".data(using: .utf8)!, color: CIColor(color: .whiteTint))?
             .resize(CGSize(width: qrSize, height: qrSize))!
     }
 

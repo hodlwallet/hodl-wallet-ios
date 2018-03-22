@@ -8,12 +8,20 @@
 
 import Foundation
 
+struct FeeData {
+    let sats: UInt64
+    let time: Int
+    let blocks: Int
+}
+
 struct Fees {
-    let regular: UInt64
-    let economy: UInt64
+    let fastest: FeeData
+    let regular: FeeData
+    let economy: FeeData
     var current: UInt64?
     
-    init (regular: UInt64, economy: UInt64, current: UInt64? = nil) {
+    init (fastest: FeeData, regular: FeeData, economy: FeeData, current: UInt64? = nil) {
+        self.fastest = fastest
         self.regular = regular
         self.economy = economy
         self.current = current
@@ -22,7 +30,10 @@ struct Fees {
 
 extension Fees {
     static var defaultFees: Fees {
-        return Fees(regular: maxFeePerKB, economy: minFeePerKB, current: defaultFeePerKB)
+        return Fees(fastest: FeeData(sats: maxFeePerKB, time: 60, blocks: 2),
+                    regular: FeeData(sats: defaultFeePerKB, time: 180, blocks: 10),
+                    economy: FeeData(sats: minFeePerKB, time: 750, blocks: 25),
+                    current: defaultFeePerKB)
     }
 }
 
@@ -41,7 +52,7 @@ class FeeUpdater : Trackable {
     func refresh(completion: @escaping () -> Void) {
         walletManager.apiClient?.feePerKb { newFees, error in
             guard error == nil else { print("feePerKb error: \(String(describing: error))"); completion(); return }
-            guard newFees.regular < self.maxFeePerKB && newFees.economy > self.minFeePerKB && newFees.economy != newFees.regular else {
+            guard newFees.fastest.sats < self.maxFeePerKB && newFees.economy.sats > self.minFeePerKB && newFees.economy.sats != newFees.fastest.sats else {
                 self.saveEvent("wallet.didUseDefaultFeePerKB")
                 return
             }

@@ -50,8 +50,8 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
     private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
 
     private var logo: UIImageView = {
-        let image = UIImageView(image: #imageLiteral(resourceName: "Logo"))
-        image.contentMode = .scaleAspectFit
+        let image = UIImageView(image: #imageLiteral(resourceName: "LogoFront"))
+        image.contentMode = .scaleAspectFill
         return image
     }()
 

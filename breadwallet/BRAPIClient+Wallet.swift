@@ -19,28 +19,39 @@ extension BRAPIClient {
         #endif
 
         let task = self.dataTaskWithRequest(req) { (data, response, err) -> Void in
-            var regularFeePerKb: uint_fast64_t = 0
-            var economyFeePerKb: uint_fast64_t = 0
+            var fastestFee = Fees.defaultFees.fastest
+            var regularFee = Fees.defaultFees.regular
+            var economyFee = Fees.defaultFees.economy
             var errStr: String? = nil
             if err == nil {
                 do {
                     let parsedObject: Any? = try JSONSerialization.jsonObject(
                         with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
-                    if let top = parsedObject as? NSDictionary, let regular = top["fee_per_kb"] as? NSNumber, let economy = top["fee_per_kb_economy"] as? NSNumber {
-                        regularFeePerKb = regular.uint64Value
-                        economyFeePerKb = economy.uint64Value
+                    if let top = parsedObject as? NSDictionary,
+                        let fastest = top["fastest_sat_per_kilobyte"] as? NSNumber,
+                        let regular = top["normal_sat_per_kilobyte"] as? NSNumber,
+                        let economy = top["slow_sat_per_kilobyte"] as? NSNumber,
+                        let fastestTime = top["fastest_time"] as? NSNumber,
+                        let regularTime = top["normal_time"] as? NSNumber,
+                        let economyTime = top["slow_time"] as? NSNumber,
+                        let fastestBlocks = top["fastest_blocks"] as? NSNumber,
+                        let regularBlocks = top["normal_blocks"] as? NSNumber,
+                        let economyBlocks = top["slow_blocks"] as? NSNumber {
+                        fastestFee = FeeData(sats: fastest.uint64Value, time: fastestTime.intValue, blocks: fastestBlocks.intValue)
+                        regularFee = FeeData(sats: regular.uint64Value, time: regularTime.intValue, blocks: regularBlocks.intValue)
+                        economyFee = FeeData(sats: economy.uint64Value, time: economyTime.intValue, blocks: economyBlocks.intValue)
                     }
                 } catch (let e) {
                     self.log("fee-per-kb: error parsing json \(e)")
                 }
-                if regularFeePerKb == 0 || economyFeePerKb == 0 {
+                if fastestFee.sats == 0 || regularFee.sats == 0 || economyFee.sats == 0 {
                     errStr = "invalid json"
                 }
             } else {
                 self.log("fee-per-kb network error: \(String(describing: err))")
                 errStr = "bad network connection"
             }
-            handler(Fees(regular: regularFeePerKb, economy: economyFeePerKb), errStr)
+            handler(Fees(fastest: fastestFee, regular: regularFee, economy: economyFee), errStr)
         }
         task.resume()
     }

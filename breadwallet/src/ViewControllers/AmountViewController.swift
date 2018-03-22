@@ -370,5 +370,5 @@ class AmountViewController : UIViewController, Trackable {
 extension Fees : Equatable {}
 
 func ==(lhs: Fees, rhs: Fees) -> Bool {
-    return lhs.regular == rhs.regular && lhs.economy == rhs.economy
+    return lhs.fastest.sats == rhs.fastest.sats && lhs.regular.sats == rhs.regular.sats && lhs.economy.sats == rhs.economy.sats
 }

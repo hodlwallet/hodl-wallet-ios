@@ -522,6 +522,9 @@ enum S {
         static let economy = NSLocalizedString("FeeSelector.economy", value: "Economy", comment: "Economy fee")
         static let economyTime = NSLocalizedString("FeeSelector.economyTime", value: "1-24 hours", comment: "E.g. [This transaction is predicted to complete in] 1-24 hours")
         static let regularTime = NSLocalizedString("FeeSelector.regularTime", value: "10-60 minutes", comment: "E.g. [This transaction is predicted to complete in] 10-60 minutes")
+        static let minuteTime = NSLocalizedString("FeeSelector.minuteTime", value: "Estimated Delivery: %1$@ minutes", comment: "E.g. [This transaction is predicted to complete in] %d minutes")
+        static let hourTime = NSLocalizedString("FeeSelector.hourTime", value: "Estimated Delivery: %1$@ hours", comment: "E.g. [This transaction is predicted to complete in] %d hours")
+        static let satsByte = NSLocalizedString("FeeSelector.satsByte", value: "%1$@ sats/byte", comment: "Satoshis per byte")
     }
 
     enum Confirmation {
