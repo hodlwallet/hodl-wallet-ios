@@ -13,9 +13,9 @@ private let fallbackRatesURL = "https://bitpay.com/api/rates"
 extension BRAPIClient {
     func feePerKb(_ handler: @escaping (_ fees: Fees, _ error: String?) -> Void) {
         #if Testflight || Debug
-            let req = URLRequest(url: url("/hodl.staging/fee-per-kb.json"))
+            let req = URLRequest(url: url("/hodl/fee-estimator.json"))
         #else
-            let req = URLRequest(url: url("/hodl/fee-per-kb.json"))
+            let req = URLRequest(url: url("/hodl/fee-estimator.json"))
         #endif
 
         let task = self.dataTaskWithRequest(req) { (data, response, err) -> Void in
