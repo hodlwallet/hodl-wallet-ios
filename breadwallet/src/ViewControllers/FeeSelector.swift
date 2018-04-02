@@ -40,27 +40,34 @@ class FeeSelector : UIView {
     private let warning = UILabel.wrapping(font: .customBody(size: 14.0), color: .grayTextTint)
     private let control = UISlider()
     private var bottomConstraint: NSLayoutConstraint?
-
+    
     private func setupViews() {
         addSubview(control)
         addSubview(header)
         addSubview(subheader)
         addSubview(warning)
-
+        
         header.constrain([
             header.leadingAnchor.constraint(equalTo: leadingAnchor, constant: C.padding[2]),
             header.topAnchor.constraint(equalTo: topAnchor, constant: C.padding[1]) ])
         subheader.constrain([
             subheader.leadingAnchor.constraint(equalTo: header.leadingAnchor),
             subheader.topAnchor.constraint(equalTo: header.bottomAnchor) ])
-
+        
         bottomConstraint = warning.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -C.padding[1])
         warning.constrain([
             warning.leadingAnchor.constraint(equalTo: subheader.leadingAnchor),
             warning.topAnchor.constraint(equalTo: control.bottomAnchor, constant: 4.0),
             warning.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[2]) ])
         header.text = S.FeeSelector.title
-        subheader.text = String(format: S.FeeSelector.estimatedDelivery, S.FeeSelector.regularTime)
+        var hours = Int(0)
+        if store.state.fees.economy.time / 60 < 2 {
+            subheader.text = String(format: S.FeeSelector.minuteTime,
+                                           "\(store.state.fees.economy.time)")
+        } else {
+            hours = store.state.fees.economy.time / 60
+            subheader.text = String(format: S.FeeSelector.hourTime, "\(hours)")
+        }
         control.constrain([
             control.leadingAnchor.constraint(equalTo: warning.leadingAnchor),
             control.topAnchor.constraint(equalTo: subheader.bottomAnchor, constant: 4.0),
@@ -68,9 +75,9 @@ class FeeSelector : UIView {
         
         control.minimumValue = Float(store.state.fees.economy.sats)
         control.maximumValue = Float(store.state.fees.fastest.sats)
+        control.minimumTrackTintColor = .gradientStart
         
         // Warning text -> sat/byte (localization)
-        var hours = Int(0)
         control.valueChanged = strongify(self) { myself in
             if myself.control.value >= Float(myself.store.state.fees.fastest.sats) {
                 myself.didUpdateFee?(.fastest)
