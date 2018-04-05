@@ -57,11 +57,13 @@ class ModalViewController : UIViewController, Subscriber {
 
     private func addConstraints() {
         header.constrain([
+            header.topAnchor.constraint(equalTo: view.topAnchor),
             header.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             header.bottomAnchor.constraint(equalTo: scrollView.topAnchor),
             header.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             header.heightAnchor.constraint(equalToConstant: headerHeight)])
         scrollView.constrain([
+            scrollView.topAnchor.constraint(equalTo: header.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor) ])
@@ -108,7 +110,6 @@ class ModalViewController : UIViewController, Subscriber {
         store.subscribe(self, name: .unblockModalDismissal, callback: { _ in
             self.tapGestureRecognizer.isEnabled = true
         })
-        addTopCorners()
         header.closeCallback = { [weak self] in
             if let delegate = self?.transitioningDelegate as? ModalTransitionDelegate {
                 delegate.reset()
