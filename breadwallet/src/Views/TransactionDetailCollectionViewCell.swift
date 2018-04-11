@@ -61,18 +61,18 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
     }
 
     //MARK: - Private
-    private let header = ModalHeaderView(title: S.TransactionDetails.title, style: .dark)
-    private let timestamp = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
-    private let amount = UILabel(font: .customBold(size: 26.0), color: .darkText)
-    private let address = UILabel(font: .customBold(size: 14.0), color: .darkText)
+    private let header = ModalHeaderView(title: S.TransactionDetails.title, style: .light)
+    private let timestamp = UILabel(font: .customBold(size: 14.0), color: .whiteTint)
+    private let amount = UILabel(font: .customBold(size: 26.0), color: .whiteTint)
+    private let address = UILabel(font: .customBold(size: 14.0), color: .whiteTint)
     private let separators = (0...4).map { _ in UIView(color: .secondaryShadow) }
-    private let statusHeader = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
-    private let status = UILabel.wrapping(font: .customBody(size: 13.0), color: .darkText)
-    private let commentsHeader = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
+    private let statusHeader = UILabel(font: .customBold(size: 14.0), color: .whiteTint)
+    private let status = UILabel.wrapping(font: .customBody(size: 13.0), color: .whiteTint)
+    private let commentsHeader = UILabel(font: .customBold(size: 14.0), color: .whiteTint)
     private let comment = UITextView()
-    private let amountHeader = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
-    private let amountDetails = UILabel.wrapping(font: .customBody(size: 13.0), color: .darkText)
-    private let addressHeader = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
+    private let amountHeader = UILabel(font: .customBold(size: 14.0), color: .whiteTint)
+    private let amountDetails = UILabel.wrapping(font: .customBody(size: 13.0), color: .whiteTint)
+    private let addressHeader = UILabel(font: .customBold(size: 14.0), color: .whiteTint)
     private let fullAddress = UIButton(type: .system)
     private let headerHeight: CGFloat = 48.0
     private let scrollViewContent = UIView()
@@ -80,9 +80,9 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
     private let moreButton = UIButton(type: .system)
     private let moreContentView = UIView()
     private let txHash = UIButton(type: .system)
-    private let txHashHeader = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
-    private let availability = UILabel(font: .customBold(size: 13.0), color: .txListGreen)
-    private let blockHeight = UILabel(font: .customBody(size: 13.0), color: .darkText)
+    private let txHashHeader = UILabel(font: .customBold(size: 14.0), color: .whiteTint)
+    private let availability = UILabel(font: .customBold(size: 13.0), color: .gradientEnd)
+    private let blockHeight = UILabel(font: .customBody(size: 13.0), color: .whiteTint)
     private var scrollViewHeight: NSLayoutConstraint?
 
     private func setup() {
@@ -210,7 +210,7 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
     }
 
     private func setData() {
-        backgroundColor = .white
+        backgroundColor = .black
 
         statusHeader.text = S.TransactionDetails.statusHeader
         commentsHeader.text = S.TransactionDetails.commentsHeader

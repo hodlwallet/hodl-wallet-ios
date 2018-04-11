@@ -96,7 +96,7 @@ class TransactionTableViewCell : UITableViewCell, Subscriber {
     private let topPadding: CGFloat = 19.0
     private var style: TransactionCellStyle = .first
     private var transaction: Transaction?
-    private let availability = UILabel(font: .customBold(size: 13.0), color: .txListGreen)
+    private let availability = UILabel(font: .customBold(size: 13.0), color: .gradientEnd)
     private var timer: Timer? = nil
     private let arrow = UIImageView(image: #imageLiteral(resourceName: "CircleArrow").withRenderingMode(.alwaysTemplate))
 
@@ -160,7 +160,7 @@ class TransactionTableViewCell : UITableViewCell, Subscriber {
     }
 
     private func setupStyle() {
-        backgroundColor = .clear
+        backgroundColor = .black
 
         comment.textColor = .whiteTint
         status.textColor = .whiteTint
