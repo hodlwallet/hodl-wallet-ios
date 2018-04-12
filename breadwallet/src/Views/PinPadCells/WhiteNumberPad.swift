@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WhiteNumberPad : GenericPinPadCell {
+class BlackNumberPad : GenericPinPadCell {
 
     override func setAppearance() {
 
@@ -27,14 +27,14 @@ class WhiteNumberPad : GenericPinPadCell {
             sublabel.textColor = .darkText
         } else {
             if text == "" || text == deleteKeyIdentifier {
-                backgroundColor = .whiteTint
+                backgroundColor = .black
                 imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
-                imageView.tintColor = .grayTextTint
+                imageView.tintColor = .gradientStart
             } else {
-                backgroundColor = .whiteTint
-                topLabel.textColor = .grayTextTint
-                centerLabel.textColor = .grayTextTint
-                sublabel.textColor = .grayTextTint
+                backgroundColor = .black
+                topLabel.textColor = .whiteTint
+                centerLabel.textColor = .whiteTint
+                sublabel.textColor = .whiteTint
             }
         }
     }

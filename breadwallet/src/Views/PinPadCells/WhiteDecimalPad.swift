@@ -8,14 +8,14 @@
 
 import UIKit
 
-class WhiteDecimalPad : GenericPinPadCell {
+class BlackDecimalPad : GenericPinPadCell {
 
     override func setAppearance() {
         if isHighlighted {
             centerLabel.backgroundColor = .secondaryGrayText
             centerLabel.textColor = .darkText
         } else {
-            centerLabel.backgroundColor = .grayBackground
+            centerLabel.backgroundColor = .black
             centerLabel.textColor = .whiteTint
         }
     }

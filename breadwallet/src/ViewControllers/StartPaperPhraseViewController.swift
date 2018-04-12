@@ -21,15 +21,16 @@ class StartPaperPhraseViewController : UIViewController {
     private let button: ShadowButton
     private let illustration = UIImageView(image: #imageLiteral(resourceName: "PaperKey"))
     private let pencil = UIImageView(image: #imageLiteral(resourceName: "Pencil"))
-    private let explanation = UILabel.wrapping(font: UIFont.customBody(size: 16.0))
+    private let explanation = UILabel.wrapping(font: UIFont.customBody(size: 16.0), color: .gradientStart)
     private let store: Store
-    private let header = RadialGradientView(backgroundColor: .pink, offset: 64.0)
+    private let header = RadialGradientView(backgroundColor: .grayBackground, offset: 0.0)
     private let footer = UILabel.wrapping(font: .customBody(size: 13.0), color: .secondaryGrayText)
     private let callback: () -> Void
 
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = .grayBackground
         explanation.text = S.StartPaperPhrase.body
+        explanation.textAlignment = .center
         addSubviews()
         addConstraints()
         button.tap = { [weak self] in
@@ -70,10 +71,10 @@ class StartPaperPhraseViewController : UIViewController {
             explanation.constraint(.leading, toView: view, constant: C.padding[2]),
             explanation.constraint(.trailing, toView: view, constant: -C.padding[2]) ])
         button.constrain([
-            button.leadingAnchor.constraint(equalTo: footer.leadingAnchor),
-            button.bottomAnchor.constraint(equalTo: footer.topAnchor, constant: -C.padding[2]),
-            button.trailingAnchor.constraint(equalTo: footer.trailingAnchor),
-            button.constraint(.height, constant: C.Sizes.buttonHeight) ])
+            button.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            button.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            button.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            button.constraint(.height, constant: 75) ])
         footer.constrain([
             footer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
             footer.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -C.padding[2]),

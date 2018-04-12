@@ -30,7 +30,7 @@ class RadialGradientView : UIView {
         guard let context = UIGraphicsGetCurrentContext() else { return }
         let center = CGPoint(x: rect.midX, y: rect.midY + offset)
         let endRadius = rect.height
-        context.drawRadialGradient(gradient, startCenter: center, startRadius: 0.0, endCenter: center, endRadius: endRadius, options: [])
+        // context.drawRadialGradient(gradient, startCenter: center, startRadius: 0.0, endCenter: center, endRadius: endRadius, options: [])
     }
 
     required init?(coder aDecoder: NSCoder) {

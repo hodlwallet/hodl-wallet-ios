@@ -15,7 +15,7 @@ class WritePaperPhraseViewController: UIViewController {
     private let pin: String
     private let label = UILabel.wrapping(font: UIFont.customBody(size: 16.0))
     private let stepLabel = UILabel.wrapping(font: UIFont.customMedium(size: 13.0))
-    private let header = RadialGradientView(backgroundColor: .pink)
+    private let header = RadialGradientView(backgroundColor: .grayBackground)
     
     private lazy var phraseViews: [PhraseView] = {
         guard let phraseString = self.walletManager.seedPhrase(pin: self.pin) else { return [] }
@@ -54,11 +54,11 @@ class WritePaperPhraseViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = .grayBackground
         
         label.text = S.WritePaperPhrase.instruction
         label.textAlignment = .center
-        label.textColor = .white
+        label.textColor = .gradientStart
 
         stepLabel.text = String(format: S.WritePaperPhrase.step, 1, phraseViews.count)
         stepLabel.textAlignment = .center
@@ -94,8 +94,11 @@ class WritePaperPhraseViewController: UIViewController {
 
         header.constrainTopCorners(sidePadding: 0, topPadding: 0)
         header.constrain([
-            header.constraint(.height, constant: 152.0) ])
-        label.constrainBottomCorners(sidePadding: C.padding[3], bottomPadding: C.padding[2])
+            header.constraint(.height, constant: 200.0) ])
+        label.constrain([
+            label.constraint(.centerY, toView: header),
+            label.constraint(.leading, toView: header, constant: 15.0),
+            label.constraint(.trailing, toView: header, constant: -15.0) ])
 
         phraseViews.enumerated().forEach { index, phraseView in
             //The first phrase should initially be on the screen
@@ -119,16 +122,16 @@ class WritePaperPhraseViewController: UIViewController {
         proceedWidth = proceed.constraint(.width, toView: view, constant: -C.padding[2]*2)
         proceed.constrain([
                 proceed.constraint(.trailing, toView: view, constant: -C.padding[2]),
-                proceed.constraint(.height, constant: C.Sizes.buttonHeight),
-                proceed.constraint(.bottom, toView: view, constant: -(C.padding[4] + C.Sizes.buttonHeight)),
+                proceed.constraint(.height, constant: 75),
+                proceed.constraint(.bottom, toView: view),
                 proceedWidth!
             ])
 
         previousWidth = previous.constraint(.width, toView: view, constant: -view.bounds.width)
         previous.constrain([
                 previous.constraint(.leading, toView: view, constant: C.padding[2]),
-                previous.constraint(.height, constant: C.Sizes.buttonHeight),
-                previous.constraint(.bottom, toView: view, constant: -(C.padding[4] + C.Sizes.buttonHeight)    ),
+                previous.constraint(.height, constant: 75),
+                previous.constraint(.bottom, toView: view),
                 previousWidth!
             ])
     }
