@@ -56,7 +56,9 @@ class ScanViewController : UIViewController, Trackable {
 
     override func viewDidLoad() {
         view.backgroundColor = .black
-        toolbar.backgroundColor = .secondaryButton
+        toolbar.backgroundColor = .black
+        flash.tintColor = .white
+        close.tintColor = .gradientStart
 
         view.addSubview(toolbar)
         toolbar.addSubview(close)
@@ -65,19 +67,19 @@ class ScanViewController : UIViewController, Trackable {
 
         toolbar.constrainBottomCorners(sidePadding: 0, bottomPadding: 0)
         toolbar.constrain([
-            toolbar.constraint(.height, constant: 48.0) ])
+            toolbar.constraint(.height, constant: 70.0) ])
 
         close.constrain([
             close.constraint(.leading, toView: toolbar),
-            close.constraint(.top, toView: toolbar, constant: 2.0),
-            close.constraint(.bottom, toView: toolbar, constant: -2.0),
-            close.constraint(.width, constant: 44.0) ])
+            close.constraint(.top, toView: toolbar, constant: 3.0),
+            close.constraint(.bottom, toView: toolbar, constant: -3.0),
+            close.constraint(.width, constant: 64.0) ])
 
         flash.constrain([
             flash.constraint(.trailing, toView: toolbar),
-            flash.constraint(.top, toView: toolbar, constant: 2.0),
-            flash.constraint(.bottom, toView: toolbar, constant: -2.0),
-            flash.constraint(.width, constant: 44.0) ])
+            flash.constraint(.top, toView: toolbar, constant: 3.0),
+            flash.constraint(.bottom, toView: toolbar, constant: -3.0),
+            flash.constraint(.width, constant: 64.0) ])
 
         guide.constrain([
             guide.constraint(.leading, toView: view, constant: C.padding[6]),
