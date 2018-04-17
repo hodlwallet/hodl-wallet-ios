@@ -121,7 +121,7 @@ class AmountViewController : UIViewController, Trackable {
             currencyToggle.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[2]),
             currencyToggle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]) ])
         feeSelectorHeight = feeContainer.heightAnchor.constraint(equalToConstant: 0.0)
-        feeSelectorTop = feeContainer.topAnchor.constraint(equalTo: feeLabel.bottomAnchor, constant: 0.0)
+        feeSelectorTop = feeContainer.topAnchor.constraint(equalTo: feeLabel.bottomAnchor, constant: C.padding[1])
 
         feeContainer.constrain([
             feeSelectorTop,
@@ -197,9 +197,7 @@ class AmountViewController : UIViewController, Trackable {
         }
 
         feeContainer.contentView = feeSelector
-        editFee.tap = { [weak self] in
-            self?.toggleFeeSelector()
-        }
+        if !isRequesting { toggleFeeSelector() }
         editFee.setImage(#imageLiteral(resourceName: "Edit"), for: .normal)
         editFee.imageEdgeInsets = UIEdgeInsetsMake(15.0, 15.0, 15.0, 15.0)
         editFee.tintColor = .grayTextTint
@@ -278,12 +276,6 @@ class AmountViewController : UIViewController, Trackable {
         if let (balance, fee) = balanceTextForAmount?(amount, selectedRate) {
             balanceLabel.attributedText = balance
             feeLabel.attributedText = fee
-            if let amount = amount, amount > 0, !isRequesting {
-                editFee.isHidden = false
-            } else {
-                editFee.isHidden = true
-            }
-            balanceLabel.isHidden = cursor.isHidden
         }
     }
 
@@ -330,14 +322,8 @@ class AmountViewController : UIViewController, Trackable {
     private func updateBalanceAndFeeLabels() {
         if let amount = amount, amount.rawValue > 0 {
             balanceLabel.isHidden = false
-            if !isRequesting {
-                editFee.isHidden = false
-            }
         } else {
             balanceLabel.isHidden = cursor.isHidden
-            if !isRequesting {
-                editFee.isHidden = true
-            }
         }
     }
 
