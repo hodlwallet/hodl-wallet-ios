@@ -13,7 +13,7 @@ class PhraseView: UIView {
     private let phrase: String
     private let label = UILabel()
 
-    static let defaultSize = CGSize(width: 128.0, height: 88.0)
+    static let defaultSize = CGSize(width: 275.0, height: 70.0)
 
     var xConstraint: NSLayoutConstraint?
 
@@ -29,8 +29,8 @@ class PhraseView: UIView {
         label.textColor = .white
         label.text = phrase
         label.font = UIFont.customBold(size: 16.0)
-        backgroundColor = .pink
-        layer.cornerRadius = 10.0
+        backgroundColor = .black
+        // layer.cornerRadius = 10.0
     }
 
     required init?(coder aDecoder: NSCoder) {

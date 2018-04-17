@@ -26,7 +26,7 @@ class ConfirmPaperPhraseViewController : UIViewController {
     lazy private var confirmFirstPhrase: ConfirmPhrase = { ConfirmPhrase(text: String(format:S.ConfirmPaperPhrase.word, "\(self.indices.0 + 1)"), word: self.words[self.indices.0]) }()
     lazy private var confirmSecondPhrase: ConfirmPhrase = { ConfirmPhrase(text: String(format:S.ConfirmPaperPhrase.word, "\(self.indices.1 + 1)"), word: self.words[self.indices.1]) }()
     private let submit = ShadowButton(title: S.Button.submit, type: .primary)
-    private let header = RadialGradientView(backgroundColor: .pink)
+    private let header = RadialGradientView(backgroundColor: .grayBackground)
     private let store: Store
     private let pin: String
     private let walletManager: WalletManager
@@ -53,9 +53,10 @@ class ConfirmPaperPhraseViewController : UIViewController {
     }
 
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = .grayBackground
         label.text = S.ConfirmPaperPhrase.label
-        label.textColor = .white
+        label.textAlignment = .center
+        label.textColor = .gradientStart
         
         addSubviews()
         addConstraints()
@@ -87,8 +88,11 @@ class ConfirmPaperPhraseViewController : UIViewController {
     private func addConstraints() {
         header.constrainTopCorners(sidePadding: 0, topPadding: 0)
         header.constrain([
-            header.constraint(.height, constant: 152.0) ])
-        label.constrainBottomCorners(sidePadding: C.padding[1], bottomPadding: C.padding[2])
+            header.constraint(.height, constant: 200.0) ])
+        label.constrain([
+            label.constraint(.centerY, toView: header),
+            label.constraint(.leading, toView: header, constant: 20.0),
+            label.constraint(.trailing, toView: header, constant: -20.0) ])
         confirmFirstPhrase.constrain([
             confirmFirstPhrase.constraint(toBottom: header, constant: 0.0),
             confirmFirstPhrase.constraint(.width, toView: view, constant: 0.0),

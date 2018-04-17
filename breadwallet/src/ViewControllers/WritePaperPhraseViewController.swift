@@ -106,7 +106,7 @@ class WritePaperPhraseViewController: UIViewController {
             let xConstraint = NSLayoutConstraint(item: phraseView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: constant)
             phraseView.xConstraint = xConstraint
             phraseView.constrain([
-                    phraseView.constraint(.width, constant: PhraseView.defaultSize.width),
+                phraseView.constraint(.width, constant: PhraseView.defaultSize.width),
                     phraseView.constraint(.height, constant: PhraseView.defaultSize.height),
                     phraseView.constraint(.centerY, toView: view, constant: 0.0),
                     xConstraint
@@ -114,14 +114,14 @@ class WritePaperPhraseViewController: UIViewController {
         }
 
         stepLabel.constrain([
-                NSLayoutConstraint(item: stepLabel, attribute: .top, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1.0, constant: PhraseView.defaultSize.height/2.0 + C.padding[1]),
+                NSLayoutConstraint(item: stepLabel, attribute: .top, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1.0, constant: PhraseView.defaultSize.height/2.0 + C.padding[2]),
                 stepLabel.constraint(.centerX, toView: view, constant: 0.0),
                 stepLabel.constraint(.width, constant: 200.0) //The transitions are smoother if this view is forced to be wider than it needs to be
             ])
 
-        proceedWidth = proceed.constraint(.width, toView: view, constant: -C.padding[2]*2)
+        proceedWidth = proceed.constraint(.width, toView: view)
         proceed.constrain([
-                proceed.constraint(.trailing, toView: view, constant: -C.padding[2]),
+                proceed.constraint(.trailing, toView: view),
                 proceed.constraint(.height, constant: 75),
                 proceed.constraint(.bottom, toView: view),
                 proceedWidth!
@@ -129,7 +129,7 @@ class WritePaperPhraseViewController: UIViewController {
 
         previousWidth = previous.constraint(.width, toView: view, constant: -view.bounds.width)
         previous.constrain([
-                previous.constraint(.leading, toView: view, constant: C.padding[2]),
+                previous.constraint(.leading, toView: view/*, constant: C.padding[2]*/),
                 previous.constraint(.height, constant: 75),
                 previous.constraint(.bottom, toView: view),
                 previousWidth!
@@ -166,7 +166,7 @@ class WritePaperPhraseViewController: UIViewController {
             currentPhraseIndex -= 1
         }
 
-        UIView.spring(0.6, animations: {
+        UIView.spring(0.5, animations: {
             viewToHide.xConstraint?.constant = isNext ? -self.phraseOffscreenOffset : self.phraseOffscreenOffset
             viewToShow.xConstraint?.constant = 0
             self.view.layoutIfNeeded()
@@ -174,16 +174,16 @@ class WritePaperPhraseViewController: UIViewController {
     }
 
     private func showBothButtons() {
-        UIView.animate(withDuration: 0.4) {
-            self.proceedWidth?.constant = -self.view.bounds.width/2.0 - C.padding[2] - C.padding[1]/2.0
-            self.previousWidth?.constant = -self.view.bounds.width/2.0 - C.padding[2] - C.padding[1]/2.0
+        UIView.animate(withDuration: 0.2) {
+            self.proceedWidth?.constant = -self.view.bounds.width/4.5 - C.padding[2] - C.padding[1]/4.5
+            self.previousWidth?.constant = -self.view.bounds.width/1.5 - C.padding[2] - C.padding[1]/1.5
             self.view.layoutIfNeeded()
         }
     }
 
     private func showOneButton() {
-        UIView.animate(withDuration: 0.4) {
-            self.proceedWidth?.constant = -C.padding[2]*2
+        UIView.animate(withDuration: 0.2) {
+            self.proceedWidth?.constant = C.padding[0]
             self.previousWidth?.constant = -self.view.bounds.width
             self.view.layoutIfNeeded()
         }
