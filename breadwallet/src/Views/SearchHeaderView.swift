@@ -145,10 +145,12 @@ class SearchHeaderView : UIView {
     }
 
     private func setData() {
-        backgroundColor = .whiteTint
+        backgroundColor = .black
         searchBar.backgroundImage = UIImage()
+        searchBar.setImage(UIImage(named: "SearchIcon"), for: UISearchBarIcon.search, state: .normal)
+        searchBar.tintColor = .black
         searchBar.delegate = self
-        cancel.setTitleColor(.gradientEnd, for: .normal)
+        cancel.setTitleColor(.white, for: .normal)
         cancel.tap = { [weak self] in
             self?.didChangeFilters?([])
             self?.searchBar.resignFirstResponder()

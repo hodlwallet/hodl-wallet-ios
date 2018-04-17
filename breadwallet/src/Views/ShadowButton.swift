@@ -77,9 +77,9 @@ class ShadowButton: UIControl {
             guard isToggleable else { return }
             if type == .tertiary || type == .search {
                 if isSelected {
-                    container.layer.borderColor = UIColor.gradientEnd.cgColor
-                    imageView?.tintColor = .gradientEnd
-                    label.textColor = .gradientEnd
+                    container.layer.borderColor = UIColor.gradientStart.cgColor
+                    imageView?.tintColor = .gradientStart
+                    label.textColor = .gradientStart
                 } else {
                     setColors()
                 }
@@ -196,8 +196,8 @@ class ShadowButton: UIControl {
             shadowView.isHidden = true
         case .search:
             label.font = UIFont.customBody(size: 13.0)
-            container.backgroundColor = .grayBackground
-            label.textColor = .white
+            container.backgroundColor = .white
+            label.textColor = .black
             container.layer.borderColor = UIColor.secondaryBorder.cgColor
             container.layer.borderWidth = 1.0
             shadowView.layer.shadowColor = UIColor.black.cgColor
