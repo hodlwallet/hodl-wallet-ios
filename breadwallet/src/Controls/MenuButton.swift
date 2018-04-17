@@ -36,25 +36,17 @@ class MenuButton : UIControl {
 
     private func setupViews() {
         addSubview(label)
-        addSubview(image)
         addSubview(border)
 
         label.constrain([
             label.constraint(.centerY, toView: self, constant: 0.0),
-            label.constraint(.leading, toView: self, constant: C.padding[2]) ])
-        image.constrain([
-            image.constraint(.centerY, toView: self, constant: 0.0),
-            image.constraint(.trailing, toView: self, constant: -C.padding[4]),
-            image.constraint(.width, constant: 16.0),
-            image.constraint(.height, constant: 16.0) ])
+            label.constraint(.centerX, toView: self, constant: 0.0) ])
         border.constrainBottomCorners(sidePadding: 0, bottomPadding: 0)
         border.constrain([
             border.constraint(.height, constant: 1.0) ])
 
         label.text = type.title
         label.textColor = .white
-        image.image = type.image
-        image.contentMode = .scaleAspectFit
         border.backgroundColor = .secondaryGrayText
     }
     

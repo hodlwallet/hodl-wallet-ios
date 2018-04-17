@@ -28,7 +28,7 @@ class ModalViewController : UIViewController, Subscriber {
 
     //MARK: - Private
     private let modalInfo: ModalDisplayable
-    private let headerHeight: CGFloat = 49.0
+    private var headerHeight: CGFloat = 49.0
     fileprivate let header: ModalHeaderView
     private let tapGestureRecognizer = UITapGestureRecognizer()
     private let store: Store
@@ -56,6 +56,7 @@ class ModalViewController : UIViewController, Subscriber {
     }
 
     private func addConstraints() {
+        headerHeight = modalInfo.modalTitle == S.MenuViewController.modalTitle ? 85 : 49
         header.constrain([
             header.topAnchor.constraint(equalTo: view.topAnchor),
             header.leadingAnchor.constraint(equalTo: view.leadingAnchor),
