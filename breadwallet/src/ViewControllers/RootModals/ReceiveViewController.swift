@@ -81,7 +81,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         qrCode.constrain([
             qrCode.constraint(.width, constant: qrSize),
             qrCode.constraint(.height, constant: qrSize),
-            qrCode.constraint(.top, toView: view, constant: C.padding[3]),
+            qrCode.constraint(.top, toView: view, constant: C.padding[7]),
             qrCode.constraint(.centerX, toView: view) ])
         address.constrain([
             address.constraint(toBottom: qrCode, constant: C.padding[1]),
@@ -109,10 +109,8 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
             border.constraint(toBottom: sharePopout, constant: 0.0),
             border.constraint(.centerX, toView: view),
             border.constraint(.height, constant: 1.0) ])
-        requestTop = request.constraint(toBottom: border, constant: 0.0)
         requestBottom = request.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0.0)
         request.constrain([
-            requestTop,
             request.constraint(.leading, toView: view, constant: 0.0),
             request.constraint(.trailing, toView: view, constant: 0.0),
             request.constraint(.height, constant: 55.0),
@@ -127,7 +125,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     private func setStyle() {
         view.backgroundColor = .grayBackground
         address.textColor = .whiteTint
-        border.backgroundColor = .black
+        border.backgroundColor = .clear
         share.backgroundColor = .black
         share.isToggleable = true
         if !isRequestAmountVisible {

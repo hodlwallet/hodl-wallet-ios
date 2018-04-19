@@ -62,7 +62,7 @@ class FeeSelector : UIView {
             feeHeader.topAnchor.constraint(equalTo: topAnchor, constant: C.padding[1]) ])
         feeHeader.text = S.FeeSelector.networkFee
         deliveryHeader.constrain([
-            deliveryHeader.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[6]),
+            deliveryHeader.leadingAnchor.constraint(equalTo: feeHeader.trailingAnchor, constant: C.padding[7]),
             deliveryHeader.topAnchor.constraint(equalTo: topAnchor, constant: C.padding[1]) ])
         deliveryHeader.text = S.FeeSelector.estDelivery
         

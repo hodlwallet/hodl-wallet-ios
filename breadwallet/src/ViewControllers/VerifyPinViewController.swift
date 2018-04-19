@@ -93,7 +93,7 @@ class VerifyPinViewController : UIViewController, ContentBoxPresenter {
     }
 
     private func setupSubviews() {
-        contentBox.backgroundColor = .grayBackground
+        contentBox.backgroundColor = .black
 
         titleLabel.text = S.VerifyPin.title
         body.text = bodyText
