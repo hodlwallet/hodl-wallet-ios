@@ -111,6 +111,8 @@ class FeeSelector : UIView {
         control.minimumValue = Float(store.state.fees.economy.sats)
         control.maximumValue = Float(store.state.fees.fastest.sats)
         control.minimumTrackTintColor = .gradientStart
+        control.minimumValueImage = UIImage(named: "Minus")
+        control.maximumValueImage = UIImage(named: "Plus")
         
         control.valueChanged = strongify(self) { myself in
             if myself.control.value >= Float(myself.store.state.fees.fastest.sats) {
