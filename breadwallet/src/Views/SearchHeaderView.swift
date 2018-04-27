@@ -148,7 +148,7 @@ class SearchHeaderView : UIView {
         backgroundColor = .black
         searchBar.backgroundImage = UIImage()
         searchBar.setImage(UIImage(named: "SearchIcon"), for: UISearchBarIcon.search, state: .normal)
-        searchBar.tintColor = .black
+        searchBar.tintColor = .grayBackground
         searchBar.delegate = self
         cancel.setTitleColor(.white, for: .normal)
         cancel.tap = { [weak self] in

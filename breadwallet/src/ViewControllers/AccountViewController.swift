@@ -60,7 +60,7 @@ class AccountViewController : UIViewController, Subscriber {
     private let footerView = AccountFooterView()
     private let transactionsLoadingView = LoadingProgressView()
     private let transactionsTableView: TransactionsTableViewController
-    private let footerHeight: CGFloat = 56.0
+    private let footerHeight: CGFloat = 70.0
     private var transactionsLoadingViewTop: NSLayoutConstraint?
     private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
     private var isLoginRequired = false

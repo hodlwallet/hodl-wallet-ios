@@ -81,7 +81,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         qrCode.constrain([
             qrCode.constraint(.width, constant: qrSize),
             qrCode.constraint(.height, constant: qrSize),
-            qrCode.constraint(.top, toView: view, constant: C.padding[14]),
+            qrCode.constraint(.top, toView: view, constant: C.padding[12]),
             qrCode.constraint(.centerX, toView: view) ])
         address.constrain([
             address.constraint(toBottom: qrCode, constant: C.padding[1]),
