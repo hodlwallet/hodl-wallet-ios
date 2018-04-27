@@ -76,10 +76,10 @@ class TransactionTableViewCell : UITableViewCell, Subscriber {
         let identity: CGAffineTransform = .identity
         if transaction.direction == .received {
             arrow.transform = identity.rotated(by: π/2.0)
-            arrow.tintColor = .txListGreen
+            arrow.tintColor = .gradientEnd
         } else {
             arrow.transform = identity.rotated(by: 3.0*π/2.0)
-            arrow.tintColor = .cameraGuideNegative
+            arrow.tintColor = .secondaryGrayText
         }
     }
 
