@@ -53,7 +53,7 @@ class ShadowButton: UIControl {
     private let shadowView = UIView()
     private let label = UILabel()
     private let shadowYOffset: CGFloat = 4.0
-    private let cornerRadius: CGFloat = 4.0
+    private let cornerRadius: CGFloat = 0.0
     private var imageView: UIImageView?
 
     override var isHighlighted: Bool {
@@ -75,7 +75,7 @@ class ShadowButton: UIControl {
     override var isSelected: Bool {
         didSet {
             guard isToggleable else { return }
-            if type == .tertiary || type == .search {
+            if type == .search {
                 if isSelected {
                     container.layer.borderColor = UIColor.gradientStart.cgColor
                     imageView?.tintColor = .gradientStart
@@ -118,11 +118,7 @@ class ShadowButton: UIControl {
     private func addContent() {
         addSubview(container)
         container.backgroundColor = .primaryButton
-        if type == .primary || type == .secondary {
-            container.layer.cornerRadius = 0.0
-        } else {
-            container.layer.cornerRadius = cornerRadius
-        }
+        container.layer.cornerRadius = cornerRadius
         container.isUserInteractionEnabled = false
         container.constrain(toSuperviewEdges: nil)
         label.text = title
@@ -180,13 +176,17 @@ class ShadowButton: UIControl {
             shadowView.layer.shadowOpacity = 0.15
             imageView?.tintColor = .darkText
         case .tertiary:
-            container.backgroundColor = .secondaryButton
-            label.textColor = .darkText
-            container.layer.borderColor = UIColor.secondaryBorder.cgColor
-            container.layer.borderWidth = 1.0
-            shadowView.layer.shadowColor = UIColor.black.cgColor
-            shadowView.layer.shadowOpacity = 0.15
-            imageView?.tintColor = .darkText
+            if label.text == S.Receive.emailButton || label.text == S.Receive.textButton {
+                container.backgroundColor = .grayBackground
+            } else {
+                container.backgroundColor = .black
+                shadowView.layer.shadowColor = UIColor.black.cgColor
+                shadowView.layer.shadowOpacity = 0.15
+            }
+            label.textColor = .whiteTint
+            container.layer.borderColor = nil
+            container.layer.borderWidth = 0.0
+            imageView?.tintColor = .gradientStart
         case .blackTransparent:
             container.backgroundColor = .clear
             label.textColor = .darkText

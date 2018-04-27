@@ -11,6 +11,7 @@ import UIKit
 enum InViewAlertType {
     case primary
     case secondary
+    case temporary
 }
 
 private let arrowHeight: CGFloat = 8.0
@@ -37,6 +38,8 @@ class InViewAlert: UIView {
         case .primary:
             return 72.0
         case .secondary:
+            return 81.0
+        case .temporary:
             return 81.0
         }
     }
@@ -77,7 +80,7 @@ class InViewAlert: UIView {
         context?.fillPath()
 
         //Add Gray border for secondary style
-        if type == .secondary {
+        if type == .secondary || type == .temporary {
             let topBorder = CGMutablePath()
             topBorder.move(to: CGPoint(x: 0, y: arrowHeight))
             topBorder.addLine(to: CGPoint(x: center - arrowWidth/2.0 + 0.5, y: arrowHeight + 0.5))
@@ -85,7 +88,7 @@ class InViewAlert: UIView {
             topBorder.addLine(to: CGPoint(x: center + arrowWidth/2.0 + 0.5, y: arrowHeight + 0.5))
             topBorder.addLine(to: CGPoint(x: rect.width + 0.5, y: arrowHeight + 0.5))
             context?.setLineWidth(1.0)
-            context?.setStrokeColor(UIColor.secondaryGrayText.cgColor)
+            // context?.setStrokeColor(UIColor.grayBackground.cgColor)
             context?.addPath(topBorder)
             context?.strokePath()
         }
@@ -96,6 +99,8 @@ class InViewAlert: UIView {
         case .primary:
             return .gradientEnd
         case .secondary:
+            return .grayBackground
+        case .temporary:
             return .black
         }
     }

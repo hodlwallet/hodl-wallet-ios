@@ -10,7 +10,7 @@ import UIKit
 
 private let qrSize: CGSize = CGSize(width: 186.0, height: 186.0)
 private let smallButtonHeight: CGFloat = 32.0
-private let buttonPadding: CGFloat = 20.0
+private let buttonPadding: CGFloat = 5.0
 private let smallSharePadding: CGFloat = 12.0
 private let largeSharePadding: CGFloat = 20.0
 
@@ -83,9 +83,10 @@ class RequestAmountViewController : UIViewController {
             addressPopout.heightConstraint ])
         share.constrain([
             share.constraint(toBottom: addressPopout, constant: C.padding[2]),
-            share.constraint(.centerX, toView: view),
-            share.constraint(.width, constant: qrSize.width),
-            share.constraint(.height, constant: smallButtonHeight) ])
+            share.constraint(toTop: sharePopout, constant: 0.0),
+            share.constraint(.leading, toView: view, constant: 0.0),
+            share.constraint(.trailing, toView: view, constant: 0.0),
+            share.constraint(.height, constant: 60.0), ])
         sharePopout.heightConstraint = sharePopout.constraint(.height, constant: 0.0)
         topSharePopoutConstraint = sharePopout.constraint(toBottom: share, constant: largeSharePadding)
         sharePopout.constrain([
@@ -110,6 +111,7 @@ class RequestAmountViewController : UIViewController {
             .resize(qrSize)!
         share.isToggleable = true
         sharePopout.clipsToBounds = true
+        sharePopout.backgroundColor = .black
     }
 
     private func addActions() {
@@ -140,21 +142,27 @@ class RequestAmountViewController : UIViewController {
     private func setupShareButtons() {
         let container = UIView()
         container.translatesAutoresizingMaskIntoConstraints = false
-        let email = ShadowButton(title: S.Receive.emailButton, type: .tertiary)
-        let text = ShadowButton(title: S.Receive.textButton, type: .tertiary)
+        let email = ShadowButton(title: S.Receive.emailButton, type: .tertiary, image: #imageLiteral(resourceName: "Email"))
+        let text = ShadowButton(title: S.Receive.textButton, type: .tertiary, image: #imageLiteral(resourceName: "Text"))
+        let or = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
         container.addSubview(email)
         container.addSubview(text)
+        container.addSubview(or)
         email.constrain([
-            email.constraint(.leading, toView: container, constant: C.padding[2]),
+            email.constraint(.leading, toView: container),
             email.constraint(.top, toView: container, constant: buttonPadding),
             email.constraint(.bottom, toView: container, constant: -buttonPadding),
-            email.trailingAnchor.constraint(equalTo: container.centerXAnchor, constant: -C.padding[1]) ])
+            email.trailingAnchor.constraint(equalTo: container.centerXAnchor, constant: -C.padding[2]) ])
+        or.constrain([
+            or.constraint(.centerX, toView: container),
+            or.constraint(.centerY, toView: container) ])
         text.constrain([
-            text.constraint(.trailing, toView: container, constant: -C.padding[2]),
+            text.constraint(.trailing, toView: container),
             text.constraint(.top, toView: container, constant: buttonPadding),
             text.constraint(.bottom, toView: container, constant: -buttonPadding),
-            text.leadingAnchor.constraint(equalTo: container.centerXAnchor, constant: C.padding[1]) ])
+            text.leadingAnchor.constraint(equalTo: container.centerXAnchor, constant: C.padding[2]) ])
         sharePopout.contentView = container
+        or.text = S.Receive.orLabel
         email.addTarget(self, action: #selector(RequestAmountViewController.emailTapped), for: .touchUpInside)
         text.addTarget(self, action: #selector(RequestAmountViewController.textTapped), for: .touchUpInside)
     }

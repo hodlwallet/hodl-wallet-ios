@@ -10,7 +10,7 @@ import UIKit
 
 private let qrSize: CGFloat = 186.0
 private let smallButtonHeight: CGFloat = 32.0
-private let buttonPadding: CGFloat = 20.0
+private let buttonPadding: CGFloat = 5.0
 private let smallSharePadding: CGFloat = 12.0
 private let largeSharePadding: CGFloat = 20.0
 
@@ -81,7 +81,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         qrCode.constrain([
             qrCode.constraint(.width, constant: qrSize),
             qrCode.constraint(.height, constant: qrSize),
-            qrCode.constraint(.top, toView: view, constant: C.padding[7]),
+            qrCode.constraint(.top, toView: view, constant: C.padding[14]),
             qrCode.constraint(.centerX, toView: view) ])
         address.constrain([
             address.constraint(toBottom: qrCode, constant: C.padding[1]),
@@ -93,27 +93,28 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
             addressPopout.constraint(.width, toView: view),
             addressPopout.heightConstraint ])
         share.constrain([
-            share.constraint(toBottom: addressPopout, constant: C.padding[2]),
-            share.constraint(.centerX, toView: view),
-            share.constraint(.width, constant: qrSize),
-            share.constraint(.height, constant: smallButtonHeight) ])
+            share.constraint(toTop: sharePopout, constant: 0.0),
+            share.constraint(.leading, toView: view, constant: 0.0),
+            share.constraint(.trailing, toView: view, constant: 0.0),
+            share.constraint(.height, constant: 65.0), ])
         sharePopout.heightConstraint = sharePopout.constraint(.height, constant: 0.0)
         topSharePopoutConstraint = sharePopout.constraint(toBottom: share, constant: largeSharePadding)
         sharePopout.constrain([
             topSharePopoutConstraint,
             sharePopout.constraint(.centerX, toView: view),
             sharePopout.constraint(.width, toView: view),
+            sharePopout.constraint(toTop: request, constant: 0.0),
             sharePopout.heightConstraint ])
         border.constrain([
             border.constraint(.width, toView: view),
-            border.constraint(toBottom: sharePopout, constant: 0.0),
+            border.constraint(toTop: request, constant: 0.0),
             border.constraint(.centerX, toView: view),
-            border.constraint(.height, constant: 1.0) ])
+            border.constraint(.height, constant: 2.0) ])
         requestBottom = request.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0.0)
         request.constrain([
             request.constraint(.leading, toView: view, constant: 0.0),
             request.constraint(.trailing, toView: view, constant: 0.0),
-            request.constraint(.height, constant: 55.0),
+            request.constraint(.height, constant: 65.0),
             requestBottom ])
         addressButton.constrain([
             addressButton.leadingAnchor.constraint(equalTo: address.leadingAnchor, constant: -C.padding[1]),
@@ -125,19 +126,11 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     private func setStyle() {
         view.backgroundColor = .grayBackground
         address.textColor = .whiteTint
-        border.backgroundColor = .clear
-        share.backgroundColor = .black
+        border.backgroundColor = .grayBackground
+        share.tintColor = .black
         share.isToggleable = true
-        if !isRequestAmountVisible {
-            border.isHidden = true
-            request.isHidden = true
-            request.constrain([
-                request.heightAnchor.constraint(equalToConstant: 0.0) ])
-            requestTop?.constant = 0.0
-            requestBottom?.constant = 0.0
-        }
         sharePopout.clipsToBounds = true
-        sharePopout.backgroundColor = .grayBackground
+        sharePopout.backgroundColor = .black
         addressButton.setBackgroundImage(UIImage.imageForColor(.secondaryGrayText), for: .highlighted)
         addressButton.layer.cornerRadius = 4.0
         addressButton.layer.masksToBounds = true
@@ -175,21 +168,27 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     private func setupShareButtons() {
         let container = UIView()
         container.translatesAutoresizingMaskIntoConstraints = false
-        let email = ShadowButton(title: S.Receive.emailButton, type: .tertiary)
-        let text = ShadowButton(title: S.Receive.textButton, type: .tertiary)
+        let email = ShadowButton(title: S.Receive.emailButton, type: .tertiary, image: #imageLiteral(resourceName: "Email"))
+        let text = ShadowButton(title: S.Receive.textButton, type: .tertiary, image: #imageLiteral(resourceName: "Text"))
+        let or = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
         container.addSubview(email)
         container.addSubview(text)
+        container.addSubview(or)
         email.constrain([
-            email.constraint(.leading, toView: container, constant: C.padding[2]),
+            email.constraint(.leading, toView: container),
             email.constraint(.top, toView: container, constant: buttonPadding),
             email.constraint(.bottom, toView: container, constant: -buttonPadding),
-            email.trailingAnchor.constraint(equalTo: container.centerXAnchor, constant: -C.padding[1]) ])
+            email.trailingAnchor.constraint(equalTo: container.centerXAnchor, constant: -C.padding[2]) ])
+        or.constrain([
+            or.constraint(.centerX, toView: container),
+            or.constraint(.centerY, toView: container) ])
         text.constrain([
-            text.constraint(.trailing, toView: container, constant: -C.padding[2]),
+            text.constraint(.trailing, toView: container),
             text.constraint(.top, toView: container, constant: buttonPadding),
             text.constraint(.bottom, toView: container, constant: -buttonPadding),
-            text.leadingAnchor.constraint(equalTo: container.centerXAnchor, constant: C.padding[1]) ])
+            text.leadingAnchor.constraint(equalTo: container.centerXAnchor, constant: C.padding[2]) ])
         sharePopout.contentView = container
+        or.text = S.Receive.orLabel
         email.addTarget(self, action: #selector(ReceiveViewController.emailTapped), for: .touchUpInside)
         text.addTarget(self, action: #selector(ReceiveViewController.textTapped), for: .touchUpInside)
     }

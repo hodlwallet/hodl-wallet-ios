@@ -88,7 +88,9 @@ class ModalHeaderView : UIView {
             title.textColor = .white
             close.tintColor = .gradientEnd
             faq?.tintColor = .white
-            border.backgroundColor = .secondaryGrayText
+            if title.text == S.MenuViewController.modalTitle {
+                border.backgroundColor = .secondaryGrayText
+            }
         case .dark:
             border.backgroundColor = .secondaryShadow
         }

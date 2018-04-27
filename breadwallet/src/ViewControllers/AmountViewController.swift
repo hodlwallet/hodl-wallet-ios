@@ -72,7 +72,7 @@ class AmountViewController : UIViewController, Trackable {
     private let cursor = BlinkingView(blinkColor: C.defaultTintColor)
     private let balanceLabel = UILabel()
     private let feeLabel = UILabel()
-    private let feeContainer = InViewAlert(type: .secondary)
+    private let feeContainer = InViewAlert(type: .temporary)
     private let tapView = UIView()
     private let editFee = UIButton(type: .system)
     private let feeSelector: FeeSelector
