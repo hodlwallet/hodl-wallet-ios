@@ -144,11 +144,11 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
             case .fastest:
                 wallet.feePerKb = fees.fastest.sats
             case .regular:
-                guard fees.current != nil else { wallet.feePerKb = fees.regular.sats; myself.amountView.updateBalanceLabel(); return }
-                wallet.feePerKb = fees.current!
+                /* guard fees.current != nil else { wallet.feePerKb = fees.regular.sats; myself.amountView.updateBalanceLabel(); return }
+                wallet.feePerKb = fees.current! */
+                wallet.feePerKb = fees.regular.sats
             case .economy:
-                guard fees.current != nil else { wallet.feePerKb = fees.economy.sats; myself.amountView.updateBalanceLabel(); return }
-                wallet.feePerKb = fees.current!
+                wallet.feePerKb = fees.economy.sats
             }
             myself.amountView.updateBalanceLabel()
         }

@@ -108,14 +108,14 @@ class FeeSelector : UIView {
             control.topAnchor.constraint(equalTo: slow.bottomAnchor, constant: 4.0),
             control.widthAnchor.constraint(equalTo: widthAnchor, constant: -C.padding[4]) ])
         
-        control.minimumValue = Float(store.state.fees.economy.sats)
-        control.maximumValue = Float(store.state.fees.fastest.sats)
+        control.minimumValue = 1.0 // Float(store.state.fees.economy.sats)
+        control.maximumValue = 10.0 // Float(store.state.fees.fastest.sats)
         control.minimumTrackTintColor = .gradientStart
         control.minimumValueImage = UIImage(named: "Minus")
         control.maximumValueImage = UIImage(named: "Plus")
         
         control.valueChanged = strongify(self) { myself in
-            if myself.control.value >= Float(myself.store.state.fees.fastest.sats) {
+            if myself.control.value >= 8.0 /* Float(myself.store.state.fees.fastest.sats) */ {
                 myself.didUpdateFee?(.fastest)
                 
                 if myself.store.state.fees.fastest.time / 60 < 2 {
@@ -125,15 +125,16 @@ class FeeSelector : UIView {
                     hours = myself.store.state.fees.fastest.time / 60
                     myself.deliveryBody.text = String(format: S.FeeSelector.hourTime, "\(hours)")
                 }
+                
                 myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(myself.store.state.fees.fastest.sats / 1000)")
                 myself.warning.text = ""
-            } else if myself.control.value >= Float(myself.store.state.fees.regular.sats)
-                && myself.control.value < Float(myself.store.state.fees.fastest.sats) {
-                let newFees = Fees(fastest: myself.store.state.fees.fastest,
+            } else if myself.control.value >= 3.0 /* Float(myself.store.state.fees.regular.sats) */
+                && myself.control.value < 8.0 /* Float(myself.store.state.fees.fastest.sats) */ {
+                /* let newFees = Fees(fastest: myself.store.state.fees.fastest,
                                    regular: myself.store.state.fees.regular,
                                    economy: myself.store.state.fees.economy,
                                    current: UInt64(myself.control.value))
-                myself.store.perform(action: UpdateFees.set(newFees))
+                myself.store.perform(action: UpdateFees.set(newFees)) */
                 myself.didUpdateFee?(.regular)
                 
                 if myself.store.state.fees.regular.time / 60 < 2 {
@@ -144,14 +145,10 @@ class FeeSelector : UIView {
                     myself.deliveryBody.text = String(format: S.FeeSelector.hourTime, "\(hours)")
                 }
                 
-                myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(Int(myself.control.value) / 1000)")
+                myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(myself.store.state.fees.regular.sats / 1000)")
                 myself.warning.text = ""
-            } else if myself.control.value < Float(myself.store.state.fees.regular.sats) {
-                let newFees = Fees(fastest: myself.store.state.fees.fastest,
-                                   regular: myself.store.state.fees.regular,
-                                   economy: myself.store.state.fees.economy,
-                                   current: UInt64(myself.control.value))
-                myself.store.perform(action: UpdateFees.set(newFees))
+                // (Int(myself.control.value)
+            } else if myself.control.value < 3.0 /* Float(myself.store.state.fees.regular.sats) */ {
                 myself.didUpdateFee?(.economy)
                 
                 if myself.store.state.fees.economy.time / 60 < 2 {
@@ -162,7 +159,7 @@ class FeeSelector : UIView {
                     myself.deliveryBody.text = String(format: S.FeeSelector.hourTime, "\(hours)")
                 }
                 
-                myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(Int(myself.control.value) / 1000)")
+                myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(myself.store.state.fees.economy.sats / 1000)")
                 myself.warning.text = S.FeeSelector.economyWarning
             }
         }
