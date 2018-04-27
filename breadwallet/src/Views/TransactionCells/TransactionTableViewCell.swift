@@ -75,10 +75,10 @@ class TransactionTableViewCell : UITableViewCell, Subscriber {
 
         let identity: CGAffineTransform = .identity
         if transaction.direction == .received {
-            arrow.transform = identity.rotated(by: π/2.0)
+            arrow.transform = identity.rotated(by: π/4.0)
             arrow.tintColor = .gradientEnd
         } else {
-            arrow.transform = identity.rotated(by: 3.0*π/2.0)
+            arrow.transform = identity.rotated(by: 7.0*π/4.0)
             arrow.tintColor = .secondaryGrayText
         }
     }
@@ -164,7 +164,7 @@ class TransactionTableViewCell : UITableViewCell, Subscriber {
 
         comment.textColor = .whiteTint
         status.textColor = .whiteTint
-        timestamp.textColor = .grayTextTint
+        timestamp.textColor = .secondaryGrayText
 
         shadowView.backgroundColor = .clear
         shadowView.layer.shadowColor = UIColor.black.cgColor
@@ -173,10 +173,12 @@ class TransactionTableViewCell : UITableViewCell, Subscriber {
         shadowView.layer.shadowOffset = CGSize(width: 0, height: 0)
 
         innerShadow.backgroundColor = .secondaryShadow
-
+        
+        transactionLabel.textColor = .whiteTint
         transactionLabel.numberOfLines = 0
         transactionLabel.lineBreakMode = .byWordWrapping
-
+        
+        address.textColor = .whiteTint
         address.lineBreakMode = .byTruncatingMiddle
         address.numberOfLines = 1
 

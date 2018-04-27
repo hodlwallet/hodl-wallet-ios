@@ -65,7 +65,7 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
     private let timestamp = UILabel(font: .customBold(size: 14.0), color: .whiteTint)
     private let amount = UILabel(font: .customBold(size: 26.0), color: .whiteTint)
     private let address = UILabel(font: .customBold(size: 14.0), color: .whiteTint)
-    private let separators = (0...4).map { _ in UIView(color: .secondaryShadow) }
+    private let separators = (0...4).map { _ in UIView(color: .secondaryGrayText) }
     private let statusHeader = UILabel(font: .customBold(size: 14.0), color: .whiteTint)
     private let status = UILabel.wrapping(font: .customBody(size: 13.0), color: .whiteTint)
     private let commentsHeader = UILabel(font: .customBold(size: 14.0), color: .whiteTint)
@@ -218,7 +218,8 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
         availability.text = S.Transaction.available
 
         comment.font = .customBody(size: 13.0)
-        comment.textColor = .darkText
+        comment.textColor = .whiteTint
+        comment.backgroundColor = .clear
         comment.isScrollEnabled = false
         comment.returnKeyType = .done
         comment.delegate = self
@@ -237,7 +238,7 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
         fullAddress.titleLabel?.font = .customBody(size: 13.0)
         fullAddress.titleLabel?.numberOfLines = 0
         fullAddress.titleLabel?.lineBreakMode = .byCharWrapping
-        fullAddress.tintColor = .darkText
+        fullAddress.tintColor = .whiteTint
         fullAddress.tap = strongify(self) { myself in
             myself.fullAddress.tempDisable()
             myself.store?.trigger(name: .lightWeightAlert(S.Receive.copied))
@@ -248,7 +249,7 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
         txHash.titleLabel?.font = .customBody(size: 13.0)
         txHash.titleLabel?.numberOfLines = 0
         txHash.titleLabel?.lineBreakMode = .byCharWrapping
-        txHash.tintColor = .darkText
+        txHash.tintColor = .whiteTint
         txHash.contentHorizontalAlignment = .left
         txHash.tap = strongify(self) { myself in
             myself.txHash.tempDisable()
@@ -259,7 +260,7 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
 
     private func addMoreView() {
         moreButton.removeFromSuperview()
-        let newSeparator = UIView(color: .secondaryShadow)
+        let newSeparator = UIView(color: .secondaryGrayText)
         moreContentView.addSubview(newSeparator)
         moreContentView.addSubview(txHashHeader)
         moreContentView.addSubview(txHash)

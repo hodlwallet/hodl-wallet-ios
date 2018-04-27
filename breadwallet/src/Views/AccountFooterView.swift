@@ -34,15 +34,15 @@ class AccountFooterView: UIView {
         backgroundView.barTintColor = .black
 
         let send = UIButton.vertical(title: S.Button.send.uppercased(), image: #imageLiteral(resourceName: "SendButtonIcon"))
-        send.tintColor = .white
+        send.tintColor = .grayTextTint
         send.addTarget(self, action: #selector(AccountFooterView.send), for: .touchUpInside)
 
         let receive = UIButton.vertical(title: S.Button.receive.uppercased(), image: #imageLiteral(resourceName: "ReceiveButtonIcon"))
-        receive.tintColor = .white
+        receive.tintColor = .gradientStart
         receive.addTarget(self, action: #selector(AccountFooterView.receive), for: .touchUpInside)
 
         let menu = UIButton.vertical(title: S.Button.menu.uppercased(), image: #imageLiteral(resourceName: "MenuButtonIcon"))
-        menu.tintColor = .white
+        menu.tintColor = .whiteTint
         menu.addTarget(self, action: #selector(AccountFooterView.menu), for: .touchUpInside)
 
         if E.isScreenshots {
