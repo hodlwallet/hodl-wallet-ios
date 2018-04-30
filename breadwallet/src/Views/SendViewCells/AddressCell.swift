@@ -34,9 +34,11 @@ class AddressCell : UIView {
     }
 
     let textField = UITextField()
-    let paste = ShadowButton(title: S.Send.pasteLabel, type: .tertiary)
-    let scan = ShadowButton(title: S.Send.scanLabel, type: .tertiary)
+    let paste = ShadowButton(title: "", type: .tertiary, image: #imageLiteral(resourceName: "Paste"))
+    let scan = ShadowButton(title: "", type: .tertiary, image: #imageLiteral(resourceName: "Scan"))
     fileprivate let contentLabel = UILabel(font: .customBody(size: 14.0), color: .whiteTint)
+    private let pasteLabel = UILabel(font: .customBody(size: 14.0), color: .whiteTint)
+    private let scanLabel = UILabel(font: .customBody(size: 14.0), color: .whiteTint)
     private let label = UILabel(font: .customBody(size: 16.0))
     fileprivate let gr = UITapGestureRecognizer()
     fileprivate let tapView = UIView()
@@ -50,6 +52,8 @@ class AddressCell : UIView {
 
     private func addSubviews() {
         addSubview(label)
+        addSubview(pasteLabel)
+        addSubview(scanLabel)
         addSubview(contentLabel)
         addSubview(textField)
         addSubview(tapView)
@@ -75,12 +79,20 @@ class AddressCell : UIView {
             tapView.topAnchor.constraint(equalTo: topAnchor),
             tapView.bottomAnchor.constraint(equalTo: bottomAnchor),
             tapView.trailingAnchor.constraint(equalTo: paste.leadingAnchor) ])
+        scanLabel.constrain([
+            scanLabel.centerXAnchor.constraint(equalTo: scan.centerXAnchor, constant: -3.0),
+            scanLabel.bottomAnchor.constraint(equalTo: scan.topAnchor, constant: -C.padding[2]) ])
+        pasteLabel.constrain([
+            pasteLabel.centerXAnchor.constraint(equalTo: paste.centerXAnchor, constant: -3.0),
+            pasteLabel.bottomAnchor.constraint(equalTo: paste.topAnchor, constant: -C.padding[2]) ])
         scan.constrain([
             scan.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[2]),
-            scan.centerYAnchor.constraint(equalTo: centerYAnchor) ])
+            scan.centerYAnchor.constraint(equalTo: centerYAnchor),
+            scan.widthAnchor.constraint(equalToConstant: 15.0)])
         paste.constrain([
             paste.centerYAnchor.constraint(equalTo: centerYAnchor),
-            paste.trailingAnchor.constraint(equalTo: scan.leadingAnchor, constant: -C.padding[1]) ])
+            paste.trailingAnchor.constraint(equalTo: scan.leadingAnchor, constant: -C.padding[3]),
+            paste.widthAnchor.constraint(equalToConstant: 15.0) ])
         border.constrain([
             border.leadingAnchor.constraint(equalTo: leadingAnchor),
             border.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -90,6 +102,8 @@ class AddressCell : UIView {
 
     private func setInitialData() {
         label.text = S.Send.toLabel
+        pasteLabel.text = S.Send.pasteLabel
+        scanLabel.text = S.Send.scanLabel
         textField.font = contentLabel.font
         textField.textColor = contentLabel.textColor
         textField.isHidden = true
@@ -99,6 +113,12 @@ class AddressCell : UIView {
         textField.tintColor = .grayTextTint
         label.textColor = .grayTextTint
         contentLabel.lineBreakMode = .byTruncatingMiddle
+        
+        if let clearButton = textField.value(forKey: "_clearButton") as? UIButton {
+            clearButton.setImage(#imageLiteral(resourceName: "Close"), for: .normal)
+            // Must fix clear button color
+            clearButton.tintColor = .gradientStart
+        }
 
         textField.editingChanged = strongify(self) { myself in
             myself.contentLabel.text = myself.textField.text

@@ -18,9 +18,9 @@ class AmountViewController : UIViewController, Trackable {
         self.isPinPadExpandedAtLaunch = isPinPadExpandedAtLaunch
         self.isRequesting = isRequesting
         if let rate = store.state.currentRate, store.state.isBtcSwapped {
-            self.currencyToggle = ShadowButton(title: "\(rate.code) (\(rate.currencySymbol))", type: .tertiary)
+            self.currency.text = "\(rate.code) (\(rate.currencySymbol))"
         } else {
-            self.currencyToggle = ShadowButton(title: S.Symbols.currencyButtonTitle(maxDigits: store.state.maxDigits), type: .tertiary)
+            self.currency.text = S.Symbols.currencyButtonTitle(maxDigits: store.state.maxDigits)
         }
         self.feeSelector = FeeSelector(store: store)
         self.pinPad = PinPadViewController(style: .white, keyboardType: .decimalPad, maxDigits: store.state.maxDigits)
@@ -66,7 +66,8 @@ class AmountViewController : UIViewController, Trackable {
     private let placeholder = UILabel(font: .customBody(size: 16.0), color: .grayText)
     private let amountLabel = UILabel(font: .customBody(size: 26.0), color: .gradientStart)
     private let pinPad: PinPadViewController
-    private let currencyToggle: ShadowButton
+    private let currencyToggle = ShadowButton(title: "", type: .tertiary, image: #imageLiteral(resourceName: "CurrencySwitch"))
+    private let currency = UILabel(font: .customBody(size: 16.0), color: .gradientStart)
     private let border = UIView(color: .secondaryGrayText)
     private let bottomBorder = UIView(color: .secondaryGrayText)
     private let cursor = BlinkingView(blinkColor: C.defaultTintColor)
@@ -94,6 +95,7 @@ class AmountViewController : UIViewController, Trackable {
     private func addSubviews() {
         view.addSubview(amountLabel)
         view.addSubview(placeholder)
+        view.addSubview(currency)
         view.addSubview(currencyToggle)
         view.addSubview(feeContainer)
         view.addSubview(border)
@@ -118,8 +120,11 @@ class AmountViewController : UIViewController, Trackable {
             cursor.centerYAnchor.constraint(equalTo: amountLabel.centerYAnchor),
             cursor.widthAnchor.constraint(equalToConstant: 2.0) ])
         currencyToggle.constrain([
-            currencyToggle.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[2]),
-            currencyToggle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]) ])
+            currencyToggle.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[4]),
+            currencyToggle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[3]) ])
+        currency.constrain([
+            currency.trailingAnchor.constraint(equalTo: currencyToggle.leadingAnchor, constant: -C.padding[4]),
+            currency.centerYAnchor.constraint(equalTo: currencyToggle.centerYAnchor) ])
         feeSelectorHeight = feeContainer.heightAnchor.constraint(equalToConstant: 0.0)
         feeSelectorTop = feeContainer.topAnchor.constraint(equalTo: feeLabel.bottomAnchor, constant: C.padding[1])
 
@@ -166,7 +171,7 @@ class AmountViewController : UIViewController, Trackable {
         tapView.constrain([
             tapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tapView.topAnchor.constraint(equalTo: view.topAnchor),
-            tapView.trailingAnchor.constraint(equalTo: currencyToggle.leadingAnchor, constant: 4.0),
+            tapView.trailingAnchor.constraint(equalTo: currencyToggle.leadingAnchor, constant: -8.0),
             tapView.bottomAnchor.constraint(equalTo: feeContainer.topAnchor) ])
         preventAmountOverflow()
     }
@@ -342,9 +347,9 @@ class AmountViewController : UIViewController, Trackable {
 
     private func updateCurrencyToggleTitle() {
         if let rate = selectedRate {
-            self.currencyToggle.title = "\(rate.code) (\(rate.currencySymbol))"
+            self.currency.text = "\(rate.code) (\(rate.currencySymbol))"
         } else {
-            self.currencyToggle.title = S.Symbols.currencyButtonTitle(maxDigits: store.state.maxDigits)
+            self.currency.text = S.Symbols.currencyButtonTitle(maxDigits: store.state.maxDigits)
         }
     }
 

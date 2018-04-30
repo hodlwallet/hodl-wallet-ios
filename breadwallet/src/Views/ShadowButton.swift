@@ -178,15 +178,18 @@ class ShadowButton: UIControl {
         case .tertiary:
             if label.text == S.Receive.emailButton || label.text == S.Receive.textButton {
                 container.backgroundColor = .grayBackground
-            } else {
+                imageView?.tintColor = .gradientStart
+            } else if label.text == S.Receive.share {
                 container.backgroundColor = .black
                 shadowView.layer.shadowColor = UIColor.black.cgColor
                 shadowView.layer.shadowOpacity = 0.15
+                imageView?.tintColor = .gradientStart
+            } else {
+                imageView?.tintColor = .whiteTint
             }
             label.textColor = .whiteTint
             container.layer.borderColor = nil
             container.layer.borderWidth = 0.0
-            imageView?.tintColor = .gradientStart
         case .blackTransparent:
             container.backgroundColor = .clear
             label.textColor = .darkText
