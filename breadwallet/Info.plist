@@ -103,9 +103,7 @@
 	<string>Used to scan barcodes</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>CircularPro-Bold.otf</string>
-		<string>CircularPro-Book.otf</string>
-		<string>CircularPro-Medium.otf</string>
+		<string>Electrolize-Regular.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
