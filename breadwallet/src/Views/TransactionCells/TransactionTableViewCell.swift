@@ -174,7 +174,6 @@ class TransactionTableViewCell : UITableViewCell, Subscriber {
 
         innerShadow.backgroundColor = .secondaryShadow
         
-        transactionLabel.textColor = .whiteTint
         transactionLabel.numberOfLines = 0
         transactionLabel.lineBreakMode = .byWordWrapping
         

@@ -79,6 +79,10 @@ extension UIColor {
     static var grayBackground: UIColor {
         return UIColor(red: 33.0/255.0, green: 33.0/255.0, blue: 33.0/255.0, alpha: 1.0)
     }
+    
+    static var darkGray: UIColor {
+        return UIColor(red: 20.0/255.0, green: 20.0/255.0, blue: 20.0/255.0, alpha: 1.0)
+    }
 
     static var cameraGuidePositive: UIColor {
         return UIColor(red: 72.0/255.0, green: 240.0/255.0, blue: 184.0/255.0, alpha: 1.0)
