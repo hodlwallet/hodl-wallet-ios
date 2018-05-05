@@ -160,7 +160,7 @@ class TransactionTableViewCell : UITableViewCell, Subscriber {
     }
 
     private func setupStyle() {
-        backgroundColor = .black
+        backgroundColor = .grayBackground
 
         comment.textColor = .whiteTint
         status.textColor = .whiteTint
