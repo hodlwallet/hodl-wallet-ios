@@ -3,8 +3,8 @@ require 'xcodeproj'
 project_path = './breadwallet.xcodeproj'
 $project = Xcodeproj::Project.open(project_path)
 
-$production_id = 'com.breadwalet.new'
-$development_id = 'com.breadwalet.new-testnet'
+$production_id = 'co.hodlwallet.dev'
+$development_id = 'co.hodlwallet.dev-testnet'
 
 desired_targets = ['breadwallet', 'breadwallet WatchKit App', 'breadwallet WatchKit Extension', 'MessagesExtension', 'TodayExtension', 'NotificationServiceExtension']
 targets = $project.native_targets.select { |target| desired_targets.include? target.name }

@@ -4691,7 +4691,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = "breadwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -4708,7 +4708,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = "breadwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -4726,7 +4726,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				IBSC_MODULE = breadwallet_WatchKit_Extension;
 				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -4743,7 +4743,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				IBSC_MODULE = breadwallet_WatchKit_Extension;
 				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -4759,12 +4759,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
-				DEVELOPMENT_TEAM = 4R7S6N88W9;
+				DEVELOPMENT_TEAM = J829PTGA25;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				INFOPLIST_FILE = breadwallet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-DDebug";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -4779,12 +4779,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
-				DEVELOPMENT_TEAM = 4R7S6N88W9;
+				DEVELOPMENT_TEAM = J829PTGA25;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				INFOPLIST_FILE = breadwallet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -4799,7 +4799,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = breadwalletTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwalletTests;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/breadwallet.app/breadwallet";
@@ -4814,7 +4814,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = breadwalletTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwalletTests;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/breadwallet.app/breadwallet";
@@ -4828,7 +4828,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = breadwalletUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwalletUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = breadwallet;
@@ -4842,7 +4842,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = breadwalletUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwalletUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = breadwallet;
@@ -4857,7 +4857,7 @@
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.MessagesExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -4871,7 +4871,7 @@
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.MessagesExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -4884,7 +4884,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.TodayExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.TodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -4897,7 +4897,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.TodayExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.TodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -4910,7 +4910,7 @@
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.NotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -4924,7 +4924,7 @@
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.NotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -5071,12 +5071,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
-				DEVELOPMENT_TEAM = 4R7S6N88W9;
+				DEVELOPMENT_TEAM = J829PTGA25;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				INFOPLIST_FILE = breadwallet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-DDebug -DScreenshots -DTestnet";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -5092,7 +5092,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = breadwalletTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwalletTests;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/breadwallet.app/breadwallet";
@@ -5106,7 +5106,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = breadwalletUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwalletUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = breadwallet;
@@ -5121,7 +5121,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				IBSC_MODULE = breadwallet_WatchKit_Extension;
 				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -5137,7 +5137,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = "breadwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -5155,7 +5155,7 @@
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.MessagesExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -5168,7 +5168,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.TodayExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.TodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -5181,7 +5181,7 @@
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.NotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -5377,12 +5377,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
-				DEVELOPMENT_TEAM = 4R7S6N88W9;
+				DEVELOPMENT_TEAM = J829PTGA25;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				INFOPLIST_FILE = breadwallet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-DDebug -DTestnet";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -5398,7 +5398,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = breadwalletTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwalletTests;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/breadwallet.app/breadwallet";
@@ -5412,7 +5412,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = breadwalletUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwalletUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = breadwallet;
@@ -5427,7 +5427,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				IBSC_MODULE = breadwallet_WatchKit_Extension;
 				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -5443,7 +5443,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = "breadwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -5461,7 +5461,7 @@
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.MessagesExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -5474,7 +5474,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.TodayExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.TodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -5487,7 +5487,7 @@
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.NotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -5676,12 +5676,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
-				DEVELOPMENT_TEAM = 4R7S6N88W9;
+				DEVELOPMENT_TEAM = J829PTGA25;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				INFOPLIST_FILE = breadwallet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-DTestflight -DDebug";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -5696,7 +5696,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = breadwalletTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwalletTests;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/breadwallet.app/breadwallet";
@@ -5710,7 +5710,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = breadwalletUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwalletUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = breadwallet;
@@ -5725,7 +5725,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				IBSC_MODULE = breadwallet_WatchKit_Extension;
 				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -5741,7 +5741,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = "breadwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -5759,7 +5759,7 @@
 				INFOPLIST_FILE = MessagesExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.MessagesExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.MessagesExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -5772,7 +5772,7 @@
 				DEVELOPMENT_TEAM = 4R7S6N88W9;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.TodayExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.TodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -5785,7 +5785,7 @@
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.voisine.breadwallet.NotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
