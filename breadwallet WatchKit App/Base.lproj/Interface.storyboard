@@ -11,7 +11,7 @@
         <!--Balance-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="Balance" id="AgC-eL-Hgc" customClass="BalanceInterfaceController" customModule="breadwallet_WatchKit_Extension">
+                <controller title="Balance" id="AgC-eL-Hgc" customClass="BalanceInterfaceController" customModule="hodlwallet_WatchKit_Extension">
                     <items>
                         <imageView alignment="center" verticalAlignment="center" image="LoadingIndicator" id="q0L-Rc-67d" userLabel="LoadingIndicator"/>
                         <label alignment="center" verticalAlignment="center" text="1,000" textAlignment="center" minimumScaleFactor="0.5" id="A9h-CR-kAQ" userLabel="BitsBalance">
@@ -60,7 +60,7 @@
         <!--Receive-->
         <scene sceneID="Fd2-FW-kiC">
             <objects>
-                <controller title="Receive" id="9Xz-xI-XUr" customClass="ReceiveInterfaceController" customModule="breadwallet_WatchKit_Extension">
+                <controller title="Receive" id="9Xz-xI-XUr" customClass="ReceiveInterfaceController" customModule="hodlwallet_WatchKit_Extension">
                     <items>
                         <group width="1" alignment="center" verticalAlignment="center" id="UhH-Xs-grj">
                             <items>

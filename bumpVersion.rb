@@ -5,7 +5,7 @@
 # This will increment the CFBundleVersion of all of the required targets by one
 # 
 require 'xcodeproj'
-project_path = './breadwallet.xcodeproj'
+project_path = './hodlwallet.xcodeproj'
 project = Xcodeproj::Project.open(project_path)
 
 desiredTargets = ['breadwallet', 'breadwallet WatchKit Extension', 'breadwallet WatchKit App', 'TodayExtension', 'NotificationServiceExtension', 'MessagesExtension']

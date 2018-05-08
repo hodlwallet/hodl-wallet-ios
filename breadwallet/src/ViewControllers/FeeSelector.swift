@@ -108,14 +108,18 @@ class FeeSelector : UIView {
             control.topAnchor.constraint(equalTo: slow.bottomAnchor, constant: 4.0),
             control.widthAnchor.constraint(equalTo: widthAnchor, constant: -C.padding[4]) ])
         
-        control.minimumValue = 1.0 // Float(store.state.fees.economy.sats)
-        control.maximumValue = 3.0 // Float(store.state.fees.fastest.sats)
+        control.minimumValue = 1 // Float(store.state.fees.economy.sats)
+        control.maximumValue = 3 // Float(store.state.fees.fastest.sats)
         control.minimumTrackTintColor = .gradientStart
         control.minimumValueImage = UIImage(named: "Minus")
         control.maximumValueImage = UIImage(named: "Plus")
+        control.isContinuous = false
         
         control.valueChanged = strongify(self) { myself in
-            if myself.control.value >= 3.0 /* Float(myself.store.state.fees.fastest.sats) */ {
+            // have the tick in 3 positions
+            myself.control.setValue(floorf(myself.control.value + 0.5),animated: true)
+            
+            if myself.control.value >= 3 /* Float(myself.store.state.fees.fastest.sats) */ {
                 myself.didUpdateFee?(.fastest)
                 
                 if myself.store.state.fees.fastest.time / 60 < 2 {
@@ -128,7 +132,7 @@ class FeeSelector : UIView {
                 
                 myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(myself.store.state.fees.fastest.sats / 1000)")
                 myself.warning.text = ""
-            } else if myself.control.value >= 2.0 /* Float(myself.store.state.fees.regular.sats) */
+            } else if myself.control.value >= 2 /* Float(myself.store.state.fees.regular.sats) */
                 /* && myself.control.value < 8.0 Float(myself.store.state.fees.fastest.sats) */ {
                 /* let newFees = Fees(fastest: myself.store.state.fees.fastest,
                                    regular: myself.store.state.fees.regular,
@@ -148,7 +152,7 @@ class FeeSelector : UIView {
                 myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(myself.store.state.fees.regular.sats / 1000)")
                 myself.warning.text = ""
                 // (Int(myself.control.value)
-            } else if myself.control.value < 2.0 /* Float(myself.store.state.fees.regular.sats) */ {
+            } else if myself.control.value < 2 /* Float(myself.store.state.fees.regular.sats) */ {
                 myself.didUpdateFee?(.economy)
                 
                 if myself.store.state.fees.economy.time / 60 < 2 {
