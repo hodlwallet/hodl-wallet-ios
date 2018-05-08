@@ -116,87 +116,56 @@ class FeeSelector : UIView {
         control.isContinuous = false
         
         control.valueChanged = strongify(self) { myself in
-            
+            // have the tick in 3 positions
             myself.control.setValue(floorf(myself.control.value + 0.5),animated: true)
             
-//            self.lastValueFloorPadding = (self.lastValue + 1.5)
-//            self.lastValueCeilPadding = (self.lastValue - 1.5)
-//
-//            print(myself.control.value)
-//
-//            if (self.initvalue + 0.5) < myself.control.value{
-//                myself.control.value = ceil(myself.control.value)
-//                self.initvalue = myself.control.value
-//
-//            }
-//            else if (self.initvalue - 0.5) < myself.control.value{
-//                myself.control.value = floor(myself.control.value)
-//                self.initvalue = myself.control.value
-//            }
-//            else{
-//                self.lastValue = myself.control.value
-//            }
-////            if floor(self.lastValueFloorPadding) == floor(myself.control.value) {
-////                if self.lastValueFloorPadding > myself.control.value {
-////                    myself.control.value = floor(myself.control.value)
-////                } else if self.lastValueCeilPadding < myself.control.value {
-////                    myself.control.value = ceil(myself.control.value)
-////                } else {
-////                    self.lastValue = myself.control.value
-////                }
-////            }
-//
-//
-//            print(myself.control.value)
-            
-            
-//            if myself.control.value >= 3 /* Float(myself.store.state.fees.fastest.sats) */ {
-//                myself.didUpdateFee?(.fastest)
-//                
-//                if myself.store.state.fees.fastest.time / 60 < 2 {
-//                    myself.deliveryBody.text = String(format: S.FeeSelector.minuteTime,
-//                        "\(myself.store.state.fees.fastest.time)")
-//                } else {
-//                    hours = myself.store.state.fees.fastest.time / 60
-//                    myself.deliveryBody.text = String(format: S.FeeSelector.hourTime, "\(hours)")
-//                }
-//                
-//                myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(myself.store.state.fees.fastest.sats / 1000)")
-//                myself.warning.text = ""
-//            } else if myself.control.value >= 2 /* Float(myself.store.state.fees.regular.sats) */
-//                /* && myself.control.value < 8.0 Float(myself.store.state.fees.fastest.sats) */ {
-//                /* let newFees = Fees(fastest: myself.store.state.fees.fastest,
-//                                   regular: myself.store.state.fees.regular,
-//                                   economy: myself.store.state.fees.economy,
-//                                   current: UInt64(myself.control.value))
-//                myself.store.perform(action: UpdateFees.set(newFees)) */
-//                myself.didUpdateFee?(.regular)
-//                
-//                if myself.store.state.fees.regular.time / 60 < 2 {
-//                    myself.deliveryBody.text = String(format: S.FeeSelector.minuteTime,
-//                        "\(myself.store.state.fees.regular.time)")
-//                } else {
-//                    hours = myself.store.state.fees.regular.time / 60
-//                    myself.deliveryBody.text = String(format: S.FeeSelector.hourTime, "\(hours)")
-//                }
-//                
-//                myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(myself.store.state.fees.regular.sats / 1000)")
-//                myself.warning.text = ""
-//                // (Int(myself.control.value)
-//            } else if myself.control.value < 2 /* Float(myself.store.state.fees.regular.sats) */ {
-//                myself.didUpdateFee?(.economy)
-//                
-//                if myself.store.state.fees.economy.time / 60 < 2 {
-//                    myself.deliveryBody.text = String(format: S.FeeSelector.minuteTime,
-//                        "\(myself.store.state.fees.economy.time)")
-//                } else {
-//                    hours = myself.store.state.fees.economy.time / 60
-//                    myself.deliveryBody.text = String(format: S.FeeSelector.hourTime, "\(hours)")
-//                }
-//                
-//                myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(myself.store.state.fees.economy.sats / 1000)")
-//                myself.warning.text = S.FeeSelector.economyWarning
-//            }
+            if myself.control.value >= 3 /* Float(myself.store.state.fees.fastest.sats) */ {
+                myself.didUpdateFee?(.fastest)
+                
+                if myself.store.state.fees.fastest.time / 60 < 2 {
+                    myself.deliveryBody.text = String(format: S.FeeSelector.minuteTime,
+                        "\(myself.store.state.fees.fastest.time)")
+                } else {
+                    hours = myself.store.state.fees.fastest.time / 60
+                    myself.deliveryBody.text = String(format: S.FeeSelector.hourTime, "\(hours)")
+                }
+                
+                myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(myself.store.state.fees.fastest.sats / 1000)")
+                myself.warning.text = ""
+            } else if myself.control.value >= 2 /* Float(myself.store.state.fees.regular.sats) */
+                /* && myself.control.value < 8.0 Float(myself.store.state.fees.fastest.sats) */ {
+                /* let newFees = Fees(fastest: myself.store.state.fees.fastest,
+                                   regular: myself.store.state.fees.regular,
+                                   economy: myself.store.state.fees.economy,
+                                   current: UInt64(myself.control.value))
+                myself.store.perform(action: UpdateFees.set(newFees)) */
+                myself.didUpdateFee?(.regular)
+                
+                if myself.store.state.fees.regular.time / 60 < 2 {
+                    myself.deliveryBody.text = String(format: S.FeeSelector.minuteTime,
+                        "\(myself.store.state.fees.regular.time)")
+                } else {
+                    hours = myself.store.state.fees.regular.time / 60
+                    myself.deliveryBody.text = String(format: S.FeeSelector.hourTime, "\(hours)")
+                }
+                
+                myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(myself.store.state.fees.regular.sats / 1000)")
+                myself.warning.text = ""
+                // (Int(myself.control.value)
+            } else if myself.control.value < 2 /* Float(myself.store.state.fees.regular.sats) */ {
+                myself.didUpdateFee?(.economy)
+                
+                if myself.store.state.fees.economy.time / 60 < 2 {
+                    myself.deliveryBody.text = String(format: S.FeeSelector.minuteTime,
+                        "\(myself.store.state.fees.economy.time)")
+                } else {
+                    hours = myself.store.state.fees.economy.time / 60
+                    myself.deliveryBody.text = String(format: S.FeeSelector.hourTime, "\(hours)")
+                }
+                
+                myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(myself.store.state.fees.economy.sats / 1000)")
+                myself.warning.text = S.FeeSelector.economyWarning
+            }
         }
 
         // control.selectedSegmentIndex = 0
