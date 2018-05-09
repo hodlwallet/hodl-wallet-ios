@@ -79,17 +79,18 @@ class StartViewController : UIViewController {
             recover.constraint(.leading, toView: view, constant: C.padding[2]),
             recover.constraint(.bottom, toView: view, constant: -C.padding[3]),
             recover.constraint(.trailing, toView: view, constant: -C.padding[2]),
-            recover.constraint(.height, constant: C.Sizes.buttonHeight) ])
+            recover.constraint(.height, constant: 65.0) ])
         create.constrain([
-            create.constraint(toTop: recover, constant: -C.padding[2]),
+            create.constraint(toTop: recover, constant: -C.padding[1]),
             create.constraint(.centerX, toView: recover, constant: nil),
             create.constraint(.width, toView: recover, constant: nil),
-            create.constraint(.height, constant: C.Sizes.buttonHeight) ])
+            create.constraint(.height, constant: 65.0) ])
         faq.constrain([
             faq.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: C.padding[2]),
             faq.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]),
             faq.widthAnchor.constraint(equalToConstant: 44.0),
             faq.heightAnchor.constraint(equalToConstant: 44.0) ])
+        message.isHidden = true
     }
 
     private func addButtonActions() {
