@@ -29,7 +29,7 @@ class RoundedContainer: UIView {
         case .middle:
             corners = []
         }
-        maskLayer.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: 4.0, height: 4.0)).cgPath
+        maskLayer.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: 0.0, height: 0.0)).cgPath
         layer.mask = maskLayer
     }
 

@@ -211,6 +211,7 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
 
     private func setData() {
         backgroundColor = .black
+        header.backgroundColor = .black
 
         statusHeader.text = S.TransactionDetails.statusHeader
         commentsHeader.text = S.TransactionDetails.commentsHeader
@@ -300,7 +301,7 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
     }
 
     override func layoutSubviews() {
-        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 6.0, height: 6.0)).cgPath
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 0.0, height: 0.0)).cgPath
         let maskLayer = CAShapeLayer()
         maskLayer.path = path
         layer.mask = maskLayer

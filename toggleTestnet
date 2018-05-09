@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+]#!/usr/bin/env ruby
 require 'xcodeproj'
 project_path = './hodlwallet.xcodeproj'
 project = Xcodeproj::Project.open(project_path)
