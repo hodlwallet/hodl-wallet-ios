@@ -65,7 +65,7 @@ extension UserDefaults {
     static var maxDigits: Int {
         get {
             guard defaults.object(forKey: maxDigitsKey) != nil else {
-                return 2
+                return 8
             }
             let maxDigits = defaults.integer(forKey: maxDigitsKey)
             if maxDigits == 5 {
