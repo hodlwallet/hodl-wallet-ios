@@ -208,12 +208,11 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
             scanButton.topAnchor.constraint(equalTo: topControlContainer.topAnchor),
             scanButton.trailingAnchor.constraint(equalTo: topControlContainer.trailingAnchor),
             scanButton.bottomAnchor.constraint(equalTo: topControlContainer.bottomAnchor) ])
-
         logo.constrain([
             logo.topAnchor.constraint(equalTo: topControlContainer.bottomAnchor, constant: C.padding[8]),
             logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logo.heightAnchor.constraint(equalTo: logo.widthAnchor, multiplier: C.Sizes.logoAspectRatio),
-            logo.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.35) ])
+            logo.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.55) ])
         if walletManager != nil {
             pinPadBackground.backgroundColor = .grayBackground
             pinPadBackground.constrain([
@@ -267,7 +266,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
     private func authenticationSucceded() {
         saveEvent("login.success")
         let label = UILabel(font: subheader.font)
-        label.textColor = .white
+        label.textColor = .whiteTint
         label.text = S.UnlockScreen.unlocked
         label.alpha = 0.0
         let lock = UIImageView(image: #imageLiteral(resourceName: "unlock"))
@@ -277,10 +276,10 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
         view.addSubview(lock)
 
         label.constrain([
-            label.bottomAnchor.constraint(equalTo: view.centerYAnchor, constant: -C.padding[1]),
+            label.bottomAnchor.constraint(equalTo: lock.topAnchor, constant: -C.padding[3]),
             label.centerXAnchor.constraint(equalTo: view.centerXAnchor) ])
         lock.constrain([
-            lock.topAnchor.constraint(equalTo: label.bottomAnchor, constant: C.padding[1]),
+            lock.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             lock.centerXAnchor.constraint(equalTo: label.centerXAnchor) ])
         view.layoutIfNeeded()
 
