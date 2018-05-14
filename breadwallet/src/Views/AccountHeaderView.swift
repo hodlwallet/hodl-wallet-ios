@@ -98,6 +98,7 @@ class AccountHeaderView : UIView, /*GradientDrawable,*/ Subscriber {
     private func setData() {
         backgroundColor = .grayBackground
         name.textColor = .white
+        modeLabel.textColor = .whiteTint
 
         manage.setTitle(S.AccountHeader.manageButtonName, for: .normal)
         manage.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17.0)
