@@ -111,7 +111,7 @@ class AddressCell : UIView {
         textField.delegate = self
         textField.clearButtonMode = .whileEditing
         textField.tintColor = .grayTextTint
-        label.textColor = .grayTextTint
+        label.textColor = .whiteTint
         contentLabel.lineBreakMode = .byTruncatingMiddle
         
         if let clearButton = textField.value(forKey: "_clearButton") as? UIButton {

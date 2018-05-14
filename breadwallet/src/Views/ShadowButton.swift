@@ -189,7 +189,7 @@ class ShadowButton: UIControl {
     private func setColors() {
         switch type {
         case .primary:
-            container.backgroundColor = .black
+            container.backgroundColor = .darkGray
             label.textColor = .primaryText
             container.layer.borderColor = nil
             container.layer.borderWidth = 0.0
