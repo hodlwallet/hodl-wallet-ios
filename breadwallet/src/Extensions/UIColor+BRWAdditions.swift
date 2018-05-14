@@ -61,7 +61,7 @@ extension UIColor {
     }
 
     static var grayText: UIColor {
-        return UIColor(white: 136.0/255.0, alpha: 1.0)
+        return UIColor(white: 130.0/255.0, alpha: 1.0)
     }
 
     static var grayTextTint: UIColor {
@@ -81,7 +81,7 @@ extension UIColor {
     }
     
     static var darkGray: UIColor {
-        return UIColor(red: 20.0/255.0, green: 20.0/255.0, blue: 20.0/255.0, alpha: 1.0)
+        return UIColor(red: 22.0/255.0, green: 22.0/255.0, blue: 22.0/255.0, alpha: 1.0)
     }
 
     static var cameraGuidePositive: UIColor {
