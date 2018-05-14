@@ -34,8 +34,8 @@ class AddressCell : UIView {
     }
 
     let textField = UITextField()
-    let paste = ShadowButton(title: "", type: .tertiary, image: #imageLiteral(resourceName: "Paste"))
-    let scan = ShadowButton(title: "", type: .tertiary, image: #imageLiteral(resourceName: "Scan"))
+    let paste = ShadowButton(title: "", type: .tertiary, image: #imageLiteral(resourceName: "Paste"), imageColor: .whiteTint, backColor: .grayBackground)
+    let scan = ShadowButton(title: "", type: .tertiary, image: #imageLiteral(resourceName: "Scan"), imageColor: .whiteTint, backColor: .grayBackground)
     fileprivate let contentLabel = UILabel(font: .customBody(size: 14.0), color: .whiteTint)
     private let pasteLabel = UILabel(font: .customBody(size: 14.0), color: .whiteTint)
     private let scanLabel = UILabel(font: .customBody(size: 14.0), color: .whiteTint)

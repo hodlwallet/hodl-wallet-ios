@@ -43,8 +43,8 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
     private let pinPad = PinPadViewController(style: .clear, keyboardType: .pinPad, maxDigits: 0)
     private let pinViewContainer = UIView()
     private var pinView: PinView?
-    private let addressButton = SegmentedButton(title: S.UnlockScreen.myAddress, type: .left)
-    private let scanButton = SegmentedButton(title: S.UnlockScreen.scan, type: .right)
+    private let addressButton = ShadowButton(title: "", type: .tertiary, image: #imageLiteral(resourceName: "SendButtonIcon"), imageColor: .gradientStart, backColor: .grayBackground) // SegmentedButton(title: S.UnlockScreen.myAddress, type: .left)
+    private let scanButton = ShadowButton(title: "", type: .tertiary, image: #imageLiteral(resourceName: "ReceiveButtonIcon"), imageColor: .grayTextTint, backColor: .grayBackground)
     private let isPresentedForLock: Bool
     private let disabledView: WalletDisabledView
     private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
@@ -166,9 +166,8 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
     private func addSubviews() {
         view.addSubview(backgroundView)
         view.addSubview(pinViewContainer)
-        view.addSubview(topControlContainer)
-        topControlContainer.addSubview(addressButton)
-        topControlContainer.addSubview(scanButton)
+        view.addSubview(addressButton)
+        view.addSubview(scanButton)
         view.addSubview(logo)
         if walletManager != nil {
             view.addSubview(pinPadBackground)
@@ -192,28 +191,17 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
         }
         pinViewContainer.constrain(toSuperviewEdges: nil)
 
-        topControlTop = topControlContainer.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[1] + 20.0)
-        topControlContainer.constrain([
-            topControlTop,
-            topControlContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
-            topControlContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]),
-            topControlContainer.heightAnchor.constraint(equalToConstant: topControlHeight) ])
         addressButton.constrain([
-            addressButton.leadingAnchor.constraint(equalTo: topControlContainer.leadingAnchor),
-            addressButton.topAnchor.constraint(equalTo: topControlContainer.topAnchor),
-            addressButton.trailingAnchor.constraint(equalTo: topControlContainer.centerXAnchor),
-            addressButton.bottomAnchor.constraint(equalTo: topControlContainer.bottomAnchor) ])
+            addressButton.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[7]),
+            addressButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[5] + 10.0) ])
         scanButton.constrain([
-            scanButton.leadingAnchor.constraint(equalTo: topControlContainer.centerXAnchor),
-            scanButton.topAnchor.constraint(equalTo: topControlContainer.topAnchor),
-            scanButton.trailingAnchor.constraint(equalTo: topControlContainer.trailingAnchor),
-            scanButton.bottomAnchor.constraint(equalTo: topControlContainer.bottomAnchor) ])
-
+            scanButton.topAnchor.constraint(equalTo: addressButton.topAnchor),
+            scanButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[5]) ])
         logo.constrain([
-            logo.topAnchor.constraint(equalTo: topControlContainer.bottomAnchor, constant: C.padding[8]),
+            logo.topAnchor.constraint(equalTo: addressButton.bottomAnchor, constant: C.padding[8]),
             logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logo.heightAnchor.constraint(equalTo: logo.widthAnchor, multiplier: C.Sizes.logoAspectRatio),
-            logo.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.35) ])
+            logo.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.55) ])
         if walletManager != nil {
             pinPadBackground.backgroundColor = .grayBackground
             pinPadBackground.constrain([
@@ -228,7 +216,9 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
             activityView.startAnimating()
         }
         subheader.text = S.UnlockScreen.subheader
-
+        
+        addressButton.tintColor = .gradientStart
+        scanButton.tintColor = .grayTextTint
         addressButton.addTarget(self, action: #selector(addressTapped), for: .touchUpInside)
         scanButton.addTarget(self, action: #selector(scanTapped), for: .touchUpInside)
     }
@@ -267,7 +257,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
     private func authenticationSucceded() {
         saveEvent("login.success")
         let label = UILabel(font: subheader.font)
-        label.textColor = .white
+        label.textColor = .whiteTint
         label.text = S.UnlockScreen.unlocked
         label.alpha = 0.0
         let lock = UIImageView(image: #imageLiteral(resourceName: "unlock"))
@@ -277,10 +267,10 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
         view.addSubview(lock)
 
         label.constrain([
-            label.bottomAnchor.constraint(equalTo: view.centerYAnchor, constant: -C.padding[1]),
+            label.bottomAnchor.constraint(equalTo: lock.topAnchor, constant: -C.padding[3]),
             label.centerXAnchor.constraint(equalTo: view.centerXAnchor) ])
         lock.constrain([
-            lock.topAnchor.constraint(equalTo: label.bottomAnchor, constant: C.padding[1]),
+            lock.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             lock.centerXAnchor.constraint(equalTo: label.centerXAnchor) ])
         view.layoutIfNeeded()
 
@@ -289,6 +279,8 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
             self.topControlTop?.constant = -100.0
             lock.alpha = 1.0
             label.alpha = 1.0
+            self.addressButton.alpha = 0.0
+            self.scanButton.alpha = 0.0
             self.logo.alpha = 0.0
             self.subheader.alpha = 0.0
             self.pinView?.alpha = 0.0

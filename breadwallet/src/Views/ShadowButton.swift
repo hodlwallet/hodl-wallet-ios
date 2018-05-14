@@ -23,6 +23,8 @@ class ShadowButton: UIControl {
     init(title: String, type: ButtonType) {
         self.title = title
         self.type = type
+        self.imageColor = .whiteTint
+        self.backColor = .grayBackground
         super.init(frame: .zero)
         accessibilityLabel = title
         setupViews()
@@ -32,9 +34,22 @@ class ShadowButton: UIControl {
         self.title = title
         self.type = type
         self.image = image
+        self.imageColor = .whiteTint
+        self.backColor = .grayBackground
         super.init(frame: .zero)
         accessibilityLabel = title
         setupViews()
+    }
+    
+    init(title: String, type: ButtonType, image: UIImage, imageColor: UIColor, backColor: UIColor) {
+        self.title = title
+        self.type = type
+        self.image = image
+        self.imageColor = imageColor
+        self.backColor = backColor
+        super.init(frame: .zero)
+        accessibilityLabel = title
+        setupNewViews()
     }
 
     var isToggleable = false
@@ -48,6 +63,9 @@ class ShadowButton: UIControl {
             imageView?.image = image
         }
     }
+
+    private let imageColor: UIColor
+    private let backColor: UIColor
     private let type: ButtonType
     private let container = UIView()
     private let shadowView = UIView()
@@ -91,6 +109,17 @@ class ShadowButton: UIControl {
         addShadowView()
         addContent()
         setColors()
+        addTarget(self, action: #selector(ShadowButton.touchUpInside), for: .touchUpInside)
+        setContentCompressionResistancePriority(UILayoutPriority.required, for: .horizontal)
+        label.setContentCompressionResistancePriority(UILayoutPriority.required, for: .horizontal)
+        setContentHuggingPriority(UILayoutPriority.required, for: .horizontal)
+        label.setContentHuggingPriority(UILayoutPriority.required, for: .horizontal)
+    }
+    
+    private func setupNewViews() {
+        addShadowView()
+        addContent()
+        setNewColors()
         addTarget(self, action: #selector(ShadowButton.touchUpInside), for: .touchUpInside)
         setContentCompressionResistancePriority(UILayoutPriority.required, for: .horizontal)
         label.setContentCompressionResistancePriority(UILayoutPriority.required, for: .horizontal)
@@ -176,17 +205,50 @@ class ShadowButton: UIControl {
             shadowView.layer.shadowOpacity = 0.15
             imageView?.tintColor = .darkText
         case .tertiary:
-            if label.text == S.Receive.emailButton || label.text == S.Receive.textButton {
-                container.backgroundColor = .grayBackground
-                imageView?.tintColor = .gradientStart
-            } else if label.text == S.Receive.share {
-                container.backgroundColor = .black
-                shadowView.layer.shadowColor = UIColor.black.cgColor
-                shadowView.layer.shadowOpacity = 0.15
-                imageView?.tintColor = .gradientStart
-            } else {
-                imageView?.tintColor = .whiteTint
-            }
+            imageView?.tintColor = .whiteTint
+            label.textColor = .whiteTint
+            container.layer.borderColor = nil
+            container.layer.borderWidth = 0.0
+        case .blackTransparent:
+            container.backgroundColor = .clear
+            label.textColor = .darkText
+            container.layer.borderColor = UIColor.darkText.cgColor
+            container.layer.borderWidth = 1.0
+            imageView?.tintColor = .grayTextTint
+            shadowView.isHidden = true
+        case .search:
+            label.font = UIFont.customBody(size: 13.0)
+            container.backgroundColor = .white
+            label.textColor = .black
+            container.layer.borderColor = UIColor.secondaryBorder.cgColor
+            container.layer.borderWidth = 1.0
+            shadowView.layer.shadowColor = UIColor.black.cgColor
+            shadowView.layer.shadowOpacity = 0.15
+            imageView?.tintColor = .grayTextTint
+        }
+    }
+    
+    private func setNewColors() {
+        switch type {
+        case .primary:
+            container.backgroundColor = .black
+            label.textColor = .primaryText
+            container.layer.borderColor = nil
+            container.layer.borderWidth = 0.0
+            shadowView.layer.shadowColor = UIColor.black.cgColor
+            shadowView.layer.shadowOpacity = 0.3
+            imageView?.tintColor = .white
+        case .secondary:
+            container.backgroundColor = .black
+            label.textColor = .white
+            container.layer.borderColor = UIColor.black.cgColor
+            container.layer.borderWidth = 1.0
+            shadowView.layer.shadowColor = UIColor.black.cgColor
+            shadowView.layer.shadowOpacity = 0.15
+            imageView?.tintColor = .darkText
+        case .tertiary:
+            container.backgroundColor = backColor
+            imageView?.tintColor = imageColor
             label.textColor = .whiteTint
             container.layer.borderColor = nil
             container.layer.borderWidth = 0.0

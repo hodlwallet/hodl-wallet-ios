@@ -67,8 +67,10 @@ class StartViewController : UIViewController {
 
     private func addConstraints() {
         background.constrain(toSuperviewEdges: nil)
-        let yConstraint = NSLayoutConstraint(item: logo, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 0.5, constant: 0.0)
+        let yConstraint = NSLayoutConstraint(item: logo, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 0.7, constant: 0.0)
         logo.constrain([
+            logo.heightAnchor.constraint(equalTo: logo.widthAnchor, multiplier: C.Sizes.logoAspectRatio),
+            logo.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.55),
             logo.constraint(.centerX, toView: view, constant: nil),
             yConstraint])
         message.constrain([
@@ -76,12 +78,12 @@ class StartViewController : UIViewController {
             message.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: C.padding[3]),
             message.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]) ])
         recover.constrain([
-            recover.constraint(.leading, toView: view, constant: C.padding[2]),
-            recover.constraint(.bottom, toView: view, constant: -C.padding[3]),
-            recover.constraint(.trailing, toView: view, constant: -C.padding[2]),
+            recover.constraint(.leading, toView: view),
+            recover.constraint(.bottom, toView: view),
+            recover.constraint(.trailing, toView: view),
             recover.constraint(.height, constant: 65.0) ])
         create.constrain([
-            create.constraint(toTop: recover, constant: -C.padding[1]),
+            create.constraint(toTop: recover, constant: -4.0),
             create.constraint(.centerX, toView: recover, constant: nil),
             create.constraint(.width, toView: recover, constant: nil),
             create.constraint(.height, constant: 65.0) ])
