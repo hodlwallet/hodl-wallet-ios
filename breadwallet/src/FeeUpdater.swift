@@ -10,7 +10,7 @@ import Foundation
 
 struct FeeData {
     let sats: UInt64
-    let time: Int
+    let time: NSString
     let blocks: Int
 }
 
@@ -30,9 +30,9 @@ struct Fees {
 
 extension Fees {
     static var defaultFees: Fees {
-        return Fees(fastest: FeeData(sats: maxFeePerKB, time: 60, blocks: 2),
-                    regular: FeeData(sats: defaultFeePerKB, time: 180, blocks: 10),
-                    economy: FeeData(sats: minFeePerKB, time: 750, blocks: 25),
+        return Fees(fastest: FeeData(sats: maxFeePerKB, time: "3 to 24 hours", blocks: 2),
+                    regular: FeeData(sats: defaultFeePerKB, time: "1 to 2 hours", blocks: 10),
+                    economy: FeeData(sats: minFeePerKB, time: "10 to 45 minutes", blocks: 25),
                     current: defaultFeePerKB)
     }
 }

@@ -147,31 +147,14 @@ class ConfirmationViewController : UIViewController, ContentBoxPresenter {
         toLabel.text = S.Confirmation.to
         address.text = addressText
         address.lineBreakMode = .byTruncatingMiddle
+
         switch feeType {
         case .fastest:
-            if state.fees.fastest.time < 60 {
-                processingTime.text = String(format: S.FeeSelector.estimatedDelivery,
-                       S.FeeSelector.minuteTime, "\(state.fees.fastest.time)")
-            } else {
-                processingTime.text = String(format: S.FeeSelector.estimatedDelivery,
-                       S.FeeSelector.hourTime, "\(state.fees.fastest.time / 60)")
-            }
+            processingTime.text = state.fees.fastest.time as String
         case .regular:
-            if state.fees.regular.time < 60 {
-                processingTime.text = String(format: S.FeeSelector.estimatedDelivery,
-                                             S.FeeSelector.minuteTime, "\(state.fees.regular.time)")
-            } else {
-                processingTime.text = String(format: S.FeeSelector.estimatedDelivery,
-                                             S.FeeSelector.hourTime, "\(state.fees.regular.time / 60)")
-            }
+            processingTime.text = state.fees.regular.time as String
         case .economy:
-            if state.fees.economy.time < 60 {
-                processingTime.text = String(format: S.FeeSelector.estimatedDelivery,
-                                             S.FeeSelector.minuteTime, "\(state.fees.economy.time)")
-            } else {
-                processingTime.text = String(format: S.FeeSelector.estimatedDelivery,
-                                             S.FeeSelector.hourTime, "\(state.fees.economy.time / 60)")
-            }
+            processingTime.text = state.fees.economy.time as String
         }
 
         sendLabel.text = S.Confirmation.amountLabel
