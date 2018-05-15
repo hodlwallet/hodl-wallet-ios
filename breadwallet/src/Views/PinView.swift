@@ -35,18 +35,18 @@ class PinView : UIView {
         self.length = length
         switch style {
         case .create:
-            unFilled = (0...(length-1)).map { _ in Circle(color: .borderGray) }
+            unFilled = (0...(length-1)).map { _ in Square(color: .borderGray) }
         case .login:
-            unFilled = (0...(length-1)).map { _ in Circle(color: .white) }
+            unFilled = (0...(length-1)).map { _ in Square(color: .white) }
         }
-        filled = (0...(length-1)).map { _ in Circle(color: .gradientEnd) }
+        filled = (0...(length-1)).map { _ in Square(color: .gradientEnd) }
         super.init(frame: CGRect())
         setupSubviews()
     }
 
     func fill(_ number: Int) {
-        filled.enumerated().forEach { index, circle in
-            circle.isHidden = index > number-1
+        filled.enumerated().forEach { index, square in
+            square.isHidden = index > number-1
         }
     }
 
@@ -70,8 +70,8 @@ class PinView : UIView {
     }
 
     //MARK: - Private
-    private let unFilled: [Circle]
-    private var filled: [Circle]
+    private let unFilled: [Square]
+    private var filled: [Square]
     private let style: PinViewStyle
     private let length: Int
 
@@ -80,24 +80,24 @@ class PinView : UIView {
     }
 
     private func setupSubviews() {
-        addCircleContraints(unFilled)
-        addCircleContraints(filled)
+        addSquareContraints(unFilled)
+        addSquareContraints(filled)
         filled.forEach { $0.isHidden = true }
     }
 
-    private func addCircleContraints(_ circles: [Circle]) {
-        circles.enumerated().forEach { index, circle in
-            addSubview(circle)
+    private func addSquareContraints(_ squares: [Square]) {
+        squares.enumerated().forEach { index, square in
+            addSubview(square)
             let leadingConstraint: NSLayoutConstraint?
             if index == 0 {
-                leadingConstraint = circle.constraint(.leading, toView: self, constant: 0.0)
+                leadingConstraint = square.constraint(.leading, toView: self, constant: 0.0)
             } else {
-                leadingConstraint = NSLayoutConstraint(item: circle, attribute: .leading, relatedBy: .equal, toItem: circles[index - 1], attribute: .trailing, multiplier: 1.0, constant: 8.0)
+                leadingConstraint = NSLayoutConstraint(item: square, attribute: .leading, relatedBy: .equal, toItem: squares[index - 1], attribute: .trailing, multiplier: 1.0, constant: 8.0)
             }
-            circle.constrain([
-                circle.constraint(.width, constant: itemSize),
-                circle.constraint(.height, constant: itemSize),
-                circle.constraint(.centerY, toView: self, constant: nil),
+            square.constrain([
+                square.constraint(.width, constant: itemSize),
+                square.constraint(.height, constant: itemSize),
+                square.constraint(.centerY, toView: self, constant: nil),
                 leadingConstraint ])
         }
     }
