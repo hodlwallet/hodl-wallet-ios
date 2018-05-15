@@ -34,12 +34,15 @@ extension BRAPIClient {
                         let fastestTime = top["fastest_time"] as? NSNumber,
                         let regularTime = top["normal_time"] as? NSNumber,
                         let economyTime = top["slow_time"] as? NSNumber,
+                        let fastestTimeText = top["fastest_time_text"] as? NSString,
+                        let regularTimeText = top["normal_time_text"] as? NSString,
+                        let economyTimeText = top["slow_time_text"] as? NSString,
                         let fastestBlocks = top["fastest_blocks"] as? NSNumber,
                         let regularBlocks = top["normal_blocks"] as? NSNumber,
                         let economyBlocks = top["slow_blocks"] as? NSNumber {
-                        fastestFee = FeeData(sats: fastest.uint64Value, time: fastestTime.intValue, blocks: fastestBlocks.intValue)
-                        regularFee = FeeData(sats: regular.uint64Value, time: regularTime.intValue, blocks: regularBlocks.intValue)
-                        economyFee = FeeData(sats: economy.uint64Value, time: economyTime.intValue, blocks: economyBlocks.intValue)
+                        fastestFee = FeeData(sats: fastest.uint64Value, time: fastestTimeText, blocks: fastestBlocks.intValue)
+                        regularFee = FeeData(sats: regular.uint64Value, time: regularTimeText, blocks: regularBlocks.intValue)
+                        economyFee = FeeData(sats: economy.uint64Value, time: economyTimeText, blocks: economyBlocks.intValue)
                     }
                 } catch (let e) {
                     self.log("fee-per-kb: error parsing json \(e)")

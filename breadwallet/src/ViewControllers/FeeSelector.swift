@@ -94,15 +94,7 @@ class FeeSelector : UIView {
             warning.topAnchor.constraint(equalTo: control.bottomAnchor, constant: 4.0),
             warning.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[2]) ])
         warning.text = ""
-        
-        var hours = Int(0)
-        if store.state.fees.economy.time / 60 < 2 {
-            deliveryBody.text = String(format: S.FeeSelector.minuteTime,
-                                           "\(store.state.fees.economy.time)")
-        } else {
-            hours = store.state.fees.economy.time / 60
-            deliveryBody.text = String(format: S.FeeSelector.hourTime, "\(hours)")
-        }
+        deliveryBody.text = store.state.fees.economy.time as String
         control.constrain([
             control.leadingAnchor.constraint(equalTo: slow.leadingAnchor),
             control.topAnchor.constraint(equalTo: slow.bottomAnchor, constant: 4.0),
@@ -121,15 +113,7 @@ class FeeSelector : UIView {
             
             if myself.control.value >= 3 /* Float(myself.store.state.fees.fastest.sats) */ {
                 myself.didUpdateFee?(.fastest)
-                
-                if myself.store.state.fees.fastest.time / 60 < 2 {
-                    myself.deliveryBody.text = String(format: S.FeeSelector.minuteTime,
-                        "\(myself.store.state.fees.fastest.time)")
-                } else {
-                    hours = myself.store.state.fees.fastest.time / 60
-                    myself.deliveryBody.text = String(format: S.FeeSelector.hourTime, "\(hours)")
-                }
-                
+                myself.deliveryBody.text = myself.store.state.fees.fastest.time as String
                 myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(myself.store.state.fees.fastest.sats / 1000)")
                 myself.warning.text = ""
             } else if myself.control.value >= 2 /* Float(myself.store.state.fees.regular.sats) */
@@ -140,29 +124,13 @@ class FeeSelector : UIView {
                                    current: UInt64(myself.control.value))
                 myself.store.perform(action: UpdateFees.set(newFees)) */
                 myself.didUpdateFee?(.regular)
-                
-                if myself.store.state.fees.regular.time / 60 < 2 {
-                    myself.deliveryBody.text = String(format: S.FeeSelector.minuteTime,
-                        "\(myself.store.state.fees.regular.time)")
-                } else {
-                    hours = myself.store.state.fees.regular.time / 60
-                    myself.deliveryBody.text = String(format: S.FeeSelector.hourTime, "\(hours)")
-                }
-                
+                myself.deliveryBody.text = myself.store.state.fees.regular.time as String
                 myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(myself.store.state.fees.regular.sats / 1000)")
                 myself.warning.text = ""
                 // (Int(myself.control.value)
             } else if myself.control.value < 2 /* Float(myself.store.state.fees.regular.sats) */ {
                 myself.didUpdateFee?(.economy)
-                
-                if myself.store.state.fees.economy.time / 60 < 2 {
-                    myself.deliveryBody.text = String(format: S.FeeSelector.minuteTime,
-                        "\(myself.store.state.fees.economy.time)")
-                } else {
-                    hours = myself.store.state.fees.economy.time / 60
-                    myself.deliveryBody.text = String(format: S.FeeSelector.hourTime, "\(hours)")
-                }
-                
+                myself.deliveryBody.text = myself.store.state.fees.economy.time as String
                 myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(myself.store.state.fees.economy.sats / 1000)")
                 myself.warning.text = S.FeeSelector.economyWarning
             }
