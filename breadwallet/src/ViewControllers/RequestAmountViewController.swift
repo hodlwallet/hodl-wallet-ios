@@ -30,7 +30,7 @@ class RequestAmountViewController : UIViewController {
     private let qrCode = UIImageView()
     private let address = UILabel(font: .customBody(size: 14.0))
     private let addressPopout = InViewAlert(type: .primary)
-    private let share = ShadowButton(title: S.Receive.share, type: .tertiary, image: #imageLiteral(resourceName: "Share"), imageColor: .gradientStart, backColor: .black)
+    private let share = ShadowButton(title: S.Receive.share, type: .tertiary, image: #imageLiteral(resourceName: "Share"), imageColor: .gradientStart, backColor: .darkGray)
     private let sharePopout = InViewAlert(type: .secondary)
     private let border = UIView()
     private var topSharePopoutConstraint: NSLayoutConstraint?
@@ -111,7 +111,7 @@ class RequestAmountViewController : UIViewController {
             .resize(qrSize)!
         share.isToggleable = true
         sharePopout.clipsToBounds = true
-        sharePopout.backgroundColor = .black
+        sharePopout.backgroundColor = .darkGray
     }
 
     private func addActions() {

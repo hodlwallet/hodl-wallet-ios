@@ -15,7 +15,7 @@ class BlackDecimalPad : GenericPinPadCell {
             centerLabel.backgroundColor = .secondaryGrayText
             centerLabel.textColor = .darkText
         } else {
-            centerLabel.backgroundColor = .black
+            centerLabel.backgroundColor = .darkGray
             centerLabel.textColor = .whiteTint
         }
     }
