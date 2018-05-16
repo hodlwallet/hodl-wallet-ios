@@ -37,8 +37,8 @@ class FeeSelector : UIView {
     private let store: Store
     private let feeHeader = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
     private let deliveryHeader = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
-    private let feeBody = UILabel(font: .customMedium(size: 16.0), color: .whiteTint)
-    private let deliveryBody = UILabel(font: .customMedium(size: 16.0), color: .whiteTint)
+    private let feeBody = UILabel(font: .customMedium(size: 16.0), color: .grayTextTint)
+    private let deliveryBody = UILabel(font: .customMedium(size: 16.0), color: .grayTextTint)
     private let warning = UILabel.wrapping(font: .customBody(size: 16.0), color: .gradientStart)
     private let slow = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
     private let normal = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
