@@ -26,19 +26,19 @@ class SettingsViewController : UITableViewController, CustomTitleView {
     private let sections: [String]
     private let rows: [String: [Setting]]
     private let cellIdentifier = "CellIdentifier"
-    let titleLabel = UILabel(font: .customBold(size: 26.0), color: .darkText)
+    let titleLabel = UILabel(font: .customBold(size: 26.0), color: .whiteTint)
     let customTitle: String
 
     override func viewDidLoad() {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 48.0))
-        headerView.backgroundColor = .whiteTint
+        headerView.backgroundColor = .grayBackground
         headerView.addSubview(titleLabel)
         titleLabel.constrain(toSuperviewEdges: UIEdgeInsetsMake(0, C.padding[2], 0, 0))
         tableView.register(SeparatorCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
-        tableView.backgroundColor = .whiteTint
+        tableView.backgroundColor = .grayBackground
         addCustomTitle()
     }
 
@@ -71,7 +71,8 @@ class SettingsViewController : UITableViewController, CustomTitleView {
         if let setting = rows[sections[indexPath.section]]?[indexPath.row] {
             cell.textLabel?.text = setting.title
             cell.textLabel?.font = .customBody(size: 16.0)
-            cell.textLabel?.textColor = .darkText
+            cell.textLabel?.textColor = .whiteTint
+            cell.backgroundColor = .darkGray
 
             let label = UILabel(font: .customMedium(size: 14.0), color: .grayTextTint)
             label.text = setting.accessoryText?()
@@ -83,7 +84,7 @@ class SettingsViewController : UITableViewController, CustomTitleView {
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 44))
-        view.backgroundColor = .whiteTint
+        view.backgroundColor = .grayBackground
         let label = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
         view.addSubview(label)
         switch sections[section] {
@@ -95,7 +96,7 @@ class SettingsViewController : UITableViewController, CustomTitleView {
             label.text = ""
         }
         let separator = UIView()
-        separator.backgroundColor = .secondaryShadow
+        separator.backgroundColor = .grayBackground
         view.addSubview(separator)
         separator.constrain([
             separator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
