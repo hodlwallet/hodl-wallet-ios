@@ -40,7 +40,7 @@ class DefaultCurrencyViewController : UITableViewController, Subscriber {
 
     private let bitcoinLabel = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
     private let bitcoinSwitch = UISegmentedControl(items: ["BTC (\(S.Symbols.btc))", "Bits (\(S.Symbols.bits))"])
-    private let rateLabel = UILabel(font: .customBody(size: 16.0), color: .darkText)
+    private let rateLabel = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
     private var header: UIView?
 
     deinit {
@@ -58,16 +58,18 @@ class DefaultCurrencyViewController : UITableViewController, Subscriber {
 
         tableView.sectionHeaderHeight = UITableViewAutomaticDimension
         tableView.estimatedSectionHeaderHeight = 140.0
-        tableView.backgroundColor = .whiteTint
+        tableView.backgroundColor = .grayBackground
         tableView.separatorStyle = .none
 
-        let titleLabel = UILabel(font: .customBold(size: 17.0), color: .darkText)
+        let titleLabel = UILabel(font: .customBold(size: 17.0), color: .whiteTint)
         titleLabel.text = S.Settings.currency
         titleLabel.sizeToFit()
         navigationItem.titleView = titleLabel
+        
+        bitcoinSwitch.tintColor = .whiteTint
 
         let faqButton = UIButton.buildFaqButton(store: store, articleId: ArticleIds.displayCurrency)
-        faqButton.tintColor = .darkText
+        faqButton.tintColor = .whiteTint
         navigationItem.rightBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]
     }
 
@@ -75,7 +77,7 @@ class DefaultCurrencyViewController : UITableViewController, Subscriber {
         if let currentRate = rates.filter({ $0.code == defaultCurrencyCode }).first {
             let amount = Amount(amount: C.satoshis, rate: currentRate, maxDigits: store.state.maxDigits)
             let bitsAmount = Amount(amount: C.satoshis, rate: currentRate, maxDigits: store.state.maxDigits)
-            rateLabel.textColor = .darkText
+            rateLabel.textColor = .whiteTint
             rateLabel.text = "\(bitsAmount.bits) = \(amount.string(forLocal: currentRate.locale))"
         }
     }
@@ -92,10 +94,12 @@ class DefaultCurrencyViewController : UITableViewController, Subscriber {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         let rate = rates[indexPath.row]
         cell.textLabel?.text = "\(rate.code) (\(rate.currencySymbol))"
+        cell.textLabel?.textColor = .whiteTint
+        cell.backgroundColor = .darkGray
 
         if rate.code == defaultCurrencyCode {
             let check = UIImageView(image: #imageLiteral(resourceName: "CircleCheck").withRenderingMode(.alwaysTemplate))
-            check.tintColor = C.defaultTintColor
+            check.tintColor = .whiteTint
             cell.accessoryView = check
         } else {
             cell.accessoryView = nil
@@ -107,7 +111,7 @@ class DefaultCurrencyViewController : UITableViewController, Subscriber {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let header = self.header { return header }
 
-        let header = UIView(color: .whiteTint)
+        let header = UIView(color: .grayBackground)
         let rateLabelTitle = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
 
         header.addSubview(rateLabelTitle)
