@@ -73,6 +73,10 @@ class SettingsViewController : UITableViewController, CustomTitleView {
             cell.textLabel?.font = .customBody(size: 16.0)
             cell.textLabel?.textColor = .whiteTint
             cell.backgroundColor = .darkGray
+            
+            let selectedView = UIView()
+            selectedView.backgroundColor = .secondaryGrayText
+            cell.selectedBackgroundView = selectedView
 
             let label = UILabel(font: .customMedium(size: 14.0), color: .grayTextTint)
             label.text = setting.accessoryText?()
