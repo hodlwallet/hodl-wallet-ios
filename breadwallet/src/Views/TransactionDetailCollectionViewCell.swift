@@ -210,8 +210,8 @@ class TransactionDetailCollectionViewCell : UICollectionViewCell {
     }
 
     private func setData() {
-        backgroundColor = .black
-        header.backgroundColor = .black
+        backgroundColor = .darkGray
+        header.backgroundColor = .darkGray
 
         statusHeader.text = S.TransactionDetails.statusHeader
         commentsHeader.text = S.TransactionDetails.commentsHeader

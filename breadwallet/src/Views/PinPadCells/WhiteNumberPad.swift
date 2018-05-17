@@ -27,11 +27,11 @@ class BlackNumberPad : GenericPinPadCell {
             sublabel.textColor = .darkText
         } else {
             if text == "" || text == deleteKeyIdentifier {
-                backgroundColor = .black
+                backgroundColor = .darkGray
                 imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
                 imageView.tintColor = .gradientStart
             } else {
-                backgroundColor = .black
+                backgroundColor = .darkGray
                 topLabel.textColor = .whiteTint
                 centerLabel.textColor = .whiteTint
                 sublabel.textColor = .whiteTint

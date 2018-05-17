@@ -42,7 +42,6 @@ class TransactionTableViewCell : UITableViewCell, Subscriber {
 
     func setStyle(_ style: TransactionCellStyle) {
         container.style = style
-        shadowView.style = style
         if style == .last || style == .single {
             innerShadow.isHidden = true
         } else {
@@ -107,7 +106,6 @@ class TransactionTableViewCell : UITableViewCell, Subscriber {
     }
 
     private func addSubviews() {
-        contentView.addSubview(shadowView)
         contentView.addSubview(container)
         container.addSubview(innerShadow)
         container.addSubview(transactionLabel)
@@ -120,11 +118,10 @@ class TransactionTableViewCell : UITableViewCell, Subscriber {
     }
 
     private func addConstraints() {
-        shadowView.constrain(toSuperviewEdges: UIEdgeInsets(top: 0, left: C.padding[2], bottom: 0, right: -C.padding[2]))
         container.constrain(toSuperviewEdges: UIEdgeInsets(top: 0, left: C.padding[2], bottom: 0, right: -C.padding[2]))
         innerShadow.constrainBottomCorners(sidePadding: 0, bottomPadding: 0)
         innerShadow.constrain([
-            innerShadow.constraint(.height, constant: 1.0) ])
+            innerShadow.constraint(.height, constant: 2.0) ])
         arrow.constrain([
             arrow.trailingAnchor.constraint(equalTo: timestamp.leadingAnchor, constant: -4.0),
             arrow.centerYAnchor.constraint(equalTo: timestamp.centerYAnchor),
@@ -164,15 +161,9 @@ class TransactionTableViewCell : UITableViewCell, Subscriber {
 
         comment.textColor = .whiteTint
         status.textColor = .whiteTint
-        timestamp.textColor = .secondaryGrayText
+        timestamp.textColor = .grayTextTint
 
-        shadowView.backgroundColor = .clear
-        shadowView.layer.shadowColor = UIColor.black.cgColor
-        shadowView.layer.shadowOpacity = 0.5
-        shadowView.layer.shadowRadius = 4.0
-        shadowView.layer.shadowOffset = CGSize(width: 0, height: 0)
-
-        innerShadow.backgroundColor = .secondaryShadow
+        innerShadow.backgroundColor = .grayBackground
         
         transactionLabel.numberOfLines = 0
         transactionLabel.lineBreakMode = .byWordWrapping
@@ -200,7 +191,7 @@ class TransactionTableViewCell : UITableViewCell, Subscriber {
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         guard selectionStyle != .none else { container.backgroundColor = .black; return }
-        container.backgroundColor = highlighted ? .grayBackground : .black
+        container.backgroundColor = highlighted ? .grayBackground : .darkGray
     }
 
     required init?(coder aDecoder: NSCoder) {

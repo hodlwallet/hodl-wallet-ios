@@ -43,8 +43,8 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
     private let pinPad = PinPadViewController(style: .clear, keyboardType: .pinPad, maxDigits: 0)
     private let pinViewContainer = UIView()
     private var pinView: PinView?
-    private let addressButton = ShadowButton(title: "", type: .tertiary, image: #imageLiteral(resourceName: "SendButtonIcon"), imageColor: .gradientStart, backColor: .grayBackground) // SegmentedButton(title: S.UnlockScreen.myAddress, type: .left)
-    private let scanButton = ShadowButton(title: "", type: .tertiary, image: #imageLiteral(resourceName: "ReceiveButtonIcon"), imageColor: .grayTextTint, backColor: .grayBackground)
+    private let addressButton = ShadowButton(title: "", type: .tertiary, image: #imageLiteral(resourceName: "ReceiveButtonIcon"), imageColor: .gradientStart, backColor: .grayBackground)
+    private let scanButton = ShadowButton(title: "", type: .tertiary, image: #imageLiteral(resourceName: "SendButtonIcon"), imageColor: .grayTextTint, backColor: .grayBackground)
     private let isPresentedForLock: Bool
     private let disabledView: WalletDisabledView
     private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
@@ -191,12 +191,12 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
         }
         pinViewContainer.constrain(toSuperviewEdges: nil)
 
-        addressButton.constrain([
-            addressButton.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[7]),
-            addressButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[5] + 10.0) ])
         scanButton.constrain([
-            scanButton.topAnchor.constraint(equalTo: addressButton.topAnchor),
-            scanButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[5]) ])
+            scanButton.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[7]),
+            scanButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[5] + 10.0) ])
+        addressButton.constrain([
+            addressButton.topAnchor.constraint(equalTo: scanButton.topAnchor),
+            addressButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[5]) ])
         logo.constrain([
             logo.topAnchor.constraint(equalTo: addressButton.bottomAnchor, constant: C.padding[8]),
             logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),

@@ -19,6 +19,7 @@ class FeeSelector : UIView {
     init(store: Store) {
         self.store = store
         super.init(frame: .zero)
+        addConstraints()
         setupViews()
     }
 
@@ -37,16 +38,16 @@ class FeeSelector : UIView {
     private let store: Store
     private let feeHeader = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
     private let deliveryHeader = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
-    private let feeBody = UILabel(font: .customMedium(size: 24.0), color: .whiteTint)
-    private let deliveryBody = UILabel(font: .customMedium(size: 24.0), color: .whiteTint)
-    private let warning = UILabel.wrapping(font: .customBody(size: 16.0), color: .red)
+    private let feeBody = UILabel(font: .customMedium(size: 16.0), color: .grayTextTint)
+    private let deliveryBody = UILabel(font: .customMedium(size: 16.0), color: .grayTextTint)
+    private let warning = UILabel.wrapping(font: .customBody(size: 16.0), color: .gradientStart)
     private let slow = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
     private let normal = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
     private let fastest = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
     private let control = UISlider()
     private var bottomConstraint: NSLayoutConstraint?
     
-    private func setupViews() {
+    private func addConstraints() {
         addSubview(control)
         addSubview(feeHeader)
         addSubview(deliveryHeader)
@@ -62,7 +63,7 @@ class FeeSelector : UIView {
             feeHeader.topAnchor.constraint(equalTo: topAnchor, constant: C.padding[1]) ])
         feeHeader.text = S.FeeSelector.networkFee
         deliveryHeader.constrain([
-            deliveryHeader.leadingAnchor.constraint(equalTo: feeHeader.trailingAnchor, constant: C.padding[7]),
+            deliveryHeader.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[2]),
             deliveryHeader.topAnchor.constraint(equalTo: topAnchor, constant: C.padding[1]) ])
         deliveryHeader.text = S.FeeSelector.estDelivery
         
@@ -71,22 +72,22 @@ class FeeSelector : UIView {
             feeBody.topAnchor.constraint(equalTo: feeHeader.bottomAnchor, constant: C.padding[1]) ])
         feeBody.text = String(format: S.FeeSelector.satByte, "\(store.state.fees.economy.sats / 1000)")
         deliveryBody.constrain([
-            deliveryBody.leadingAnchor.constraint(equalTo: deliveryHeader.leadingAnchor),
+            deliveryBody.trailingAnchor.constraint(equalTo: deliveryHeader.trailingAnchor),
             deliveryBody.topAnchor.constraint(equalTo: deliveryHeader.bottomAnchor, constant: C.padding[1])])
         
         bottomConstraint = warning.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -C.padding[2])
         
         slow.constrain([
             slow.leadingAnchor.constraint(equalTo: feeHeader.leadingAnchor),
-            slow.topAnchor.constraint(equalTo: deliveryBody.bottomAnchor, constant: C.padding[2])])
+            slow.topAnchor.constraint(equalTo: deliveryBody.bottomAnchor, constant: C.padding[1])])
         slow.text = S.FeeSelector.slow
         normal.constrain([
-            normal.centerXAnchor.constraint(equalTo: centerXAnchor, constant: -C.padding[1]),
-            normal.topAnchor.constraint(equalTo: deliveryBody.bottomAnchor, constant: C.padding[2])])
+            normal.centerXAnchor.constraint(equalTo: centerXAnchor),
+            normal.topAnchor.constraint(equalTo: slow.topAnchor) ])
         normal.text = S.FeeSelector.normal
         fastest.constrain([
             fastest.trailingAnchor.constraint(equalTo: control.trailingAnchor),
-            fastest.topAnchor.constraint(equalTo: deliveryBody.bottomAnchor, constant: C.padding[2])])
+            fastest.topAnchor.constraint(equalTo: slow.topAnchor) ])
         fastest.text = S.FeeSelector.fastest
         
         warning.constrain([
@@ -97,14 +98,17 @@ class FeeSelector : UIView {
         deliveryBody.text = store.state.fees.economy.time as String
         control.constrain([
             control.leadingAnchor.constraint(equalTo: slow.leadingAnchor),
-            control.topAnchor.constraint(equalTo: slow.bottomAnchor, constant: 4.0),
+            control.topAnchor.constraint(equalTo: slow.bottomAnchor, constant: 5.0),
             control.widthAnchor.constraint(equalTo: widthAnchor, constant: -C.padding[4]) ])
-        
+    }
+    
+    private func setupViews() {
         control.minimumValue = 1 // Float(store.state.fees.economy.sats)
         control.maximumValue = 3 // Float(store.state.fees.fastest.sats)
         control.minimumTrackTintColor = .gradientStart
         control.minimumValueImage = UIImage(named: "Minus")
         control.maximumValueImage = UIImage(named: "Plus")
+        control.setThumbImage(UIImage(named: "sliderCircle"), for: .normal)
         control.isContinuous = false
         
         control.valueChanged = strongify(self) { myself in

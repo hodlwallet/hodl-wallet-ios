@@ -189,19 +189,19 @@ class ShadowButton: UIControl {
     private func setColors() {
         switch type {
         case .primary:
-            container.backgroundColor = .black
+            container.backgroundColor = .darkGray
             label.textColor = .primaryText
             container.layer.borderColor = nil
             container.layer.borderWidth = 0.0
-            shadowView.layer.shadowColor = UIColor.black.cgColor
+            shadowView.layer.shadowColor = UIColor.darkGray.cgColor
             shadowView.layer.shadowOpacity = 0.3
             imageView?.tintColor = .white
         case .secondary:
-            container.backgroundColor = .black
+            container.backgroundColor = .darkGray
             label.textColor = .white
-            container.layer.borderColor = UIColor.black.cgColor
+            container.layer.borderColor = UIColor.darkGray.cgColor
             container.layer.borderWidth = 1.0
-            shadowView.layer.shadowColor = UIColor.black.cgColor
+            shadowView.layer.shadowColor = UIColor.darkGray.cgColor
             shadowView.layer.shadowOpacity = 0.15
             imageView?.tintColor = .darkText
         case .tertiary:

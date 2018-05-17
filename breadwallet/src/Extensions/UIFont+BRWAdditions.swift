@@ -29,14 +29,14 @@ extension UIFont {
     static var regularAttributes: [NSAttributedStringKey: Any] {
         return [
             NSAttributedStringKey.font: UIFont.customBody(size: 14.0),
-            NSAttributedStringKey.foregroundColor: UIColor.whiteTint
+            NSAttributedStringKey.foregroundColor: UIColor.gradientStart
         ]
     }
 
     static var boldAttributes: [NSAttributedStringKey: Any] {
         return [
             NSAttributedStringKey.font: UIFont.customBold(size: 14.0),
-            NSAttributedStringKey.foregroundColor: UIColor.whiteTint
+            NSAttributedStringKey.foregroundColor: UIColor.gradientStart
         ]
     }
 }

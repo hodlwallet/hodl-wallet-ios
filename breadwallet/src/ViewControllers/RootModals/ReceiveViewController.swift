@@ -33,7 +33,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     private let qrCode = UIImageView()
     private let address = UILabel(font: .customBody(size: 14.0))
     private let addressPopout = InViewAlert(type: .primary)
-    private let share = ShadowButton(title: S.Receive.share, type: .tertiary, image: #imageLiteral(resourceName: "Share"), imageColor: .gradientStart, backColor: .black)
+    private let share = ShadowButton(title: S.Receive.share, type: .tertiary, image: #imageLiteral(resourceName: "Share"), imageColor: .gradientStart, backColor: .darkGray)
     private let sharePopout = InViewAlert(type: .secondary)
     private let border = UIView()
     private let request = ShadowButton(title: S.Receive.request, type: .secondary)
@@ -130,7 +130,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         share.tintColor = .black
         share.isToggleable = true
         sharePopout.clipsToBounds = true
-        sharePopout.backgroundColor = .black
+        sharePopout.backgroundColor = .darkGray
         addressButton.setBackgroundImage(UIImage.imageForColor(.secondaryGrayText), for: .highlighted)
         addressButton.layer.cornerRadius = 4.0
         addressButton.layer.masksToBounds = true
