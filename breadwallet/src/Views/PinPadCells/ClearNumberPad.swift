@@ -28,11 +28,11 @@ class ClearNumberPad : GenericPinPadCell {
             backgroundColor = .transparentBlack
         } else {
             if text == "" || text == deleteKeyIdentifier {
-                backgroundColor = .clear
+                backgroundColor = .grayBackground
                 imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
                 imageView.tintColor = .white
             } else {
-                backgroundColor = .transparentWhite
+                backgroundColor = .grayBackground
             }
         }
     }

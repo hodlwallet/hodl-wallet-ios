@@ -191,12 +191,12 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
         }
         pinViewContainer.constrain(toSuperviewEdges: nil)
 
-        scanButton.constrain([
-            scanButton.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[7]),
-            scanButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[5] + 10.0) ])
         addressButton.constrain([
-            addressButton.topAnchor.constraint(equalTo: scanButton.topAnchor),
-            addressButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[5]) ])
+            addressButton.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[7]),
+            addressButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[5] + 10.0) ])
+        scanButton.constrain([
+            scanButton.topAnchor.constraint(equalTo: addressButton.topAnchor),
+            scanButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[5]) ])
         logo.constrain([
             logo.topAnchor.constraint(equalTo: addressButton.bottomAnchor, constant: C.padding[8]),
             logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
