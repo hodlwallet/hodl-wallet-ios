@@ -190,7 +190,7 @@ class TransactionTableViewCell : UITableViewCell, Subscriber {
     }
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        guard selectionStyle != .none else { container.backgroundColor = .black; return }
+        guard selectionStyle != .none else { container.backgroundColor = .darkGray; return }
         container.backgroundColor = highlighted ? .grayBackground : .darkGray
     }
 
