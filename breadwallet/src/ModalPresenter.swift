@@ -341,7 +341,7 @@ class ModalPresenter : Subscriber, Trackable {
                     start.navigationItem.title = S.Import.title
                     let faqButton = UIButton.buildFaqButton(store: myself.store, articleId: ArticleIds.importWallet)
                     faqButton.tintColor = .white
-                    start.navigationItem.rightBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]
+                    start.navigationItem.leftBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]
                     importNav.viewControllers = [start]
                     settingsNav.dismiss(animated: true, completion: {
                         myself.topViewController?.present(importNav, animated: true, completion: nil)
@@ -364,7 +364,7 @@ class ModalPresenter : Subscriber, Trackable {
                     start.navigationItem.title = S.WipeWallet.title
                     let faqButton = UIButton.buildFaqButton(store: myself.store, articleId: ArticleIds.wipeWallet)
                     faqButton.tintColor = .white
-                    start.navigationItem.rightBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]
+                    start.navigationItem.leftBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]
                     nc.viewControllers = [start]
                     settingsNav.dismiss(animated: true, completion: {
                         myself.topViewController?.present(nc, animated: true, completion: nil)
@@ -458,14 +458,14 @@ class ModalPresenter : Subscriber, Trackable {
         )
 
         let settings = SettingsViewController(sections: sections, rows: rows)
-        settings.addCloseNavigationItem()
+        settings.addCloseNavigationItem(tintColor: .gradientStart)
         settingsNav.viewControllers = [settings]
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
-        view.backgroundColor = .whiteTint
+        view.backgroundColor = .grayBackground
         settingsNav.navigationBar.setBackgroundImage(view.imageRepresentation, for: .default)
         settingsNav.navigationBar.shadowImage = UIImage()
         settingsNav.navigationBar.isTranslucent = false
-        settingsNav.setBlackBackArrow()
+        settingsNav.setWhiteStyle()
         top.present(settingsNav, animated: true, completion: nil)
     }
 
@@ -583,7 +583,7 @@ class ModalPresenter : Subscriber, Trackable {
         start.navigationItem.title = S.SecurityCenter.Cells.paperKeyTitle
         let faqButton = UIButton.buildFaqButton(store: store, articleId: ArticleIds.paperKey)
         faqButton.tintColor = .white
-        start.navigationItem.rightBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]
+        start.navigationItem.leftBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]
         paperPhraseNavigationController.viewControllers = [start]
         vc.present(paperPhraseNavigationController, animated: true, completion: nil)
     }

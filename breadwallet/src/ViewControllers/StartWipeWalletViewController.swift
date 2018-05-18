@@ -16,10 +16,10 @@ class StartWipeWalletViewController : UIViewController {
     }
 
     private let didTapNext: () -> Void
-    private let header = RadialGradientView(backgroundColor: .blue, offset: 64.0)
+    private let header = RadialGradientView(backgroundColor: .grayBackground, offset: 64.0)
     private let illustration = UIImageView(image: #imageLiteral(resourceName: "RestoreIllustration"))
-    private let message = UILabel.wrapping(font: .customBody(size: 16.0), color: .darkText)
-    private let warning = UILabel.wrapping(font: .customBody(size: 16.0), color: .darkText)
+    private let message = UILabel.wrapping(font: .customBody(size: 16.0), color: .gradientStart)
+    private let warning = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
     private let button = ShadowButton(title: S.RecoverWallet.next, type: .primary)
     private let bullet = UIImageView(image: #imageLiteral(resourceName: "deletecircle"))
 
@@ -46,10 +46,10 @@ class StartWipeWalletViewController : UIViewController {
             illustration.constraint(.width, constant: 64.0),
             illustration.constraint(.height, constant: 84.0),
             illustration.constraint(.centerX, toView: header, constant: 0.0),
-            illustration.constraint(.centerY, toView: header, constant: C.padding[3]) ])
+            illustration.constraint(.centerY, toView: header, constant: C.padding[7]) ])
         message.constrain([
             message.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
-            message.topAnchor.constraint(equalTo: header.bottomAnchor, constant: C.padding[2]),
+            message.topAnchor.constraint(equalTo: header.bottomAnchor, constant: C.padding[7]),
             message.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]) ])
         bullet.constrain([
             bullet.leadingAnchor.constraint(equalTo: message.leadingAnchor),
@@ -61,14 +61,14 @@ class StartWipeWalletViewController : UIViewController {
             warning.topAnchor.constraint(equalTo: bullet.topAnchor, constant: 0.0),
             warning.trailingAnchor.constraint(equalTo: message.trailingAnchor) ])
         button.constrain([
-            button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[3]),
-            button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -C.padding[4]),
-            button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[3]),
-            button.constraint(.height, constant: C.Sizes.buttonHeight) ])
+            button.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            button.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            button.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            button.constraint(.height, constant:  65.0) ])
     }
 
     private func setInitialData() {
-        view.backgroundColor = .white
+        view.backgroundColor = .grayBackground
         illustration.contentMode = .scaleAspectFill
         message.text = S.WipeWallet.startMessage
         warning.text = S.WipeWallet.startWarning

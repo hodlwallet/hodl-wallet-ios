@@ -16,9 +16,9 @@ class PushNotificationsViewController : UIViewController {
     }
 
     private let store: Store
-    private let titleLabel = UILabel(font: .customBold(size: 26.0), color: .darkText)
-    private let body = UILabel.wrapping(font: .customBody(size: 16.0), color: .darkText)
-    private let label = UILabel(font: .customBold(size: 16.0), color: .darkText)
+    private let titleLabel = UILabel(font: .customBold(size: 26.0), color: .whiteTint)
+    private let body = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
+    private let label = UILabel(font: .customBold(size: 16.0), color: .whiteTint)
     private let toggle = GradientSwitch()
     private let separator = UIView(color: .secondaryShadow)
 
@@ -58,7 +58,7 @@ class PushNotificationsViewController : UIViewController {
     }
 
     private func setData() {
-        view.backgroundColor = .whiteTint
+        view.backgroundColor = .grayBackground
         titleLabel.text = S.PushNotifications.title
         body.text = S.PushNotifications.body
         label.text = S.PushNotifications.label

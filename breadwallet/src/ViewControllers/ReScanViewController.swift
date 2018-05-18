@@ -16,10 +16,10 @@ class ReScanViewController : UIViewController, Subscriber {
         super.init(nibName: nil, bundle: nil)
     }
 
-    private let header = UILabel(font: .customBold(size: 26.0), color: .darkText)
+    private let header = UILabel(font: .customBold(size: 26.0), color: .whiteTint)
     private let body = UILabel.wrapping(font: .systemFont(ofSize: 15.0))
     private let button = ShadowButton(title: S.ReScan.buttonTitle, type: .primary)
-    private let footer = UILabel.wrapping(font: .customBody(size: 16.0), color: .secondaryGrayText)
+    private let footer = UILabel.wrapping(font: .customBody(size: 16.0), color: .gradientStart)
     private let store: Store
     private let faq: UIButton
 
@@ -57,16 +57,16 @@ class ReScanViewController : UIViewController, Subscriber {
         footer.constrain([
             footer.leadingAnchor.constraint(equalTo: header.leadingAnchor),
             footer.trailingAnchor.constraint(equalTo: faq.trailingAnchor),
-            footer.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor, constant: -C.padding[3]) ])
+            footer.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -C.padding[3]) ])
         button.constrain([
-            button.leadingAnchor.constraint(equalTo: footer.leadingAnchor),
-            button.trailingAnchor.constraint(equalTo: footer.trailingAnchor),
-            button.bottomAnchor.constraint(equalTo: footer.topAnchor, constant: -C.padding[2]),
-            button.heightAnchor.constraint(equalToConstant: C.Sizes.buttonHeight) ])
+            button.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            button.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            button.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            button.heightAnchor.constraint(equalToConstant: 65.0) ])
     }
 
     private func setInitialData() {
-        view.backgroundColor = .whiteTint
+        view.backgroundColor = .grayBackground
         header.text = S.ReScan.header
         body.attributedText = bodyText
         footer.text = S.ReScan.footer
@@ -93,7 +93,7 @@ class ReScanViewController : UIViewController, Subscriber {
         mask.constrain(toSuperviewEdges: nil)
 
         let syncView = SyncingView()
-        syncView.backgroundColor = .white
+        syncView.backgroundColor = .darkGray
         syncView.layer.cornerRadius = 4.0
         syncView.layer.masksToBounds = true
 
@@ -122,9 +122,9 @@ class ReScanViewController : UIViewController, Subscriber {
     private var bodyText: NSAttributedString {
         let body = NSMutableAttributedString()
         let headerAttributes = [ NSAttributedStringKey.font: UIFont.customBold(size: 16.0),
-                                 NSAttributedStringKey.foregroundColor: UIColor.darkText ]
+                                 NSAttributedStringKey.foregroundColor: UIColor.whiteTint ]
         let bodyAttributes = [ NSAttributedStringKey.font: UIFont.customBody(size: 16.0),
-                               NSAttributedStringKey.foregroundColor: UIColor.darkText ]
+                               NSAttributedStringKey.foregroundColor: UIColor.whiteTint ]
 
         body.append(NSAttributedString(string: "\(S.ReScan.subheader1)\n", attributes: headerAttributes))
         body.append(NSAttributedString(string: "\(S.ReScan.body1)\n\n", attributes: bodyAttributes))

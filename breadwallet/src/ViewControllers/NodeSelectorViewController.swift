@@ -11,11 +11,11 @@ import BRCore
 
 class NodeSelectorViewController : UIViewController, Trackable {
 
-    let titleLabel = UILabel(font: .customBold(size: 26.0), color: .darkText)
+    let titleLabel = UILabel(font: .customBold(size: 26.0), color: .whiteTint)
     private let nodeLabel = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
-    private let node = UILabel(font: .customBody(size: 14.0), color: .darkText)
+    private let node = UILabel(font: .customBody(size: 14.0), color: .whiteTint)
     private let statusLabel = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
-    private let status = UILabel(font: .customBody(size: 14.0), color: .darkText)
+    private let status = UILabel(font: .customBody(size: 14.0), color: .whiteTint)
     private let button: ShadowButton
     private let walletManager: WalletManager
     private var okAction: UIAlertAction?
@@ -53,14 +53,14 @@ class NodeSelectorViewController : UIViewController, Trackable {
         statusLabel.pinTopLeft(toView: node, topPadding: C.padding[2])
         status.pinTopLeft(toView: statusLabel, topPadding: 0)
         button.constrain([
-            button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
-            button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]),
-            button.topAnchor.constraint(equalTo: status.bottomAnchor, constant: C.padding[2]),
-            button.heightAnchor.constraint(equalToConstant: 44.0) ])
+            button.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            button.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            button.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            button.heightAnchor.constraint(equalToConstant: 65.0) ])
     }
 
     private func setInitialData() {
-        view.backgroundColor = .whiteTint
+        view.backgroundColor = .grayBackground
         titleLabel.text = S.NodeSelector.title
         nodeLabel.text = S.NodeSelector.nodeLabel
         statusLabel.text = S.NodeSelector.statusLabel

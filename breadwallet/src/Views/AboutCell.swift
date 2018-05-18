@@ -19,8 +19,8 @@ class AboutCell : UIView {
         setup()
     }
 
-    private let label = UILabel(font: .customBody(size: 16.0), color: .darkText)
-    private let separator = UIView(color: .secondaryShadow)
+    private let label = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
+    private let separator = UIView(color: .secondaryGrayText)
 
     private func setup() {
         addSubview(label)
@@ -39,7 +39,7 @@ class AboutCell : UIView {
             separator.trailingAnchor.constraint(equalTo: button.trailingAnchor),
             separator.bottomAnchor.constraint(equalTo: bottomAnchor),
             separator.heightAnchor.constraint(equalToConstant: 1.0) ])
-        button.tintColor = C.defaultTintColor
+        button.tintColor = .grayTextTint
     }
 
 
