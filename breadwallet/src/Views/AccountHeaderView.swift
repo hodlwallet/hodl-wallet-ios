@@ -40,6 +40,7 @@ class AccountHeaderView : UIView, /*GradientDrawable,*/ Subscriber {
     private let currencyTapView = UIView()
     private let store: Store
     private let equals = UILabel(font: .customBody(size: smallFontSize), color: .whiteTint)
+    private let rateLabel = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
     private var regularConstraints: [NSLayoutConstraint] = []
     private var swappedConstraints: [NSLayoutConstraint] = []
     private var hasInitialized = false
@@ -134,6 +135,7 @@ class AccountHeaderView : UIView, /*GradientDrawable,*/ Subscriber {
         addSubview(search)
         addSubview(currencyTapView)
         addSubview(equals)
+        // addSubview(rateLabel)
         addSubview(logo)
         addSubview(modeLabel)
     }
@@ -186,6 +188,11 @@ class AccountHeaderView : UIView, /*GradientDrawable,*/ Subscriber {
 
         let gr = UITapGestureRecognizer(target: self, action: #selector(currencySwitchTapped))
         currencyTapView.addGestureRecognizer(gr)
+        
+        /* TODO! */
+        /* rateLabel.constrain([
+            rateLabel.trailingAnchor.constraint(equalTo: search.trailingAnchor),
+            rateLabel.topAnchor.constraint(equalTo: search.topAnchor, constant: C.padding[]) ]) */
 
         logo.constrain([
             logo.leadingAnchor.constraint(equalTo: leadingAnchor, constant: C.padding[2]),
