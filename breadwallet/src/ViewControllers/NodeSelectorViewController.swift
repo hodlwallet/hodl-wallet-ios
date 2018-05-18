@@ -53,9 +53,9 @@ class NodeSelectorViewController : UIViewController, Trackable {
         statusLabel.pinTopLeft(toView: node, topPadding: C.padding[2])
         status.pinTopLeft(toView: statusLabel, topPadding: 0)
         button.constrain([
-            button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
-            button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]),
-            button.topAnchor.constraint(equalTo: status.bottomAnchor, constant: C.padding[2]),
+            button.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            button.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            button.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             button.heightAnchor.constraint(equalToConstant: 65.0) ])
     }
 
