@@ -23,14 +23,14 @@ class StartImportViewController : UIViewController {
 
     private let walletManager: WalletManager
     private let store: Store
-    private let header = RadialGradientView(backgroundColor: .blue, offset: 64.0)
+    private let header = RadialGradientView(backgroundColor: .grayBackground, offset: 64.0)
     private let illustration = UIImageView(image: #imageLiteral(resourceName: "ImportIllustration"))
-    private let message = UILabel.wrapping(font: .customBody(size: 16.0), color: .darkText)
-    private let warning = UILabel.wrapping(font: .customBody(size: 16.0), color: .darkText)
+    private let message = UILabel.wrapping(font: .customBody(size: 16.0), color: .gradientStart)
+    private let warning = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
     private let button = ShadowButton(title: S.Import.scan, type: .primary)
     private let bullet = UIImageView(image: #imageLiteral(resourceName: "deletecircle"))
-    private let leftCaption = UILabel.wrapping(font: .customMedium(size: 13.0), color: .darkText)
-    private let rightCaption = UILabel.wrapping(font: .customMedium(size: 13.0), color: .darkText)
+    private let leftCaption = UILabel.wrapping(font: .customMedium(size: 13.0), color: .whiteTint)
+    private let rightCaption = UILabel.wrapping(font: .customMedium(size: 13.0), color: .whiteTint)
     private let balanceActivity = BRActivityViewController(message: S.Import.checking)
     private let importingActivity = BRActivityViewController(message: S.Import.importing)
     private let unlockingActivity = BRActivityViewController(message: S.Import.unlockingActivity)
@@ -60,7 +60,7 @@ class StartImportViewController : UIViewController {
             illustration.constraint(.width, constant: 64.0),
             illustration.constraint(.height, constant: 84.0),
             illustration.constraint(.centerX, toView: header, constant: 0.0),
-            illustration.constraint(.centerY, toView: header, constant: -C.padding[1]) ])
+            illustration.constraint(.centerY, toView: header, constant: C.padding[7]) ])
         leftCaption.constrain([
             leftCaption.topAnchor.constraint(equalTo: illustration.bottomAnchor, constant: C.padding[1]),
             leftCaption.trailingAnchor.constraint(equalTo: header.centerXAnchor, constant: -C.padding[2]),
@@ -71,7 +71,7 @@ class StartImportViewController : UIViewController {
             rightCaption.widthAnchor.constraint(equalToConstant: 80.0)])
         message.constrain([
             message.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
-            message.topAnchor.constraint(equalTo: header.bottomAnchor, constant: C.padding[2]),
+            message.topAnchor.constraint(equalTo: header.bottomAnchor, constant: C.padding[7]),
             message.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]) ])
         bullet.constrain([
             bullet.leadingAnchor.constraint(equalTo: message.leadingAnchor),
@@ -83,14 +83,14 @@ class StartImportViewController : UIViewController {
             warning.topAnchor.constraint(equalTo: bullet.topAnchor, constant: 0.0),
             warning.trailingAnchor.constraint(equalTo: message.trailingAnchor) ])
         button.constrain([
-            button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[3]),
-            button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -C.padding[4]),
-            button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[3]),
-            button.constraint(.height, constant: C.Sizes.buttonHeight) ])
+            button.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            button.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            button.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            button.constraint(.height, constant: 65.0) ])
     }
 
     private func setInitialData() {
-        view.backgroundColor = .white
+        view.backgroundColor = .grayBackground
         illustration.contentMode = .scaleAspectFill
         message.text = S.Import.importMessage
         leftCaption.text = S.Import.leftCaption
