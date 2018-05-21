@@ -33,7 +33,7 @@ import WebKit
     var wkProcessPool: WKProcessPool
     var webView: WKWebView?
     var bundleName: String
-    var server = BRHTTPServer()
+    // var server = BRHTTPServer()
     var debugEndpoint: String?
     var mountPoint: String
     var walletManager: WalletManager
@@ -66,7 +66,7 @@ import WebKit
     }
     
     var indexUrl: URL {
-        return URL(string: "http://127.0.0.1:\(server.port)\(mountPoint)")!
+        return URL(string: "/")!
     }
     
     private let messageUIPresenter = MessageUIPresenter()
@@ -93,7 +93,7 @@ import WebKit
     }
     
     override open func loadView() {
-        didLoad = false
+        didLoad = true
         let config = WKWebViewConfiguration()
         config.processPool = wkProcessPool
         config.allowsInlineMediaPlayback = false
@@ -206,21 +206,21 @@ import WebKit
     }
     
     open func startServer() {
-        do {
-            if !server.isStarted {
-                try server.start()
-                setupIntegrations()
-            }
-        } catch let e {
-            print("\n\n\nSERVER ERROR! \(e)\n\n\n")
-        }
+//        do {
+//            if !server.isStarted {
+//                try server.start()
+//                setupIntegrations()
+//            }
+//        } catch let e {
+//            print("\n\n\nSERVER ERROR! \(e)\n\n\n")
+//        }
     }
     
     open func stopServer() {
-        if server.isStarted {
-            server.stop()
-            server.resetMiddleware()
-        }
+//        if server.isStarted {
+//            server.stop()
+//            server.resetMiddleware()
+//        }
     }
 
     func navigate(to: String) {
@@ -249,7 +249,7 @@ import WebKit
                     }
                     self?.debugEndpoint = "http://\(netService.hostName ?? ""):\(netService.port)"
                     print("[BRWebViewController] discovered bonjour debugging service \(String(describing: self?.debugEndpoint))")
-                    self?.server.resetMiddleware()
+                    // self?.server.resetMiddleware()
                     self?.setupIntegrations()
                     self?.refresh()
                 }
@@ -263,20 +263,20 @@ import WebKit
         guard let apiClient = client else { return }
         // proxy api for signing and verification
         let apiProxy = BRAPIProxy(mountAt: "/_api", client: apiClient)
-        server.prependMiddleware(middleware: apiProxy)
+        //server.prependMiddleware(middleware: apiProxy)
         
         // http router for native functionality
         let router = BRHTTPRouter()
-        server.prependMiddleware(middleware: router)
+        //server.prependMiddleware(middleware: router)
         
         if let archive = AssetArchive(name: bundleName, apiClient: apiClient) {
             // basic file server for static assets
             let fileMw = BRHTTPFileMiddleware(baseURL: archive.extractedUrl)
-            server.prependMiddleware(middleware: fileMw)
+            //server.prependMiddleware(middleware: fileMw)
             
             // middleware to always return index.html for any unknown GET request (facilitates window.history style SPAs)
             let indexMw = BRHTTPIndexMiddleware(baseURL: fileMw.baseURL)
-            server.prependMiddleware(middleware: indexMw)
+            //server.prependMiddleware(middleware: indexMw)
             
             // enable debug if it is turned on
             if let debugUrl = debugEndpoint {
@@ -351,13 +351,14 @@ import WebKit
     
     open func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
                         decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if let url = navigationAction.request.url, let host = url.host, let port = (url as NSURL).port {
-            if host == server.listenAddress || port.int32Value == Int32(server.port) {
-                return decisionHandler(.allow)
-            }
-        }
-        print("[BRWebViewController disallowing navigation: \(navigationAction)")
-        decisionHandler(.cancel)
+        return decisionHandler(.allow)
+//        if let url = navigationAction.request.url, let host = url.host, let port = (url as NSURL).port {
+//            if host == server.listenAddress || port.int32Value == Int32(server.port) {
+//                return decisionHandler(.allow)
+//            }
+//        }
+//        print("[BRWebViewController disallowing navigation: \(navigationAction)")
+//        decisionHandler(.cancel)
     }
     
     // MARK: - socket delegate
