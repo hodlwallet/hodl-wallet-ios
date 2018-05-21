@@ -35,7 +35,7 @@ class VerifyPinViewController : UIViewController, ContentBoxPresenter {
     private let titleLabel = UILabel(font: .customBold(size: 22.0), color: .whiteTint)
     private let body = UILabel(font: .customBody(size: 19.0), color: .gradientStart)
     private let pinView: PinView
-    private let toolbar = UIView(color: .black)
+    private let toolbar = UIView(color: .darkGray)
     private let cancel = UIButton(type: .system)
     private let bodyText: String
     private let pinLength: Int
@@ -93,7 +93,7 @@ class VerifyPinViewController : UIViewController, ContentBoxPresenter {
     }
 
     private func setupSubviews() {
-        contentBox.backgroundColor = .black
+        contentBox.backgroundColor = .darkGray
 
         titleLabel.text = S.VerifyPin.title
         body.text = bodyText

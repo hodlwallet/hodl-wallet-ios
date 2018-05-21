@@ -83,10 +83,10 @@ class PinPadViewController : UICollectionViewController {
             switch keyboardType {
             case .decimalPad:
                 collectionView?.backgroundColor = .grayBackground
-                collectionView?.register(BlackDecimalPad.self, forCellWithReuseIdentifier: cellIdentifier)
+                collectionView?.register(DarkDecimalPad.self, forCellWithReuseIdentifier: cellIdentifier)
             case .pinPad:
-                collectionView?.backgroundColor = .black
-                collectionView?.register(BlackNumberPad.self, forCellWithReuseIdentifier: cellIdentifier)
+                collectionView?.backgroundColor = .darkGray
+                collectionView?.register(DarkNumberPad.self, forCellWithReuseIdentifier: cellIdentifier)
             }
         case .clear:
             collectionView?.backgroundColor = .clear
