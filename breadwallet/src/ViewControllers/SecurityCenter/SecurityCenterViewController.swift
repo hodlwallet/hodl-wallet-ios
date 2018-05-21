@@ -43,11 +43,11 @@ class SecurityCenterViewController : UIViewController, Subscriber {
     private let header: ModalHeaderView
     fileprivate let shield = UIImageView(image: #imageLiteral(resourceName: "shield"))
     private let scrollView = UIScrollView()
-    private let info = UILabel(font: .customBody(size: 16.0))
+    private let info = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
     private let pinCell = SecurityCenterCell(title: S.SecurityCenter.Cells.pinTitle, descriptionText: S.SecurityCenter.Cells.pinDescription)
     private let touchIdCell = SecurityCenterCell(title: S.SecurityCenter.Cells.touchIdTitle, descriptionText: S.SecurityCenter.Cells.touchIdDescription)
     private let paperKeyCell = SecurityCenterCell(title: S.SecurityCenter.Cells.paperKeyTitle, descriptionText: S.SecurityCenter.Cells.paperKeyDescription)
-    private let separator = UIView(color: .secondaryShadow)
+    private let separator = UIView(color: .secondaryGrayText)
     private let store: Store
     private let walletManager: WalletManager
     fileprivate var didViewAppear = false
@@ -83,9 +83,9 @@ class SecurityCenterViewController : UIViewController, Subscriber {
     }
 
     private func setupSubviewProperties() {
-        view.backgroundColor = .white
+        view.backgroundColor = .grayBackground
         // Separate from ModalView
-        headerBackground.backgroundColor = .secondaryGrayText
+        headerBackground.backgroundColor = .grayBackground
         header.closeCallback = {
             self.dismiss(animated: true, completion: nil)
         }
