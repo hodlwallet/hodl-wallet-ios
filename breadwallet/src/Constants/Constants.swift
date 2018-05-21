@@ -37,7 +37,7 @@ struct C {
     static let btcCurrencyCode = "BTC"
     static let null = "(null)"
     static let maxMemoLength = 250
-    static let feedbackEmail = "feedback@hodlwallet.co"
+    static let feedbackEmail = "support@hodlwallet.co"
     static let reviewLink = ""
     static var standardPort: Int {
         return E.isTestnet ? 18333 : 8333
