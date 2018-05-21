@@ -94,7 +94,7 @@ class FeeSelector : UIView {
             warning.leadingAnchor.constraint(equalTo: feeHeader.leadingAnchor),
             warning.topAnchor.constraint(equalTo: control.bottomAnchor, constant: 4.0),
             warning.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[2]) ])
-        warning.text = ""
+        warning.text = S.FeeSelector.economyWarning
         deliveryBody.text = store.state.fees.economy.time as String
         control.constrain([
             control.leadingAnchor.constraint(equalTo: slow.leadingAnchor),
