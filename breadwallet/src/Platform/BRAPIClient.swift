@@ -69,8 +69,7 @@ open class BRAPIClient : NSObject, URLSessionDelegate, URLSessionTaskDelegate, B
     private var logEnabled = true
     
     // proto is the transport protocol to use for talking to the API (either http or https)
-    var proto = "https"  // TODO Once we set it up we need to change this to https!
-    // var proto = "http"
+    var proto = "https"
     
     // host is the server(s) on which the API is hosted
     var host = "precio.bitstop.co"
