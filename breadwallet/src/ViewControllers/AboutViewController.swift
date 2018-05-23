@@ -11,9 +11,9 @@ import SafariServices
 
 class AboutViewController : UIViewController {
 
-    private let titleLabel = UILabel(font: .customBold(size: 26.0), color: .darkText)
+    private let titleLabel = UILabel(font: .customBold(size: 26.0), color: .whiteTint)
     private let logo = UIImageView(image: #imageLiteral(resourceName: "LogoCutout"))
-    private let logoBackground = GradientView()
+    private let logoBackground = UIView()
     private let blog = AboutCell(text: S.About.blog)
     private let twitter = AboutCell(text: S.About.twitter)
     private let reddit = AboutCell(text: S.About.reddit)
@@ -69,6 +69,7 @@ class AboutViewController : UIViewController {
 
     private func setData() {
         view.backgroundColor = .grayBackground
+        logoBackground.backgroundColor = .clear
         titleLabel.text = S.About.title
         privacy.setTitle(S.About.privacy, for: .normal)
         privacy.setTitleColor(.grayTextTint, for: .normal)
