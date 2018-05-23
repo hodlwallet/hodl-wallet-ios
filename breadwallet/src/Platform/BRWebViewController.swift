@@ -93,7 +93,6 @@ import WebKit
     }
     
     override open func loadView() {
-        didLoad = false
         let config = WKWebViewConfiguration()
         config.processPool = wkProcessPool
         config.allowsInlineMediaPlayback = false
@@ -129,6 +128,7 @@ import WebKit
                 self?.sendToAllSockets(data: info)
             }
         }
+        didLoad = true
     }
     
     override open func viewWillAppear(_ animated: Bool) {
@@ -351,13 +351,16 @@ import WebKit
     
     open func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
                         decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if let url = navigationAction.request.url, let host = url.host, let port = (url as NSURL).port {
-            if host == server.listenAddress || port.int32Value == Int32(server.port) {
+        // Remove more code obfuscation :)
+        if let url = navigationAction.request.url, let host = url.host {
+            if host == server.listenAddress || host == "0.0.0.0" || host == "knowledge.hodlwallet.co" {
                 return decisionHandler(.allow)
             }
         }
+
         print("[BRWebViewController disallowing navigation: \(navigationAction)")
-        decisionHandler(.cancel)
+
+        return decisionHandler(.cancel)
     }
     
     // MARK: - socket delegate

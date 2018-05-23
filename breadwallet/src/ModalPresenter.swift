@@ -195,7 +195,15 @@ class ModalPresenter : Subscriber, Trackable {
         supportCenter.modalPresentationStyle = .overFullScreen
         supportCenter.modalPresentationCapturesStatusBarAppearance = true
         supportCenter.transitioningDelegate = supportCenter
-        let url = articleId == nil ? "/support" : "/support/article?slug=\(articleId!)"
+        
+        #if Debug || Testflight
+            let baseUrl = "http://0.0.0.0:8000/"
+        #else
+            let baseUrl = "http://knowledge.hodlwallet.co/"
+        #endif
+        
+        let url = "\(baseUrl)?slug=\(articleId!)&locale=\(Locale.current.identifier)"
+
         supportCenter.navigate(to: url)
         topViewController?.present(supportCenter, animated: true, completion: {})
     }

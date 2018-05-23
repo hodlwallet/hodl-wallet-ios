@@ -74,7 +74,9 @@ open class BRHTTPMiddlewareResponse {
     }
     
     func start() throws {
+        // Remove random port nonsence :)
         let port = in_port_t(49089)
+
         do {
             try listenServer(port)
             self.port = port
