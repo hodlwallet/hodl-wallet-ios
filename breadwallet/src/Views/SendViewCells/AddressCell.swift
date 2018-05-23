@@ -115,9 +115,9 @@ class AddressCell : UIView {
         contentLabel.lineBreakMode = .byTruncatingMiddle
         
         if let clearButton = textField.value(forKey: "_clearButton") as? UIButton {
-            clearButton.setImage(#imageLiteral(resourceName: "Close"), for: .normal)
+            clearButton.setImage(#imageLiteral(resourceName: "smallclose"), for: .normal)
             // Must fix clear button color
-            clearButton.tintColor = .gradientStart
+            clearButton.imageView?.tintColor = .gradientStart
         }
 
         textField.editingChanged = strongify(self) { myself in

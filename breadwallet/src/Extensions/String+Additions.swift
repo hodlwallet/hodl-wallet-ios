@@ -66,10 +66,20 @@ extension String {
             scanner.scanUpTo(startTag, into: &regular)
             scanner.scanUpTo(endTag, into: &bold)
             if let regular = regular {
-                output.append(NSAttributedString(string: (regular as String).tagsRemoved, attributes: UIFont.regularAttributes))
+                if regular.localizedLowercase == S.Search.received + " " {
+                    output.append(NSAttributedString(string: (regular as String).tagsRemoved, attributes: UIFont.regularAttributes))
+                }
+                else {
+                    output.append(NSAttributedString(string: (regular as String).tagsRemoved, attributes: UIFont.sentAttributes))
+                }
             }
             if let bold = bold {
-                output.append(NSAttributedString(string: (bold as String).tagsRemoved, attributes: UIFont.boldAttributes))
+                if regular?.localizedLowercase == S.Search.received + " " {
+                    output.append(NSAttributedString(string: (bold as String).tagsRemoved, attributes: UIFont.boldAttributes))
+                }
+                else {
+                    output.append(NSAttributedString(string: (bold as String).tagsRemoved, attributes: UIFont.sentAttributes))
+                }
             }
             i += 1
         }
