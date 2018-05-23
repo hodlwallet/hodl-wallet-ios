@@ -96,6 +96,10 @@ class DefaultCurrencyViewController : UITableViewController, Subscriber {
         cell.textLabel?.text = "\(rate.code) (\(rate.currencySymbol))"
         cell.textLabel?.textColor = .whiteTint
         cell.backgroundColor = .darkGray
+        
+        let selectedView = UIView()
+        selectedView.backgroundColor = .secondaryGrayText
+        cell.selectedBackgroundView = selectedView
 
         if rate.code == defaultCurrencyCode {
             let check = UIImageView(image: #imageLiteral(resourceName: "CircleCheck").withRenderingMode(.alwaysTemplate))

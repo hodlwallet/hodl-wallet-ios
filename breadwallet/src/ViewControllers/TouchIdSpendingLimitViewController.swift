@@ -16,8 +16,8 @@ class TouchIdSpendingLimitViewController : UITableViewController, Subscriber {
     private let limits: [UInt64] = [0, 1000000, 10000000, 100000000, 1000000000]
     private var selectedLimit: UInt64?
     private var header: UIView?
-    private let amount = UILabel(font: .customMedium(size: 26.0), color: .darkText)
-    private let body = UILabel.wrapping(font: .customBody(size: 13.0), color: .darkText)
+    private let amount = UILabel(font: .customMedium(size: 26.0), color: .whiteTint)
+    private let body = UILabel.wrapping(font: .customBody(size: 13.0), color: .whiteTint)
     
     init(walletManager: WalletManager, store: Store) {
         self.walletManager = walletManager
@@ -32,16 +32,16 @@ class TouchIdSpendingLimitViewController : UITableViewController, Subscriber {
         tableView.register(SeparatorCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.sectionHeaderHeight = UITableViewAutomaticDimension
         tableView.estimatedSectionHeaderHeight = 50.0
-        tableView.backgroundColor = .whiteTint
+        tableView.backgroundColor = .grayBackground
         tableView.separatorStyle = .none
 
-        let titleLabel = UILabel(font: .customBold(size: 17.0), color: .darkText)
+        let titleLabel = UILabel(font: .customBold(size: 17.0), color: .whiteTint)
         titleLabel.text = S.TouchIdSpendingLimit.title
         titleLabel.sizeToFit()
         navigationItem.titleView = titleLabel
 
         let faqButton = UIButton.buildFaqButton(store: store, articleId: ArticleIds.touchIdSpendingLimit)
-        faqButton.tintColor = .darkText
+        faqButton.tintColor = .whiteTint
         navigationItem.rightBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]
 
         body.text = S.TouchIdSpendingLimit.body
@@ -65,6 +65,12 @@ class TouchIdSpendingLimitViewController : UITableViewController, Subscriber {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        cell.backgroundColor = .darkGray
+        
+        let selectedView = UIView()
+        selectedView.backgroundColor = .secondaryGrayText
+        cell.selectedBackgroundView = selectedView
+        
         let limit = limits[indexPath.row]
         if limit == 0 {
             cell.textLabel?.text = S.TouchIdSpendingLimit.requirePasscode
@@ -72,9 +78,10 @@ class TouchIdSpendingLimitViewController : UITableViewController, Subscriber {
             let displayAmount = DisplayAmount(amount: Satoshis(rawValue: limit), state: store.state, selectedRate: nil, minimumFractionDigits: 0)
             cell.textLabel?.text = displayAmount.combinedDescription
         }
+        cell.textLabel?.textColor = .whiteTint
         if limits[indexPath.row] == selectedLimit {
             let check = UIImageView(image: #imageLiteral(resourceName: "CircleCheck").withRenderingMode(.alwaysTemplate))
-            check.tintColor = C.defaultTintColor
+            check.tintColor = .gradientStart
             cell.accessoryView = check
         } else {
             cell.accessoryView = nil
@@ -94,7 +101,7 @@ class TouchIdSpendingLimitViewController : UITableViewController, Subscriber {
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let header = self.header { return header }
-        let header = UIView(color: .whiteTint)
+        let header = UIView(color: .grayBackground)
         header.addSubview(amount)
         header.addSubview(body)
         amount.pinTopLeft(padding: C.padding[2])
