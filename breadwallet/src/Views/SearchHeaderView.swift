@@ -145,7 +145,7 @@ class SearchHeaderView : UIView {
     }
 
     private func setData() {
-        backgroundColor = .black
+        backgroundColor = .darkGray
         searchBar.backgroundImage = UIImage()
         searchBar.setImage(UIImage(named: "SearchIcon"), for: UISearchBarIcon.search, state: .normal)
         searchBar.tintColor = .grayBackground

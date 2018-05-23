@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BlackDecimalPad : GenericPinPadCell {
+class DarkDecimalPad : GenericPinPadCell {
 
     override func setAppearance() {
         if isHighlighted {

@@ -24,7 +24,7 @@ class StartPaperPhraseViewController : UIViewController {
     private let explanation = UILabel.wrapping(font: UIFont.customBody(size: 16.0), color: .gradientStart)
     private let store: Store
     private let header = RadialGradientView(backgroundColor: .grayBackground, offset: 0.0)
-    private let footer = UILabel.wrapping(font: .customBody(size: 13.0), color: .secondaryGrayText)
+    private let footer = UILabel.wrapping(font: .customBody(size: 13.0), color: .grayTextTint)
     private let callback: () -> Void
 
     override func viewDidLoad() {
@@ -76,9 +76,8 @@ class StartPaperPhraseViewController : UIViewController {
             button.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             button.constraint(.height, constant: 75) ])
         footer.constrain([
-            footer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
-            footer.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -C.padding[2]),
-            footer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]) ])
+            footer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            footer.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -C.padding[2]) ])
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {

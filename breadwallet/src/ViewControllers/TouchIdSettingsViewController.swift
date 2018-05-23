@@ -19,10 +19,10 @@ class TouchIdSettingsViewController : UIViewController, Subscriber {
         super.init(nibName: nil, bundle: nil)
     }
 
-    private let header = RadialGradientView(backgroundColor: .darkPurple)
+    private let header = RadialGradientView(backgroundColor: .grayBackground)
     private let illustration = UIImageView(image: #imageLiteral(resourceName: "TouchId-Large"))
-    private let label = UILabel.wrapping(font: .customBody(size: 16.0), color: .darkText)
-    private let switchLabel = UILabel(font: .customBold(size: 14.0), color: .darkText)
+    private let label = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
+    private let switchLabel = UILabel(font: .customBold(size: 14.0), color: .whiteTint)
     private let toggle = GradientSwitch()
     private let separator = UIView(color: .secondaryShadow)
     private let textView = UnEditableTextView()
@@ -89,7 +89,7 @@ class TouchIdSettingsViewController : UIViewController, Subscriber {
     }
 
     private func setData() {
-        view.backgroundColor = .white
+        view.backgroundColor = .grayBackground
         title = S.TouchIdSettings.title
         label.text = S.TouchIdSettings.label
         switchLabel.text = S.TouchIdSettings.switchLabel
@@ -98,7 +98,8 @@ class TouchIdSettingsViewController : UIViewController, Subscriber {
         textView.textContainer.lineFragmentPadding = 0.0
         textView.delegate = self
         textView.attributedText = textViewText
-        textView.tintColor = .primaryButton
+        textView.tintColor = .gradientEnd
+        textView.backgroundColor = .grayBackground
         addFaqButton()
         let hasSetToggleInitialValue = false
         store.subscribe(self, selector: { $0.isTouchIdEnabled != $1.isTouchIdEnabled }, callback: {
@@ -134,7 +135,7 @@ class TouchIdSettingsViewController : UIViewController, Subscriber {
         let linkText = S.TouchIdSettings.linkText
         let attributedString = NSMutableAttributedString(string: string, attributes: [
                 NSAttributedStringKey.font: UIFont.customBody(size: 13.0),
-                NSAttributedStringKey.foregroundColor: UIColor.darkText
+                NSAttributedStringKey.foregroundColor: UIColor.whiteTint
             ])
         let linkAttributes = [
                 NSAttributedStringKey.font: UIFont.customMedium(size: 13.0),

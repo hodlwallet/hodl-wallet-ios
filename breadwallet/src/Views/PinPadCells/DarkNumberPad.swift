@@ -1,5 +1,5 @@
 //
-//  WhiteNumberPad.swift
+//  DarkNumberPad.swift
 //  breadwallet
 //
 //  Created by Adrian Corscadden on 2017-03-16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BlackNumberPad : GenericPinPadCell {
+class DarkNumberPad : GenericPinPadCell {
 
     override func setAppearance() {
 
@@ -21,7 +21,7 @@ class BlackNumberPad : GenericPinPadCell {
         }
 
         if isHighlighted {
-            backgroundColor = .secondaryShadow
+            backgroundColor = .secondaryGrayText
             topLabel.textColor = .darkText
             centerLabel.textColor = .darkText
             sublabel.textColor = .darkText

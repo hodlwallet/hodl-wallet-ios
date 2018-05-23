@@ -145,6 +145,10 @@ enum S {
         static let exchangeOnDayReceived = NSLocalizedString("Transaction.exchangeOnDayReceived", value: "Exchange rate when received:", comment: "Exchange rate on date header")
         static let receivedStatus = NSLocalizedString("Transaction.receivedStatus", value: "In progress: %1$@", comment: "Receive status text: 'In progress: 20%'")
         static let sendingStatus = NSLocalizedString("Transaction.sendingStatus", value: "In progress: %1$@", comment: "Send status text: 'In progress: 20%'")
+        static let awaitingStatus = NSLocalizedString("Transaction.awaitingStatus", value: "Awaiting confirmation", comment: "Displayed before 1 confirmation has been found")
+        static let firstConfirmation = NSLocalizedString("Transaction.firstConfirmation", value: "1 confirmation", comment: "For 1 confirmation")
+        static let secondConfirmation = NSLocalizedString("Transaction.secondConfirmation", value: "2 confirmations", comment: "For 2 confirmations")
+        static let thirdConfirmation = NSLocalizedString("Transaction.thirdConfirmation", value: "3 confirmations", comment: "For 3 confirmations")
         static let available = NSLocalizedString("Transaction.available", value: "Available to Spend", comment: "Availability status text")
     }
 

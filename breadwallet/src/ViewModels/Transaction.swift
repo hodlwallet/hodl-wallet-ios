@@ -274,7 +274,7 @@ class Transaction {
     }
 
     var shouldDisplayAvailableToSpend: Bool {
-        return confirms > 1 && confirms < 6 && direction == .received
+        return confirms > 0 && confirms < 4 && direction == .received
     }
 }
 
@@ -297,28 +297,20 @@ private func makeStatus(_ txRef: BRTxRef, wallet: BRWallet, peerManager: BRPeerM
     guard wallet.transactionIsValid(txRef) else {
         return S.Transaction.invalid
     }
-
-    if confirms < 6 {
-        var percentageString = ""
-        if confirms == 0 {
-            let relayCount = peerManager.relayCount(tx.txHash)
-            if relayCount == 0 {
-                percentageString = "0%"
-            } else if relayCount == 1 {
-                percentageString = "20%"
-            } else if relayCount > 1 {
-                percentageString = "40%"
-            }
-        } else if confirms == 1 {
-            percentageString = "60%"
-        } else if confirms == 2 {
-            percentageString = "80%"
-        } else if confirms > 2 {
-            percentageString = "100%"
-        }
-        let format = direction == .sent ? S.Transaction.sendingStatus : S.Transaction.receivedStatus
-        return String(format: format, percentageString)
-    } else {
+    
+    if confirms < 1 {
+        return S.Transaction.awaitingStatus
+    }
+    else if confirms == 1 {
+        return S.Transaction.firstConfirmation
+    }
+    else if confirms == 2 {
+        return S.Transaction.secondConfirmation
+    }
+    else if confirms == 3 {
+        return S.Transaction.thirdConfirmation
+    }
+    else {
         return S.Transaction.complete
     }
 }

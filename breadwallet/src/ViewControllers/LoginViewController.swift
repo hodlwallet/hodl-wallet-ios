@@ -57,7 +57,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
 
     private let touchId: UIButton = {
         let button = UIButton(type: .system)
-        button.tintColor = .white
+        button.tintColor = .gradientStart
         button.setImage(#imageLiteral(resourceName: "TouchId"), for: .normal)
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 1.0
