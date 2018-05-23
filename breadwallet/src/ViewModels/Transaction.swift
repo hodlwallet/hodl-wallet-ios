@@ -274,7 +274,7 @@ class Transaction {
     }
 
     var shouldDisplayAvailableToSpend: Bool {
-        return confirms > 0 && confirms < 3 && direction == .received
+        return confirms > 0 && confirms < 4 && direction == .received
     }
 }
 
@@ -302,10 +302,13 @@ private func makeStatus(_ txRef: BRTxRef, wallet: BRWallet, peerManager: BRPeerM
         return S.Transaction.awaitingStatus
     }
     else if confirms == 1 {
-        return S.Transaction.oneConfirmation
+        return S.Transaction.firstConfirmation
     }
     else if confirms == 2 {
-        return S.Transaction.twoConfirmations
+        return S.Transaction.secondConfirmation
+    }
+    else if confirms == 3 {
+        return S.Transaction.thirdConfirmation
     }
     else {
         return S.Transaction.complete

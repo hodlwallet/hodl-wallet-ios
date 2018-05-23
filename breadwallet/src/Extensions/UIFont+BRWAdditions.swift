@@ -32,6 +32,13 @@ extension UIFont {
             NSAttributedStringKey.foregroundColor: UIColor.gradientStart
         ]
     }
+    
+    static var sentAttributes: [NSAttributedStringKey: Any] {
+        return [
+            NSAttributedStringKey.font: UIFont.customBody(size: 14.0),
+            NSAttributedStringKey.foregroundColor: UIColor.grayTextTint
+        ]
+    }
 
     static var boldAttributes: [NSAttributedStringKey: Any] {
         return [
