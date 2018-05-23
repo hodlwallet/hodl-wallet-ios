@@ -197,7 +197,7 @@ class ModalPresenter : Subscriber, Trackable {
         supportCenter.transitioningDelegate = supportCenter
         
         #if Debug || Testflight
-            let baseUrl = "http://0.0.0.0:8000/"
+            let baseUrl = "http://knowledge.hodlwallet.co/staging/"
         #else
             let baseUrl = "http://knowledge.hodlwallet.co/"
         #endif
