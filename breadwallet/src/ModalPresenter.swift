@@ -201,8 +201,8 @@ class ModalPresenter : Subscriber, Trackable {
         #else
             let baseUrl = "http://knowledge.hodlwallet.co/"
         #endif
-        
-        let url = "\(baseUrl)?slug=\(articleId!)&locale=\(Locale.current.identifier)"
+
+        let url = articleId == nil ? "\(baseUrl)?locale=\(Locale.current.identifier)" : "\(baseUrl)?slug=\(articleId!)&locale=\(Locale.current.identifier)"
 
         supportCenter.navigate(to: url)
         topViewController?.present(supportCenter, animated: true, completion: {})
