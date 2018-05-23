@@ -57,11 +57,11 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
 
     private let touchId: UIButton = {
         let button = UIButton(type: .system)
-        button.tintColor = .gradientStart
+        button.tintColor = .grayTextTint
         button.setImage(#imageLiteral(resourceName: "TouchId"), for: .normal)
-        button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 1.0
-        button.layer.cornerRadius = touchIdSize/2.0
+        // button.layer.borderColor = UIColor.white.cgColor
+        // button.layer.borderWidth = 1.0
+        // button.layer.cornerRadius = touchIdSize/2.0
         button.layer.masksToBounds = true
         button.accessibilityLabel = S.UnlockScreen.touchIdText
         return button
