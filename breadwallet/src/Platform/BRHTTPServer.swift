@@ -74,25 +74,23 @@ open class BRHTTPMiddlewareResponse {
     }
     
     func start() throws {
-        for _ in 0 ..< 100 {
-            // get a random port
-            let port = in_port_t(arc4random() % (49152 - 1024) + 1024)
-            do {
-                try listenServer(port)
-                self.port = port
-                let nc = NotificationCenter.default
-                // backgrounding
-                nc.addObserver(self, selector: #selector(BRHTTPServer.suspend(_:)),
-                               name: .UIApplicationWillResignActive, object: nil)
-                // foregrounding
-                nc.addObserver(self, selector: #selector(BRHTTPServer.resume(_:)),
-                               name: .UIApplicationDidBecomeActive, object: nil)
-                return
-            } catch {
-                continue
-            }
+        // Remove random port nonsence :)
+        let port = in_port_t(49089)
+
+        do {
+            try listenServer(port)
+            self.port = port
+            let nc = NotificationCenter.default
+            // backgrounding
+            nc.addObserver(self, selector: #selector(BRHTTPServer.suspend(_:)),
+                           name: .UIApplicationWillResignActive, object: nil)
+            // foregrounding
+            nc.addObserver(self, selector: #selector(BRHTTPServer.resume(_:)),
+                           name: .UIApplicationDidBecomeActive, object: nil)
+            return
+        } catch {
+            throw BRHTTPServerError.socketBindFailed
         }
-        throw BRHTTPServerError.socketBindFailed
     }
     
     func listenServer(_ port: in_port_t, maxPendingConnections: Int32 = SOMAXCONN) throws {
