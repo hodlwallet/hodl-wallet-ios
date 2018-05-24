@@ -23,6 +23,15 @@ extension UINavigationController {
         ]
         setTintableBackArrow()
     }
+    
+    func setGrayStyle() {
+        navigationBar.tintColor = .grayBackground
+        navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.foregroundColor: UIColor.whiteTint,
+            NSAttributedStringKey.font: UIFont.customBold(size: 17.0)
+        ]
+        setTintableBackArrow()
+    }
 
     func setClearNavbar() {
         navigationBar.setBackgroundImage(UIImage(), for: .default)
