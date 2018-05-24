@@ -205,9 +205,9 @@ class ModalPresenter : Subscriber, Trackable {
         var url = baseUrl
         
         if articleId == nil {
-            url += "?slug=\(articleId!)&locale=\(Locale.current.identifier)&regionCode=\(Locale.current.regionCode)"
+            url += "?slug=\(articleId!)&locale=\(Locale.current.identifier)&regionCode=\(Locale.current.regionCode ?? ""))"
         } else {
-            url += "?locale=\(Locale.current.identifier)&regionCode=\(Locale.current.regionCode)"
+            url += "?locale=\(Locale.current.identifier)&regionCode=\(Locale.current.regionCode ?? ""))"
         }
 
         supportCenter.navigate(to: url)
