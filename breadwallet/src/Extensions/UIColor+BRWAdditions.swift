@@ -26,6 +26,10 @@ extension UIColor {
     static var secondaryBorder: UIColor {
         return UIColor(red: 213.0/255.0, green: 218.0/255.0, blue: 224.0/255.0, alpha: 1.0)
     }
+    
+    static var lightGray: UIColor {
+        return UIColor(red: 235.0/255.0, green: 235.0/255.0, blue: 235.0/255.0, alpha: 1.0)
+    }
 
     static var darkText: UIColor {
         return UIColor(red: 35.0/255.0, green: 37.0/255.0, blue: 38.0/255.0, alpha: 1.0)

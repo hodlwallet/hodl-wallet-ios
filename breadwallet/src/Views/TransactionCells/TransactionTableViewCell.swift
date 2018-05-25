@@ -161,7 +161,7 @@ class TransactionTableViewCell : UITableViewCell, Subscriber {
 
         comment.textColor = .whiteTint
         status.textColor = .whiteTint
-        timestamp.textColor = .grayTextTint
+        timestamp.textColor = .whiteTint
 
         innerShadow.backgroundColor = .grayBackground
         

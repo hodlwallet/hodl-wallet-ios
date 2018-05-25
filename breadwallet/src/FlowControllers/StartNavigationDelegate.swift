@@ -19,7 +19,7 @@ class StartNavigationDelegate : NSObject, UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
 
         if viewController is RecoverWalletIntroViewController {
-            navigationController.navigationBar.tintColor = .white
+            navigationController.navigationBar.tintColor = .whiteTint
             navigationController.navigationBar.titleTextAttributes = [
                 NSAttributedStringKey.foregroundColor: UIColor.white,
                 NSAttributedStringKey.font: UIFont.customBold(size: 17.0)
@@ -29,18 +29,18 @@ class StartNavigationDelegate : NSObject, UINavigationControllerDelegate {
         }
 
         if viewController is EnterPhraseViewController {
-            navigationController.navigationBar.tintColor = .darkText
+            navigationController.navigationBar.tintColor = .whiteTint
             navigationController.navigationBar.titleTextAttributes = [
-                NSAttributedStringKey.foregroundColor: UIColor.darkText,
+                NSAttributedStringKey.foregroundColor: UIColor.whiteTint,
                 NSAttributedStringKey.font: UIFont.customBold(size: 17.0)
             ]
             navigationController.setClearNavbar()
             navigationController.navigationBar.isTranslucent = false
-            navigationController.navigationBar.barTintColor = .whiteTint
+            navigationController.navigationBar.barTintColor = .grayBackground
         }
 
         if viewController is UpdatePinViewController {
-            navigationController.navigationBar.tintColor = .darkText
+            navigationController.navigationBar.tintColor = .whiteTint
             navigationController.navigationBar.titleTextAttributes = [
                 NSAttributedStringKey.foregroundColor: UIColor.darkText,
                 NSAttributedStringKey.font: UIFont.customBold(size: 17.0)
@@ -56,7 +56,7 @@ class StartNavigationDelegate : NSObject, UINavigationControllerDelegate {
 
         if viewController is StartWipeWalletViewController {
             navigationController.setClearNavbar()
-            navigationController.setWhiteStyle()
+            navigationController.setGrayStyle()
         }
     }
 }

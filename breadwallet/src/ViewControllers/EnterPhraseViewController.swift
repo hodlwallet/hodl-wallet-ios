@@ -45,9 +45,9 @@ class EnterPhraseViewController : UIViewController, UIScrollViewDelegate, Custom
     private let reason: PhraseEntryReason
     private let enterPhrase: EnterPhraseCollectionViewController
     private let errorLabel = UILabel.wrapping(font: .customBody(size: 16.0), color: .cameraGuideNegative)
-    private let instruction = UILabel(font: .customBold(size: 14.0), color: .darkText)
-    internal let titleLabel = UILabel.wrapping(font: .customBold(size: 26.0), color: .darkText)
-    private let subheader = UILabel.wrapping(font: .customBody(size: 16.0), color: .darkText)
+    private let instruction = UILabel(font: .customBold(size: 14.0), color: .whiteTint)
+    internal let titleLabel = UILabel.wrapping(font: .customBold(size: 26.0), color: .whiteTint)
+    private let subheader = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
     private let faq: UIButton
     private let scrollView = UIScrollView()
     private let container = UIView()
@@ -121,7 +121,7 @@ class EnterPhraseViewController : UIViewController, UIScrollViewDelegate, Custom
     }
 
     private func setData() {
-        view.backgroundColor = .secondaryButton
+        view.backgroundColor = .grayBackground
         errorLabel.text = S.RecoverWallet.invalid
         errorLabel.isHidden = true
         errorLabel.textAlignment = .center
@@ -151,6 +151,8 @@ class EnterPhraseViewController : UIViewController, UIScrollViewDelegate, Custom
             titleLabel.text = S.WipeWallet.title
             subheader.text = S.WipeWallet.instruction
         }
+        
+        instruction.isHidden = true
 
         scrollView.delegate = self
         addCustomTitle()

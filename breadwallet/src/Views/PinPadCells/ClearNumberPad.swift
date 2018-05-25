@@ -30,7 +30,7 @@ class ClearNumberPad : GenericPinPadCell {
             if text == "" || text == deleteKeyIdentifier {
                 backgroundColor = .grayBackground
                 imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
-                imageView.tintColor = .white
+                imageView.tintColor = .gradientStart
             } else {
                 backgroundColor = .grayBackground
             }

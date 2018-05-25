@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let itemHeight: CGFloat = 50.0
+private let itemHeight: CGFloat = 60.0
 
 class EnterPhraseCollectionViewController : UICollectionViewController {
 
@@ -41,13 +41,12 @@ class EnterPhraseCollectionViewController : UICollectionViewController {
 
     override func viewDidLoad() {
         collectionView = NonScrollingCollectionView(frame: view.bounds, collectionViewLayout: collectionViewLayout)
-        collectionView?.backgroundColor = .white
+        collectionView?.backgroundColor = .lightGray
         collectionView?.register(EnterPhraseCell.self, forCellWithReuseIdentifier: cellIdentifier)
         collectionView?.delegate = self
         collectionView?.dataSource = self
         collectionView?.layer.borderColor = UIColor.secondaryBorder.cgColor
         collectionView?.layer.borderWidth = 1.0
-        collectionView?.layer.cornerRadius = 8.0
         collectionView?.isScrollEnabled = false
     }
 
