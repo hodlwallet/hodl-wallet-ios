@@ -12,7 +12,7 @@ extension UINavigationController {
 
     func setDefaultStyle() {
         setClearNavbar()
-        setBlackBackArrow()
+        setWhiteBackArrow()
     }
 
     func setWhiteStyle() {
@@ -44,7 +44,7 @@ extension UINavigationController {
         navigationBar.shadowImage = nil
     }
 
-    func setBlackBackArrow() {
+    func setWhiteBackArrow() {
         let image = #imageLiteral(resourceName: "Back")
         let renderedImage = image.withRenderingMode(.alwaysOriginal)
         navigationBar.backIndicatorImage = renderedImage

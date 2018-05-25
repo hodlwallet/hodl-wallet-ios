@@ -19,7 +19,7 @@ class StartNavigationDelegate : NSObject, UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
 
         if viewController is RecoverWalletIntroViewController {
-            navigationController.navigationBar.tintColor = .grayBackground
+            navigationController.navigationBar.tintColor = .whiteTint
             navigationController.navigationBar.titleTextAttributes = [
                 NSAttributedStringKey.foregroundColor: UIColor.white,
                 NSAttributedStringKey.font: UIFont.customBold(size: 17.0)
@@ -40,7 +40,7 @@ class StartNavigationDelegate : NSObject, UINavigationControllerDelegate {
         }
 
         if viewController is UpdatePinViewController {
-            navigationController.navigationBar.tintColor = .darkText
+            navigationController.navigationBar.tintColor = .whiteTint
             navigationController.navigationBar.titleTextAttributes = [
                 NSAttributedStringKey.foregroundColor: UIColor.darkText,
                 NSAttributedStringKey.font: UIFont.customBold(size: 17.0)

@@ -151,6 +151,8 @@ class EnterPhraseViewController : UIViewController, UIScrollViewDelegate, Custom
             titleLabel.text = S.WipeWallet.title
             subheader.text = S.WipeWallet.instruction
         }
+        
+        instruction.isHidden = true
 
         scrollView.delegate = self
         addCustomTitle()

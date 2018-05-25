@@ -30,7 +30,7 @@ class StartFlowPresenter : Subscriber {
 
     private var closeButton: UIButton {
         let button = UIButton.close
-        button.tintColor = .white
+        button.tintColor = .gradientStart
         button.tap = { [weak self] in
             self?.store.perform(action: HideStartFlow())
         }
