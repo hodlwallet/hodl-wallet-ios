@@ -60,11 +60,11 @@ class EnterPhraseCell : UICollectionViewCell {
 
     //MARK: - Private
     let textField = UITextField()
-    private let label = UILabel(font: .customBody(size: 13.0), color: .secondaryShadow)
+    private let label = UILabel(font: .customBody(size: 13.0), color: .secondaryGrayText)
     private let nextField = UIButton.icon(image: #imageLiteral(resourceName: "RightArrow"), accessibilityLabel: S.RecoverWallet.rightArrow)
     private let previousField = UIButton.icon(image: #imageLiteral(resourceName: "LeftArrow"), accessibilityLabel: S.RecoverWallet.leftArrow)
     private let done = UIButton(type: .system)
-    fileprivate let separator = UIView(color: .secondaryShadow)
+    fileprivate let separator = UIView(color: .secondaryGrayText)
     fileprivate var hasDisplayedInvalidState = false
 
     private func setup() {
@@ -100,12 +100,13 @@ class EnterPhraseCell : UICollectionViewCell {
         previousField.tintColor = .secondaryGrayText
         nextField.tintColor = .secondaryGrayText
         done.setTitle(S.RecoverWallet.done, for: .normal)
+        done.tintColor = .gradientStart
     }
 
     private var accessoryView: UIView {
-        let view = UIView(color: .secondaryButton)
+        let view = UIView(color: .darkGray)
         view.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 44)
-        let topBorder = UIView(color: .secondaryShadow)
+        let topBorder = UIView(color: .darkGray)
         view.addSubview(topBorder)
         view.addSubview(previousField)
         view.addSubview(nextField)
@@ -159,7 +160,7 @@ extension EnterPhraseCell : UITextFieldDelegate {
         guard let word = textField.text else { return }
         if isWordValid(word) || word == "" {
             textField.textColor = .darkText
-            separator.backgroundColor = .secondaryShadow
+            separator.backgroundColor = .secondaryGrayText
         } else {
             textField.textColor = .cameraGuideNegative
             separator.backgroundColor = .cameraGuideNegative

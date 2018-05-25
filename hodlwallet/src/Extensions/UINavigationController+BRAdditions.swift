@@ -12,13 +12,22 @@ extension UINavigationController {
 
     func setDefaultStyle() {
         setClearNavbar()
-        setBlackBackArrow()
+        setWhiteBackArrow()
     }
 
     func setWhiteStyle() {
         navigationBar.tintColor = .white
         navigationBar.titleTextAttributes = [
             NSAttributedStringKey.foregroundColor: UIColor.white,
+            NSAttributedStringKey.font: UIFont.customBold(size: 17.0)
+        ]
+        setTintableBackArrow()
+    }
+    
+    func setGrayStyle() {
+        navigationBar.tintColor = .grayBackground
+        navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.foregroundColor: UIColor.whiteTint,
             NSAttributedStringKey.font: UIFont.customBold(size: 17.0)
         ]
         setTintableBackArrow()
@@ -35,7 +44,7 @@ extension UINavigationController {
         navigationBar.shadowImage = nil
     }
 
-    func setBlackBackArrow() {
+    func setWhiteBackArrow() {
         let image = #imageLiteral(resourceName: "Back")
         let renderedImage = image.withRenderingMode(.alwaysOriginal)
         navigationBar.backIndicatorImage = renderedImage

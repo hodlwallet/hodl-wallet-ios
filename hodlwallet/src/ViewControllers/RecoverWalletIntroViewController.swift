@@ -20,7 +20,7 @@ class RecoverWalletIntroViewController : UIViewController {
     private let didTapNext: () -> Void
     private let header = RadialGradientView(backgroundColor: .grayBackground)
     private let nextButton = ShadowButton(title: S.RecoverWallet.next, type: .primary)
-    private let label = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
+    private let label = UILabel(font: .customBody(size: 16.0), color: .gradientStart)
     private let illustration = UIImageView(image: #imageLiteral(resourceName: "RecoverWalletIllustration"))
 
     override func viewDidLoad() {
@@ -43,14 +43,13 @@ class RecoverWalletIntroViewController : UIViewController {
             illustration.centerXAnchor.constraint(equalTo: header.centerXAnchor),
             illustration.centerYAnchor.constraint(equalTo: header.centerYAnchor, constant: C.padding[2]) ])
         label.constrain([
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
-            label.topAnchor.constraint(equalTo: header.bottomAnchor, constant: C.padding[2]),
-            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]) ])
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            label.topAnchor.constraint(equalTo: header.bottomAnchor, constant: C.padding[2]) ])
         nextButton.constrain([
-            nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
-            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -C.padding[3]),
-            nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[2]),
-            nextButton.heightAnchor.constraint(equalToConstant: C.Sizes.buttonHeight) ])
+            nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            nextButton.heightAnchor.constraint(equalToConstant: 65.0) ])
     }
 
     private func setData() {

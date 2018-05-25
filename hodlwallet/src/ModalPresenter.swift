@@ -351,7 +351,7 @@ class ModalPresenter : Subscriber, Trackable {
                     importNav.setClearNavbar()
                     importNav.setWhiteStyle()
                     let start = StartImportViewController(walletManager: walletManager, store: myself.store)
-                    start.addCloseNavigationItem(tintColor: .white)
+                    start.addCloseNavigationItem(tintColor: .gradientStart)
                     start.navigationItem.title = S.Import.title
                     let faqButton = UIButton.buildFaqButton(store: myself.store, articleId: ArticleIds.importWallet)
                     faqButton.tintColor = .white
@@ -366,7 +366,7 @@ class ModalPresenter : Subscriber, Trackable {
                     guard let walletManager = myself.walletManager else { return }
                     let nc = ModalNavigationController()
                     nc.setClearNavbar()
-                    nc.setWhiteStyle()
+                    nc.setGrayStyle()
                     nc.delegate = myself.wipeNavigationDelegate
                     let start = StartWipeWalletViewController {
                         let recover = EnterPhraseViewController(store: myself.store, walletManager: walletManager, reason: .validateForWipingWallet( {
@@ -374,7 +374,7 @@ class ModalPresenter : Subscriber, Trackable {
                         }))
                         nc.pushViewController(recover, animated: true)
                     }
-                    start.addCloseNavigationItem(tintColor: .white)
+                    start.addCloseNavigationItem(tintColor: .gradientStart)
                     start.navigationItem.title = S.WipeWallet.title
                     let faqButton = UIButton.buildFaqButton(store: myself.store, articleId: ArticleIds.wipeWallet)
                     faqButton.tintColor = .white
