@@ -29,15 +29,18 @@ struct Fees {
 }
 
 extension Fees {
+    // Hold default is 25 sats regardless (Monday, May 28th 2018: Would be nice to revisit this later, when Bitcoin is 1_000_000 USD :) - @igorgue)
     static var defaultFees: Fees {
-        return Fees(fastest: FeeData(sats: maxFeePerKB, time: "3 to 24 hours", blocks: 2),
-                    regular: FeeData(sats: defaultFeePerKB, time: "1 to 2 hours", blocks: 10),
-                    economy: FeeData(sats: minFeePerKB, time: "10 to 45 minutes", blocks: 25),
+        return Fees(fastest: FeeData(sats: defaultFeePerKB, time: defaultFeeText, blocks: defaultBlockAmount),
+                    regular: FeeData(sats: defaultFeePerKB, time: defaultFeeText, blocks: defaultBlockAmount),
+                    economy: FeeData(sats: defaultFeePerKB, time: defaultFeeText, blocks: defaultBlockAmount),
                     current: defaultFeePerKB)
     }
 }
 
-private let defaultFeePerKB: UInt64 = (5000*1000 + 99)/100 // bitcoind 0.11 min relay fee on 100bytes
+private let defaultBlockAmount: Int = 10
+private let defaultFeeText: NSString = "N/A"
+private let defaultFeePerKB: UInt64 = (191*25000 + 190)/191 // Hold default is 25 sats / byte
 private let minFeePerKB: UInt64 = (191*1000 + 190)/191 // minimum relay fee on a 191byte tx
 private let maxFeePerKB: UInt64 = (1000100*1000 + 190)/191 // slightly higher than a 10000bit fee on a 191byte tx
 
