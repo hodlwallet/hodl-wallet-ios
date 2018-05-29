@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
 require 'xcodeproj'
-project_path = './breadwallet.xcodeproj'
+project_path = './hodlwallet.xcodeproj'
 $project = Xcodeproj::Project.open(project_path)
 
 $production_id = 'co.hodlwallet.dev'
 $development_id = 'co.hodlwallet.dev-testnet'
 
-desired_targets = ['breadwallet', 'breadwallet WatchKit App', 'breadwallet WatchKit Extension', 'MessagesExtension', 'TodayExtension', 'NotificationServiceExtension']
+desired_targets = ['hodlwallet', 'hodlwallet WatchKit App', 'hodlwallet WatchKit Extension', 'MessagesExtension', 'TodayExtension', 'NotificationServiceExtension']
 targets = $project.native_targets.select { |target| desired_targets.include? target.name }
 
 targets.each do |target|
@@ -20,7 +20,7 @@ targets.each do |target|
 end
 
 def toggleWatchTargetCompanionId()
-  watch_target = $project.native_targets.find { |target| target.name == 'breadwallet WatchKit App'}
+  watch_target = $project.native_targets.find { |target| target.name == 'hodlwallet WatchKit App'}
   config = watch_target.build_configurations.first
   plist_path = config.build_settings['INFOPLIST_FILE']
   plist = Xcodeproj::Plist.read_from_path(plist_path)
@@ -34,7 +34,7 @@ def toggleWatchTargetCompanionId()
 end
 
 def toggleWatchExtensionId()
-  watch_extension_target = $project.native_targets.find { |target| target.name == 'breadwallet WatchKit Extension'}
+  watch_extension_target = $project.native_targets.find { |target| target.name == 'hodlwallet WatchKit Extension'}
   config = watch_extension_target.build_configurations.first
   plist_path = config.build_settings['INFOPLIST_FILE']
   plist = Xcodeproj::Plist.read_from_path(plist_path)

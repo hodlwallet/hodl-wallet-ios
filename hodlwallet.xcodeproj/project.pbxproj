@@ -259,9 +259,9 @@
 		CE30F0E61EB27844004B8EE5 /* PhoneWCSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30F0E51EB27844004B8EE5 /* PhoneWCSessionManager.swift */; };
 		CE30F0E81EB27FA2004B8EE5 /* WatchDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30F0E71EB27FA2004B8EE5 /* WatchDataManager.swift */; };
 		CE30F0EA1EB282C8004B8EE5 /* SharedConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30F0E91EB282C8004B8EE5 /* SharedConstants.swift */; };
-		CE3645481E7B424D0079D0CF /* WhiteNumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3645471E7B424D0079D0CF /* WhiteNumberPad.swift */; };
+		CE3645481E7B424D0079D0CF /* DarkNumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3645471E7B424D0079D0CF /* DarkNumberPad.swift */; };
 		CE36454A1E7B426B0079D0CF /* ClearNumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3645491E7B426B0079D0CF /* ClearNumberPad.swift */; };
-		CE36454C1E7B42850079D0CF /* WhiteDecimalPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36454B1E7B42850079D0CF /* WhiteDecimalPad.swift */; };
+		CE36454C1E7B42850079D0CF /* DarkDecimalPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36454B1E7B42850079D0CF /* DarkDecimalPad.swift */; };
 		CE3754AD1DDE6E080045B0CB /* MaskedShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3754AC1DDE6E080045B0CB /* MaskedShadow.swift */; };
 		CE3754AF1DDE6E2E0045B0CB /* RoundedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3754AE1DDE6E2E0045B0CB /* RoundedContainer.swift */; };
 		CE3D4C571EF5D5740016B1C8 /* ReachabilityMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3D4C561EF5D5740016B1C8 /* ReachabilityMonitor.swift */; };
@@ -472,28 +472,28 @@
 			containerPortal = 75A2A7881DA5934300A983D8 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 75A2A78F1DA5934300A983D8;
-			remoteInfo = breadwallet;
+			remoteInfo = hodlwallet;
 		};
 		75A2A7B01DA5934300A983D8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 75A2A7881DA5934300A983D8 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 75A2A78F1DA5934300A983D8;
-			remoteInfo = breadwallet;
+			remoteInfo = hodlwallet;
 		};
 		75A2A7BA1DA5934300A983D8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 75A2A7881DA5934300A983D8 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 75A2A7B71DA5934300A983D8;
-			remoteInfo = "breadwallet WatchKit App";
+			remoteInfo = "hodlwallet WatchKit App";
 		};
 		75A2A7C91DA5934300A983D8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 75A2A7881DA5934300A983D8 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 75A2A7C61DA5934300A983D8;
-			remoteInfo = "breadwallet WatchKit Extension";
+			remoteInfo = "hodlwallet WatchKit Extension";
 		};
 		75A2A8121DA5936F00A983D8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -514,7 +514,7 @@
 			containerPortal = 75A2A7881DA5934300A983D8 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 75A2A78F1DA5934300A983D8;
-			remoteInfo = breadwallet;
+			remoteInfo = hodlwallet;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -1350,7 +1350,7 @@
 		75A2A8791DA59C8B00A983D8 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Interface.strings; sourceTree = "<group>"; };
 		75A2A87A1DA59C8B00A983D8 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		75A2A87B1DA59C8B00A983D8 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/MainInterface.strings; sourceTree = "<group>"; };
-		75A2A87C1DA59E4E00A983D8 /* breadwallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = breadwallet.entitlements; sourceTree = "<group>"; };
+		75A2A87C1DA59E4E00A983D8 /* hodlwallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = hodlwallet.entitlements; sourceTree = "<group>"; };
 		75C735AF1DAA1C9F00251ECF /* libnettle.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libnettle.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		75DC77AE1DAA05B500932D9A /* BRAddress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BRAddress.c; sourceTree = "<group>"; };
 		75DC77AF1DAA05B500932D9A /* BRAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAddress.h; sourceTree = "<group>"; };
@@ -1436,9 +1436,9 @@
 		CE30F0E71EB27FA2004B8EE5 /* WatchDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchDataManager.swift; sourceTree = "<group>"; };
 		CE30F0E91EB282C8004B8EE5 /* SharedConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedConstants.swift; sourceTree = "<group>"; };
 		CE30F0EB1EB28542004B8EE5 /* WatchData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WatchData.swift; path = src/Watch/WatchData.swift; sourceTree = "<group>"; };
-		CE3645471E7B424D0079D0CF /* WhiteNumberPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WhiteNumberPad.swift; path = src/Views/PinPadCells/WhiteNumberPad.swift; sourceTree = "<group>"; };
+		CE3645471E7B424D0079D0CF /* DarkNumberPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DarkNumberPad.swift; path = src/Views/PinPadCells/DarkNumberPad.swift; sourceTree = "<group>"; };
 		CE3645491E7B426B0079D0CF /* ClearNumberPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClearNumberPad.swift; path = src/Views/PinPadCells/ClearNumberPad.swift; sourceTree = "<group>"; };
-		CE36454B1E7B42850079D0CF /* WhiteDecimalPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WhiteDecimalPad.swift; path = src/Views/PinPadCells/WhiteDecimalPad.swift; sourceTree = "<group>"; };
+		CE36454B1E7B42850079D0CF /* DarkDecimalPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DarkDecimalPad.swift; path = src/Views/PinPadCells/DarkDecimalPad.swift; sourceTree = "<group>"; };
 		CE3754AC1DDE6E080045B0CB /* MaskedShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MaskedShadow.swift; path = src/Views/TransactionCells/MaskedShadow.swift; sourceTree = "<group>"; };
 		CE3754AE1DDE6E2E0045B0CB /* RoundedContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundedContainer.swift; path = src/Views/TransactionCells/RoundedContainer.swift; sourceTree = "<group>"; };
 		CE3D4C561EF5D5740016B1C8 /* ReachabilityMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReachabilityMonitor.swift; path = src/ReachabilityMonitor.swift; sourceTree = "<group>"; };
@@ -2564,11 +2564,11 @@
 		75A2A7871DA5934300A983D8 = {
 			isa = PBXGroup;
 			children = (
-				75A2A7921DA5934300A983D8 /* breadwallet */,
-				75A2A7A71DA5934300A983D8 /* breadwalletTests */,
-				75A2A7B21DA5934300A983D8 /* breadwalletUITests */,
-				75A2A7BC1DA5934300A983D8 /* breadwallet WatchKit App */,
-				75A2A7CB1DA5934300A983D8 /* breadwallet WatchKit Extension */,
+				75A2A7921DA5934300A983D8 /* hodlwallet */,
+				75A2A7A71DA5934300A983D8 /* hodlwalletTests */,
+				75A2A7B21DA5934300A983D8 /* hodlwalletUITests */,
+				75A2A7BC1DA5934300A983D8 /* hodlwallet WatchKit App */,
+				75A2A7CB1DA5934300A983D8 /* hodlwallet WatchKit Extension */,
 				75A2A7F41DA5935F00A983D8 /* MessagesExtension */,
 				75A2A80B1DA5936F00A983D8 /* TodayExtension */,
 				75A2A81D1DA5938500A983D8 /* NotificationServiceExtension */,
@@ -2600,10 +2600,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		75A2A7921DA5934300A983D8 /* breadwallet */ = {
+		75A2A7921DA5934300A983D8 /* hodlwallet */ = {
 			isa = PBXGroup;
 			children = (
-				75A2A87C1DA59E4E00A983D8 /* breadwallet.entitlements */,
+				75A2A87C1DA59E4E00A983D8 /* hodlwallet.entitlements */,
 				75A2A7931DA5934300A983D8 /* AppDelegate.swift */,
 				CE20C8F11DBAF71500C8397A /* ApplicationController.swift */,
 				754AE0BB1DFE8A46007FD001 /* BRCore.swift */,
@@ -2642,10 +2642,10 @@
 				75A2A79C1DA5934300A983D8 /* LaunchScreen.storyboard */,
 				75A2A79F1DA5934300A983D8 /* Info.plist */,
 			);
-			path = breadwallet;
+			path = hodlwallet;
 			sourceTree = "<group>";
 		};
-		75A2A7A71DA5934300A983D8 /* breadwalletTests */ = {
+		75A2A7A71DA5934300A983D8 /* hodlwalletTests */ = {
 			isa = PBXGroup;
 			children = (
 				75A2A7AA1DA5934300A983D8 /* Info.plist */,
@@ -2660,19 +2660,19 @@
 				CEEC70971E96BF8800EF788E /* DefaultCurrencyTests.swift */,
 				CEA7E6751F057D77001F8C27 /* WalletInfoTest.swift */,
 			);
-			path = breadwalletTests;
+			path = hodlwalletTests;
 			sourceTree = "<group>";
 		};
-		75A2A7B21DA5934300A983D8 /* breadwalletUITests */ = {
+		75A2A7B21DA5934300A983D8 /* hodlwalletUITests */ = {
 			isa = PBXGroup;
 			children = (
 				75A2A7B31DA5934300A983D8 /* breadwalletUITests.swift */,
 				75A2A7B51DA5934300A983D8 /* Info.plist */,
 			);
-			path = breadwalletUITests;
+			path = hodlwalletUITests;
 			sourceTree = "<group>";
 		};
-		75A2A7BC1DA5934300A983D8 /* breadwallet WatchKit App */ = {
+		75A2A7BC1DA5934300A983D8 /* hodlwallet WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
 				75A2A7BD1DA5934300A983D8 /* Interface.storyboard */,
@@ -2680,10 +2680,10 @@
 				75A2A7C21DA5934300A983D8 /* Info.plist */,
 				CEFFA2D01EB3BD730085C5D1 /* LoadingIndicator.xcassets */,
 			);
-			path = "breadwallet WatchKit App";
+			path = "hodlwallet WatchKit App";
 			sourceTree = "<group>";
 		};
-		75A2A7CB1DA5934300A983D8 /* breadwallet WatchKit Extension */ = {
+		75A2A7CB1DA5934300A983D8 /* hodlwallet WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
 				75A2A7D01DA5934300A983D8 /* ExtensionDelegate.swift */,
@@ -2698,7 +2698,7 @@
 				75A2A7D81DA5934400A983D8 /* Info.plist */,
 				75A2A7CC1DA5934300A983D8 /* Supporting Files */,
 			);
-			path = "breadwallet WatchKit Extension";
+			path = "hodlwallet WatchKit Extension";
 			sourceTree = "<group>";
 		};
 		75A2A7CC1DA5934300A983D8 /* Supporting Files */ = {
@@ -3013,9 +3013,9 @@
 			isa = PBXGroup;
 			children = (
 				CECCE5AA1E038C9900D99448 /* GenericPinPadCell.swift */,
-				CE3645471E7B424D0079D0CF /* WhiteNumberPad.swift */,
+				CE3645471E7B424D0079D0CF /* DarkNumberPad.swift */,
 				CE3645491E7B426B0079D0CF /* ClearNumberPad.swift */,
-				CE36454B1E7B42850079D0CF /* WhiteDecimalPad.swift */,
+				CE36454B1E7B42850079D0CF /* DarkDecimalPad.swift */,
 			);
 			name = PinPadCells;
 			sourceTree = "<group>";
@@ -3310,7 +3310,7 @@
 				752FB04F1DF8BF5C009086FB /* PBXTargetDependency */,
 			);
 			name = hodlwallet;
-			productName = breadwallet;
+			productName = hodlwallet;
 			productReference = 75A2A7901DA5934300A983D8 /* hodlwallet.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -3328,7 +3328,7 @@
 				75A2A7A61DA5934300A983D8 /* PBXTargetDependency */,
 			);
 			name = hodlwalletTests;
-			productName = breadwalletTests;
+			productName = hodlwalletTests;
 			productReference = 75A2A7A41DA5934300A983D8 /* hodlwalletTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -3346,7 +3346,7 @@
 				75A2A7B11DA5934300A983D8 /* PBXTargetDependency */,
 			);
 			name = hodlwalletUITests;
-			productName = breadwalletUITests;
+			productName = hodlwalletUITests;
 			productReference = 75A2A7AF1DA5934300A983D8 /* hodlwalletUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
@@ -3363,7 +3363,7 @@
 				75A2A7CA1DA5934300A983D8 /* PBXTargetDependency */,
 			);
 			name = "hodlwallet WatchKit App";
-			productName = "breadwallet WatchKit App";
+			productName = "hodlwallet WatchKit App";
 			productReference = 75A2A7B81DA5934300A983D8 /* hodlwallet WatchKit App.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
@@ -3381,7 +3381,7 @@
 			dependencies = (
 			);
 			name = "hodlwallet WatchKit Extension";
-			productName = "breadwallet WatchKit Extension";
+			productName = "hodlwallet WatchKit Extension";
 			productReference = 75A2A7C71DA5934300A983D8 /* hodlwallet WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
@@ -4003,7 +4003,7 @@
 				CEEC708C1E95461A00EF788E /* AboutViewController.swift in Sources */,
 				CEF61B141ED0D10000C7EA6A /* Types.swift in Sources */,
 				CEEC708A1E945E3B00EF788E /* UnEditableTextView.swift in Sources */,
-				CE3645481E7B424D0079D0CF /* WhiteNumberPad.swift in Sources */,
+				CE3645481E7B424D0079D0CF /* DarkNumberPad.swift in Sources */,
 				CEAA9E991DC262800066731D /* ConfirmPaperPhraseViewController.swift in Sources */,
 				22A9A9591DF61945000F0016 /* Extensions.swift in Sources */,
 				22A9A94C1DF61945000F0016 /* BRGeoLocationPlugin.swift in Sources */,
@@ -4045,7 +4045,7 @@
 				22A9A9541DF61945000F0016 /* BRReplicatedKVStore.swift in Sources */,
 				CE6B6B4A1E54C0CB00B31405 /* SecurityCenterCell.swift in Sources */,
 				CED811AA1EB2B2D1003A8D1E /* SharedConstants.swift in Sources */,
-				CE36454C1E7B42850079D0CF /* WhiteDecimalPad.swift in Sources */,
+				CE36454C1E7B42850079D0CF /* DarkDecimalPad.swift in Sources */,
 				CE5F21D91E4A922700C47B8E /* DismissLoginAnimator.swift in Sources */,
 				CECCE5A51E02408300D99448 /* UIView+FrameChangeBlocking.swift in Sources */,
 				22A9A94F1DF61945000F0016 /* BRHTTPRouter.swift in Sources */,
@@ -4413,7 +4413,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.breadwallet.libbz2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -4439,7 +4439,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.breadwallet.libbz2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -4465,7 +4465,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.breadwallet.sqlite3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -4491,7 +4491,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.breadwallet.sqlite3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -4562,14 +4562,14 @@
 		759DA0D81DAC8668008CC49B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 			};
 			name = Debug;
 		};
 		759DA0D91DAC8668008CC49B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 			};
 			name = Release;
 		};
@@ -4627,7 +4627,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -4681,7 +4681,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
@@ -4695,7 +4695,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				DEVELOPMENT_TEAM = J829PTGA25;
-				INFOPLIST_FILE = "breadwallet WatchKit Extension/Info.plist";
+				INFOPLIST_FILE = "hodlwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -4712,7 +4712,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				DEVELOPMENT_TEAM = J829PTGA25;
-				INFOPLIST_FILE = "breadwallet WatchKit Extension/Info.plist";
+				INFOPLIST_FILE = "hodlwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -4732,7 +4732,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = J829PTGA25;
 				IBSC_MODULE = hodlwallet_WatchKit_Extension;
-				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
+				INFOPLIST_FILE = "hodlwallet WatchKit App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4753,7 +4753,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = J829PTGA25;
 				IBSC_MODULE = hodlwallet_WatchKit_Extension;
-				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
+				INFOPLIST_FILE = "hodlwallet WatchKit App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4771,10 +4771,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
+				CODE_SIGN_ENTITLEMENTS = hodlwallet/hodlwallet.entitlements;
 				DEVELOPMENT_TEAM = J829PTGA25;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
-				INFOPLIST_FILE = breadwallet/Info.plist;
+				INFOPLIST_FILE = hodlwallet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-DDebug -DTestnet";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet;
@@ -4791,10 +4791,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
+				CODE_SIGN_ENTITLEMENTS = hodlwallet/hodlwallet.entitlements;
 				DEVELOPMENT_TEAM = J829PTGA25;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
-				INFOPLIST_FILE = breadwallet/Info.plist;
+				INFOPLIST_FILE = hodlwallet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet;
@@ -4810,7 +4810,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = J829PTGA25;
-				INFOPLIST_FILE = breadwalletTests/Info.plist;
+				INFOPLIST_FILE = hodlwalletTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4825,7 +4825,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = J829PTGA25;
-				INFOPLIST_FILE = breadwalletTests/Info.plist;
+				INFOPLIST_FILE = hodlwalletTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4839,12 +4839,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = J829PTGA25;
-				INFOPLIST_FILE = breadwalletUITests/Info.plist;
+				INFOPLIST_FILE = hodlwalletUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_TARGET_NAME = breadwallet;
+				TEST_TARGET_NAME = hodlwallet;
 			};
 			name = Debug;
 		};
@@ -4853,12 +4853,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = J829PTGA25;
-				INFOPLIST_FILE = breadwalletUITests/Info.plist;
+				INFOPLIST_FILE = hodlwalletUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_TARGET_NAME = breadwallet;
+				TEST_TARGET_NAME = hodlwallet;
 			};
 			name = Release;
 		};
@@ -4981,7 +4981,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.voisine..Screenshots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_TARGET_NAME = breadwallet;
+				TEST_TARGET_NAME = hodlwallet;
 			};
 			name = Debug;
 		};
@@ -4996,7 +4996,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.voisine..Screenshots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_TARGET_NAME = breadwallet;
+				TEST_TARGET_NAME = hodlwallet;
 			};
 			name = Release;
 		};
@@ -5011,7 +5011,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.voisine..Screenshots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_TARGET_NAME = breadwallet;
+				TEST_TARGET_NAME = hodlwallet;
 			};
 			name = Testflight;
 		};
@@ -5069,7 +5069,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -5083,10 +5083,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
+				CODE_SIGN_ENTITLEMENTS = hodlwallet/hodlwallet.entitlements;
 				DEVELOPMENT_TEAM = J829PTGA25;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
-				INFOPLIST_FILE = breadwallet/Info.plist;
+				INFOPLIST_FILE = hodlwallet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-DDebug -DScreenshots -DTestnet";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet;
@@ -5103,7 +5103,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = J829PTGA25;
-				INFOPLIST_FILE = breadwalletTests/Info.plist;
+				INFOPLIST_FILE = hodlwalletTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5117,12 +5117,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = J829PTGA25;
-				INFOPLIST_FILE = breadwalletUITests/Info.plist;
+				INFOPLIST_FILE = hodlwalletUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_TARGET_NAME = breadwallet;
+				TEST_TARGET_NAME = hodlwallet;
 			};
 			name = Screenshots;
 		};
@@ -5134,7 +5134,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = J829PTGA25;
 				IBSC_MODULE = hodlwallet_WatchKit_Extension;
-				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
+				INFOPLIST_FILE = "hodlwallet WatchKit App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5152,7 +5152,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				DEVELOPMENT_TEAM = J829PTGA25;
-				INFOPLIST_FILE = "breadwallet WatchKit Extension/Info.plist";
+				INFOPLIST_FILE = "hodlwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -5254,7 +5254,7 @@
 		CEA7E6941F09AC6A001F8C27 /* Screenshots */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 			};
 			name = Screenshots;
 		};
@@ -5277,7 +5277,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.breadwallet.libbz2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -5303,7 +5303,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.breadwallet.sqlite3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -5321,7 +5321,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.voisine..Screenshots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_TARGET_NAME = breadwallet;
+				TEST_TARGET_NAME = hodlwallet;
 			};
 			name = Screenshots;
 		};
@@ -5379,7 +5379,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -5393,10 +5393,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
+				CODE_SIGN_ENTITLEMENTS = hodlwallet/hodlwallet.entitlements;
 				DEVELOPMENT_TEAM = J829PTGA25;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
-				INFOPLIST_FILE = breadwallet/Info.plist;
+				INFOPLIST_FILE = hodlwallet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-DDebug -DTestnet";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet;
@@ -5413,7 +5413,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = J829PTGA25;
-				INFOPLIST_FILE = breadwalletTests/Info.plist;
+				INFOPLIST_FILE = hodlwalletTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5427,12 +5427,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = J829PTGA25;
-				INFOPLIST_FILE = breadwalletUITests/Info.plist;
+				INFOPLIST_FILE = hodlwalletUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_TARGET_NAME = breadwallet;
+				TEST_TARGET_NAME = hodlwallet;
 			};
 			name = Testnet;
 		};
@@ -5444,7 +5444,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = J829PTGA25;
 				IBSC_MODULE = hodlwallet_WatchKit_Extension;
-				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
+				INFOPLIST_FILE = "hodlwallet WatchKit App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5462,7 +5462,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				DEVELOPMENT_TEAM = J829PTGA25;
-				INFOPLIST_FILE = "breadwallet WatchKit Extension/Info.plist";
+				INFOPLIST_FILE = "hodlwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -5564,7 +5564,7 @@
 		CEA7E6A71F0AAA84001F8C27 /* Testnet */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 			};
 			name = Testnet;
 		};
@@ -5587,7 +5587,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.breadwallet.libbz2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -5613,7 +5613,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.breadwallet.sqlite3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -5631,7 +5631,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.voisine..Screenshots;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_TARGET_NAME = breadwallet;
+				TEST_TARGET_NAME = hodlwallet;
 			};
 			name = Testnet;
 		};
@@ -5681,7 +5681,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
@@ -5696,10 +5696,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = breadwallet/breadwallet.entitlements;
+				CODE_SIGN_ENTITLEMENTS = hodlwallet/hodlwallet.entitlements;
 				DEVELOPMENT_TEAM = J829PTGA25;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
-				INFOPLIST_FILE = breadwallet/Info.plist;
+				INFOPLIST_FILE = hodlwallet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-DTestflight -DDebug";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet;
@@ -5715,7 +5715,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = J829PTGA25;
-				INFOPLIST_FILE = breadwalletTests/Info.plist;
+				INFOPLIST_FILE = hodlwalletTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5729,12 +5729,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = J829PTGA25;
-				INFOPLIST_FILE = breadwalletUITests/Info.plist;
+				INFOPLIST_FILE = hodlwalletUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwalletUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TEST_TARGET_NAME = breadwallet;
+				TEST_TARGET_NAME = hodlwallet;
 			};
 			name = Testflight;
 		};
@@ -5746,7 +5746,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = J829PTGA25;
 				IBSC_MODULE = hodlwallet_WatchKit_Extension;
-				INFOPLIST_FILE = "breadwallet WatchKit App/Info.plist";
+				INFOPLIST_FILE = "hodlwallet WatchKit App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5763,7 +5763,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				DEVELOPMENT_TEAM = J829PTGA25;
-				INFOPLIST_FILE = "breadwallet WatchKit Extension/Info.plist";
+				INFOPLIST_FILE = "hodlwallet WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -5860,7 +5860,7 @@
 		CEE0EF601EBF8D7F0018DB36 /* Testflight */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 			};
 			name = Testflight;
 		};
@@ -5883,7 +5883,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.breadwallet.libbz2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -5909,7 +5909,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.breadwallet.sqlite3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/breadwallet/src/Platform";
+				SWIFT_INCLUDE_PATHS = "$(SDK_DIR)/usr/include $(SRCROOT)/Modules $(SRCROOT)/hodlwallet/src/Platform";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
