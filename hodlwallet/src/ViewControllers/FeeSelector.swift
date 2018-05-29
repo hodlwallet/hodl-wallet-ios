@@ -22,6 +22,12 @@ class FeeSelector : UIView {
         addConstraints()
         setupViews()
     }
+    
+    var feeString: NSAttributedString? {
+        didSet {
+            updateSelector()
+        }
+    }
 
     var didUpdateFee: ((Fee) -> Void)?
 
@@ -40,7 +46,7 @@ class FeeSelector : UIView {
     private let deliveryHeader = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
     private let feeBody = UILabel(font: .customMedium(size: 16.0), color: .grayTextTint)
     private let deliveryBody = UILabel(font: .customMedium(size: 16.0), color: .grayTextTint)
-    private let warning = UILabel.wrapping(font: .customBody(size: 16.0), color: .gradientStart)
+    private let warning = UILabel.wrapping(font: .customBody(size: 12.0), color: .gradientStart)
     private let slow = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
     private let normal = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
     private let fastest = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
@@ -70,7 +76,7 @@ class FeeSelector : UIView {
         feeBody.constrain([
             feeBody.leadingAnchor.constraint(equalTo: feeHeader.leadingAnchor),
             feeBody.topAnchor.constraint(equalTo: feeHeader.bottomAnchor, constant: C.padding[1]) ])
-        feeBody.text = String(format: S.FeeSelector.satByte, "\(store.state.fees.economy.sats / 1000)")
+        feeBody.text = "-"
         deliveryBody.constrain([
             deliveryBody.trailingAnchor.constraint(equalTo: deliveryHeader.trailingAnchor),
             deliveryBody.topAnchor.constraint(equalTo: deliveryHeader.bottomAnchor, constant: C.padding[1])])
@@ -92,9 +98,9 @@ class FeeSelector : UIView {
         
         warning.constrain([
             warning.leadingAnchor.constraint(equalTo: feeHeader.leadingAnchor),
-            warning.topAnchor.constraint(equalTo: control.bottomAnchor, constant: 4.0),
+            warning.topAnchor.constraint(equalTo: control.bottomAnchor, constant: 5.0),
             warning.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[2]) ])
-        warning.text = S.FeeSelector.economyWarning
+        warning.text = S.FeeSelector.advanced
         deliveryBody.text = store.state.fees.economy.time as String
         control.constrain([
             control.leadingAnchor.constraint(equalTo: slow.leadingAnchor),
@@ -118,8 +124,6 @@ class FeeSelector : UIView {
             if myself.control.value >= 3 /* Float(myself.store.state.fees.fastest.sats) */ {
                 myself.didUpdateFee?(.fastest)
                 myself.deliveryBody.text = myself.store.state.fees.fastest.time as String
-                myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(myself.store.state.fees.fastest.sats / 1000)")
-                myself.warning.text = ""
             } else if myself.control.value >= 2 /* Float(myself.store.state.fees.regular.sats) */
                 /* && myself.control.value < 8.0 Float(myself.store.state.fees.fastest.sats) */ {
                 /* let newFees = Fees(fastest: myself.store.state.fees.fastest,
@@ -129,20 +133,22 @@ class FeeSelector : UIView {
                 myself.store.perform(action: UpdateFees.set(newFees)) */
                 myself.didUpdateFee?(.regular)
                 myself.deliveryBody.text = myself.store.state.fees.regular.time as String
-                myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(myself.store.state.fees.regular.sats / 1000)")
-                myself.warning.text = ""
                 // (Int(myself.control.value)
             } else if myself.control.value < 2 /* Float(myself.store.state.fees.regular.sats) */ {
                 myself.didUpdateFee?(.economy)
                 myself.deliveryBody.text = myself.store.state.fees.economy.time as String
-                myself.feeBody.text = String(format: S.FeeSelector.satByte, "\(myself.store.state.fees.economy.sats / 1000)")
-                myself.warning.text = S.FeeSelector.economyWarning
             }
+            
+            if myself.feeBody.text!.isEmpty { myself.feeBody.text = "-" }
         }
 
         // control.selectedSegmentIndex = 0
         clipsToBounds = true
 
+    }
+    
+    func updateSelector() {
+        feeBody.attributedText = feeString
     }
 
     required init?(coder aDecoder: NSCoder) {
