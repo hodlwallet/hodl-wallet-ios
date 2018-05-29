@@ -531,6 +531,7 @@ enum S {
         static let slow = NSLocalizedString("FeeSelector.slow", value: "Economy", comment: "Slow label for fee slider ")
         static let normal = NSLocalizedString("FeeSelector.normal", value: "Normal", comment: "Normal label for fee slider")
         static let fastest = NSLocalizedString("FeeSelector.fastest", value: "High", comment: "Fastest label for fee slider")
+        static let advanced = NSLocalizedString("FeeSelector.advanced", value: "Advanced", comment: "Label for Advanced/Custom Fee")
     }
 
     enum Confirmation {
