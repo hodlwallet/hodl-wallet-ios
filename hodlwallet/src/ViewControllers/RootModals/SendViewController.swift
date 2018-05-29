@@ -171,7 +171,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
             let fee = sender.feeForTx(amount: amount.rawValue)
             let feeAmount = DisplayAmount(amount: Satoshis(rawValue: fee), state: store.state, selectedRate: rate, minimumFractionDigits: 0)
             let feeText = feeAmount.description
-            feeOutput = String(format: S.Send.fee, feeText)
+            feeOutput = feeText as String
             if (balance >= fee) && amount.rawValue > (balance - fee) {
                 color = .cameraGuideNegative
             }
@@ -183,7 +183,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
         ]
 
         let feeAttributes: [NSAttributedStringKey: Any] = [
-            NSAttributedStringKey.font: UIFont.customBody(size: 14.0),
+            NSAttributedStringKey.font: UIFont.customBody(size: 16.0),
             NSAttributedStringKey.foregroundColor: UIColor.grayTextTint
         ]
 
@@ -421,7 +421,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
         guard let info = KeyboardNotificationInfo(notification.userInfo) else { return }
         UIView.animate(withDuration: info.animationDuration, delay: 0, options: info.animationOptions, animations: {
             guard let parentView = self.parentView else { return }
-            parentView.frame = parentView.frame.offsetBy(dx: 0, dy: info.deltaY)
+            // parentView.frame = parentView.frame.offsetBy(dx: 0, dy: info.deltaY)
         }, completion: nil)
     }
 

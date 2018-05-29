@@ -101,10 +101,8 @@ class AmountViewController : UIViewController, Trackable {
         view.addSubview(border)
         view.addSubview(cursor)
         view.addSubview(balanceLabel)
-        view.addSubview(feeLabel)
         view.addSubview(tapView)
         view.addSubview(bottomBorder)
-        view.addSubview(editFee)
     }
 
     private func addConstraints() {
@@ -126,7 +124,7 @@ class AmountViewController : UIViewController, Trackable {
             currency.trailingAnchor.constraint(equalTo: currencyToggle.leadingAnchor, constant: -C.padding[4]),
             currency.centerYAnchor.constraint(equalTo: currencyToggle.centerYAnchor) ])
         feeSelectorHeight = feeContainer.heightAnchor.constraint(equalToConstant: 0.0)
-        feeSelectorTop = feeContainer.topAnchor.constraint(equalTo: feeLabel.bottomAnchor, constant: C.padding[1])
+        feeSelectorTop = feeContainer.topAnchor.constraint(equalTo: balanceLabel.bottomAnchor)
 
         feeContainer.constrain([
             feeSelectorTop,
@@ -144,9 +142,6 @@ class AmountViewController : UIViewController, Trackable {
         balanceLabel.constrain([
             balanceLabel.leadingAnchor.constraint(equalTo: amountLabel.leadingAnchor),
             balanceLabel.topAnchor.constraint(equalTo: cursor.bottomAnchor) ])
-        feeLabel.constrain([
-            feeLabel.leadingAnchor.constraint(equalTo: balanceLabel.leadingAnchor),
-            feeLabel.topAnchor.constraint(equalTo: balanceLabel.bottomAnchor) ])
         pinPadHeight = pinPad.view.heightAnchor.constraint(equalToConstant: 0.0)
         addChildViewController(pinPad, layout: {
             pinPad.view.constrain([
@@ -156,11 +151,6 @@ class AmountViewController : UIViewController, Trackable {
                 pinPad.view.bottomAnchor.constraint(equalTo: bottomBorder.topAnchor),
                 pinPadHeight ])
         })
-        editFee.constrain([
-            editFee.leadingAnchor.constraint(equalTo: feeLabel.trailingAnchor, constant: -8.0),
-            editFee.centerYAnchor.constraint(equalTo: feeLabel.centerYAnchor, constant: -1.0),
-            editFee.widthAnchor.constraint(equalToConstant: 44.0),
-            editFee.heightAnchor.constraint(equalToConstant: 44.0) ])
         bottomBorder.constrain([
             bottomBorder.topAnchor.constraint(greaterThanOrEqualTo: currencyToggle.bottomAnchor, constant: C.padding[2]),
             bottomBorder.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -203,10 +193,6 @@ class AmountViewController : UIViewController, Trackable {
 
         feeContainer.contentView = feeSelector
         if !isRequesting { toggleFeeSelector() }
-        editFee.setImage(#imageLiteral(resourceName: "Edit"), for: .normal)
-        editFee.imageEdgeInsets = UIEdgeInsetsMake(15.0, 15.0, 15.0, 15.0)
-        editFee.tintColor = .grayTextTint
-        editFee.isHidden = true
     }
 
     private func toggleCurrency() {
@@ -281,6 +267,7 @@ class AmountViewController : UIViewController, Trackable {
         if let (balance, fee) = balanceTextForAmount?(amount, selectedRate) {
             balanceLabel.attributedText = balance
             feeLabel.attributedText = fee
+            feeSelector.feeString = fee
         }
     }
 
