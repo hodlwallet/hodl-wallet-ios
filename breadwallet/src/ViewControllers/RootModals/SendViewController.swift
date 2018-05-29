@@ -421,7 +421,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
         guard let info = KeyboardNotificationInfo(notification.userInfo) else { return }
         UIView.animate(withDuration: info.animationDuration, delay: 0, options: info.animationOptions, animations: {
             guard let parentView = self.parentView else { return }
-            parentView.frame = parentView.frame.offsetBy(dx: 0, dy: info.deltaY)
+            // parentView.frame = parentView.frame.offsetBy(dx: 0, dy: info.deltaY)
         }, completion: nil)
     }
 
