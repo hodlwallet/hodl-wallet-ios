@@ -532,10 +532,14 @@ enum S {
         static let minuteTime = NSLocalizedString("FeeSelector.minuteTime", value: "%1$@ minutes", comment: "E.g. [This transaction is predicted to complete in] %d minutes")
         static let hourTime = NSLocalizedString("FeeSelector.hourTime", value: "%1$@ hours", comment: "E.g. [This transaction is predicted to complete in] %d hours")
         static let satByte = NSLocalizedString("FeeSelector.satByte", value: "%1$@ sat/byte", comment: "Satoshis per byte")
+        static let satKB = NSLocalizedString("FeeSelector.satKB", value: "Satoshis Per KB", comment: "Sats/KB")
         static let slow = NSLocalizedString("FeeSelector.slow", value: "Economy", comment: "Slow label for fee slider ")
         static let normal = NSLocalizedString("FeeSelector.normal", value: "Normal", comment: "Normal label for fee slider")
         static let fastest = NSLocalizedString("FeeSelector.fastest", value: "High", comment: "Fastest label for fee slider")
         static let advanced = NSLocalizedString("FeeSelector.advanced", value: "Advanced", comment: "Label for Advanced/Custom Fee")
+        static let advancedTitle = NSLocalizedString("FeeSelector.advancedTitle", value: "Enter Fee", comment: "Title for Advanced Fee Selector")
+        static let advancedBody = NSLocalizedString("FeeSelector.advancedTitle", value: "Are you sure?", comment: "Body for Advanced Fee Selector")
+        static let advancedProcess = NSLocalizedString("FeeSelector.advancedProcess", value: "Unavailable", comment: "Processing time for Advanced Fee")
     }
 
     enum Confirmation {
