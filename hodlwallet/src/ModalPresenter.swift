@@ -448,14 +448,6 @@ class ModalPresenter : Subscriber, Trackable {
             ]
         ]
 
-        if BRAPIClient.featureEnabled(.earlyAccess) {
-            rows["Bread"]?.insert(Setting(title: S.Settings.earlyAccess, callback: {
-                settingsNav.dismiss(animated: true, completion: {
-                    self.presentBuyController("/ea")
-                })
-            }), at: 1)
-        }
-
         rows["Bread"]?.append( Setting(title: S.Settings.review, callback: {
                 let alert = UIAlertController(title: S.Settings.review, message: S.Settings.enjoying, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: S.Button.no, style: .default, handler: { _ in
