@@ -18,13 +18,13 @@ struct Fees {
     let fastest: FeeData
     let regular: FeeData
     let economy: FeeData
-    var current: UInt64?
+    var custom: UInt64?
     
-    init (fastest: FeeData, regular: FeeData, economy: FeeData, current: UInt64? = nil) {
+    init (fastest: FeeData, regular: FeeData, economy: FeeData, custom: UInt64? = nil) {
         self.fastest = fastest
         self.regular = regular
         self.economy = economy
-        self.current = current
+        self.custom = custom
     }
 }
 
@@ -34,7 +34,7 @@ extension Fees {
         return Fees(fastest: FeeData(sats: defaultFeePerKB, time: defaultFeeText, blocks: defaultBlockAmount),
                     regular: FeeData(sats: defaultFeePerKB, time: defaultFeeText, blocks: defaultBlockAmount),
                     economy: FeeData(sats: defaultFeePerKB, time: defaultFeeText, blocks: defaultBlockAmount),
-                    current: defaultFeePerKB)
+                    custom: defaultFeePerKB)
     }
 }
 

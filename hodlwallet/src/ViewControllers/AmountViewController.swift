@@ -23,6 +23,7 @@ class AmountViewController : UIViewController, Trackable {
             self.currency.text = S.Symbols.currencyButtonTitle(maxDigits: store.state.maxDigits)
         }
         self.feeSelector = FeeSelector(store: store)
+        self.advancedButton = self.feeSelector.advanced
         self.pinPad = PinPadViewController(style: .white, keyboardType: .decimalPad, maxDigits: store.state.maxDigits)
         super.init(nibName: nil, bundle: nil)
     }
@@ -54,6 +55,8 @@ class AmountViewController : UIViewController, Trackable {
             togglePinPad()
         }
     }
+    
+    let advancedButton: UIButton
 
     private let store: Store
     private let isPinPadExpandedAtLaunch: Bool

@@ -276,7 +276,7 @@ enum S {
         static let twitter = NSLocalizedString("About.twitter", value:"Twitter", comment: "About screen twitter label")
         static let reddit = NSLocalizedString("About.reddit", value:"Reddit", comment: "About screen reddit label")
         static let privacy = NSLocalizedString("About.privacy", value:"Privacy Policy", comment: "Privay Policy button label")
-        static let footer = NSLocalizedString("About.footer", value:"Made by the global Hodl team. Version %1$@", comment: "About screen footer")
+        static let footer = NSLocalizedString("About.footer", value:"Made by the HODL community. Version %1$@", comment: "About screen footer")
     }
 
     enum PushNotifications {
@@ -532,10 +532,14 @@ enum S {
         static let minuteTime = NSLocalizedString("FeeSelector.minuteTime", value: "%1$@ minutes", comment: "E.g. [This transaction is predicted to complete in] %d minutes")
         static let hourTime = NSLocalizedString("FeeSelector.hourTime", value: "%1$@ hours", comment: "E.g. [This transaction is predicted to complete in] %d hours")
         static let satByte = NSLocalizedString("FeeSelector.satByte", value: "%1$@ sat/byte", comment: "Satoshis per byte")
+        static let satKB = NSLocalizedString("FeeSelector.satKB", value: "Satoshis Per KB", comment: "Sats/KB")
         static let slow = NSLocalizedString("FeeSelector.slow", value: "Economy", comment: "Slow label for fee slider ")
         static let normal = NSLocalizedString("FeeSelector.normal", value: "Normal", comment: "Normal label for fee slider")
         static let fastest = NSLocalizedString("FeeSelector.fastest", value: "High", comment: "Fastest label for fee slider")
         static let advanced = NSLocalizedString("FeeSelector.advanced", value: "Advanced", comment: "Label for Advanced/Custom Fee")
+        static let advancedTitle = NSLocalizedString("FeeSelector.advancedTitle", value: "Custom Fee", comment: "Title for Advanced Fee Selector")
+        static let advancedBody = NSLocalizedString("FeeSelector.advancedTitle", value: "Setting custom Fee is not recommended. If the Fee is too low, the transaction may never get confirmed.", comment: "Body for Advanced Fee Selector")
+        static let advancedProcess = NSLocalizedString("FeeSelector.advancedProcess", value: "Unavailable", comment: "Processing time for Advanced Fee")
     }
 
     enum Confirmation {
