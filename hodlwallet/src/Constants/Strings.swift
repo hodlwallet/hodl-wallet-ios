@@ -537,8 +537,8 @@ enum S {
         static let normal = NSLocalizedString("FeeSelector.normal", value: "Normal", comment: "Normal label for fee slider")
         static let fastest = NSLocalizedString("FeeSelector.fastest", value: "High", comment: "Fastest label for fee slider")
         static let advanced = NSLocalizedString("FeeSelector.advanced", value: "Advanced", comment: "Label for Advanced/Custom Fee")
-        static let advancedTitle = NSLocalizedString("FeeSelector.advancedTitle", value: "Enter Fee", comment: "Title for Advanced Fee Selector")
-        static let advancedBody = NSLocalizedString("FeeSelector.advancedTitle", value: "Are you sure?", comment: "Body for Advanced Fee Selector")
+        static let advancedTitle = NSLocalizedString("FeeSelector.advancedTitle", value: "Custom Fee", comment: "Title for Advanced Fee Selector")
+        static let advancedBody = NSLocalizedString("FeeSelector.advancedTitle", value: "Setting custom Fee is not recommended. If the Fee is too low, the transaction may never get confirmed.", comment: "Body for Advanced Fee Selector")
         static let advancedProcess = NSLocalizedString("FeeSelector.advancedProcess", value: "Unavailable", comment: "Processing time for Advanced Fee")
     }
 
