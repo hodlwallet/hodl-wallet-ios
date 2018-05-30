@@ -39,7 +39,7 @@ class ConfirmationViewController : UIViewController, ContentBoxPresenter {
     var successCallback: (() -> Void)?
     var cancelCallback: (() -> Void)?
 
-    private let header = ModalHeaderView(title: S.Confirmation.title, style: .dark)
+    private let header = ModalHeaderView(title: S.Confirmation.title, style: .light)
     private let cancel = ShadowButton(title: S.Button.cancel, type: .secondary)
     private let sendButton = ShadowButton(title: S.Confirmation.send, type: .primary, image: #imageLiteral(resourceName: "TouchId"))
 
@@ -47,8 +47,9 @@ class ConfirmationViewController : UIViewController, ContentBoxPresenter {
     private let toLabel = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
     private let amountLabel = UILabel(font: .customBody(size: 16.0), color: .darkText)
     private let address = UILabel(font: .customBody(size: 16.0), color: .darkText)
-
-    private let processingTime = UILabel.wrapping(font: .customBody(size: 14.0), color: .grayTextTint)
+    
+    private let estimatedLabel = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
+    private let processingTime = UILabel.wrapping(font: .customBody(size: 16.0), color: .darkText)
     private let sendLabel = UILabel(font: .customBody(size: 14.0), color: .darkText)
     private let feeLabel = UILabel(font: .customBody(size: 14.0), color: .darkText)
     private let totalLabel = UILabel(font: .customMedium(size: 14.0), color: .darkText)
@@ -70,6 +71,7 @@ class ConfirmationViewController : UIViewController, ContentBoxPresenter {
         contentBox.addSubview(toLabel)
         contentBox.addSubview(amountLabel)
         contentBox.addSubview(address)
+        contentBox.addSubview(estimatedLabel)
         contentBox.addSubview(processingTime)
         contentBox.addSubview(sendLabel)
         contentBox.addSubview(feeLabel)
@@ -100,9 +102,12 @@ class ConfirmationViewController : UIViewController, ContentBoxPresenter {
             address.leadingAnchor.constraint(equalTo: toLabel.leadingAnchor),
             address.topAnchor.constraint(equalTo: toLabel.bottomAnchor),
             address.trailingAnchor.constraint(equalTo: contentBox.trailingAnchor, constant: -C.padding[2]) ])
+        estimatedLabel.constrain([
+            estimatedLabel.leadingAnchor.constraint(equalTo: address.leadingAnchor),
+            estimatedLabel.topAnchor.constraint(equalTo: address.bottomAnchor, constant: C.padding[2]) ])
         processingTime.constrain([
-            processingTime.leadingAnchor.constraint(equalTo: address.leadingAnchor),
-            processingTime.topAnchor.constraint(equalTo: address.bottomAnchor, constant: C.padding[2]),
+            processingTime.leadingAnchor.constraint(equalTo: estimatedLabel.leadingAnchor),
+            processingTime.topAnchor.constraint(equalTo: estimatedLabel.bottomAnchor),
             processingTime.trailingAnchor.constraint(equalTo: contentBox.trailingAnchor, constant: -C.padding[2]) ])
         sendLabel.constrain([
             sendLabel.leadingAnchor.constraint(equalTo: processingTime.leadingAnchor),
@@ -143,11 +148,12 @@ class ConfirmationViewController : UIViewController, ContentBoxPresenter {
         let displayTotal = DisplayAmount(amount: amount + feeAmount, state: state, selectedRate: selectedRate, minimumFractionDigits: minimumFractionDigits)
 
         amountLabel.text = displayAmount.combinedDescription
-
+        
         toLabel.text = S.Confirmation.to
         address.text = addressText
         address.lineBreakMode = .byTruncatingMiddle
-
+        
+        estimatedLabel.text = S.FeeSelector.estDelivery
         switch feeType {
         case .fastest:
             processingTime.text = state.fees.fastest.time as String
