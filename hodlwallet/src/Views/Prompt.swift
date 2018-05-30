@@ -18,7 +18,7 @@ enum PromptType {
     case shareData
 
     static var defaultOrder: [PromptType] = {
-        return [.recommendRescan, .upgradePin, .paperKey, .noPasscode, .touchId, .shareData]
+        return [.recommendRescan, .upgradePin, .paperKey, .noPasscode, .touchId]
     }()
 
     var title: String {
