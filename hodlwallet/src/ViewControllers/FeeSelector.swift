@@ -114,8 +114,8 @@ class FeeSelector : UIView {
     }
     
     private func setupViews() {
-        control.minimumValue = 1 // Float(store.state.fees.economy.sats)
-        control.maximumValue = 3 // Float(store.state.fees.fastest.sats)
+        control.minimumValue = 1
+        control.maximumValue = 3
         control.minimumTrackTintColor = .gradientStart
         control.minimumValueImage = UIImage(named: "Minus")
         control.maximumValueImage = UIImage(named: "Plus")
@@ -126,20 +126,13 @@ class FeeSelector : UIView {
             // have the tick in 3 positions
             myself.control.setValue(floorf(myself.control.value + 0.5),animated: true)
             
-            if myself.control.value >= 3 /* Float(myself.store.state.fees.fastest.sats) */ {
+            if myself.control.value >= 3 {
                 myself.didUpdateFee?(.fastest)
                 myself.deliveryBody.text = myself.store.state.fees.fastest.time as String
-            } else if myself.control.value >= 2 /* Float(myself.store.state.fees.regular.sats) */
-                /* && myself.control.value < 8.0 Float(myself.store.state.fees.fastest.sats) */ {
-                /* let newFees = Fees(fastest: myself.store.state.fees.fastest,
-                                   regular: myself.store.state.fees.regular,
-                                   economy: myself.store.state.fees.economy,
-                                   current: UInt64(myself.control.value))
-                myself.store.perform(action: UpdateFees.set(newFees)) */
+            } else if myself.control.value >= 2 {
                 myself.didUpdateFee?(.regular)
                 myself.deliveryBody.text = myself.store.state.fees.regular.time as String
-                // (Int(myself.control.value)
-            } else if myself.control.value < 2 /* Float(myself.store.state.fees.regular.sats) */ {
+            } else if myself.control.value < 2 {
                 myself.didUpdateFee?(.economy)
                 myself.deliveryBody.text = myself.store.state.fees.economy.time as String
             }
