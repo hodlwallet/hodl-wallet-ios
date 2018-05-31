@@ -78,7 +78,7 @@ class FeeSelector : UIView {
         feeBody.constrain([
             feeBody.leadingAnchor.constraint(equalTo: feeHeader.leadingAnchor),
             feeBody.topAnchor.constraint(equalTo: feeHeader.bottomAnchor, constant: C.padding[1]) ])
-        feeBody.text = "-"
+        feeBody.text = String(format: S.FeeSelector.satByte, "\(store.state.fees.economy.sats / 1000)")
         deliveryBody.constrain([
             deliveryBody.trailingAnchor.constraint(equalTo: deliveryHeader.trailingAnchor),
             deliveryBody.topAnchor.constraint(equalTo: deliveryHeader.bottomAnchor, constant: C.padding[1])])
@@ -129,15 +129,25 @@ class FeeSelector : UIView {
             if myself.control.value >= 3 {
                 myself.didUpdateFee?(.fastest)
                 myself.deliveryBody.text = myself.store.state.fees.fastest.time as String
+                if myself.feeBody.text!.isEmpty {
+                    myself.feeBody.text = String(format: S.FeeSelector.satByte,
+                                                 "\(myself.store.state.fees.fastest.sats / 1000)")
+                }
             } else if myself.control.value >= 2 {
                 myself.didUpdateFee?(.regular)
                 myself.deliveryBody.text = myself.store.state.fees.regular.time as String
-            } else if myself.control.value < 2 {
+                if myself.feeBody.text!.isEmpty {
+                    myself.feeBody.text = String(format: S.FeeSelector.satByte,
+                                                 "\(myself.store.state.fees.regular.sats / 1000)")
+                }
+            } else {
                 myself.didUpdateFee?(.economy)
                 myself.deliveryBody.text = myself.store.state.fees.economy.time as String
+                if myself.feeBody.text!.isEmpty {
+                    myself.feeBody.text = String(format: S.FeeSelector.satByte,
+                                                 "\(myself.store.state.fees.economy.sats / 1000)")
+                }
             }
-            
-            if myself.feeBody.text!.isEmpty { myself.feeBody.text = "-" }
         }
 
         // control.selectedSegmentIndex = 0
@@ -147,6 +157,20 @@ class FeeSelector : UIView {
     
     func updateSelector() {
         feeBody.attributedText = feeString
+        if feeBody.text!.isEmpty {
+            if control.value >= 3 {
+                feeBody.text = String(format: S.FeeSelector.satByte,
+                                      "\(store.state.fees.fastest.sats / 1000)")
+            }
+            else if control.value >= 2 {
+                feeBody.text = String(format: S.FeeSelector.satByte,
+                                      "\(store.state.fees.regular.sats / 1000)")
+            }
+            else {
+                feeBody.text = String(format: S.FeeSelector.satByte,
+                                      "\(store.state.fees.economy.sats / 1000)")
+            }
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
