@@ -66,7 +66,7 @@ class AmountViewController : UIViewController, Trackable {
     private var pinPadHeight: NSLayoutConstraint?
     private var feeSelectorHeight: NSLayoutConstraint?
     private var feeSelectorTop: NSLayoutConstraint?
-    private let placeholder = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
+    private let placeholder = UILabel(font: .customBody(size: 26.0), color: .gradientStart)
     private let amountLabel = UILabel(font: .customBody(size: 26.0), color: .gradientStart)
     private let pinPad: PinPadViewController
     private let currencyToggle = ShadowButton(title: "", type: .tertiary, image: #imageLiteral(resourceName: "CurrencySwitch"), imageColor: .grayTextTint, backColor: .grayBackground)
@@ -173,7 +173,8 @@ class AmountViewController : UIViewController, Trackable {
         cursor.isHidden = true
         cursor.startBlinking()
         amountLabel.text = ""
-        placeholder.text = S.Send.amountLabel
+        let placeholderAmount = DisplayAmount(amount: Satoshis(0), state: store.state, selectedRate: selectedRate, minimumFractionDigits: minimumFractionDigits)
+        placeholder.text = placeholderAmount.description
         bottomBorder.isHidden = true
         if store.state.isBtcSwapped {
             if let rate = store.state.currentRate {
@@ -350,6 +351,8 @@ class AmountViewController : UIViewController, Trackable {
         } else {
             self.currency.text = S.Symbols.currencyButtonTitle(maxDigits: store.state.maxDigits)
         }
+        let placeholderAmount = DisplayAmount(amount: Satoshis(0), state: store.state, selectedRate: selectedRate, minimumFractionDigits: minimumFractionDigits)
+        placeholder.text = placeholderAmount.description
     }
 
     required init?(coder aDecoder: NSCoder) {
