@@ -30,6 +30,6 @@ extension UIViewController {
         if let color = tintColor {
             close.tintColor = color
         }
-        navigationItem.rightBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: close)]
+        navigationItem.leftBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: close)]
     }
 }
