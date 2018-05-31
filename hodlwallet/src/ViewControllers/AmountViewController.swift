@@ -273,6 +273,15 @@ class AmountViewController : UIViewController, Trackable {
             feeSelector.feeString = fee
         }
     }
+    
+    func updateCustomFee(fee: UInt64) -> Void {
+        let feeAttributes: [NSAttributedStringKey: Any] = [
+            NSAttributedStringKey.font: UIFont.customBody(size: 16.0),
+            NSAttributedStringKey.foregroundColor: UIColor.grayTextTint
+        ]
+        let feeString = String(format: S.FeeSelector.satByte, "\(fee)")
+        feeSelector.feeString = NSAttributedString(string: feeString, attributes: feeAttributes)
+    }
 
     private func toggleFeeSelector() {
         guard let height = feeSelectorHeight else { return }

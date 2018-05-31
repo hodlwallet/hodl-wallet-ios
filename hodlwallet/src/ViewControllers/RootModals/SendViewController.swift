@@ -149,9 +149,12 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
                 wallet.feePerKb = fees.economy.sats
             case .custom:
                 guard fees.custom != nil else { wallet.feePerKb = fees.regular.sats; myself.amountView.updateBalanceLabel(); return }
-                 wallet.feePerKb = fees.custom!
+                 wallet.feePerKb = fees.custom! * UInt64(1000)
             }
             myself.amountView.updateBalanceLabel()
+            if myself.feeType == .custom {
+                myself.amountView.updateCustomFee(fee: fees.custom!)
+            }
         }
 
         amountView.didChangeFirstResponder = { [weak self] isFirstResponder in
