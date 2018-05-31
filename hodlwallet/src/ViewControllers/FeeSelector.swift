@@ -101,7 +101,7 @@ class FeeSelector : UIView {
         advanced.constrain([
             advanced.leadingAnchor.constraint(equalTo: feeHeader.leadingAnchor),
             advanced.topAnchor.constraint(equalTo: control.bottomAnchor, constant: 4.0) ])
-        advanced.setTitle(S.FeeSelector.advanced, for: .normal)
+        advanced.setTitle(S.FeeSelector.customFee, for: .normal)
         advanced.setTitleColor(.gradientStart, for: .normal)
         advanced.titleLabel?.font = .customMedium(size: 12.0)
         
