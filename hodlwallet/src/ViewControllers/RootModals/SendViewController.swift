@@ -283,7 +283,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
         alert.addAction(okAction)
         
         alert.addTextField { textField in
-            textField.placeholder = S.FeeSelector.satKB
+            textField.placeholder = S.FeeSelector.sat_byte
             textField.keyboardType = .decimalPad
         }
         
