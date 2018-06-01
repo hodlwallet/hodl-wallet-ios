@@ -83,7 +83,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
             descriptionCell.widthAnchor.constraint(equalTo: amountView.view.widthAnchor),
             descriptionCell.topAnchor.constraint(equalTo: amountView.view.bottomAnchor),
             descriptionCell.leadingAnchor.constraint(equalTo: amountView.view.leadingAnchor),
-            descriptionCell.heightAnchor.constraint(equalTo: descriptionCell.textView.heightAnchor, constant: C.padding[4]) ])
+            descriptionCell.heightAnchor.constraint(equalTo: descriptionCell.textView.heightAnchor, constant: 4.0) ])
 
         descriptionCell.accessoryView.constrain([
                 descriptionCell.accessoryView.constraint(.width, constant: 0.0) ])
