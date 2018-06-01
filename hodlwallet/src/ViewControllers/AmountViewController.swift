@@ -66,6 +66,7 @@ class AmountViewController : UIViewController, Trackable {
     private var pinPadHeight: NSLayoutConstraint?
     private var feeSelectorHeight: NSLayoutConstraint?
     private var feeSelectorTop: NSLayoutConstraint?
+    private let amountTitle = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
     private let placeholder = UILabel(font: .customBody(size: 26.0), color: .gradientStart)
     private let amountLabel = UILabel(font: .customBody(size: 26.0), color: .gradientStart)
     private let pinPad: PinPadViewController
@@ -97,6 +98,7 @@ class AmountViewController : UIViewController, Trackable {
 
     private func addSubviews() {
         view.addSubview(amountLabel)
+        view.addSubview(amountTitle)
         view.addSubview(placeholder)
         view.addSubview(currency)
         view.addSubview(currencyToggle)
@@ -112,6 +114,9 @@ class AmountViewController : UIViewController, Trackable {
         amountLabel.constrain([
             amountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[2]),
             amountLabel.centerYAnchor.constraint(equalTo: currencyToggle.centerYAnchor) ])
+        amountTitle.constrain([
+            amountTitle.leadingAnchor.constraint(equalTo: amountLabel.leadingAnchor),
+            amountTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[1]) ])
         placeholder.constrain([
             placeholder.leadingAnchor.constraint(equalTo: amountLabel.leadingAnchor, constant: 2.0),
             placeholder.centerYAnchor.constraint(equalTo: amountLabel.centerYAnchor) ])
@@ -121,7 +126,7 @@ class AmountViewController : UIViewController, Trackable {
             cursor.centerYAnchor.constraint(equalTo: amountLabel.centerYAnchor),
             cursor.widthAnchor.constraint(equalToConstant: 2.0) ])
         currencyToggle.constrain([
-            currencyToggle.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[4]),
+            currencyToggle.topAnchor.constraint(equalTo: amountTitle.bottomAnchor, constant: 20.0),
             currencyToggle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -C.padding[3]) ])
         currency.constrain([
             currency.trailingAnchor.constraint(equalTo: currencyToggle.leadingAnchor, constant: -C.padding[4]),
@@ -173,6 +178,7 @@ class AmountViewController : UIViewController, Trackable {
         cursor.isHidden = true
         cursor.startBlinking()
         amountLabel.text = ""
+        amountTitle.text = S.Send.amountLabel
         let placeholderAmount = DisplayAmount(amount: Satoshis(0), state: store.state, selectedRate: selectedRate, minimumFractionDigits: minimumFractionDigits)
         placeholder.text = placeholderAmount.description
         bottomBorder.isHidden = true
@@ -265,6 +271,7 @@ class AmountViewController : UIViewController, Trackable {
         }
         amountLabel.text = output
         placeholder.isHidden = output.utf8.count > 0 ? true : false
+        cursor.isHidden = !placeholder.isHidden
     }
 
     func updateBalanceLabel() {
@@ -320,7 +327,7 @@ class AmountViewController : UIViewController, Trackable {
         cursor.isHidden = isCollapsed ? false : true
         bottomBorder.isHidden = isCollapsed ? false : true
         updateBalanceAndFeeLabels()
-        updateBalanceLabel()
+        // updateBalanceLabel()
         didChangeFirstResponder?(isCollapsed)
     }
 

@@ -47,7 +47,7 @@ class FeeSelector : UIView {
     private let store: Store
     private let feeHeader = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
     private let deliveryHeader = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
-    private let feeBody = UILabel(font: .customMedium(size: 16.0), color: .grayTextTint)
+    private let feeBody = UILabel(font: .customMedium(size: 15.0), color: .grayTextTint)
     private let deliveryBody = UILabel(font: .customMedium(size: 16.0), color: .grayTextTint)
     private let slow = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
     private let normal = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
@@ -68,11 +68,11 @@ class FeeSelector : UIView {
         
         feeHeader.constrain([
             feeHeader.leadingAnchor.constraint(equalTo: leadingAnchor, constant: C.padding[2]),
-            feeHeader.topAnchor.constraint(equalTo: topAnchor, constant: C.padding[1]) ])
+            feeHeader.topAnchor.constraint(equalTo: topAnchor) ])
         feeHeader.text = S.FeeSelector.networkFee
         deliveryHeader.constrain([
             deliveryHeader.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[2]),
-            deliveryHeader.topAnchor.constraint(equalTo: topAnchor, constant: C.padding[1]) ])
+            deliveryHeader.topAnchor.constraint(equalTo: feeHeader.topAnchor) ])
         deliveryHeader.text = S.FeeSelector.estDelivery
         
         feeBody.constrain([
@@ -87,7 +87,7 @@ class FeeSelector : UIView {
         
         slow.constrain([
             slow.leadingAnchor.constraint(equalTo: feeHeader.leadingAnchor),
-            slow.topAnchor.constraint(equalTo: deliveryBody.bottomAnchor, constant: C.padding[1])])
+            slow.topAnchor.constraint(equalTo: feeBody.bottomAnchor, constant: C.padding[1])])
         slow.text = S.FeeSelector.slow
         normal.constrain([
             normal.centerXAnchor.constraint(equalTo: centerXAnchor),
