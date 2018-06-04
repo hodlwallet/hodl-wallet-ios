@@ -83,7 +83,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
             descriptionCell.widthAnchor.constraint(equalTo: amountView.view.widthAnchor),
             descriptionCell.topAnchor.constraint(equalTo: amountView.view.bottomAnchor),
             descriptionCell.leadingAnchor.constraint(equalTo: amountView.view.leadingAnchor),
-            descriptionCell.heightAnchor.constraint(equalTo: descriptionCell.textView.heightAnchor, constant: C.padding[4]) ])
+            descriptionCell.heightAnchor.constraint(equalTo: descriptionCell.textView.heightAnchor, constant: 4.0) ])
 
         descriptionCell.accessoryView.constrain([
                 descriptionCell.accessoryView.constraint(.width, constant: 0.0) ])
@@ -172,25 +172,34 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
         let balanceOutput = String(format: S.Send.balance, balanceText)
         var feeOutput = ""
         var color: UIColor = .grayTextTint
-        if let amount = amount, amount.rawValue > 0 {
-            let fee = sender.feeForTx(amount: amount.rawValue)
-            let feeAmount = DisplayAmount(amount: Satoshis(rawValue: fee), state: store.state, selectedRate: rate, minimumFractionDigits: 0)
-            let feeText = feeAmount.description
-            feeOutput = feeText as String
-            if (balance >= fee) && amount.rawValue > (balance - fee) {
-                color = .cameraGuideNegative
-            }
-        }
-
+        
         let attributes: [NSAttributedStringKey: Any] = [
             NSAttributedStringKey.font: UIFont.customBody(size: 14.0),
             NSAttributedStringKey.foregroundColor: color
         ]
-
+        
         let feeAttributes: [NSAttributedStringKey: Any] = [
             NSAttributedStringKey.font: UIFont.customBody(size: 16.0),
             NSAttributedStringKey.foregroundColor: UIColor.grayTextTint
         ]
+        
+        if let amount = amount, amount.rawValue > 0 {
+            let fee = sender.feeForTx(amount: amount.rawValue)
+            let feeAmount = DisplayAmount(amount: Satoshis(rawValue: fee), state: store.state, selectedRate: rate, minimumFractionDigits: 0)
+            let feeText = feeAmount.description
+            guard let feePerKB = walletManager.wallet?.feePerKb
+                else {
+                    feeOutput = feeText as String
+                    if (balance >= fee) && amount.rawValue > (balance - fee) {
+                        color = .cameraGuideNegative
+                    }
+                    return (NSAttributedString(string: balanceOutput, attributes: attributes), NSAttributedString(string: feeOutput, attributes: feeAttributes))
+            }
+            feeOutput = String(format: S.FeeSelector.feeDescription, "\(feeText)", "\(feePerKB / 1000)")
+            if (balance >= fee) && amount.rawValue > (balance - fee) {
+                color = .cameraGuideNegative
+            }
+        }
 
         return (NSAttributedString(string: balanceOutput, attributes: attributes), NSAttributedString(string: feeOutput, attributes: feeAttributes))
     }

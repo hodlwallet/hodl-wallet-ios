@@ -522,7 +522,7 @@ enum S {
         static let title = NSLocalizedString("FeeSelector.title", value: "Processing Speed", comment: "Fee Selector title")
         static let estimatedDelivery = NSLocalizedString("FeeSelector.estimatedDeliver", value: "Estimated Delivery: %1$@", comment: "Fee Selector regular fee description")
         static let estDelivery = NSLocalizedString("FeeSelector.estDelivery", value: "Est. Confirmation", comment: "Fee Selector delivery header (CONFIRMATION otherwise)")
-        static let networkFee = NSLocalizedString("FeeSelector.networkFee", value: "Transaction Fee", comment: "Fee Selector network header")
+        static let networkFee = NSLocalizedString("FeeSelector.networkFee", value: "Transaction Fee", comment: "Fee Selector network header") /* Localize */
         static let economyWarning = NSLocalizedString("FeeSelector.economyWarning", value: "This option is not recommended for time-sensitive transactions.", comment: "Warning message for economy fee")
         static let regular = NSLocalizedString("FeeSelector.regular", value: "Regular", comment: "Regular fee")
         static let economy = NSLocalizedString("FeeSelector.economy", value: "Economy", comment: "Economy fee")
@@ -532,6 +532,7 @@ enum S {
         static let hourTime = NSLocalizedString("FeeSelector.hourTime", value: "%1$@ hours", comment: "E.g. [This transaction is predicted to complete in] %d hours")
         static let satByte = NSLocalizedString("FeeSelector.satByte", value: "%1$@ sat/byte", comment: "Satoshis per byte")
         static let sat_byte = NSLocalizedString("FeeSelector.sat_byte", value: "sat/byte", comment: "Satoshis Per Byte")
+        static let feeDescription = NSLocalizedString("FeeSelector.feeDescription", value: "%1$@ %2$@ s/b", comment: "$1.00 (1 s/b)")
         static let slow = NSLocalizedString("FeeSelector.slow", value: "Economy", comment: "Slow label for fee slider ")
         static let normal = NSLocalizedString("FeeSelector.normal", value: "Normal", comment: "Normal label for fee slider")
         static let fastest = NSLocalizedString("FeeSelector.fastest", value: "High", comment: "Fastest label for fee slider")
@@ -547,7 +548,7 @@ enum S {
         static let to = NSLocalizedString("Confirmation.to", value: "To", comment: "To: (address)")
         static let processingTime = NSLocalizedString("Confirmation.processingTime", value: "Processing time: This transaction is predicted to complete in %1$@.", comment: "E.g. Processing time: This transaction is predicted to complete in [10-60 minutes].")
         static let amountLabel = NSLocalizedString("Confirmation.amountLabel", value: "Amount to Send:", comment: "Amount to Send: ($1.00)")
-        static let feeLabel = NSLocalizedString("Confirmation.feeLabel", value: "Network Fee:", comment: "Network Fee: ($1.00)")
+        static let feeLabel = NSLocalizedString("Confirmation.feeLabel", value: "Transaction Fee:", comment: "Transaction Fee: ($1.00)")
         static let totalLabel = NSLocalizedString("Confirmation.totalLabel", value: "Total Cost:", comment: "Total Cost: ($5.00)")
     }
 
