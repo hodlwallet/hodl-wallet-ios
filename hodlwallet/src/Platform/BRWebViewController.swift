@@ -93,7 +93,12 @@ import WebKit
     }
     
     override open func loadView() {
+        let preferences = WKPreferences()
         let config = WKWebViewConfiguration()
+
+        preferences.javaScriptEnabled = true
+
+        config.preferences = preferences
         config.processPool = wkProcessPool
         config.allowsInlineMediaPlayback = false
         config.allowsAirPlayForMediaPlayback = false
