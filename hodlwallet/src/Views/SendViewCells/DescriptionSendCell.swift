@@ -14,7 +14,7 @@ class DescriptionSendCell : SendCell {
         super.init()
         textView.delegate = self
         textView.textColor = .whiteTint
-        textView.font = .customBody(size: 20.0)
+        textView.font = .customBody(size: 16.0)
         textView.returnKeyType = .done
         textView.backgroundColor = .grayBackground
         self.placeholder.text = placeholder
@@ -32,14 +32,14 @@ class DescriptionSendCell : SendCell {
     }
 
     let textView = UITextView()
-    fileprivate let placeholder = UILabel(font: .customBody(size: 16.0), color: .grayTextTint)
+    fileprivate let placeholder = UILabel(font: .customBody(size: 14.0), color: .grayTextTint)
     private func setupViews() {
         textView.isScrollEnabled = false
         addSubview(textView)
         textView.constrain([
             textView.constraint(.leading, toView: self, constant: 11.0),
             textView.topAnchor.constraint(equalTo: topAnchor),
-            textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 30.0),
+            textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 25.0),
             textView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[2]) ])
 
         textView.addSubview(placeholder)

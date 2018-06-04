@@ -74,6 +74,8 @@ class AmountViewController : UIViewController, Trackable {
     private let currency = UILabel(font: .customBody(size: 16.0), color: .gradientStart)
     private let border = UIView(color: .secondaryGrayText)
     private let bottomBorder = UIView(color: .secondaryGrayText)
+    private let balanceBorder = UIView(color: .secondaryGrayText)
+    private let customBorder = UIView(color: .secondaryGrayText)
     private let cursor = BlinkingView(blinkColor: C.defaultTintColor)
     private let balanceLabel = UILabel()
     private let feeLabel = UILabel()
@@ -108,6 +110,8 @@ class AmountViewController : UIViewController, Trackable {
         view.addSubview(balanceLabel)
         view.addSubview(tapView)
         view.addSubview(bottomBorder)
+        view.addSubview(balanceBorder)
+        view.addSubview(customBorder)
     }
 
     private func addConstraints() {
@@ -147,9 +151,17 @@ class AmountViewController : UIViewController, Trackable {
             borderTop,
             border.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             border.heightAnchor.constraint(equalToConstant: 1.0) ])
+        
+        let balanceBorderHeight = isRequesting ? balanceBorder.heightAnchor.constraint(equalToConstant: 0.0) : balanceBorder.heightAnchor.constraint(equalToConstant: 1.0)
+        balanceBorder.constrain([
+            balanceBorder.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            balanceBorder.topAnchor.constraint(equalTo: placeholder.bottomAnchor, constant: 4.0),
+            balanceBorder.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            balanceBorderHeight ])
+        
         balanceLabel.constrain([
             balanceLabel.leadingAnchor.constraint(equalTo: amountLabel.leadingAnchor),
-            balanceLabel.topAnchor.constraint(equalTo: cursor.bottomAnchor) ])
+            balanceLabel.topAnchor.constraint(equalTo: balanceBorder.bottomAnchor, constant: 4.0) ])
         pinPadHeight = pinPad.view.heightAnchor.constraint(equalToConstant: 0.0)
         addChildViewController(pinPad, layout: {
             pinPad.view.constrain([
@@ -317,7 +329,7 @@ class AmountViewController : UIViewController, Trackable {
         pinPadHeight?.constant = 0.0
         cursor.isHidden = true
         bottomBorder.isHidden = true
-        updateBalanceAndFeeLabels()
+        // updateBalanceAndFeeLabels()
         updateBalanceLabel()
     }
 
@@ -326,8 +338,7 @@ class AmountViewController : UIViewController, Trackable {
         pinPadHeight?.constant = isCollapsed ? pinPad.height : 0.0
         cursor.isHidden = isCollapsed ? false : true
         bottomBorder.isHidden = isCollapsed ? false : true
-        updateBalanceAndFeeLabels()
-        // updateBalanceLabel()
+        // updateBalanceAndFeeLabels()
         didChangeFirstResponder?(isCollapsed)
     }
 
