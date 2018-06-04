@@ -195,7 +195,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
                     }
                     return (NSAttributedString(string: balanceOutput, attributes: attributes), NSAttributedString(string: feeOutput, attributes: feeAttributes))
             }
-            feeOutput = String(format: S.FeeSelector.feeDescription, "\(feeText)", "\(feePerKB / 1000)")
+            feeOutput = String(format: S.FeeSelector.feeDescription, "\(feeText)")
             if (balance >= fee) && amount.rawValue > (balance - fee) {
                 color = .cameraGuideNegative
             }
