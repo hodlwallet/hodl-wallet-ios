@@ -245,9 +245,6 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
                     return showAlert(title: S.Alert.error, message: message, buttonLabel: S.Button.ok)
                 }
             }
-            guard !(walletManager.wallet?.containsAddress(address) ?? false) else {
-                return showAlert(title: S.Alert.error, message: S.Send.containsAddress, buttonLabel: S.Button.ok)
-            }
             guard amount.rawValue <= (walletManager.wallet?.maxOutputAmount ?? 0) else {
                 return showAlert(title: S.Alert.error, message: S.Send.insufficientFunds, buttonLabel: S.Button.ok)
             }
@@ -394,9 +391,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
             requestAmount += output.amount
         }
 
-        if wallet.containsAddress(address) {
-            return showAlert(title: S.Alert.warning, message: S.Send.containsAddress, buttonLabel: S.Button.ok)
-        } else if wallet.addressIsUsed(address) && !didIgnoreUsedAddressWarning {
+        if wallet.addressIsUsed(address) && !didIgnoreUsedAddressWarning {
             let message = "\(S.Send.UsedAddress.title)\n\n\(S.Send.UsedAddress.firstLine)\n\n\(S.Send.UsedAddress.secondLine)"
             return showError(title: S.Alert.warning, message: message, ignore: { [weak self] in
                 self?.didIgnoreUsedAddressWarning = true
