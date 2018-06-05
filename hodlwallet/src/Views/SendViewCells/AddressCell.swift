@@ -113,12 +113,6 @@ class AddressCell : UIView {
         textField.tintColor = .grayTextTint
         label.textColor = .whiteTint
         contentLabel.lineBreakMode = .byTruncatingMiddle
-        
-        if let clearButton = textField.value(forKey: "_clearButton") as? UIButton {
-            clearButton.setImage(#imageLiteral(resourceName: "smallclose"), for: .normal)
-            // Must fix clear button color
-            clearButton.imageView?.tintColor = .gradientStart
-        }
 
         textField.editingChanged = strongify(self) { myself in
             myself.contentLabel.text = myself.textField.text
@@ -133,6 +127,11 @@ class AddressCell : UIView {
         textField.becomeFirstResponder()
         contentLabel.isHidden = true
         textField.isHidden = false
+        if let clearButton = textField.value(forKey: "_clearButton") as? UIButton {
+            clearButton.setImage(#imageLiteral(resourceName: "smallclose"), for: .normal)
+            // Must fix clear button color
+            clearButton.imageView?.tintColor = .gradientStart
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
