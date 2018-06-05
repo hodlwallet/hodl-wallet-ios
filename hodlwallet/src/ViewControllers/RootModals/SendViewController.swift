@@ -274,6 +274,8 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
     }
     
     @objc private func advancedTapped() {
+        descriptionCell.textView.resignFirstResponder()
+        addressCell.textField.resignFirstResponder()
         let alert = UIAlertController(title: S.FeeSelector.advancedTitle,
                                       message: S.FeeSelector.advancedBody, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: nil))
