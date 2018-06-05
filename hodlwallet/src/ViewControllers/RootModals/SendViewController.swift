@@ -185,7 +185,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
         
         if let amount = amount, amount.rawValue > 0 {
             let fee = sender.feeForTx(amount: amount.rawValue)
-            let feeAmount = DisplayAmount(amount: Satoshis(rawValue: fee), state: store.state, selectedRate: rate, minimumFractionDigits: 0)
+            let feeAmount = DisplayAmount(amount: Satoshis(rawValue: fee), state: store.state, selectedRate: rate, minimumFractionDigits: 2)
             let feeText = feeAmount.description
             guard let feePerKB = walletManager.wallet?.feePerKb
                 else {
@@ -274,6 +274,8 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
     }
     
     @objc private func advancedTapped() {
+        descriptionCell.textView.resignFirstResponder()
+        addressCell.textField.resignFirstResponder()
         let alert = UIAlertController(title: S.FeeSelector.advancedTitle,
                                       message: S.FeeSelector.advancedBody, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: nil))
