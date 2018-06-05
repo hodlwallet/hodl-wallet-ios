@@ -73,6 +73,7 @@ enum S {
         static let emptyPasteboard = NSLocalizedString("Send.emptyPasteboard", value: "Pasteboard is empty", comment: "Empty pasteboard error message")
         static let cameraUnavailableTitle = NSLocalizedString("Send.cameraUnavailableTitle", value:"Hodl is not allowed to access the camera", comment: "Camera not allowed alert title")
         static let cameraUnavailableMessage = NSLocalizedString("Send.cameraunavailableMessage", value:"Go to Settings to allow camera access.", comment: "Camera not allowed message")
+        static let feeLimitMessage = NSLocalizedString("Send.feeLimitMessage", value: "Fee is too high. Maximum fee is 1200 sat/byte.", comment: "Custom fee limit alert message")
         static let balance = NSLocalizedString("Send.balance", value:"Balance: %1$@", comment: "Balance: $4.00")
         static let fee = NSLocalizedString("Send.fee", value:"Network Fee: %1$@", comment: "Network Fee: $0.01")
         static let containsAddress = NSLocalizedString("Send.containsAddress", value: "The destination is your own address. You cannot send to yourself.", comment: "Warning when sending to self.")

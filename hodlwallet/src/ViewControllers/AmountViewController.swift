@@ -299,7 +299,7 @@ class AmountViewController : UIViewController, Trackable {
             NSAttributedStringKey.font: UIFont.customBody(size: 16.0),
             NSAttributedStringKey.foregroundColor: UIColor.grayTextTint
         ]
-        let feeString = String(format: S.FeeSelector.satByte, "\(fee)")
+        let feeString = String(format: S.FeeSelector.satByte, "\(fee / C.byteShift)")
         feeSelector.feeString = NSAttributedString(string: feeString, attributes: feeAttributes)
     }
 
