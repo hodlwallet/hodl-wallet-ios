@@ -69,7 +69,7 @@ class DefaultCurrencyViewController : UITableViewController, Subscriber {
         bitcoinSwitch.tintColor = .whiteTint
 
         let faqButton = UIButton.buildFaqButton(store: store, articleId: ArticleIds.displayCurrency)
-        faqButton.tintColor = .whiteTint
+        faqButton.tintColor = .grayTextTint
         navigationItem.rightBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]
     }
 
