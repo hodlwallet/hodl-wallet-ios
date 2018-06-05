@@ -156,7 +156,7 @@ class UpdatePinViewController : UIViewController, Subscriber {
             navigationItem.leftBarButtonItem = nil
             navigationItem.hidesBackButton = true
         }
-        faq.tintColor = .whiteTint
+        faq.tintColor = .grayTextTint
     }
 
     private func didUpdateForCurrent(pin: String) {

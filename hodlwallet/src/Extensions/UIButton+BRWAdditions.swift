@@ -50,7 +50,7 @@ extension UIButton {
             button.imageEdgeInsets = UIEdgeInsetsMake(12.0, 12.0, 12.0, 12.0)
         }
 
-        button.tintColor = .darkText
+        button.tintColor = .gradientStart
         button.accessibilityLabel = accessibilityLabel
         return button
     }
