@@ -149,7 +149,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
                 wallet.feePerKb = fees.economy.sats
             case .custom:
                 guard fees.custom != nil else { wallet.feePerKb = fees.regular.sats; myself.amountView.updateBalanceLabel(); return }
-                 wallet.feePerKb = fees.custom! * UInt64(1000)
+                 wallet.feePerKb = fees.custom!
             }
             myself.amountView.updateBalanceLabel()
             if myself.feeType == .custom {
@@ -281,11 +281,15 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
         alert.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: nil))
         let okAction = UIAlertAction(title: S.Button.ok, style: .default, handler: { action in
             guard let userFee = alert.textFields?.first else { return }
-            if let fee = userFee.text {
+            if var fee = UInt64(userFee.text!) {
+                fee *= C.byteShift
+                guard fee < C.feeLimit else {
+                    return self.showAlert(title: S.Alert.error, message: S.Send.feeLimitMessage, buttonLabel: S.Button.ok)
+                }
                 let newFees = Fees(fastest: self.store.state.fees.fastest,
                                    regular: self.store.state.fees.regular,
                                    economy: self.store.state.fees.economy,
-                                   custom: UInt64(fee))
+                                   custom: fee)
                 self.store.perform(action: UpdateFees.set(newFees))
                 self.amountView.didUpdateFee?(.custom)
             }

@@ -80,7 +80,7 @@ class FeeSelector : UIView {
         feeBody.constrain([
             feeBody.leadingAnchor.constraint(equalTo: feeHeader.leadingAnchor),
             feeBody.topAnchor.constraint(equalTo: feeHeader.bottomAnchor, constant: C.padding[1]) ])
-        feeBody.text = String(format: S.FeeSelector.satByte, "\(store.state.fees.economy.sats / 1000)")
+        feeBody.text = String(format: S.FeeSelector.satByte, "\(store.state.fees.economy.sats / C.byteShift)")
         deliveryBody.constrain([
             deliveryBody.trailingAnchor.constraint(equalTo: deliveryHeader.trailingAnchor),
             deliveryBody.topAnchor.constraint(equalTo: deliveryHeader.bottomAnchor, constant: C.padding[1])])
@@ -139,21 +139,21 @@ class FeeSelector : UIView {
                 myself.deliveryBody.text = myself.store.state.fees.fastest.time as String
                 if myself.feeBody.text!.isEmpty {
                     myself.feeBody.text = String(format: S.FeeSelector.satByte,
-                                                 "\(myself.store.state.fees.fastest.sats / 1000)")
+                                                 "\(myself.store.state.fees.fastest.sats / C.byteShift)")
                 }
             } else if myself.control.value >= 2 {
                 myself.didUpdateFee?(.regular)
                 myself.deliveryBody.text = myself.store.state.fees.regular.time as String
                 if myself.feeBody.text!.isEmpty {
                     myself.feeBody.text = String(format: S.FeeSelector.satByte,
-                                                 "\(myself.store.state.fees.regular.sats / 1000)")
+                                                 "\(myself.store.state.fees.regular.sats / C.byteShift)")
                 }
             } else {
                 myself.didUpdateFee?(.economy)
                 myself.deliveryBody.text = myself.store.state.fees.economy.time as String
                 if myself.feeBody.text!.isEmpty {
                     myself.feeBody.text = String(format: S.FeeSelector.satByte,
-                                                 "\(myself.store.state.fees.economy.sats / 1000)")
+                                                 "\(myself.store.state.fees.economy.sats / C.byteShift)")
                 }
             }
         }
@@ -168,15 +168,15 @@ class FeeSelector : UIView {
         if feeBody.text!.isEmpty {
             if control.value >= 3 {
                 feeBody.text = String(format: S.FeeSelector.satByte,
-                                      "\(store.state.fees.fastest.sats / 1000)")
+                                      "\(store.state.fees.fastest.sats / C.byteShift)")
             }
             else if control.value >= 2 {
                 feeBody.text = String(format: S.FeeSelector.satByte,
-                                      "\(store.state.fees.regular.sats / 1000)")
+                                      "\(store.state.fees.regular.sats / C.byteShift)")
             }
             else {
                 feeBody.text = String(format: S.FeeSelector.satByte,
-                                      "\(store.state.fees.economy.sats / 1000)")
+                                      "\(store.state.fees.economy.sats / C.byteShift)")
             }
         }
     }

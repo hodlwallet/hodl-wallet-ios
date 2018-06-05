@@ -42,4 +42,6 @@ struct C {
     static var standardPort: Int {
         return E.isTestnet ? 18333 : 8333
     }
+    static let feeLimit: UInt64 = 1200000
+    static let byteShift: UInt64 = 1000
 }
