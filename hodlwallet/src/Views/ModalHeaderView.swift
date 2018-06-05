@@ -80,6 +80,7 @@ class ModalHeaderView : UIView {
             faq.constraint(.centerY, toView: self, constant: 0.0),
             faq.constraint(.height, constant: buttonSize),
             faq.constraint(.width, constant: buttonSize) ])
+        faq.tintColor = .grayTextTint
     }
 
     private func setColors() {
@@ -87,7 +88,6 @@ class ModalHeaderView : UIView {
         case .light:
             title.textColor = .white
             close.tintColor = .gradientEnd
-            faq?.tintColor = .white
             if title.text == S.MenuViewController.modalTitle {
                 border.backgroundColor = .secondaryGrayText
             }

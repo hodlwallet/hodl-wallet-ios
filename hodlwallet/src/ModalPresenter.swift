@@ -354,7 +354,7 @@ class ModalPresenter : Subscriber, Trackable {
                     start.addCloseNavigationItem(tintColor: .gradientStart)
                     start.navigationItem.title = S.Import.title
                     let faqButton = UIButton.buildFaqButton(store: myself.store, articleId: ArticleIds.importWallet)
-                    faqButton.tintColor = .white
+                    faqButton.tintColor = .grayTextTint
                     start.navigationItem.rightBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]
                     importNav.viewControllers = [start]
                     settingsNav.dismiss(animated: true, completion: {
@@ -377,7 +377,7 @@ class ModalPresenter : Subscriber, Trackable {
                     start.addCloseNavigationItem(tintColor: .gradientStart)
                     start.navigationItem.title = S.WipeWallet.title
                     let faqButton = UIButton.buildFaqButton(store: myself.store, articleId: ArticleIds.wipeWallet)
-                    faqButton.tintColor = .white
+                    faqButton.tintColor = .grayTextTint
                     start.navigationItem.rightBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]
                     nc.viewControllers = [start]
                     settingsNav.dismiss(animated: true, completion: {
@@ -586,7 +586,7 @@ class ModalPresenter : Subscriber, Trackable {
         start.addCloseNavigationItem(tintColor: .white)
         start.navigationItem.title = S.SecurityCenter.Cells.paperKeyTitle
         let faqButton = UIButton.buildFaqButton(store: store, articleId: ArticleIds.paperKey)
-        faqButton.tintColor = .white
+        faqButton.tintColor = .grayTextTint
         start.navigationItem.rightBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]
         paperPhraseNavigationController.viewControllers = [start]
         vc.present(paperPhraseNavigationController, animated: true, completion: nil)
