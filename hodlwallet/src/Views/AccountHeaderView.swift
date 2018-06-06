@@ -10,9 +10,9 @@ import UIKit
 
 private let largeFontSize: CGFloat = 26.0
 private let smallFontSize: CGFloat = 13.0
-private let logoWidth: CGFloat = 0.22 //percentage of width
+private let logoWidth: CGFloat = 0.33 //percentage of width
 
-class AccountHeaderView : UIView, /*GradientDrawable,*/ Subscriber {
+class AccountHeaderView : UIView, Subscriber {
 
     //MARK: - Public
     init(store: Store) {
@@ -196,12 +196,12 @@ class AccountHeaderView : UIView, /*GradientDrawable,*/ Subscriber {
 
         logo.constrain([
             logo.leadingAnchor.constraint(equalTo: leadingAnchor, constant: C.padding[2]),
-            logo.topAnchor.constraint(equalTo: topAnchor, constant: 30.0),
+            logo.topAnchor.constraint(equalTo: topAnchor, constant: 15.0),
             logo.heightAnchor.constraint(equalTo: logo.widthAnchor, multiplier: C.Sizes.logoAspectRatio),
             logo.widthAnchor.constraint(equalTo: widthAnchor, multiplier: logoWidth) ])
         modeLabel.constrain([
             modeLabel.leadingAnchor.constraint(equalTo: logo.trailingAnchor, constant: C.padding[1]/2.0),
-            modeLabel.firstBaselineAnchor.constraint(equalTo: logo.bottomAnchor, constant: -2.0) ])
+            modeLabel.firstBaselineAnchor.constraint(equalTo: logo.bottomAnchor, constant: -C.padding[1]) ])
     }
 
     private func transform(forView: UIView) ->  CGAffineTransform {
@@ -212,13 +212,6 @@ class AccountHeaderView : UIView, /*GradientDrawable,*/ Subscriber {
         let scale = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
         return scale.translatedBy(x: -deltaX, y: deltaY/2.0)
     }
-
-    /* private func addShadow() {
-        layer.shadowColor = UIColor.secondaryGrayText.cgColor
-        layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        layer.shadowOpacity = 0.15
-        layer.shadowRadius = 8.0
-    } */
 
     private func addSubscriptions() {
         store.lazySubscribe(self,
@@ -319,10 +312,6 @@ class AccountHeaderView : UIView, /*GradientDrawable,*/ Subscriber {
         }
         equals.isHidden = didHide
     }
-
-    /* override func draw(_ rect: CGRect) {
-        drawGradient(rect)
-    } */
 
     @objc private func currencySwitchTapped() {
         layoutIfNeeded()
