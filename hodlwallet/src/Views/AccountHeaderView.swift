@@ -125,6 +125,7 @@ class AccountHeaderView : UIView, Subscriber {
         manage.isHidden = true
         name.isHidden = true
         modeLabel.isHidden = true
+        rateLabel.isHidden = true
     }
 
     private func addSubviews() {
@@ -135,7 +136,7 @@ class AccountHeaderView : UIView, Subscriber {
         addSubview(search)
         addSubview(currencyTapView)
         addSubview(equals)
-        // addSubview(rateLabel)
+        addSubview(rateLabel)
         addSubview(logo)
         addSubview(modeLabel)
     }
@@ -175,7 +176,7 @@ class AccountHeaderView : UIView, Subscriber {
 
         search.constrain([
             search.constraint(.trailing, toView: self, constant: -C.padding[2]),
-            search.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -C.padding[4]),
+            search.centerYAnchor.constraint(equalTo: currencyTapView.centerYAnchor),
             search.constraint(.width, constant: 44.0),
             search.constraint(.height, constant: 44.0) ])
         search.imageEdgeInsets = UIEdgeInsetsMake(8.0, 8.0, 8.0, 8.0)
@@ -190,9 +191,9 @@ class AccountHeaderView : UIView, Subscriber {
         currencyTapView.addGestureRecognizer(gr)
         
         /* TODO! */
-        /* rateLabel.constrain([
+        rateLabel.constrain([
             rateLabel.trailingAnchor.constraint(equalTo: search.trailingAnchor),
-            rateLabel.topAnchor.constraint(equalTo: search.topAnchor, constant: C.padding[]) ]) */
+            rateLabel.centerYAnchor.constraint(equalTo: logo.centerYAnchor) ])
 
         logo.constrain([
             logo.leadingAnchor.constraint(equalTo: leadingAnchor, constant: C.padding[2]),
@@ -251,6 +252,11 @@ class AccountHeaderView : UIView, Subscriber {
 
     private func setBalances() {
         guard let rate = exchangeRate else { return }
+        
+        rateLabel.isHidden = false
+        let rateAmount = Amount(amount: C.satoshis, rate: rate, maxDigits: store.state.maxDigits)
+        rateLabel.text = "\(S.AccountHeader.btcLabel) = \(rateAmount.localCurrency)"
+        
         let amount = Amount(amount: balance, rate: rate, maxDigits: store.state.maxDigits)
         if !hasInitialized {
             let amount = Amount(amount: balance, rate: exchangeRate!, maxDigits: store.state.maxDigits)

@@ -227,6 +227,7 @@ enum S {
         static let defaultWalletName = NSLocalizedString("AccountHeader.defaultWalletName", value:"My Wallet", comment: "Default wallet name")
         static let manageButtonName = NSLocalizedString("AccountHeader.manageButtonName", value:"MANAGE", comment: "Manage wallet button title")
         static let equals = NSLocalizedString("AccountHeader.equals", value:"=", comment: "Equals symbol")
+        static let btcLabel = NSLocalizedString("AccountHeader.btcLabel", value: "1 BTC", comment: "BTC ")
     }
 
     enum VerifyPin {
