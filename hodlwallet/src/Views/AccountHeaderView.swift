@@ -10,7 +10,7 @@ import UIKit
 
 private let largeFontSize: CGFloat = 26.0
 private let smallFontSize: CGFloat = 13.0
-private let logoWidth: CGFloat = 0.33 //percentage of width
+private let logoWidth: CGFloat = 0.27 //percentage of width
 
 class AccountHeaderView : UIView, Subscriber {
 
@@ -18,6 +18,7 @@ class AccountHeaderView : UIView, Subscriber {
     init(store: Store) {
         self.store = store
         self.isBtcSwapped = store.state.isBtcSwapped
+        self.maxDigits = store.state.maxDigits
         if let rate = store.state.currentRate {
             self.exchangeRate = rate
             let placeholderAmount = Amount(amount: 0, rate: rate, maxDigits: store.state.maxDigits)
@@ -40,10 +41,13 @@ class AccountHeaderView : UIView, Subscriber {
     private let currencyTapView = UIView()
     private let store: Store
     private let equals = UILabel(font: .customBody(size: smallFontSize), color: .whiteTint)
-    private let rateLabel = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
+    private let rateLabel = UILabel(font: .customBody(size: 14.0), color: .whiteTint)
     private var regularConstraints: [NSLayoutConstraint] = []
     private var swappedConstraints: [NSLayoutConstraint] = []
+    private var hideConstraints: [NSLayoutConstraint] = []
     private var hasInitialized = false
+    private var didHide = false
+    private var maxDigits: Int
     private let modeLabel: UILabel = {
         let label = UILabel()
         label.font = .customBody(size: 12.0)
@@ -121,6 +125,7 @@ class AccountHeaderView : UIView, Subscriber {
         }
 
         equals.text = S.AccountHeader.equals
+        rateLabel.text = ""
 
         manage.isHidden = true
         name.isHidden = true
@@ -170,6 +175,13 @@ class AccountHeaderView : UIView, Subscriber {
             equals.firstBaselineAnchor.constraint(equalTo: secondaryBalance.firstBaselineAnchor),
             equals.leadingAnchor.constraint(equalTo: secondaryBalance.trailingAnchor, constant: C.padding[1]/2.0),
             primaryBalance.leadingAnchor.constraint(equalTo: equals.trailingAnchor, constant: C.padding[1]/2.0)
+        ]
+        
+        hideConstraints = [
+            primaryBalance.firstBaselineAnchor.constraint(equalTo: bottomAnchor, constant: -C.padding[4]),
+            primaryBalance.leadingAnchor.constraint(equalTo: leadingAnchor, constant: C.padding[2]),
+            secondaryBalance.firstBaselineAnchor.constraint(equalTo: bottomAnchor, constant: -C.padding[4]),
+            secondaryBalance.leadingAnchor.constraint(equalTo: leadingAnchor, constant: C.padding[2])
         ]
 
         NSLayoutConstraint.activate(isBtcSwapped ? self.swappedConstraints : self.regularConstraints)
@@ -258,8 +270,12 @@ class AccountHeaderView : UIView, Subscriber {
         rateLabel.text = "\(S.AccountHeader.btcLabel) = \(rateAmount.localCurrency)"
         
         let amount = Amount(amount: balance, rate: rate, maxDigits: store.state.maxDigits)
-        if !hasInitialized {
+        if !hasInitialized || maxDigits != store.state.maxDigits {
             let amount = Amount(amount: balance, rate: exchangeRate!, maxDigits: store.state.maxDigits)
+            if maxDigits != store.state.maxDigits {
+                NSLayoutConstraint.deactivate(self.hideConstraints)
+                maxDigits = store.state.maxDigits
+            }
             NSLayoutConstraint.deactivate(isBtcSwapped ? self.regularConstraints : self.swappedConstraints)
             NSLayoutConstraint.activate(isBtcSwapped ? self.swappedConstraints : self.regularConstraints)
             primaryBalance.setValue(amount.amountForBtcFormat)
@@ -272,63 +288,90 @@ class AccountHeaderView : UIView, Subscriber {
             hasInitialized = true
             hideExtraViews()
         } else {
-            if primaryBalance.isHidden {
-                primaryBalance.isHidden = false
-            }
-
-            if secondaryBalance.isHidden {
-                secondaryBalance.isHidden = false
-            }
-
-            primaryBalance.setValueAnimated(amount.amountForBtcFormat, completion: { [weak self] in
-                guard let myself = self else { return }
-                if !myself.isBtcSwapped {
-                    myself.primaryBalance.transform = .identity
-                } else {
-                    myself.primaryBalance.transform = myself.transform(forView: myself.primaryBalance)
+            if !didHide {
+                if maxDigits != store.state.maxDigits {
+                    maxDigits = store.state.maxDigits
                 }
-                myself.hideExtraViews()
-            })
-            secondaryBalance.setValueAnimated(amount.localAmount, completion: { [weak self] in
-                guard let myself = self else { return }
-                if myself.isBtcSwapped {
-                    myself.secondaryBalance.transform = .identity
-                } else {
-                    myself.secondaryBalance.transform = myself.transform(forView: myself.secondaryBalance)
+                
+                if primaryBalance.isHidden {
+                    primaryBalance.isHidden = false
                 }
-                myself.hideExtraViews()
-            })
+
+                if secondaryBalance.isHidden {
+                    secondaryBalance.isHidden = false
+                }
+
+                primaryBalance.setValueAnimated(amount.amountForBtcFormat, completion: { [weak self] in
+                    guard let myself = self else { return }
+                    if !myself.isBtcSwapped {
+                        myself.primaryBalance.transform = .identity
+                    } else {
+                        myself.primaryBalance.transform = myself.transform(forView: myself.primaryBalance)
+                    }
+                    myself.hideExtraViews()
+                })
+                secondaryBalance.setValueAnimated(amount.localAmount, completion: { [weak self] in
+                    guard let myself = self else { return }
+                    if myself.isBtcSwapped {
+                        myself.secondaryBalance.transform = .identity
+                    } else {
+                        myself.secondaryBalance.transform = myself.transform(forView: myself.secondaryBalance)
+                    }
+                    myself.hideExtraViews()
+                })
+                if didHide {
+                    primaryBalance.setValue(amount.amountForBtcFormat)
+                    primaryBalance.transform = .identity
+                    secondaryBalance.setValue(amount.localAmount)
+                    secondaryBalance.transform = .identity
+                }
+            } else {
+                primaryBalance.setValue(amount.amountForBtcFormat)
+                primaryBalance.transform = .identity
+                secondaryBalance.setValue(amount.localAmount)
+                secondaryBalance.transform = .identity
+            }
         }
     }
 
     private func hideExtraViews() {
-        var didHide = false
-        if secondaryBalance.frame.maxX > search.frame.minX {
-            secondaryBalance.isHidden = true
-            didHide = true
-        } else {
-            secondaryBalance.isHidden = false
-        }
+            if secondaryBalance.frame.maxX > search.frame.minX {
+                secondaryBalance.isHidden = true
+                didHide = true
+            } else {
+                secondaryBalance.isHidden = false
+                didHide = false
+            }
 
-        if primaryBalance.frame.maxX > search.frame.minX {
-            primaryBalance.isHidden = true
-            didHide = true
-        } else {
-            primaryBalance.isHidden = false
-        }
-        equals.isHidden = didHide
+            if primaryBalance.frame.maxX > search.frame.minX {
+                primaryBalance.isHidden = true
+                didHide = true
+            } else {
+                primaryBalance.isHidden = false
+                didHide = false
+            }
+            equals.isHidden = didHide
     }
 
     @objc private func currencySwitchTapped() {
         layoutIfNeeded()
-        UIView.spring(0.7, animations: {
-            self.primaryBalance.transform = self.primaryBalance.transform.isIdentity ? self.transform(forView: self.primaryBalance) : .identity
-            self.secondaryBalance.transform = self.secondaryBalance.transform.isIdentity ? self.transform(forView: self.secondaryBalance) : .identity
+        
+        if didHide {
+            self.primaryBalance.isHidden = !self.isBtcSwapped
+            self.secondaryBalance.isHidden = self.isBtcSwapped
             NSLayoutConstraint.deactivate(!self.isBtcSwapped ? self.regularConstraints : self.swappedConstraints)
-            NSLayoutConstraint.activate(!self.isBtcSwapped ? self.swappedConstraints : self.regularConstraints)
+            NSLayoutConstraint.activate(self.hideConstraints)
             self.layoutIfNeeded()
-        }) { _ in }
-
+        } else {
+            UIView.spring(0.7, animations: {
+                self.primaryBalance.transform = self.primaryBalance.transform.isIdentity ? self.transform(forView: self.primaryBalance) : .identity
+                self.secondaryBalance.transform = self.secondaryBalance.transform.isIdentity ? self.transform(forView: self.secondaryBalance) : .identity
+                NSLayoutConstraint.deactivate(self.hideConstraints)
+                NSLayoutConstraint.deactivate(!self.isBtcSwapped ? self.regularConstraints : self.swappedConstraints)
+                NSLayoutConstraint.activate(!self.isBtcSwapped ? self.swappedConstraints : self.regularConstraints)
+                self.layoutIfNeeded()
+            }) { _ in }
+        }
         self.store.perform(action: CurrencyChange.toggle())
     }
 
