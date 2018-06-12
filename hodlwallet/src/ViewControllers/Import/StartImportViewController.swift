@@ -127,6 +127,7 @@ class StartImportViewController : UIViewController {
             textField.placeholder = S.Import.passwordPlaceholder
             textField.isSecureTextEntry = true
             textField.returnKeyType = .done
+            textField.keyboardAppearance = .dark
         })
         alert.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: S.Button.ok, style: .default, handler: { _ in

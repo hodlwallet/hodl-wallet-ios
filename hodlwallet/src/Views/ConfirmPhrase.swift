@@ -37,6 +37,7 @@ class ConfirmPhrase: UIView {
         textField.autocorrectionType = .no
         textField.font = UIFont.customBody(size: 18.0)
         textField.textColor = .gradientStart
+        textField.keyboardAppearance = .dark
         textField.delegate = self
 
         addSubview(label)

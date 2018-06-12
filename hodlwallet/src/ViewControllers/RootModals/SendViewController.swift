@@ -280,8 +280,8 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
                                       message: S.FeeSelector.advancedBody, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: S.Button.cancel, style: .cancel, handler: nil))
         let okAction = UIAlertAction(title: S.Button.ok, style: .default, handler: { action in
-            guard let userFee = alert.textFields?.first else { return }
-            if var fee = UInt64(userFee.text!) {
+            guard let textField = alert.textFields?.first else { return }
+            if var fee = UInt64(textField.text!) {
                 fee *= C.byteShift
                 guard fee < C.feeLimit else {
                     return self.showAlert(title: S.Alert.error, message: S.Send.feeLimitMessage, buttonLabel: S.Button.ok)
@@ -300,6 +300,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
         alert.addTextField { textField in
             textField.placeholder = S.FeeSelector.sat_byte
             textField.keyboardType = .decimalPad
+            textField.keyboardAppearance = .dark
         }
         
         present(alert, animated: true, completion: nil)

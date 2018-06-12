@@ -94,6 +94,7 @@ class EnterPhraseCell : UICollectionViewCell {
         textField.textAlignment = .center
         textField.autocapitalizationType = .none
         textField.delegate = self
+        textField.keyboardAppearance = .dark
         textField.addTarget(self, action: #selector(EnterPhraseCell.textChanged(textField:)), for: .editingChanged)
 
         label.textAlignment = .center
