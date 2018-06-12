@@ -566,7 +566,7 @@ class ModalPresenter : Subscriber, Trackable {
                             paperPhraseNavigationController.pushViewController(confirm, animated: true)
                         }
                     })
-                    write?.addCloseNavigationItem(tintColor: .white)
+                    write?.addCloseNavigationItem(tintColor: .gradientStart)
                     write?.navigationItem.title = S.SecurityCenter.Cells.paperKeyTitle
 
                     vc.dismiss(animated: true, completion: {
@@ -583,7 +583,7 @@ class ModalPresenter : Subscriber, Trackable {
             verify.modalPresentationCapturesStatusBarAppearance = true
             paperPhraseNavigationController.present(verify, animated: true, completion: nil)
         })
-        start.addCloseNavigationItem(tintColor: .white)
+        start.addCloseNavigationItem(tintColor: .gradientStart)
         start.navigationItem.title = S.SecurityCenter.Cells.paperKeyTitle
         let faqButton = UIButton.buildFaqButton(store: store, articleId: ArticleIds.paperKey)
         faqButton.tintColor = .grayTextTint
@@ -609,7 +609,7 @@ class ModalPresenter : Subscriber, Trackable {
         let vc = ReScanViewController(store: self.store)
         let nc = UINavigationController(rootViewController: vc)
         nc.setClearNavbar()
-        vc.addCloseNavigationItem()
+        vc.addCloseNavigationItem(tintColor: .gradientStart)
         topViewController?.present(nc, animated: true, completion: nil)
     }
 
@@ -643,7 +643,7 @@ class ModalPresenter : Subscriber, Trackable {
     func presentTouchIdSetting() {
         guard let walletManager = walletManager else { return }
         let touchIdSettings = TouchIdSettingsViewController(walletManager: walletManager, store: store)
-        touchIdSettings.addCloseNavigationItem(tintColor: .white)
+        touchIdSettings.addCloseNavigationItem(tintColor: .gradientStart)
         let nc = ModalNavigationController(rootViewController: touchIdSettings)
         touchIdSettings.presentSpendingLimit = strongify(self) { myself in
             myself.pushTouchIdSpendingLimit(onNc: nc)
@@ -660,7 +660,7 @@ class ModalPresenter : Subscriber, Trackable {
         nc.setDefaultStyle()
         nc.isNavigationBarHidden = true
         nc.delegate = securityCenterNavigationDelegate
-        shareData.addCloseNavigationItem()
+        shareData.addCloseNavigationItem(tintColor: .gradientStart)
         topViewController?.present(nc, animated: true, completion: nil)
     }
 
@@ -676,7 +676,7 @@ class ModalPresenter : Subscriber, Trackable {
         nc.setDefaultStyle()
         nc.isNavigationBarHidden = true
         nc.delegate = securityCenterNavigationDelegate
-        updatePin.addCloseNavigationItem()
+        updatePin.addCloseNavigationItem(tintColor: .gradientStart)
         topViewController?.present(nc, animated: true, completion: nil)
     }
 
