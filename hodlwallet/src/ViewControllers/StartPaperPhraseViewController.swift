@@ -40,6 +40,7 @@ class StartPaperPhraseViewController : UIViewController {
             let df = DateFormatter()
             df.setLocalizedDateFormatFromTemplate("MMMM d, yyyy")
             footer.text = String(format: S.StartPaperPhrase.date, df.string(from: writePaperPhraseDate))
+            footer.textAlignment = .center
         }
     }
 
@@ -76,7 +77,8 @@ class StartPaperPhraseViewController : UIViewController {
             button.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             button.constraint(.height, constant: 75) ])
         footer.constrain([
-            footer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            footer.leadingAnchor.constraint(equalTo: explanation.leadingAnchor),
+            footer.trailingAnchor.constraint(equalTo: explanation.trailingAnchor),
             footer.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -C.padding[2]) ])
     }
 
