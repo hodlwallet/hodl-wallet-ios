@@ -111,6 +111,7 @@ class AddressCell : UIView {
         textField.delegate = self
         textField.clearButtonMode = .whileEditing
         textField.tintColor = .grayTextTint
+        textField.keyboardAppearance = .dark
         label.textColor = .whiteTint
         contentLabel.lineBreakMode = .byTruncatingMiddle
 

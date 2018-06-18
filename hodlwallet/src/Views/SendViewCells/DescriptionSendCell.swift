@@ -17,6 +17,7 @@ class DescriptionSendCell : SendCell {
         textView.font = .customBody(size: 16.0)
         textView.returnKeyType = .done
         textView.backgroundColor = .grayBackground
+        textView.keyboardAppearance = .dark
         self.placeholder.text = placeholder
         setupViews()
     }

@@ -75,6 +75,7 @@ class ManageWalletViewController : UIViewController, ModalPresentable, Subscribe
         textField.font = .customBody(size: 14.0)
         textField.returnKeyType = .done
         textFieldLabel.text = S.ManageWallet.textFieldLabel
+        textField.keyboardAppearance = .dark
         textField.delegate = self
 
         self.textField.text = store.state.walletState.name
