@@ -78,7 +78,7 @@ class TransactionTableViewCell : UITableViewCell, Subscriber {
             arrow.tintColor = .gradientEnd
         } else {
             arrow.transform = identity.rotated(by: 7.0*π/4.0)
-            arrow.tintColor = .secondaryGrayText
+            arrow.tintColor = .grayTextTint
         }
     }
 
