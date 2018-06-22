@@ -485,7 +485,7 @@ enum S {
         static let unlockingActivity = NSLocalizedString("Import.unlockingActivity", value: "Unlocking Key", comment: "Unlocking Private key activity view message.")
         static let importButton = NSLocalizedString("Import.importButton", value: "Sweep", comment: "Sweep button label")
         static let success = NSLocalizedString("Import.success", value: "Success", comment: "Sweep private key success alert title")
-        static let successBody = NSLocalizedString("Import.SuccessBody", value: "Successfully swept wallet.", comment: "Successfully swept wallet message body")
+        static let successBody = NSLocalizedString("Import.SuccessBody", value: "Successfully swept private key.", comment: "Successfully swept private key message body")
         static let wrongPassword = NSLocalizedString("Import.wrongPassword", value: "Wrong password, please try again.", comment: "Wrong password alert message")
         enum Error {
             static let notValid = NSLocalizedString("Import.Error.notValid", value: "Not a valid private key", comment: "Not a valid private key error message")
