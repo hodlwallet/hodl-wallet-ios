@@ -9,7 +9,7 @@
 import UIKit
 import BRCore
 
-private let mainURL = "https://btc-bitcore1.trezor.io/api/addrs/utxo"
+private let mainURL = "https://insight.bitpay.com/api/addrs/utxo"
 private let fallbackURL = "https://btc-bitcore2.trezor.io/api/addrs/utxo"
 private let testnetURL = "https://test-insight.bitpay.com/api/addrs/utxo"
 
@@ -97,6 +97,8 @@ class StartImportViewController : UIViewController {
         leftCaption.textAlignment = .center
         rightCaption.text = S.Import.rightCaption
         rightCaption.textAlignment = .center
+        leftCaption.isHidden = true
+        rightCaption.isHidden = true
         warning.text = S.Import.importWarning
 
         button.tap = { [weak self] in
