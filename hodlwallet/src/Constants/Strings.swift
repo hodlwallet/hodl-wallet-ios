@@ -473,7 +473,7 @@ enum S {
     enum Import {
         static let leftCaption = NSLocalizedString("Import.leftCaption", value: "Private key to be swept", comment: "Caption for graphics")
         static let rightCaption = NSLocalizedString("Import.rightCaption", value: "Your Hodl Wallet", comment: "Caption for graphics")
-        static let importMessage = NSLocalizedString("Import.message", value: "Sweeping a private key transfers all the money from your other wallet into your Hodl wallet using a single transaction.", comment: "Sweep private key intro screen message")
+        static let importMessage = NSLocalizedString("Import.message", value: "Sweeping a private key transfers all the bitcoin from your private key into your Hodl wallet using a single transaction.", comment: "Sweep private key intro screen message")
         static let importWarning = NSLocalizedString("Import.warning", value: "Sweeping a private key does not include transaction history or other details.", comment: "Sweep private key intro warning message")
         static let scan = NSLocalizedString("Import.scan", value: "Scan Private Key", comment: "Scan Private key button label")
         static let title = NSLocalizedString("Import.title", value: "Sweep Private Key", comment: "Sweep Private Key screen title")
