@@ -69,16 +69,22 @@ extension String {
                 if regular.localizedLowercase == S.Search.received + " " {
                     output.append(NSAttributedString(string: (regular as String).tagsRemoved, attributes: UIFont.regularAttributes))
                 }
-                else {
+                else if regular.localizedLowercase == S.Search.sent + " " {
                     output.append(NSAttributedString(string: (regular as String).tagsRemoved, attributes: UIFont.sentAttributes))
+                }
+                else {
+                    output.append(NSAttributedString(string: (regular as String).tagsRemoved, attributes: UIFont.movedAttributes))
                 }
             }
             if let bold = bold {
                 if regular?.localizedLowercase == S.Search.received + " " {
                     output.append(NSAttributedString(string: (bold as String).tagsRemoved, attributes: UIFont.boldAttributes))
                 }
-                else {
+                else if regular?.localizedLowercase == S.Search.sent + " " {
                     output.append(NSAttributedString(string: (bold as String).tagsRemoved, attributes: UIFont.sentAttributes))
+                }
+                else {
+                    output.append(NSAttributedString(string: (bold as String).tagsRemoved, attributes: UIFont.movedAttributes))
                 }
             }
             i += 1

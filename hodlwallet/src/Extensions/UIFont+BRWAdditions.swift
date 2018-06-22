@@ -39,6 +39,13 @@ extension UIFont {
             NSAttributedStringKey.foregroundColor: UIColor.grayTextTint
         ]
     }
+    
+    static var movedAttributes: [NSAttributedStringKey: Any] {
+        return [
+            NSAttributedStringKey.font: UIFont.customBody(size: 14.0),
+            NSAttributedStringKey.foregroundColor: UIColor.whiteTint
+        ]
+    }
 
     static var boldAttributes: [NSAttributedStringKey: Any] {
         return [
