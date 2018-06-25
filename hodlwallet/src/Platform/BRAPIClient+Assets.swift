@@ -65,31 +65,37 @@ open class AssetArchive {
             // we do not have the archive, download a fresh copy
             return downloadCompleteArchive(completionHandler: completionHandler)
         }
-        apiClient.getAssetVersions(name) { (versions, err) in
-            DispatchQueue.global(qos: .utility).async {
-                if let err = err {
-                    print("[AssetArchive] could not get asset versions. error: \(err)")
-                    return completionHandler(err)
-                }
-                guard let versions = versions, let version = self.version else {
-                    return completionHandler(BRAPIClientError.unknownError)
-                }
-                if versions.index(of: version) == versions.count - 1 {
-                    // have the most recent version
-                    print("[AssetArchive] already at most recent version of bundle \(self.name)")
-                    do {
-                        try self.extractArchive()
-                        return completionHandler(nil)
-                    } catch let e {
-                        print("[AssetArchive] error extracting bundle: \(e)")
-                        return completionHandler(BRAPIClientError.unknownError)
-                    }
-                } else {
-                    // need to update the version
-                    self.downloadAndPatchArchive(fromVersion: version, completionHandler: completionHandler)
-                }
-            }
-        }
+
+        // Disable bundle update, we dont use it,
+        // this fixes the issue
+        // [AssetArchive] could not get asset versions. error: malformedDataError
+        // Bundle hodl-frontend-staging ran update. err: Optional(hodlwallet.BRAPIClientError.malformedDataError)
+        // ------------------------------------------------------------------------------
+        // apiClient.getAssetVersions(name) { (versions, err) in
+        //     DispatchQueue.global(qos: .utility).async {
+        //         if let err = err {
+        //             print("[AssetArchive] could not get asset versions. error: \(err)")
+        //             return completionHandler(err)
+        //         }
+        //         guard let versions = versions, let version = self.version else {
+        //             return completionHandler(BRAPIClientError.unknownError)
+        //         }
+        //         if versions.index(of: version) == versions.count - 1 {
+        //             // have the most recent version
+        //             print("[AssetArchive] already at most recent version of bundle \(self.name)")
+        //             do {
+        //                 try self.extractArchive()
+        //                 return completionHandler(nil)
+        //             } catch let e {
+        //                 print("[AssetArchive] error extracting bundle: \(e)")
+        //                 return completionHandler(BRAPIClientError.unknownError)
+        //             }
+        //         } else {
+        //             // need to update the version
+        //             self.downloadAndPatchArchive(fromVersion: version, completionHandler: completionHandler)
+        //         }
+        //     }
+        // }
     }
     
     fileprivate func downloadCompleteArchive(completionHandler: @escaping (_ error: Error?) -> Void) {
