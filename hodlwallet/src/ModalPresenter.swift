@@ -198,16 +198,16 @@ class ModalPresenter : Subscriber, Trackable {
         
         #if Debug || Testflight
             // let baseUrl = "http://knowledge.hodlwallet.co/staging/"
-            let baseUrl = "https://hodlwallet-website.herokuapp.com/knowledge/"
+            let baseUrl = "https://hodlwallet-website.herokuapp.com/knowledge"
         #else
-            let baseUrl = "https://hodlwallet-website.herokuapp.com/knowledge/"
+            let baseUrl = "https://hodlwallet-website.herokuapp.com/knowledge"
         #endif
         
         var url = baseUrl
         
         if articleId != nil {
             // url += "?slug=\(articleId!)&locale=\(Locale.current.identifier)&regionCode=\(Locale.current.regionCode ?? "")"
-            url += "\(articleId!)"
+            url += "/\(articleId!)"
         } else { 
             // url += "?locale=\(Locale.current.identifier)&regionCode=\(Locale.current.regionCode ?? "")"
             url += ""
