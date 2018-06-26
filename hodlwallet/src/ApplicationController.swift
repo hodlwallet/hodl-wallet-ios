@@ -121,8 +121,8 @@ class ApplicationController : Subscriber, Trackable {
         }
         exchangeUpdater?.refresh(completion: {})
         feeUpdater?.refresh()
-        walletManager.apiClient?.kv?.syncAllKeys { print("KV finished syncing. err: \(String(describing: $0))") }
-        walletManager.apiClient?.updateFeatureFlags()
+        // walletManager.apiClient?.kv?.syncAllKeys { print("KV finished syncing. err: \(String(describing: $0))") }
+        // walletManager.apiClient?.updateFeatureFlags()
         if modalPresenter?.walletManager == nil {
             modalPresenter?.walletManager = walletManager
         }
@@ -136,8 +136,8 @@ class ApplicationController : Subscriber, Trackable {
         }
         exchangeUpdater?.refresh(completion: {})
         feeUpdater?.refresh()
-        walletManager.apiClient?.kv?.syncAllKeys { print("KV finished syncing. err: \(String(describing: $0))") }
-        walletManager.apiClient?.updateFeatureFlags()
+        // walletManager.apiClient?.kv?.syncAllKeys { print("KV finished syncing. err: \(String(describing: $0))") }
+        // walletManager.apiClient?.updateFeatureFlags()
         if modalPresenter?.walletManager == nil {
             modalPresenter?.walletManager = walletManager
         }
@@ -153,7 +153,7 @@ class ApplicationController : Subscriber, Trackable {
         if !store.state.isLoginRequired {
             UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: timeSinceLastExitKey)
         }
-        walletManager?.apiClient?.kv?.syncAllKeys { print("KV finished syncing. err: \(String(describing: $0))") }
+        // walletManager?.apiClient?.kv?.syncAllKeys { print("KV finished syncing. err: \(String(describing: $0))") }
     }
 
     func performFetch(_ completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -251,7 +251,7 @@ class ApplicationController : Subscriber, Trackable {
     }
 
     private func startDataFetchers() {
-        walletManager?.apiClient?.updateFeatureFlags()
+        // walletManager?.apiClient?.updateFeatureFlags()
         initKVStoreCoordinator()
         feeUpdater?.refresh()
         defaultsUpdater?.refresh()
@@ -336,7 +336,7 @@ class ApplicationController : Subscriber, Trackable {
             { self.exchangeUpdater?.refresh(completion: $0) },
             { self.feeUpdater?.refresh(completion: $0) },
             { self.walletManager?.apiClient?.events?.sync(completion: $0) },
-            { self.walletManager?.apiClient?.updateFeatureFlags(); $0() }
+            // { self.walletManager?.apiClient?.updateFeatureFlags(); $0() }
             ], completion: {
                 group.leave()
         })
