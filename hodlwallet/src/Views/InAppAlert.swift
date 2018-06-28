@@ -27,7 +27,7 @@ class InAppAlert : UIView {
 
     override func draw(_ rect: CGRect) {
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let colors = [UIColor.blueGradientStart.cgColor, UIColor.blueGradientEnd.cgColor] as CFArray
+        let colors = [UIColor.gradientStart.cgColor, UIColor.gradientEnd.cgColor] as CFArray
         let locations: [CGFloat] = [0.0, 1.0]
         guard let gradient = CGGradient(colorsSpace: colorSpace, colors: colors, locations: locations) else { return }
         guard let context = UIGraphicsGetCurrentContext() else { return }
