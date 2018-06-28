@@ -196,12 +196,12 @@ class ModalPresenter : Subscriber, Trackable {
         supportCenter.modalPresentationCapturesStatusBarAppearance = true
         supportCenter.transitioningDelegate = supportCenter
         
-        #if Debug || Testflight
-            // let baseUrl = "http://knowledge.hodlwallet.co/staging/"
-            let baseUrl = "https://hodlwallet-website.herokuapp.com/knowledge"
-        #else
-            let baseUrl = "https://hodlwallet-website.herokuapp.com/knowledge"
-        #endif
+        // #if Debug || Testflight
+        //     // let baseUrl = "http://knowledge.hodlwallet.co/staging/"
+        //     let baseUrl = "https://hodlwallet-website-staging.herokuapp.com/knowledge"
+        // #else
+            let baseUrl = "https://hodlwallet.co/knowledge"
+        // #endif
         
         var url = baseUrl
         
