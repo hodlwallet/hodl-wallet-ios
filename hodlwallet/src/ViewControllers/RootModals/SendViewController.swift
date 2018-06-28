@@ -173,16 +173,6 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
         var feeOutput = ""
         var color: UIColor = .grayTextTint
         
-        let attributes: [NSAttributedStringKey: Any] = [
-            NSAttributedStringKey.font: UIFont.customBody(size: 14.0),
-            NSAttributedStringKey.foregroundColor: color
-        ]
-        
-        let feeAttributes: [NSAttributedStringKey: Any] = [
-            NSAttributedStringKey.font: UIFont.customBody(size: 16.0),
-            NSAttributedStringKey.foregroundColor: UIColor.grayTextTint
-        ]
-        
         if let amount = amount, amount.rawValue > 0 {
             let fee = sender.feeForTx(amount: amount.rawValue)
             let feeAmount = DisplayAmount(amount: Satoshis(rawValue: fee), state: store.state, selectedRate: rate, minimumFractionDigits: 2)
@@ -193,13 +183,35 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
                     if (balance >= fee) && amount.rawValue > (balance - fee) {
                         color = .cameraGuideNegative
                     }
+                    
+                    let attributes: [NSAttributedStringKey: Any] = [
+                        NSAttributedStringKey.font: UIFont.customBody(size: 14.0),
+                        NSAttributedStringKey.foregroundColor: color
+                    ]
+                    
+                    let feeAttributes: [NSAttributedStringKey: Any] = [
+                        NSAttributedStringKey.font: UIFont.customBody(size: 16.0),
+                        NSAttributedStringKey.foregroundColor: UIColor.grayTextTint
+                    ]
+                    
                     return (NSAttributedString(string: balanceOutput, attributes: attributes), NSAttributedString(string: feeOutput, attributes: feeAttributes))
             }
             feeOutput = String(format: S.FeeSelector.feeDescription, "\(feeText)")
             if (balance >= fee) && amount.rawValue > (balance - fee) {
                 color = .cameraGuideNegative
             }
+            
         }
+        
+        let attributes: [NSAttributedStringKey: Any] = [
+            NSAttributedStringKey.font: UIFont.customBody(size: 14.0),
+            NSAttributedStringKey.foregroundColor: color
+        ]
+        
+        let feeAttributes: [NSAttributedStringKey: Any] = [
+            NSAttributedStringKey.font: UIFont.customBody(size: 16.0),
+            NSAttributedStringKey.foregroundColor: UIColor.grayTextTint
+        ]
 
         return (NSAttributedString(string: balanceOutput, attributes: attributes), NSAttributedString(string: feeOutput, attributes: feeAttributes))
     }
