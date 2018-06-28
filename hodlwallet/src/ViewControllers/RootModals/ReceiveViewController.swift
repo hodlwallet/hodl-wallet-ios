@@ -31,6 +31,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
 
     //MARK - Private
     private let qrCode = UIImageView()
+    private let shareQrCode = UIImageView()
     private let address = UILabel(font: .customBody(size: 14.0))
     private let addressPopout = InViewAlert(type: .primary)
     private let share = ShadowButton(title: S.Receive.share, type: .tertiary, image: #imageLiteral(resourceName: "Share"), imageColor: .gradientStart, backColor: .darkGray)
@@ -141,6 +142,8 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         address.text = wallet.receiveAddress
         qrCode.image = UIImage.qrCode(data: "\(address.text!)".data(using: .utf8)!, color: CIColor(color: .whiteTint))?
             .resize(CGSize(width: qrSize, height: qrSize))!
+        shareQrCode.image = UIImage.qrCode(data: "\(address.text!)".data(using: .utf8)!, color: CIColor(color: .black))?
+            .resize(CGSize(width: qrSize, height: qrSize))!
     }
 
     private func addActions() {
@@ -211,11 +214,11 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     }
 
     @objc private func emailTapped() {
-        presentEmail?(address.text!, qrCode.image!)
+        presentEmail?(address.text!, shareQrCode.image!)
     }
 
     @objc private func textTapped() {
-        presentText?(address.text!, qrCode.image!)
+        presentText?(address.text!, shareQrCode.image!)
     }
 
     private func toggle(alertView: InViewAlert, shouldAdjustPadding: Bool, shouldShrinkAfter: Bool = false) {
