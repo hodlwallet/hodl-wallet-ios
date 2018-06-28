@@ -56,4 +56,4 @@ Any jailbreak app can grant itself access to every other app's keychain data. Th
 
 **Hodl** is open source and available under the terms of the MIT license.
 
-Source code is available at https://github.com/bitstopco
+Source code is available at https://github.com/hodlwallet
