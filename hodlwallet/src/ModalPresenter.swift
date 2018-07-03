@@ -197,7 +197,7 @@ class ModalPresenter : Subscriber, Trackable {
         supportCenter.transitioningDelegate = supportCenter
         
         // #if Debug || Testflight
-        //     // let baseUrl = "http://knowledge.hodlwallet.co/staging/"
+            // let baseUrl = "http://192.168.88.183:3000/knowledge"
         //     let baseUrl = "https://hodlwallet-website-staging.herokuapp.com/knowledge"
         // #else
             let baseUrl = "https://hodlwallet.co/knowledge"
@@ -207,10 +207,10 @@ class ModalPresenter : Subscriber, Trackable {
         
         if articleId != nil {
             // url += "?slug=\(articleId!)&locale=\(Locale.current.identifier)&regionCode=\(Locale.current.regionCode ?? "")"
-            url += "/\(articleId!)"
+            url += "/\(articleId!)#nonav"
         } else { 
             // url += "?locale=\(Locale.current.identifier)&regionCode=\(Locale.current.regionCode ?? "")"
-            url += ""
+            url += "#nonav"
         }
         
         supportCenter.navigate(to: url)
