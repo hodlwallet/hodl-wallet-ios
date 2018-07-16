@@ -67,7 +67,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>org.voisine.bread</string>
+			<string>co.hodlwallet</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>bread</string>
