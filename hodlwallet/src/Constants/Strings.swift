@@ -302,13 +302,13 @@ enum S {
         static let header = NSLocalizedString("ReScan.header", value:"Sync Blockchain", comment: "Sync Blockchain view header")
         static let subheader1 = NSLocalizedString("ReScan.subheader1", value:"Estimated time", comment: "Subheader label")
         static let subheader2 = NSLocalizedString("ReScan.subheader2", value:"When to Sync?", comment: "Subheader label")
-        static let body1 = NSLocalizedString("ReScan.body1", value:"20-45 minutes", comment: "extimated time")
+        static let body1 = NSLocalizedString("ReScan.body1", value:"1-3 hours", comment: "extimated time")
         static let body2 = NSLocalizedString("ReScan.body2", value:"If a transaction shows as completed on the bitcoin network but not in your wallet.", comment: "Syncing explanation")
         static let body3 = NSLocalizedString("ReScan.body3", value:"You repeatedly get an error saying your transaction was rejected.", comment: "Syncing explanation")
         static let buttonTitle = NSLocalizedString("ReScan.buttonTitle", value:"Start Sync", comment: "Start Sync button label")
-        static let footer = NSLocalizedString("ReScan.footer", value:"You will not be able to send money while syncing with the blockchain.", comment: "Sync blockchain view footer")
+        static let footer = NSLocalizedString("ReScan.footer", value:"You will not be able to send bitcoin while syncing with the blockchain.", comment: "Sync blockchain view footer")
         static let alertTitle = NSLocalizedString("ReScan.alertTitle", value:"Sync with Blockchain?", comment: "Alert message title")
-        static let alertMessage = NSLocalizedString("ReScan.alertMessage", value:"You will not be able to send money while syncing.", comment: "Alert message body")
+        static let alertMessage = NSLocalizedString("ReScan.alertMessage", value:"You will not be able to send bitcoin while syncing.", comment: "Alert message body")
         static let alertAction = NSLocalizedString("ReScan.alertAction", value:"Sync", comment: "Alert action button label")
     }
 
