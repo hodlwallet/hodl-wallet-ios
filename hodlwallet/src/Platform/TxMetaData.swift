@@ -118,7 +118,7 @@ open class TxMetaData : BRKVStoreObject, BRCoding {
         self.blockHeight = Int(transaction.blockHeight)
         self.created = Date()
         var txn = transaction
-        self.size = BRTransactionSize(&txn)
+        self.size = BRTransactionVSize(&txn)
         self.exchangeRate = exchangeRate
         self.exchangeRateCurrency = exchangeRateCurrency
         self.feeRate = feeRate

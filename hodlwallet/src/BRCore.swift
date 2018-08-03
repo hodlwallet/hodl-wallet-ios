@@ -324,7 +324,7 @@ extension UnsafeMutablePointer where Pointee == BRTransaction {
     
     // size in bytes if signed, or estimated size assuming compact pubkey sigs
     var size: Int {
-        return BRTransactionSize(self)
+        return BRTransactionVSize(self)
     }
     
     // minimum transaction fee needed for tx to relay across the bitcoin network
