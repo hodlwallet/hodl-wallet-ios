@@ -60,7 +60,7 @@ class AccountViewController : UIViewController, Subscriber {
     private let footerView = AccountFooterView()
     private let transactionsLoadingView = LoadingProgressView()
     private let transactionsTableView: TransactionsTableViewController
-    private let footerHeight: CGFloat = 70.0
+    private let footerHeight: CGFloat = 100.0
     private var transactionsLoadingViewTop: NSLayoutConstraint?
     private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
     private var isLoginRequired = false
@@ -131,7 +131,7 @@ class AccountViewController : UIViewController, Subscriber {
     }
 
     private func addConstraints() {
-        headerContainer.constrainTopCorners(sidePadding: 0, topPadding: 0)
+        headerContainer.constrainTopCorners(sidePadding: 0, topPadding: 15)
         headerContainer.constrain([
             headerContainer.constraint(.height, constant: accountHeaderHeight) ])
         headerView.constrain(toSuperviewEdges: nil)
