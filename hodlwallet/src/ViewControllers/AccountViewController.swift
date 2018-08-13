@@ -335,7 +335,7 @@ class AccountViewController : UIViewController, Subscriber {
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return searchHeaderview.isHidden ? .lightContent : .default
+        return .lightContent
     }
 
     override var prefersStatusBarHidden: Bool {
