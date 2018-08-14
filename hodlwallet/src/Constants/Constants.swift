@@ -21,7 +21,7 @@ struct Padding {
 struct C {
     static let padding = Padding()
     struct Sizes {
-        static let buttonHeight: CGFloat = 48.0
+        static let buttonHeight: CGFloat = 90.0
         static let headerHeight: CGFloat = 65.0
         static let largeHeaderHeight: CGFloat = 220.0
         static let logoAspectRatio: CGFloat = 239.0/400.0
