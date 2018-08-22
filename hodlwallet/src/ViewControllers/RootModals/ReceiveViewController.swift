@@ -81,7 +81,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         qrCode.constrain([
             qrCode.constraint(.width, constant: qrSize),
             qrCode.constraint(.height, constant: qrSize),
-            qrCode.constraint(.top, toView: view, constant: C.padding[12]),
+            qrCode.constraint(.top, toView: view, constant: C.padding[10]),
             qrCode.constraint(.centerX, toView: view) ])
         address.constrain([
             address.constraint(toBottom: qrCode, constant: C.padding[1]),
@@ -96,7 +96,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
             share.constraint(toTop: sharePopout, constant: 0.0),
             share.constraint(.leading, toView: view, constant: 0.0),
             share.constraint(.trailing, toView: view, constant: 0.0),
-            share.constraint(.height, constant: 65.0), ])
+            share.constraint(.height, constant: 80.0), ])
         sharePopout.heightConstraint = sharePopout.constraint(.height, constant: 0.0)
         topSharePopoutConstraint = sharePopout.constraint(toBottom: share, constant: largeSharePadding)
         sharePopout.constrain([
@@ -114,7 +114,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         request.constrain([
             request.constraint(.leading, toView: view, constant: 0.0),
             request.constraint(.trailing, toView: view, constant: 0.0),
-            request.constraint(.height, constant: 65.0),
+            request.constraint(.height, constant: 80.0),
             requestBottom ])
         addressButton.constrain([
             addressButton.leadingAnchor.constraint(equalTo: address.leadingAnchor, constant: -C.padding[1]),
