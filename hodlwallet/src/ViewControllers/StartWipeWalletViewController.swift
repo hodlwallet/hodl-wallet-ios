@@ -64,7 +64,7 @@ class StartWipeWalletViewController : UIViewController {
             button.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             button.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             button.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            button.constraint(.height, constant:  65.0) ])
+            button.constraint(.height, constant:  C.Sizes.buttonHeight) ])
     }
 
     private func setInitialData() {

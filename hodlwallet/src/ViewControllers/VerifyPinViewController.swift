@@ -79,7 +79,6 @@ class VerifyPinViewController : UIViewController, ContentBoxPresenter {
         pinView.constrain([
             pinView.topAnchor.constraint(equalTo: body.bottomAnchor, constant: C.padding[8]),
             pinView.centerXAnchor.constraint(equalTo: titleLabel.centerXAnchor),
-            /* pinView.centerYAnchor.constraint(equalTo: contentBox.centerYAnchor, constant: C.padding[4]), */
             pinView.widthAnchor.constraint(equalToConstant: pinView.width),
             pinView.heightAnchor.constraint(equalToConstant: pinView.itemSize) ])
         toolbar.constrain([

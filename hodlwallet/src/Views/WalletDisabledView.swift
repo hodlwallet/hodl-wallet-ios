@@ -75,7 +75,7 @@ class WalletDisabledView : UIView {
         reset.constrain([
             reset.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -C.padding[2]),
             reset.centerYAnchor.constraint(equalTo: faq.centerYAnchor),
-            reset.heightAnchor.constraint(equalToConstant: C.Sizes.buttonHeight),
+            reset.heightAnchor.constraint(equalToConstant: 48.0),
             reset.widthAnchor.constraint(equalToConstant: 200.0) ])
 
     }

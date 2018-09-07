@@ -28,7 +28,7 @@ class ModalViewController : UIViewController, Subscriber {
 
     //MARK: - Private
     private let modalInfo: ModalDisplayable
-    private var headerHeight: CGFloat = 85.0
+    private var headerHeight: CGFloat = 100.0
     fileprivate let header: ModalHeaderView
     private let tapGestureRecognizer = UITapGestureRecognizer()
     private let store: Store

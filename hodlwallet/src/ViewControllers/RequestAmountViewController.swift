@@ -87,7 +87,7 @@ class RequestAmountViewController : UIViewController {
             share.constraint(toTop: sharePopout, constant: 0.0),
             share.constraint(.leading, toView: view, constant: 0.0),
             share.constraint(.trailing, toView: view, constant: 0.0),
-            share.constraint(.height, constant: 60.0), ])
+            share.constraint(.height, constant: C.Sizes.buttonHeight), ])
         sharePopout.heightConstraint = sharePopout.constraint(.height, constant: 0.0)
         topSharePopoutConstraint = sharePopout.constraint(toBottom: share, constant: largeSharePadding)
         sharePopout.constrain([

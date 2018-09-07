@@ -178,7 +178,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
         backgroundView.backgroundColor = .grayBackground
         if walletManager != nil {
             addChildViewController(pinPad, layout: {
-                pinPadPottom = pinPad.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                pinPadPottom = pinPad.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -C.marginBottom)
                 pinPad.view.constrain([
                     pinPad.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                     pinPad.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -189,7 +189,7 @@ class LoginViewController : UIViewController, Subscriber, Trackable {
         pinViewContainer.constrain(toSuperviewEdges: nil)
 
         addressButton.constrain([
-            addressButton.topAnchor.constraint(equalTo: view.topAnchor, constant: C.padding[7]),
+            addressButton.topAnchor.constraint(equalTo: view.topAnchor, constant: C.marginTop),
             addressButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: C.padding[5] + 10.0) ])
         scanButton.constrain([
             scanButton.topAnchor.constraint(equalTo: addressButton.topAnchor),

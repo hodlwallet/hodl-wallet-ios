@@ -49,7 +49,7 @@ class RecoverWalletIntroViewController : UIViewController {
             nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            nextButton.heightAnchor.constraint(equalToConstant: 65.0) ])
+            nextButton.heightAnchor.constraint(equalToConstant: C.Sizes.buttonHeight) ])
     }
 
     private func setData() {

@@ -21,8 +21,8 @@ struct Padding {
 struct C {
     static let padding = Padding()
     struct Sizes {
-        static let buttonHeight: CGFloat = 48.0
-        static let headerHeight: CGFloat = 48.0
+        static let buttonHeight: CGFloat = 90.0
+        static let headerHeight: CGFloat = 65.0
         static let largeHeaderHeight: CGFloat = 220.0
         static let logoAspectRatio: CGFloat = 239.0/400.0
     }
@@ -44,4 +44,6 @@ struct C {
     }
     static let feeLimit: UInt64 = 1200000
     static let byteShift: UInt64 = 1000
+    static let marginTop: CGFloat = 59.0
+    static let marginBottom: CGFloat = 35.0
 }

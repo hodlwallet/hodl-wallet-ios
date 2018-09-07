@@ -62,7 +62,7 @@ class ReScanViewController : UIViewController, Subscriber {
             button.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             button.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             button.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            button.heightAnchor.constraint(equalToConstant: 65.0) ])
+            button.heightAnchor.constraint(equalToConstant: C.Sizes.buttonHeight) ])
     }
 
     private func setInitialData() {
