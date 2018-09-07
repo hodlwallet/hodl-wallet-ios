@@ -196,22 +196,27 @@ class ModalPresenter : Subscriber, Trackable {
         supportCenter.modalPresentationCapturesStatusBarAppearance = true
         supportCenter.transitioningDelegate = supportCenter
         
-        // #if Debug || Testflight
-            // let baseUrl = "http://192.168.88.183:3000/knowledge"
-        //     let baseUrl = "https://hodlwallet-website-staging.herokuapp.com/knowledge"
-        // #else
-            let baseUrl = "https://hodlwallet.co/knowledge"
-        // #endif
+        // https://hodlwallet.co/es/knowledge/starting-a-new-wallet
         
-        var url = baseUrl
+        var url = "https://hodlwallet.co"
+        
+        if Locale.current.identifier == "en" {
+            url += "/knowledge"
+        } else {
+            url += "/\(Locale.current.identifier)/knowledge"
+        }
         
         if articleId != nil {
-            // url += "?slug=\(articleId!)&locale=\(Locale.current.identifier)&regionCode=\(Locale.current.regionCode ?? "")"
             url += "/\(articleId!)#nonav"
         } else { 
-            // url += "?locale=\(Locale.current.identifier)&regionCode=\(Locale.current.regionCode ?? "")"
             url += "#nonav"
         }
+
+        print("-----------------------------------------------------------------------")
+        print(url)
+        print(Locale.current.identifier)
+        print(Locale.current.regionCode)
+        print("-----------------------------------------------------------------------")
         
         supportCenter.navigate(to: url)
         topViewController?.present(supportCenter, animated: true, completion: {})
