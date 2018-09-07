@@ -241,11 +241,6 @@ open class BRReplicatedKVStore: NSObject {
     func set(_ key: String, value: [UInt8], localVer: UInt64) throws -> (UInt64, Date) {
         try checkKey(key)
         let (newVer, time) = try _set(key, value: value, localVer: localVer)
-        if syncImmediately {
-            try syncKey(key) { _ in
-                self.log("SET key synced: \(key)")
-            }
-        }
         return (newVer, time)
     }
     
@@ -284,11 +279,6 @@ open class BRReplicatedKVStore: NSObject {
     func del(_ key: String, localVer: UInt64) throws -> (UInt64, Date) {
         try checkKey(key)
         let (newVer, time) = try _del(key, localVer: localVer)
-        if syncImmediately {
-            try syncKey(key) { _ in
-                self.log("DEL key synced: \(key)")
-            }
-        }
         return (newVer, time)
     }
     
@@ -462,7 +452,7 @@ open class BRReplicatedKVStore: NSObject {
         // 3. for keys that we do have, sync em
         // 4. for keys that they don't have that we do, upload em
 
-        return 
+        return
         
         if syncRunning {
             DispatchQueue.main.async(execute: { 
