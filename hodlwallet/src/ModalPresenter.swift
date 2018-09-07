@@ -200,10 +200,10 @@ class ModalPresenter : Subscriber, Trackable {
         
         var url = "https://hodlwallet.co"
         
-        if Locale.current.identifier == "en" {
-            url += "/knowledge"
+        if let lang = Locale.current.languageCode {
+            url += lang == "en" ? "/knowledge" : "/\(lang)/knowledge"
         } else {
-            url += "/\(Locale.current.identifier.prefix(2))/knowledge"
+            url += "/knowledge"
         }
         
         if articleId != nil {
