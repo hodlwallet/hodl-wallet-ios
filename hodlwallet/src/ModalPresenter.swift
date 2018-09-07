@@ -203,7 +203,7 @@ class ModalPresenter : Subscriber, Trackable {
         if Locale.current.identifier == "en" {
             url += "/knowledge"
         } else {
-            url += "/\(Locale.current.identifier)/knowledge"
+            url += "/\(Locale.current.identifier.prefix(2))/knowledge"
         }
         
         if articleId != nil {
@@ -211,12 +211,6 @@ class ModalPresenter : Subscriber, Trackable {
         } else { 
             url += "#nonav"
         }
-
-        print("-----------------------------------------------------------------------")
-        print(url)
-        print(Locale.current.identifier)
-        print(Locale.current.regionCode)
-        print("-----------------------------------------------------------------------")
         
         supportCenter.navigate(to: url)
         topViewController?.present(supportCenter, animated: true, completion: {})
