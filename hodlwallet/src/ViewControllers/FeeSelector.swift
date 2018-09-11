@@ -49,7 +49,7 @@ class FeeSelector : UIView {
     private let deliveryHeader = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
     private let feeBody = UILabel(font: .customMedium(size: 15.0), color: .grayTextTint)
     private let deliveryBody = UILabel(font: .customMedium(size: 16.0), color: .grayTextTint)
-    private let slow = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
+    private let economy = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
     private let normal = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
     private let fastest = UILabel.wrapping(font: .customBody(size: 16.0), color: .whiteTint)
     private let control = UISlider()
@@ -62,7 +62,7 @@ class FeeSelector : UIView {
         addSubview(deliveryHeader)
         addSubview(feeBody)
         addSubview(deliveryBody)
-        addSubview(slow)
+        addSubview(economy)
         addSubview(normal)
         addSubview(fastest)
         addSubview(advanced)
@@ -87,17 +87,17 @@ class FeeSelector : UIView {
         
         bottomConstraint = advanced.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -C.padding[1])
         
-        slow.constrain([
-            slow.leadingAnchor.constraint(equalTo: feeHeader.leadingAnchor),
-            slow.topAnchor.constraint(equalTo: feeBody.bottomAnchor, constant: C.padding[1])])
-        slow.text = S.FeeSelector.slow
+        economy.constrain([
+            economy.leadingAnchor.constraint(equalTo: feeHeader.leadingAnchor),
+            economy.topAnchor.constraint(equalTo: feeBody.bottomAnchor, constant: C.padding[1])])
+        economy.text = S.FeeSelector.economy
         normal.constrain([
             normal.centerXAnchor.constraint(equalTo: centerXAnchor),
-            normal.topAnchor.constraint(equalTo: slow.topAnchor) ])
+            normal.topAnchor.constraint(equalTo: economy.topAnchor) ])
         normal.text = S.FeeSelector.normal
         fastest.constrain([
             fastest.trailingAnchor.constraint(equalTo: control.trailingAnchor),
-            fastest.topAnchor.constraint(equalTo: slow.topAnchor) ])
+            fastest.topAnchor.constraint(equalTo: economy.topAnchor) ])
         fastest.text = S.FeeSelector.fastest
         
         advanced.constrain([
@@ -116,8 +116,8 @@ class FeeSelector : UIView {
         deliveryBody.text = store.state.fees.economy.time as String
         
         control.constrain([
-            control.leadingAnchor.constraint(equalTo: slow.leadingAnchor),
-            control.topAnchor.constraint(equalTo: slow.bottomAnchor, constant: 5.0),
+            control.leadingAnchor.constraint(equalTo: economy.leadingAnchor),
+            control.topAnchor.constraint(equalTo: economy.bottomAnchor, constant: 5.0),
             control.widthAnchor.constraint(equalTo: widthAnchor, constant: -C.padding[4]) ])
     }
     
