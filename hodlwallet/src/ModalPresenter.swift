@@ -196,20 +196,19 @@ class ModalPresenter : Subscriber, Trackable {
         supportCenter.modalPresentationCapturesStatusBarAppearance = true
         supportCenter.transitioningDelegate = supportCenter
         
-        // #if Debug || Testflight
-            // let baseUrl = "http://192.168.88.183:3000/knowledge"
-        //     let baseUrl = "https://hodlwallet-website-staging.herokuapp.com/knowledge"
-        // #else
-            let baseUrl = "https://hodlwallet.co/knowledge"
-        // #endif
+        // https://hodlwallet.co/es/knowledge/starting-a-new-wallet
         
-        var url = baseUrl
+        var url = "https://hodlwallet.co"
+        
+        if let lang = Locale.current.languageCode {
+            url += lang == "en" ? "/knowledge" : "/\(lang)/knowledge"
+        } else {
+            url += "/knowledge"
+        }
         
         if articleId != nil {
-            // url += "?slug=\(articleId!)&locale=\(Locale.current.identifier)&regionCode=\(Locale.current.regionCode ?? "")"
             url += "/\(articleId!)#nonav"
         } else { 
-            // url += "?locale=\(Locale.current.identifier)&regionCode=\(Locale.current.regionCode ?? "")"
             url += "#nonav"
         }
         

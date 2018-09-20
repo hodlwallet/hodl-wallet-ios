@@ -57,14 +57,14 @@ open class AssetArchive {
         } catch let e {
             return completionHandler(e)
         }
-        if !archiveExists {
+        /* if !archiveExists {
             // see if the archive was shipped with the app
             copyBundledArchive()
         }
         if !archiveExists {
             // we do not have the archive, download a fresh copy
             return downloadCompleteArchive(completionHandler: completionHandler)
-        }
+        } */
 
         // Disable bundle update, we dont use it,
         // this fixes the issue
