@@ -28,7 +28,6 @@ class RequestAmountViewController : UIViewController {
     //MARK - Private
     private let amountView: AmountViewController
     private let qrCode = UIImageView()
-    private let shareQrCode = UIImageView()
     private let address = UILabel(font: .customBody(size: 14.0))
     private let addressPopout = InViewAlert(type: .primary)
     private let share = ShadowButton(title: S.Receive.share, type: .tertiary, image: #imageLiteral(resourceName: "Share"), imageColor: .gradientStart, backColor: .darkGray)
@@ -108,10 +107,9 @@ class RequestAmountViewController : UIViewController {
         address.text = wallet.receiveAddress
         address.textColor = .whiteTint
         border.backgroundColor = .secondaryGrayText
-        qrCode.image = UIImage.qrCode(data: "\(wallet.receiveAddress)".data(using: .utf8)!, color: CIColor(color: .whiteTint))?
+        qrCode.image = UIImage.qrCode(data: "\(wallet.receiveAddress)".data(using: .utf8)!, color: CIColor(color: .black))?
             .resize(qrSize)!
-        shareQrCode.image = UIImage.qrCode(data: "\(wallet.receiveAddress)".data(using: .utf8)!, color: CIColor(color: .black))?
-            .resize(qrSize)!
+        qrCode.backgroundColor = .whiteTint
         share.isToggleable = true
         sharePopout.clipsToBounds = true
         sharePopout.backgroundColor = .darkGray
@@ -130,10 +128,9 @@ class RequestAmountViewController : UIViewController {
     private func setQrCode(){
         guard let amount = amount else { return }
         let request = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
-        qrCode.image = UIImage.qrCode(data: request.data(using: .utf8)!, color: CIColor(color: .whiteTint))?
+        qrCode.image = UIImage.qrCode(data: request.data(using: .utf8)!, color: CIColor(color: .black))?
             .resize(qrSize)!
-        shareQrCode.image = UIImage.qrCode(data: request.data(using: .utf8)!, color: CIColor(color: .black))?
-            .resize(qrSize)!
+        qrCode.backgroundColor = .whiteTint
     }
 
     private func setupCopiedMessage() {
@@ -191,13 +188,13 @@ class RequestAmountViewController : UIViewController {
     @objc private func emailTapped() {
         guard let amount = amount else { return showErrorMessage(S.RequestAnAmount.noAmount) }
         let text = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
-        presentEmail?(text, shareQrCode.image!)
+        presentEmail?(text, qrCode.image!)
     }
 
     @objc private func textTapped() {
         guard let amount = amount else { return showErrorMessage(S.RequestAnAmount.noAmount) }
         let text = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
-        presentText?(text, shareQrCode.image!)
+        presentText?(text, qrCode.image!)
     }
 
     private func toggle(alertView: InViewAlert, shouldAdjustPadding: Bool, shouldShrinkAfter: Bool = false) {
