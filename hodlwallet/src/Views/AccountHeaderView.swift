@@ -209,7 +209,7 @@ class AccountHeaderView : UIView, Subscriber {
 
         logo.constrain([
             logo.leadingAnchor.constraint(equalTo: leadingAnchor, constant: C.padding[2]),
-            logo.topAnchor.constraint(equalTo: topAnchor, constant: 15.0),
+            logo.topAnchor.constraint(equalTo: topAnchor, constant: 30.0),
             logo.heightAnchor.constraint(equalTo: logo.widthAnchor, multiplier: C.Sizes.logoAspectRatio),
             logo.widthAnchor.constraint(equalTo: widthAnchor, multiplier: logoWidth) ])
         modeLabel.constrain([
