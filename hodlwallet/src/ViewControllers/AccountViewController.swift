@@ -10,7 +10,7 @@ import UIKit
 import BRCore
 import MachO
 
-let accountHeaderHeight: CGFloat = 136.0
+let accountHeaderHeight: CGFloat = 150.0
 private let transactionsLoadingViewHeightConstant: CGFloat = 48.0
 
 class AccountViewController : UIViewController, Subscriber {
@@ -131,7 +131,7 @@ class AccountViewController : UIViewController, Subscriber {
     }
 
     private func addConstraints() {
-        headerContainer.constrainTopCorners(sidePadding: 0, topPadding: 15)
+        headerContainer.constrainTopCorners(sidePadding: 0, topPadding: 0)
         headerContainer.constrain([
             headerContainer.constraint(.height, constant: accountHeaderHeight) ])
         headerView.constrain(toSuperviewEdges: nil)
