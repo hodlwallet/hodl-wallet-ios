@@ -385,7 +385,30 @@ class ModalPresenter : Subscriber, Trackable {
                     settingsNav.dismiss(animated: true, completion: {
                         myself.topViewController?.present(nc, animated: true, completion: nil)
                     })
-               })
+               }),
+               Setting(title: S.Settings.legacyAddress, callback: { [weak self] in
+                guard let myself = self else { return }
+                guard let walletManager = myself.walletManager else { return }
+                let nc = ModalNavigationController()
+                nc.setClearNavbar()
+                nc.setGrayStyle()
+                nc.delegate = myself.wipeNavigationDelegate
+                let start = StartWipeWalletViewController {
+                    let recover = EnterPhraseViewController(store: myself.store, walletManager: walletManager, reason: .validateForWipingWallet( {
+                        myself.wipeWallet()
+                    }))
+                    nc.pushViewController(recover, animated: true)
+                }
+                start.addCloseNavigationItem(tintColor: .gradientStart)
+                start.navigationItem.title = S.WipeWallet.title
+                let faqButton = UIButton.buildFaqButton(store: myself.store, articleId: ArticleIds.wipeWallet)
+                faqButton.tintColor = .grayTextTint
+                start.navigationItem.rightBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]
+                nc.viewControllers = [start]
+                settingsNav.dismiss(animated: true, completion: {
+                    myself.topViewController?.present(nc, animated: true, completion: nil)
+                })
+               }),
             ],
             "Manage": [
                 Setting(title: S.Settings.notifications, accessoryText: {

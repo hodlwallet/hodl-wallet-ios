@@ -24,7 +24,7 @@
 //  THE SOFTWARE.
 
 import Foundation
-import BRCore
+// import BRCore
 
 typealias BRTxRef = UnsafeMutablePointer<BRTransaction>
 typealias BRBlockRef = UnsafeMutablePointer<BRMerkleBlock>
@@ -397,6 +397,11 @@ class BRWallet {
     // the first unused external address
     var receiveAddress: String {
         return BRWalletReceiveAddress(cPtr).description
+    }
+    
+    // the first unused external legacy address
+    var legacyAddress: String {
+        return BRWalletLegacyAddress(cPtr).description
     }
     
     // all previously genereated internal and external addresses

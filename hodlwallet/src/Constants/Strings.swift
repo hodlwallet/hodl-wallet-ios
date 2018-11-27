@@ -268,6 +268,7 @@ enum S {
         static let review = NSLocalizedString("Settings.review", value: "Leave us a Review", comment: "Leave review button label")
         static let enjoying = NSLocalizedString("Settings.enjoying", value: "Are you enjoying Hodl?", comment: "Are you enjoying hodl alert message body")
         static let wipe = NSLocalizedString("Settings.wipe", value: "Start/Recover Another Wallet", comment: "Start or recover another wallet menu label.")
+        static let legacyAddress = NSLocalizedString("Settings.legacyAddress", value: "Show Legacy Address", comment: "Generates a legacy address and shows its QR code.")
         static let advancedTitle = NSLocalizedString("Settings.advancedTitle", value: "Advanced Settings", comment: "Advanced Settings title")
     }
 
