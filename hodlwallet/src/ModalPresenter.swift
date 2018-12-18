@@ -280,9 +280,9 @@ class ModalPresenter : Subscriber, Trackable {
         return root
     }
 
-    private func receiveView(isRequestAmountVisible: Bool) -> UIViewController? {
+    private func receiveView(isRequestAmountVisible: Bool, legacyAddress: Bool = false, wrapInModal: Bool = false) -> UIViewController? {
         guard let wallet = walletManager?.wallet else { return nil }
-        let receiveVC = ReceiveViewController(wallet: wallet, store: store, isRequestAmountVisible: isRequestAmountVisible)
+        let receiveVC = ReceiveViewController(wallet: wallet, store: store, isRequestAmountVisible: isRequestAmountVisible, legacyAddress: legacyAddress)
         let root = ModalViewController(childViewController: receiveVC, store: store)
         receiveVC.presentEmail = { [weak self, weak root] address, image in
             guard let root = root else { return }
@@ -393,18 +393,29 @@ class ModalPresenter : Subscriber, Trackable {
                 nc.setClearNavbar()
                 nc.setGrayStyle()
                 nc.delegate = myself.wipeNavigationDelegate
-                let start = StartWipeWalletViewController {
-                    let recover = EnterPhraseViewController(store: myself.store, walletManager: walletManager, reason: .validateForWipingWallet( {
-                        myself.wipeWallet()
-                    }))
-                    nc.pushViewController(recover, animated: true)
+                
+                let receiveViewController = ReceiveViewController (wallet: walletManager.wallet!, store: myself.store, isRequestAmountVisible: false, legacyAddress: true)
+                nc.addChildViewController(receiveViewController)
+                nc.transitioningDelegate = myself.modalTransitionDelegate
+                
+                receiveViewController.addCloseNavigationItem(tintColor: .gradientStart)
+                receiveViewController.navigationItem.title = S.Settings.legacyAddress
+                
+                receiveViewController.presentEmail = { [weak self] address, image in
+                    guard let root = self?.topViewController else { return }
+                    self?.messagePresenter.presenter = root
+                    self?.messagePresenter.presentMailCompose(bitcoinAddress: address, image: image)
                 }
-                start.addCloseNavigationItem(tintColor: .gradientStart)
-                start.navigationItem.title = S.WipeWallet.title
-                let faqButton = UIButton.buildFaqButton(store: myself.store, articleId: ArticleIds.wipeWallet)
+                receiveViewController.presentText = { [weak self] address, image in
+                    guard let root = self?.topViewController else { return }
+                    self?.messagePresenter.presenter = root
+                    self?.messagePresenter.presentMessageCompose(address: address, image: image)
+                }
+
+                let faqButton = UIButton.buildFaqButton(store: myself.store, articleId: ArticleIds.receiveBitcoin)
                 faqButton.tintColor = .grayTextTint
-                start.navigationItem.rightBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]
-                nc.viewControllers = [start]
+                receiveViewController.navigationItem.rightBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]
+                nc.viewControllers = [receiveViewController]
                 settingsNav.dismiss(animated: true, completion: {
                     myself.topViewController?.present(nc, animated: true, completion: nil)
                 })

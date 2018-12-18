@@ -22,9 +22,10 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     var presentEmail: PresentShare?
     var presentText: PresentShare?
 
-    init(wallet: BRWallet, store: Store, isRequestAmountVisible: Bool) {
+    init(wallet: BRWallet, store: Store, isRequestAmountVisible: Bool, legacyAddress: Bool = false) {
         self.wallet = wallet
         self.isRequestAmountVisible = isRequestAmountVisible
+        self.legacyAddress = legacyAddress
         self.store = store
         super.init(nibName: nil, bundle: nil)
     }
@@ -51,6 +52,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         }
     }
     fileprivate let isRequestAmountVisible: Bool
+    fileprivate let legacyAddress: Bool
     private var requestTop: NSLayoutConstraint?
     private var requestBottom: NSLayoutConstraint?
 
@@ -92,11 +94,13 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
             addressPopout.constraint(.centerX, toView: view),
             addressPopout.constraint(.width, toView: view),
             addressPopout.heightConstraint ])
+        
         share.constrain([
             share.constraint(toTop: sharePopout, constant: 0.0),
             share.constraint(.leading, toView: view, constant: 0.0),
             share.constraint(.trailing, toView: view, constant: 0.0),
             share.constraint(.height, constant: 80.0), ])
+
         sharePopout.heightConstraint = sharePopout.constraint(.height, constant: 0.0)
         topSharePopoutConstraint = sharePopout.constraint(toBottom: share, constant: largeSharePadding)
         sharePopout.constrain([
@@ -110,12 +114,14 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
             border.constraint(toTop: request, constant: 0.0),
             border.constraint(.centerX, toView: view),
             border.constraint(.height, constant: 2.0) ])
+        
         requestBottom = request.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0.0)
         request.constrain([
             request.constraint(.leading, toView: view, constant: 0.0),
             request.constraint(.trailing, toView: view, constant: 0.0),
             request.constraint(.height, constant: 80.0),
             requestBottom ])
+        
         addressButton.constrain([
             addressButton.leadingAnchor.constraint(equalTo: address.leadingAnchor, constant: -C.padding[1]),
             addressButton.topAnchor.constraint(equalTo: qrCode.topAnchor),
@@ -138,7 +144,12 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
     }
 
     private func setReceiveAddress() {
-        address.text = wallet.receiveAddress
+        if (self.legacyAddress) {
+            address.text = wallet.legacyAddress
+        } else {
+            address.text = wallet.receiveAddress
+        }
+
         qrCode.image = UIImage.qrCode(data: "\(address.text!)".data(using: .utf8)!, color: CIColor(color: .black))?
             .resize(CGSize(width: qrSize, height: qrSize))!
         qrCode.backgroundColor = .whiteTint
@@ -149,8 +160,11 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
             self?.addressTapped()
         }
         request.tap = { [weak self] in
-            guard let modalTransitionDelegate = self?.parent?.transitioningDelegate as? ModalTransitionDelegate else { return }
-            modalTransitionDelegate.reset()
+            if ((self?.parent?.transitioningDelegate) != nil) {
+                guard let modalTransitionDelegate = self?.parent?.transitioningDelegate as? ModalTransitionDelegate else { return }
+                modalTransitionDelegate.reset()
+            }
+            
             self?.dismiss(animated: true, completion: {
                 self?.store.perform(action: RootModalActions.Present(modal: .requestAmount))
             })
