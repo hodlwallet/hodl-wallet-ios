@@ -24,7 +24,7 @@
 //  THE SOFTWARE.
 
 import Foundation
-// import BRCore
+import BRCore
 
 typealias BRTxRef = UnsafeMutablePointer<BRTransaction>
 typealias BRBlockRef = UnsafeMutablePointer<BRMerkleBlock>
@@ -309,7 +309,7 @@ extension UnsafeMutablePointer where Pointee == BRTransaction {
     // adds an input to tx
     func addInput(txHash: UInt256, index: UInt32, amount: UInt64, script: [UInt8],
                   signature: [UInt8]? = nil, sequence: UInt32 = TXIN_SEQUENCE) {
-        BRTransactionAddInput(self, txHash, index, amount, script, script.count, signature, signature?.count ?? 0, sequence)
+        BRTransactionAddInput(self, txHash, index, amount, script, script.count, signature, signature?.count ?? 0, nil, 0, sequence);
     }
     
     // adds an output to tx
