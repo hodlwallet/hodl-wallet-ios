@@ -584,4 +584,9 @@ enum S {
         static let title = NSLocalizedString("Welcome.title", value: "Welcome to Hodl!", comment: "Welcome view title")
         static let body = NSLocalizedString("Welcome.body", value: "If you need help, look for the (?) in the top right of most screens.", comment: "Welcome view body text")
     }
+    
+    enum Segwit {
+        static let title = NSLocalizedString("Segwit.title", value: "HODL Wallet has Upgraded!", comment: "Segwit view title")
+        static let body = NSLocalizedString("Segwit.body", value: "HODL Wallet has upgraded to the newest Bitcoin address standard. This gives you the added benefit of saving on transaction fees and being compatible with the latest standards of the Bitcoin Network. You don't have to do anything different and the only thing you'll notice is your addresses have changed and now begin with \"btc\".\n\nYour money is safe and still stored on your Backup Recovery Key.\n\nSince this change is still taking effect across the Bitcoin Network, some services may not be ready to send to this new address type. If you encounter this you can still access the old addresses that begin with \"1\" via: Settings/ Wallet/ Show Legacy Address", comment: "Segwit view body text")
+    }
 }

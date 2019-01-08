@@ -219,6 +219,7 @@
 		75A2A8231DA5938500A983D8 /* NotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 75A2A81C1DA5938500A983D8 /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		75C735AA1DAA1B9C00251ECF /* libunbound.c in Sources */ = {isa = PBXBuildFile; fileRef = 755CD4121DAA0E3E0075898E /* libunbound.c */; };
 		788D9C5820AA47AE000F24F7 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788D9C5720AA47AE000F24F7 /* Square.swift */; };
+		78D3A1D021E41F8A00EFAC99 /* SegwitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D3A1CF21E41F8A00EFAC99 /* SegwitViewController.swift */; };
 		B1B07879206CEE25007D6F4A /* BRBech32.c in Sources */ = {isa = PBXBuildFile; fileRef = B1B07878206CEE24007D6F4A /* BRBech32.c */; };
 		B1D04372209BBAE600F9DE16 /* Electrolize-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1D04371209BBAE500F9DE16 /* Electrolize-Regular.ttf */; };
 		B1D04373209BBAE600F9DE16 /* Electrolize-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1D04371209BBAE500F9DE16 /* Electrolize-Regular.ttf */; };
@@ -1388,6 +1389,7 @@
 		75DC783C1DAA05B500932D9A /* test.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test.c; sourceTree = "<group>"; };
 		75FEFD1B1DAED56E00203D3A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		788D9C5720AA47AE000F24F7 /* Square.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
+		78D3A1CF21E41F8A00EFAC99 /* SegwitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegwitViewController.swift; sourceTree = "<group>"; };
 		B145CF7B2065804A0029EA7D /* BRChainParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRChainParams.h; sourceTree = "<group>"; };
 		B1B07877206CEE24007D6F4A /* BRBech32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRBech32.h; sourceTree = "<group>"; };
 		B1B07878206CEE24007D6F4A /* BRBech32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BRBech32.c; sourceTree = "<group>"; };
@@ -2879,6 +2881,7 @@
 				CE44BA1A1F33BFC500392A1A /* NodeSelectorViewController.swift */,
 				CE44BA1C1F35102D00392A1A /* BCashTransactionViewController.swift */,
 				CEE659E81F664C73001FF29D /* WelcomeViewController.swift */,
+				78D3A1CF21E41F8A00EFAC99 /* SegwitViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -3920,6 +3923,7 @@
 				CEC6AA401DEFC87300EE5AFD /* SendViewController.swift in Sources */,
 				CEAA9E8F1DC074410066731D /* StartPaperPhraseViewController.swift in Sources */,
 				CEC6F8451E886723000795B8 /* PaymentRequest.swift in Sources */,
+				78D3A1D021E41F8A00EFAC99 /* SegwitViewController.swift in Sources */,
 				CEC6F8491E89C462000795B8 /* TouchIdSettingsViewController.swift in Sources */,
 				CE4C1CC81ED88B600063E184 /* URLController.swift in Sources */,
 				788D9C5820AA47AE000F24F7 /* Square.swift in Sources */,

@@ -38,6 +38,7 @@ class AccountViewController : UIViewController, Subscriber {
                 present(loginView, animated: false, completion: {
                     self.tempLoginView.remove()
                     self.attemptShowWelcomeView()
+                    self.attemptShowSegwitView()
                 })
             }
             transactionsTableView.walletManager = walletManager
@@ -68,6 +69,7 @@ class AccountViewController : UIViewController, Subscriber {
     private let tempLoginView: LoginViewController
     private let loginTransitionDelegate = LoginTransitionDelegate()
     private let welcomeTransitingDelegate = PinTransitioningDelegate()
+    private let segwitTransitingDelegate = PinTransitioningDelegate()
 
     private let searchHeaderview: SearchHeaderView = {
         let view = SearchHeaderView()
@@ -331,6 +333,18 @@ class AccountViewController : UIViewController, Subscriber {
             welcomeTransitingDelegate.shouldShowMaskView = false
             loginView.present(welcome, animated: true, completion: nil)
             UserDefaults.hasShownWelcome = true
+        }
+    }
+    
+    private func attemptShowSegwitView() {
+        if !UserDefaults.hasShownSegwit {
+            let welcome = SegwitViewController()
+            welcome.transitioningDelegate = segwitTransitingDelegate
+            welcome.modalPresentationStyle = .overFullScreen
+            welcome.modalPresentationCapturesStatusBarAppearance = true
+            segwitTransitingDelegate.shouldShowMaskView = false
+            loginView.present(welcome, animated: true, completion: nil)
+            UserDefaults.hasShownSegwit = true
         }
     }
 
