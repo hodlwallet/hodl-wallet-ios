@@ -399,7 +399,7 @@ class ModalPresenter : Subscriber, Trackable {
                 nc.transitioningDelegate = myself.modalTransitionDelegate
                 
                 receiveViewController.addCloseNavigationItem(tintColor: .gradientStart)
-                receiveViewController.navigationItem.title = S.Settings.legacyAddress
+                receiveViewController.navigationItem.title = S.Settings.legacyAddressTitle
                 
                 receiveViewController.presentEmail = { [weak self] address, image in
                     guard let root = self?.topViewController else { return }

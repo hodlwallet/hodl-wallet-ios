@@ -338,12 +338,12 @@ class AccountViewController : UIViewController, Subscriber {
     
     private func attemptShowSegwitView() {
         if !UserDefaults.hasShownSegwit {
-            let welcome = SegwitViewController()
-            welcome.transitioningDelegate = segwitTransitingDelegate
-            welcome.modalPresentationStyle = .overFullScreen
-            welcome.modalPresentationCapturesStatusBarAppearance = true
+            let welcomeToSegwitMessage = SegwitViewController()
+            welcomeToSegwitMessage.transitioningDelegate = segwitTransitingDelegate
+            welcomeToSegwitMessage.modalPresentationStyle = .overFullScreen
+            welcomeToSegwitMessage.modalPresentationCapturesStatusBarAppearance = true
             segwitTransitingDelegate.shouldShowMaskView = false
-            loginView.present(welcome, animated: true, completion: nil)
+            loginView.present(welcomeToSegwitMessage, animated: true, completion: nil)
             UserDefaults.hasShownSegwit = true
         }
     }
