@@ -50,7 +50,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.1.1</string>
+	<string>3.1.2</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -85,7 +85,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>8</string>
+	<string>9</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -97,6 +97,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Used to scan barcodes</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Used to unlock wallet</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Used to determine where you are - never recorded or shared with anyone</string>
 	<key>NSPhotoLibraryUsageDescription</key>
