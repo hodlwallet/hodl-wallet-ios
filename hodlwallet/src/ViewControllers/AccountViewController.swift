@@ -38,6 +38,7 @@ class AccountViewController : UIViewController, Subscriber {
                 present(loginView, animated: false, completion: {
                     self.tempLoginView.remove()
                     self.attemptShowWelcomeView()
+                    self.attemptShowSegwitView()
                 })
             }
             transactionsTableView.walletManager = walletManager
@@ -68,6 +69,7 @@ class AccountViewController : UIViewController, Subscriber {
     private let tempLoginView: LoginViewController
     private let loginTransitionDelegate = LoginTransitionDelegate()
     private let welcomeTransitingDelegate = PinTransitioningDelegate()
+    private let segwitTransitingDelegate = PinTransitioningDelegate()
 
     private let searchHeaderview: SearchHeaderView = {
         let view = SearchHeaderView()
@@ -298,7 +300,7 @@ class AccountViewController : UIViewController, Subscriber {
             })
         }
         NotificationCenter.default.addObserver(forName: .UIApplicationWillResignActive, object: nil, queue: nil) { note in
-            if !self.isLoginRequired && !self.store.state.isPromptingTouchId {
+            if !self.isLoginRequired && !self.store.state.isPromptingBiometrics {
                 self.blurView.alpha = 1.0
                 self.view.addSubview(self.blurView)
                 self.blurView.constrain(toSuperviewEdges: nil)
@@ -331,6 +333,18 @@ class AccountViewController : UIViewController, Subscriber {
             welcomeTransitingDelegate.shouldShowMaskView = false
             loginView.present(welcome, animated: true, completion: nil)
             UserDefaults.hasShownWelcome = true
+        }
+    }
+    
+    private func attemptShowSegwitView() {
+        if !UserDefaults.hasShownSegwit {
+            let welcomeToSegwitMessage = SegwitViewController()
+            welcomeToSegwitMessage.transitioningDelegate = segwitTransitingDelegate
+            welcomeToSegwitMessage.modalPresentationStyle = .overFullScreen
+            welcomeToSegwitMessage.modalPresentationCapturesStatusBarAppearance = true
+            segwitTransitingDelegate.shouldShowMaskView = false
+            loginView.present(welcomeToSegwitMessage, animated: true, completion: nil)
+            UserDefaults.hasShownSegwit = true
         }
     }
 

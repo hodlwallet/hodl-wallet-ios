@@ -358,7 +358,7 @@ import WebKit
                         decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         // Remove more code obfuscation :)
         if let url = navigationAction.request.url, let host = url.host {
-            if host == server.listenAddress || host == "0.0.0.0" || host == "hodlwallet.co" || host == "hodlwallet-website-staging.herokuapp.com" {
+            if host == server.listenAddress || host == "0.0.0.0" || host == "hodlwallet.co" || host == "hodlwallet.com" || host == "hodlwallet-website-staging.herokuapp.com" {
                 return decisionHandler(.allow)
             }
         }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 enum UpdatePinType {
     case creationNoPhrase

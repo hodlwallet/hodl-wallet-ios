@@ -309,7 +309,7 @@ extension UnsafeMutablePointer where Pointee == BRTransaction {
     // adds an input to tx
     func addInput(txHash: UInt256, index: UInt32, amount: UInt64, script: [UInt8],
                   signature: [UInt8]? = nil, sequence: UInt32 = TXIN_SEQUENCE) {
-        BRTransactionAddInput(self, txHash, index, amount, script, script.count, signature, signature?.count ?? 0, sequence)
+        BRTransactionAddInput(self, txHash, index, amount, script, script.count, signature, signature?.count ?? 0, nil, 0, sequence);
     }
     
     // adds an output to tx
@@ -397,6 +397,11 @@ class BRWallet {
     // the first unused external address
     var receiveAddress: String {
         return BRWalletReceiveAddress(cPtr).description
+    }
+    
+    // the first unused external legacy address
+    var legacyAddress: String {
+        return BRWalletLegacyAddress(cPtr).description
     }
     
     // all previously genereated internal and external addresses

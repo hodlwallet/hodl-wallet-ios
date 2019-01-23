@@ -80,7 +80,7 @@ class FeeSelector : UIView {
         feeBody.constrain([
             feeBody.leadingAnchor.constraint(equalTo: feeHeader.leadingAnchor),
             feeBody.topAnchor.constraint(equalTo: feeHeader.bottomAnchor, constant: C.padding[1]) ])
-        feeBody.text = String(format: S.FeeSelector.satByte, "\(store.state.fees.economy.sats / C.byteShift)")
+        feeBody.text = String(format: S.FeeSelector.satByte, "\(store.state.fees.regular.sats / C.byteShift)")
         deliveryBody.constrain([
             deliveryBody.trailingAnchor.constraint(equalTo: deliveryHeader.trailingAnchor),
             deliveryBody.topAnchor.constraint(equalTo: deliveryHeader.bottomAnchor, constant: C.padding[1])])
@@ -113,7 +113,7 @@ class FeeSelector : UIView {
             customBorder.trailingAnchor.constraint(equalTo: trailingAnchor),
             customBorder.heightAnchor.constraint(equalToConstant: 1.0) ])
         
-        deliveryBody.text = store.state.fees.economy.time as String
+        deliveryBody.text = store.state.fees.regular.time as String
         
         control.constrain([
             control.leadingAnchor.constraint(equalTo: economy.leadingAnchor),
@@ -161,6 +161,7 @@ class FeeSelector : UIView {
         // control.selectedSegmentIndex = 0
         clipsToBounds = true
 
+        control.setValue(2, animated: true)
     }
     
     func updateSelector() {

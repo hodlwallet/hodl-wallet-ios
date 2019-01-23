@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class ModalPresenter : Subscriber, Trackable {
 
@@ -65,8 +66,8 @@ class ModalPresenter : Subscriber, Trackable {
         store.subscribe(self, name: .promptPaperKey, callback: { _ in
             self.presentWritePaperKey()
         })
-        store.subscribe(self, name: .promptTouchId, callback: { _ in
-            self.presentTouchIdSetting()
+        store.subscribe(self, name: .promptBiometrics, callback: { _ in
+            self.presentBiometricsSetting()
         })
         store.subscribe(self, name: .promptShareData, callback: { _ in
             self.promptShareData()
@@ -198,7 +199,7 @@ class ModalPresenter : Subscriber, Trackable {
         
         // https://hodlwallet.co/es/knowledge/starting-a-new-wallet
         
-        var url = "https://hodlwallet.co"
+        var url = "https://hodlwallet.com"
         
         if let lang = Locale.current.languageCode {
             url += lang == "en" ? "/knowledge" : "/\(lang)/knowledge"
@@ -280,9 +281,9 @@ class ModalPresenter : Subscriber, Trackable {
         return root
     }
 
-    private func receiveView(isRequestAmountVisible: Bool) -> UIViewController? {
+    private func receiveView(isRequestAmountVisible: Bool, legacyAddress: Bool = false, wrapInModal: Bool = false) -> UIViewController? {
         guard let wallet = walletManager?.wallet else { return nil }
-        let receiveVC = ReceiveViewController(wallet: wallet, store: store, isRequestAmountVisible: isRequestAmountVisible)
+        let receiveVC = ReceiveViewController(wallet: wallet, store: store, isRequestAmountVisible: isRequestAmountVisible, legacyAddress: legacyAddress)
         let root = ModalViewController(childViewController: receiveVC, store: store)
         receiveVC.presentEmail = { [weak self, weak root] address, image in
             guard let root = root else { return }
@@ -385,7 +386,41 @@ class ModalPresenter : Subscriber, Trackable {
                     settingsNav.dismiss(animated: true, completion: {
                         myself.topViewController?.present(nc, animated: true, completion: nil)
                     })
-               })
+               }),
+               Setting(title: S.Settings.legacyAddress, callback: { [weak self] in
+                guard let myself = self else { return }
+                guard let walletManager = myself.walletManager else { return }
+                let nc = ModalNavigationController()
+                nc.setClearNavbar()
+                nc.setGrayStyle()
+                nc.delegate = myself.wipeNavigationDelegate
+                
+                let receiveViewController = ReceiveViewController (wallet: walletManager.wallet!, store: myself.store, isRequestAmountVisible: false, legacyAddress: true)
+                nc.addChildViewController(receiveViewController)
+                nc.transitioningDelegate = myself.modalTransitionDelegate
+                
+                receiveViewController.addCloseNavigationItem(tintColor: .gradientStart)
+                receiveViewController.navigationItem.title = S.Settings.legacyAddressTitle
+                
+                receiveViewController.presentEmail = { [weak self] address, image in
+                    guard let root = self?.topViewController else { return }
+                    self?.messagePresenter.presenter = root
+                    self?.messagePresenter.presentMailCompose(bitcoinAddress: address, image: image)
+                }
+                receiveViewController.presentText = { [weak self] address, image in
+                    guard let root = self?.topViewController else { return }
+                    self?.messagePresenter.presenter = root
+                    self?.messagePresenter.presentMessageCompose(address: address, image: image)
+                }
+
+                let faqButton = UIButton.buildFaqButton(store: myself.store, articleId: ArticleIds.receiveBitcoin)
+                faqButton.tintColor = .grayTextTint
+                receiveViewController.navigationItem.rightBarButtonItems = [UIBarButtonItem.negativePadding, UIBarButtonItem(customView: faqButton)]
+                nc.viewControllers = [receiveViewController]
+                settingsNav.dismiss(animated: true, completion: {
+                    myself.topViewController?.present(nc, animated: true, completion: nil)
+                })
+               }),
             ],
             "Manage": [
                 Setting(title: S.Settings.notifications, accessoryText: {
@@ -393,13 +428,13 @@ class ModalPresenter : Subscriber, Trackable {
                 }, callback: {
                     settingsNav.pushViewController(PushNotificationsViewController(store: self.store), animated: true)
                 }),
-                Setting(title: S.Settings.touchIdLimit, accessoryText: { [weak self] in
+                Setting(title: LAContext.biometricType() == .face ? S.Settings.faceIdLimit : S.Settings.touchIdLimit, accessoryText: { [weak self] in
                     guard let myself = self else { return "" }
                     guard let rate = myself.store.state.currentRate else { return "" }
                     let amount = Amount(amount: walletManager.spendingLimit, rate: rate, maxDigits: myself.store.state.maxDigits)
                     return amount.localCurrency
                 }, callback: {
-                    self.pushTouchIdSpendingLimit(onNc: settingsNav)
+                    self.pushBiometricsSpendingLimit(onNc: settingsNav)
                 }),
                 Setting(title: S.Settings.currency, accessoryText: {
                     let code = self.store.state.defaultCurrencyCode
@@ -507,12 +542,12 @@ class ModalPresenter : Subscriber, Trackable {
             let updatePin = UpdatePinViewController(store: myself.store, walletManager: walletManager, type: .update)
             nc.pushViewController(updatePin, animated: true)
         }
-        securityCenter.didTapTouchId = strongify(self) { myself in
-            let touchIdSettings = TouchIdSettingsViewController(walletManager: walletManager, store: myself.store)
-            touchIdSettings.presentSpendingLimit = {
-                myself.pushTouchIdSpendingLimit(onNc: nc)
+        securityCenter.didTapBiometrics = strongify(self) { myself in
+            let biometricsSettings = BiometricsSettingsViewController(walletManager: walletManager, store: myself.store)
+            biometricsSettings.presentSpendingLimit = {
+                myself.pushBiometricsSpendingLimit(onNc: nc)
             }
-            nc.pushViewController(touchIdSettings, animated: true)
+            nc.pushViewController(biometricsSettings, animated: true)
         }
         securityCenter.didTapPaperKey = { [weak self] in
             self?.presentWritePaperKey(fromViewController: nc)
@@ -521,14 +556,14 @@ class ModalPresenter : Subscriber, Trackable {
         window.rootViewController?.present(nc, animated: true, completion: nil)
     }
 
-    private func pushTouchIdSpendingLimit(onNc: UINavigationController) {
+    private func pushBiometricsSpendingLimit(onNc: UINavigationController) {
         guard let walletManager = walletManager else { return }
 
         let verify = VerifyPinViewController(bodyText: S.VerifyPin.continueBody, pinLength: store.state.pinLength, callback: { [weak self] pin, vc in
             guard let myself = self else { return false }
             if walletManager.authenticate(pin: pin) {
                 vc.dismiss(animated: true, completion: {
-                    let spendingLimit = TouchIdSpendingLimitViewController(walletManager: walletManager, store: myself.store)
+                    let spendingLimit = BiometricsSpendingLimitViewController(walletManager: walletManager, store: myself.store)
                     onNc.pushViewController(spendingLimit, animated: true)
                 })
                 return true
@@ -642,13 +677,13 @@ class ModalPresenter : Subscriber, Trackable {
     }
 
     //MARK: - Prompts
-    func presentTouchIdSetting() {
+    func presentBiometricsSetting() {
         guard let walletManager = walletManager else { return }
-        let touchIdSettings = TouchIdSettingsViewController(walletManager: walletManager, store: store)
-        touchIdSettings.addCloseNavigationItem(tintColor: .gradientStart)
-        let nc = ModalNavigationController(rootViewController: touchIdSettings)
-        touchIdSettings.presentSpendingLimit = strongify(self) { myself in
-            myself.pushTouchIdSpendingLimit(onNc: nc)
+        let biometricsSettings = BiometricsSettingsViewController(walletManager: walletManager, store: store)
+        biometricsSettings.addCloseNavigationItem(tintColor: .gradientStart)
+        let nc = ModalNavigationController(rootViewController: biometricsSettings)
+        biometricsSettings.presentSpendingLimit = strongify(self) { myself in
+            myself.pushBiometricsSpendingLimit(onNc: nc)
         }
         nc.setDefaultStyle()
         nc.isNavigationBarHidden = true
@@ -774,8 +809,8 @@ class ModalPresenter : Subscriber, Trackable {
     }
 
     private func authenticateForBitId(prompt: String, callback: @escaping (BitIdAuthResult) -> Void) {
-        if UserDefaults.isTouchIdEnabled {
-            walletManager?.authenticate(touchIDPrompt: prompt, completion: { result in
+        if UserDefaults.isBiometricsEnabled {
+            walletManager?.authenticate(biometricsPrompt: prompt, completion: { result in
                 switch result {
                 case .success:
                     return callback(.success)
@@ -905,7 +940,7 @@ class SecurityCenterNavigationDelegate : NSObject, UINavigationControllerDelegat
             navigationController.isNavigationBarHidden = false
         }
 
-        if viewController is TouchIdSettingsViewController {
+        if viewController is BiometricsSettingsViewController {
             navigationController.setWhiteStyle()
         } else {
             navigationController.setDefaultStyle()
