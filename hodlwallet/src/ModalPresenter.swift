@@ -199,7 +199,7 @@ class ModalPresenter : Subscriber, Trackable {
         
         // https://hodlwallet.co/es/knowledge/starting-a-new-wallet
         
-        var url = "https://hodlwallet.co"
+        var url = "https://hodlwallet.com"
         
         if let lang = Locale.current.languageCode {
             url += lang == "en" ? "/knowledge" : "/\(lang)/knowledge"
