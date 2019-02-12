@@ -9,9 +9,10 @@
 import UIKit
 import BRCore
 
-private let mainURL = "https://insight.bitpay.com/api/addrs/utxo"
-private let fallbackURL = "https://btc-bitcore2.trezor.io/api/addrs/utxo"
-private let testnetURL = "https://test-insight.bitpay.com/api/addrs/utxo"
+private let mainURL = "https://bitcore.guajiro.cash/api/BTC/mainnet/wallet"
+private let fallbackURL = "https://bitcore.guajiro.cash/api/BTC/mainnet/wallet"
+//private let testnetURL = "https://bitcore.guajiro.cash/api/BTC/testnet/wallet"
+private let testnetURL = "https://bitcore.guajiro.cash/api/BTC/mainnet/wallet" // FIXME.
 
 class StartImportViewController : UIViewController {
 
@@ -154,12 +155,11 @@ class StartImportViewController : UIViewController {
         present(balanceActivity, animated: true, completion: {
             var key = key
             guard let address = key.address() else { return }
-            let urlString = E.isTestnet ? testnetURL : mainURL
+            let urlString = (E.isTestnet ? testnetURL : mainURL) + "/" + address + "/transactions"
             let request = NSMutableURLRequest(url: URL(string: urlString)!,
                                               cachePolicy: .reloadIgnoringLocalCacheData,
                                               timeoutInterval: 20.0)
-            request.httpMethod = "POST"
-            request.httpBody = "addrs=\(address)".data(using: .utf8)
+            request.httpMethod = "GET"
             let task = URLSession.shared.dataTask(with: request as URLRequest) { [weak self] data, response, error in
                 guard let myself = self else { return }
                 guard error == nil else { print("error: \(error!)"); return }

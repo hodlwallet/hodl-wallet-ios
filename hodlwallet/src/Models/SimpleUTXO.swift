@@ -18,11 +18,11 @@ struct SimpleUTXO {
 
     init?(json: [String: Any]) {
         guard let txid = json["txid"] as? String,
-            let vout = json["vout"] as? Int,
-            let scriptPubKey = json["scriptPubKey"] as? String,
+            let vout = json["outputIndex"] as? Int,
+            let address = json["address"] as? String,
             let satoshis = json["satoshis"] as? UInt64 else { return nil }
-        guard let hashData = txid.hexToData,
-            let scriptData = scriptPubKey.hexToData else { return nil }
+        guard let scriptData = BRAddress(string: address)?.scriptPubKey else { return nil }
+        guard let hashData = txid.hexToData else { return nil }
 
         self.hash = hashData.reverse.uInt256
         self.index = UInt32(vout)
