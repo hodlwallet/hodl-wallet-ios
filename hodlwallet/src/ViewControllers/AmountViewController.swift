@@ -253,7 +253,9 @@ class AmountViewController : UIViewController, Trackable {
             if let rate = selectedRate {
                 newAmount = Satoshis(value: outputAmount, rate: rate)
             } else {
-                if store.state.maxDigits == 2 {
+                if store.state.maxDigits == 0 {
+                    newAmount = Satoshis(rawValue: (NumberFormatter().number(from: output)?.uint64Value)!)
+                } else if store.state.maxDigits == 2 {
                     let bits = Bits(rawValue: outputAmount)
                     newAmount = Satoshis(bits: bits)
                 } else {

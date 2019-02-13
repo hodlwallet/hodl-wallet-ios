@@ -12,6 +12,7 @@ enum S {
 
     enum Symbols {
         static let bits = "ƀ"
+        static let sat = "SAT"
         static var btc: String {
             if  #available(iOS 10, *) {
                 return "₿"
@@ -24,6 +25,8 @@ enum S {
         static let redX = "\u{274C}"
         static func currencyButtonTitle(maxDigits: Int) -> String {
             switch maxDigits {
+            case 0:
+                return "Satoshi (\(S.Symbols.sat))"
             case 2:
                 return "Bits\(S.Symbols.narrowSpace)(\(S.Symbols.bits))"
             case 5:

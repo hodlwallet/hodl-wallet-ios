@@ -39,7 +39,7 @@ class DefaultCurrencyViewController : UITableViewController, Subscriber {
     }
 
     private let bitcoinLabel = UILabel(font: .customBold(size: 14.0), color: .grayTextTint)
-    private let bitcoinSwitch = UISegmentedControl(items: ["BTC (\(S.Symbols.btc))", "Bits (\(S.Symbols.bits))"])
+    private let bitcoinSwitch = UISegmentedControl(items: ["BTC (\(S.Symbols.btc))", "Satoshi (\(S.Symbols.sat))"])
     private let rateLabel = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
     private var header: UIView?
 
@@ -148,7 +148,7 @@ class DefaultCurrencyViewController : UITableViewController, Subscriber {
         bitcoinSwitch.valueChanged = strongify(self) { myself in
             let newIndex = myself.bitcoinSwitch.selectedSegmentIndex
             if newIndex == 1 {
-                myself.store.perform(action: MaxDigits.set(2))
+                myself.store.perform(action: MaxDigits.set(0))
             } else {
                 myself.store.perform(action: MaxDigits.set(8))
             }

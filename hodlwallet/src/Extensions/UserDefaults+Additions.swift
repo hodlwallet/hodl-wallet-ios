@@ -69,8 +69,8 @@ extension UserDefaults {
                 return 8
             }
             let maxDigits = defaults.integer(forKey: maxDigitsKey)
-            if maxDigits == 5 {
-                return 8 //Convert mBTC to BTC
+            if maxDigits == 5 || maxDigits == 2 {
+                return 8 //Convert mBTC and bits to BTC since we remove the default
             } else {
                 return maxDigits
             }
