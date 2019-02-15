@@ -46,7 +46,7 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         didSet {
             if let newValue = balance, let oldValue = oldValue {
                 if newValue > oldValue {
-                    setReceiveAddress()
+                    setupReceiveAddress()
                 }
             }
         }
@@ -63,8 +63,14 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         addActions()
         setupCopiedMessage()
         setupShareButtons()
+        setupReceiveAddress()
         store.subscribe(self, selector: { $0.walletState.balance != $1.walletState.balance }, callback: {
             self.balance = $0.walletState.balance
+            self.setupReceiveAddress()
+        })
+    
+        store.subscribe(self, selector: { $0.walletState.transactions.count != $1.walletState.transactions.count }, callback: { _ in
+            self.setupReceiveAddress()
         })
     }
 
@@ -140,10 +146,9 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         addressButton.setBackgroundImage(UIImage.imageForColor(.secondaryGrayText), for: .highlighted)
         addressButton.layer.cornerRadius = 4.0
         addressButton.layer.masksToBounds = true
-        setReceiveAddress()
     }
 
-    private func setReceiveAddress() {
+    private func setupReceiveAddress() {
         if (self.legacyAddress) {
             address.text = wallet.legacyAddress
         } else {

@@ -315,16 +315,15 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
     
     func txUpdated(_ txHashes: [UInt256], blockHeight: UInt32, timestamp: UInt32) {
         DispatchQueue.walletQueue.async {
-            guard txHashes.count > 0 else { return }
+            guard !txHashes.isEmpty else { return }
             let timestamp = (timestamp > UInt32(NSTimeIntervalSince1970)) ? timestamp - UInt32(NSTimeIntervalSince1970) : 0
-            var sql: OpaquePointer? = nil, sql2: OpaquePointer? = nil
+            var sql: OpaquePointer? = nil, sql2: OpaquePointer? = nil, count = 0
             sqlite3_prepare_v2(self.db, "select ZTXHASH, ZBLOB from ZBRTXMETADATAENTITY where ZTYPE = 1 and " +
                 "ZTXHASH in (" + String(repeating: "?, ", count: txHashes.count - 1) + "?)", -1, &sql, nil)
             defer { sqlite3_finalize(sql) }
 
             for i in 0..<txHashes.count {
-                sqlite3_bind_blob(sql, Int32(i + 1), UnsafePointer(txHashes) + i, Int32(MemoryLayout<UInt256>.size),
-                                  SQLITE_TRANSIENT)
+                sqlite3_bind_blob(sql, Int32(i + 1), [txHashes[i]], Int32(MemoryLayout<UInt256>.size), SQLITE_TRANSIENT)
             }
 
             sqlite3_prepare_v2(self.db, "update ZBRTXMETADATAENTITY set ZBLOB = ? where ZTXHASH = ?", -1, &sql2, nil)
@@ -334,7 +333,7 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
                 let hash = sqlite3_column_blob(sql, 0)
                 let buf = sqlite3_column_blob(sql, 1).assumingMemoryBound(to: UInt8.self)
                 var blob = [UInt8](UnsafeBufferPointer(start: buf, count: Int(sqlite3_column_bytes(sql, 1))))
-
+                
                 [blockHeight.littleEndian, timestamp.littleEndian].withUnsafeBytes {
                     if blob.count > $0.count {
                         blob.replaceSubrange(blob.count - $0.count..<blob.count, with: $0)
@@ -344,19 +343,26 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
                         sqlite3_reset(sql2)
                     }
                 }
+                
+                count += 1
             }
-
+            
             if sqlite3_errcode(self.db) != SQLITE_DONE { print(String(cString: sqlite3_errmsg(self.db))) }
+            
+            if count != txHashes.count {
+                print("Fewer tx records updated than hashes! This causes tx to go missing!")
+                exit(0) // DIE! DIE! DIE!
+            }
         }
     }
     
     func txDeleted(_ txHash: UInt256, notifyUser: Bool, recommendRescan: Bool) {
         DispatchQueue.walletQueue.async {
-            var sql: OpaquePointer? = nil
+            var sql: OpaquePointer?
             sqlite3_prepare_v2(self.db, "delete from ZBRTXMETADATAENTITY where ZTYPE = 1 and ZTXHASH = ?", -1, &sql, nil)
             defer { sqlite3_finalize(sql) }
             sqlite3_bind_blob(sql, 1, [txHash], Int32(MemoryLayout<UInt256>.size), SQLITE_TRANSIENT)
-
+            
             guard sqlite3_step(sql) == SQLITE_DONE else {
                 print(String(cString: sqlite3_errmsg(self.db)))
                 return
@@ -554,6 +560,7 @@ class WalletManager : BRWalletListener, BRPeerManagerListener {
             off = off + MemoryLayout<UInt32>.size
             let timestamp = UnsafeRawPointer(buf).advanced(by: off).assumingMemoryBound(to: UInt32.self).pointee.littleEndian
             tx.pointee.timestamp = (timestamp == 0) ? timestamp : timestamp + UInt32(NSTimeIntervalSince1970)
+            
             transactions.append(tx)
         }
         

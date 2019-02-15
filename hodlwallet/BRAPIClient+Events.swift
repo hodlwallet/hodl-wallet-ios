@@ -106,7 +106,8 @@ class EventManager {
                 self?.saveEvent(key)
                 if note.name == .UIApplicationDidEnterBackground {
                     self?.persistToDisk()
-                    self?.sendToServer()
+                    // Remove this line, we do not track.
+                    //self?.sendToServer()
                 }
             })
         }
@@ -139,7 +140,8 @@ class EventManager {
     
     func sync(completion: @escaping () -> Void) {
         guard shouldRecordData else { removeData(); return }
-        sendToServer(completion: completion)
+        // Remove this line sending events to precio, we do not track.
+        // sendToServer(completion: completion)
     }
     
     private func pushEvent(eventName: String, attributes: [String: String]) {
