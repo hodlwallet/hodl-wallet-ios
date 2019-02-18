@@ -195,10 +195,17 @@ extension BRKey {
         return hash
     }
     
-    // pay-to-pubkey-hash bitcoin address
+    // bech32 bitcoin address
     mutating func address() -> String? {
         var addr = [CChar](repeating: 0, count: MemoryLayout<BRAddress>.size)
         guard BRKeyAddress(&self, &addr, addr.count) > 0 else { return nil }
+        return String(cString: addr)
+    }
+    
+    // p2pkh bitcoin address
+    mutating func legacyAddress() -> String? {
+        var addr = [CChar](repeating: 0, count: MemoryLayout<BRAddress>.size)
+        guard BRKeyLegacyAddr(&self, &addr, addr.count) > 0 else { return nil }
         return String(cString: addr)
     }
     

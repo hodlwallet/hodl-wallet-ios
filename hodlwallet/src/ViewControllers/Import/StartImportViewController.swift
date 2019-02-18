@@ -9,10 +9,12 @@
 import UIKit
 import BRCore
 
-private let mainURL = "https://bitcore.guajiro.cash/api/BTC/mainnet/wallet"
-private let fallbackURL = "https://bitcore.guajiro.cash/api/BTC/mainnet/wallet"
-//private let testnetURL = "https://bitcore.guajiro.cash/api/BTC/testnet/wallet"
-private let testnetURL = "https://bitcore.guajiro.cash/api/BTC/mainnet/wallet" // FIXME.
+// FIXME, please replace this with the hodlwallet domain
+private let mainURL = "https://bitcore.guajiro.cash/api/BTC/mainnet/address"
+private let fallbackURL = "https://bitcore.guajiro.cash/api/BTC/mainnet/address"
+// FIXME, please replace `testnetURL` with the testnet url bellow when available
+//private let testnetURL = "https://bitcore.guajiro.cash/api/BTC/testnet/address"
+private let testnetURL = "https://bitcore.guajiro.cash/api/BTC/mainnet/address"
 
 class StartImportViewController : UIViewController {
 
@@ -154,8 +156,8 @@ class StartImportViewController : UIViewController {
     private func checkBalance(key: BRKey) {
         present(balanceActivity, animated: true, completion: {
             var key = key
-            guard let address = key.address() else { return }
-            let urlString = (E.isTestnet ? testnetURL : mainURL) + "/" + address + "/transactions"
+            guard let address = key.legacyAddress() else { return }
+            let urlString = (E.isTestnet ? testnetURL : mainURL) + "/" + address + "/transactions?unspent=true"
             let request = NSMutableURLRequest(url: URL(string: urlString)!,
                                               cachePolicy: .reloadIgnoringLocalCacheData,
                                               timeoutInterval: 20.0)
@@ -176,11 +178,11 @@ class StartImportViewController : UIViewController {
         var key = key
         guard let tx = UnsafeMutablePointer<BRTransaction>() else { return }
         guard let wallet = walletManager.wallet else { return }
-        guard let address = key.address() else { return }
+        guard let address = key.legacyAddress() else { return }
         guard !wallet.containsAddress(address) else {
             return showErrorMessage(S.Import.Error.duplicate)
         }
-        let outputs = data.flatMap { SimpleUTXO(json: $0) }
+        let outputs = data.compactMap { SimpleUTXO(json: $0) }
         let balance = outputs.map { $0.satoshis }.reduce(0, +)
         outputs.forEach { output in
             tx.addInput(txHash: output.hash, index: output.index, amount: output.satoshis, script: output.script)
