@@ -217,7 +217,7 @@ class ModalPresenter : Subscriber, Trackable {
         topViewController?.present(supportCenter, animated: true, completion: {})
     }
 
-    private func rootModalViewController(_ type: RootModal) -> UIViewController? {
+    private func rootModalViewController(_ type: RootModal, receiveAddress: String = "") -> UIViewController? {
         switch type {
         case .none:
             return nil
@@ -235,7 +235,7 @@ class ModalPresenter : Subscriber, Trackable {
             return ModalViewController(childViewController: ManageWalletViewController(store: store), store: store)
         case .requestAmount:
             guard let wallet = walletManager?.wallet else { return nil }
-            let requestVc = RequestAmountViewController(wallet: wallet, store: store)
+            let requestVc = RequestAmountViewController(wallet: wallet, store: store, receiveAddress: receiveAddress)
             requestVc.presentEmail = { [weak self] bitcoinURL, image in
                 self?.messagePresenter.presenter = self?.topViewController
                 self?.messagePresenter.presentMailCompose(bitcoinURL: bitcoinURL, image: image)

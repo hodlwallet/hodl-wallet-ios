@@ -19,8 +19,9 @@ class RequestAmountViewController : UIViewController {
     var presentEmail: PresentShare?
     var presentText: PresentShare?
 
-    init(wallet: BRWallet, store: Store) {
+    init(wallet: BRWallet, store: Store, receiveAddress: String) {
         self.wallet = wallet
+        self.receiveAddress = receiveAddress
         amountView = AmountViewController(store: store, isPinPadExpandedAtLaunch: true, isRequesting: true)
         super.init(nibName: nil, bundle: nil)
     }
@@ -35,6 +36,7 @@ class RequestAmountViewController : UIViewController {
     private let border = UIView()
     private var topSharePopoutConstraint: NSLayoutConstraint?
     private let wallet: BRWallet
+    private let receiveAddress: String
 
     //MARK - PinPad State
     private var amount: Satoshis? {
@@ -104,10 +106,10 @@ class RequestAmountViewController : UIViewController {
 
     private func setData() {
         view.backgroundColor = .grayBackground
-        address.text = wallet.receiveAddress
+        address.text = self.receiveAddress
         address.textColor = .whiteTint
         border.backgroundColor = .secondaryGrayText
-        qrCode.image = UIImage.qrCode(data: "\(wallet.receiveAddress)".data(using: .utf8)!, color: CIColor(color: .black))?
+        qrCode.image = UIImage.qrCode(data: "\(self.receiveAddress)".data(using: .utf8)!, color: CIColor(color: .black))?
             .resize(qrSize)!
         qrCode.backgroundColor = .whiteTint
         share.isToggleable = true
@@ -127,7 +129,7 @@ class RequestAmountViewController : UIViewController {
 
     private func setQrCode(){
         guard let amount = amount else { return }
-        let request = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
+        let request = PaymentRequest.requestString(withAddress: self.receiveAddress, forAmount: amount.rawValue)
         qrCode.image = UIImage.qrCode(data: request.data(using: .utf8)!, color: CIColor(color: .black))?
             .resize(qrSize)!
         qrCode.backgroundColor = .whiteTint
@@ -187,13 +189,13 @@ class RequestAmountViewController : UIViewController {
 
     @objc private func emailTapped() {
         guard let amount = amount else { return showErrorMessage(S.RequestAnAmount.noAmount) }
-        let text = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
+        let text = PaymentRequest.requestString(withAddress: self.receiveAddress, forAmount: amount.rawValue)
         presentEmail?(text, qrCode.image!)
     }
 
     @objc private func textTapped() {
         guard let amount = amount else { return showErrorMessage(S.RequestAnAmount.noAmount) }
-        let text = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
+        let text = PaymentRequest.requestString(withAddress: self.receiveAddress, forAmount: amount.rawValue)
         presentText?(text, qrCode.image!)
     }
 
