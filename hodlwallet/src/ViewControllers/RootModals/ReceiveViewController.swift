@@ -171,6 +171,12 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
             }
             
             self?.dismiss(animated: true, completion: {
+                if (self?.legacyAddress)! {
+                    UserDefaults.requestAmountAddress = (self?.wallet.legacyAddress)!
+                } else {
+                    UserDefaults.requestAmountAddress = (self?.wallet.receiveAddress)!
+                }
+                
                 self?.store.perform(action: RootModalActions.Present(modal: .requestAmount))
             })
         }

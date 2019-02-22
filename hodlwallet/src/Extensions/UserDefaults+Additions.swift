@@ -11,6 +11,7 @@ import Foundation
 private let defaults = UserDefaults.standard
 private let isBiometricsEnabledKey = "istouchidenabled"
 private let defaultCurrencyCodeKey = "defaultcurrency"
+private let requestAmountAddressKey = "requestAmountAddress"
 private let hasAquiredShareDataPermissionKey = "has_acquired_permission"
 private let legacyWalletNeedsBackupKey = "WALLET_NEEDS_BACKUP"
 private let writePaperPhraseDateKey = "writepaperphrasedatekey"
@@ -76,6 +77,16 @@ extension UserDefaults {
             }
         }
         set { defaults.set(newValue, forKey: maxDigitsKey) }
+    }
+    
+    static var requestAmountAddress: String {
+        get {
+            guard defaults.object(forKey: requestAmountAddressKey) != nil else {
+                return ""
+            }
+            return defaults.string(forKey: requestAmountAddressKey)!
+        }
+        set { defaults.set(newValue, forKey: requestAmountAddressKey) }
     }
 
     static var pushToken: Data? {
