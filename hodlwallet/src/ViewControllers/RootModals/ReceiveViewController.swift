@@ -19,8 +19,7 @@ typealias PresentShare = (String, UIImage) -> Void
 class ReceiveViewController : UIViewController, Subscriber, Trackable {
 
     //MARK - Public
-    var presentEmail: PresentShare?
-    var presentText: PresentShare?
+    var presentShare: PresentShare?
 
     init(wallet: BRWallet, store: Store, isRequestAmountVisible: Bool, legacyAddress: Bool = false) {
         self.wallet = wallet
@@ -62,7 +61,6 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         setStyle()
         addActions()
         setupCopiedMessage()
-        setupShareButtons()
         setupReceiveAddress()
         store.subscribe(self, selector: { $0.walletState.balance != $1.walletState.balance }, callback: {
             self.balance = $0.walletState.balance
@@ -191,39 +189,8 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         addressPopout.contentView = copiedMessage
     }
 
-    private func setupShareButtons() {
-        let container = UIView()
-        container.translatesAutoresizingMaskIntoConstraints = false
-        let email = ShadowButton(title: S.Receive.emailButton, type: .tertiary, image: #imageLiteral(resourceName: "Email"), imageColor: .gradientStart, backColor: .grayBackground)
-        let text = ShadowButton(title: S.Receive.textButton, type: .tertiary, image: #imageLiteral(resourceName: "Text"), imageColor: .gradientStart, backColor: .grayBackground)
-        let or = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
-        container.addSubview(email)
-        container.addSubview(text)
-        container.addSubview(or)
-        email.constrain([
-            email.constraint(.leading, toView: container),
-            email.constraint(.top, toView: container, constant: buttonPadding),
-            email.constraint(.bottom, toView: container, constant: -buttonPadding),
-            email.trailingAnchor.constraint(equalTo: container.centerXAnchor, constant: -C.padding[2]) ])
-        or.constrain([
-            or.constraint(.centerX, toView: container),
-            or.constraint(.centerY, toView: container) ])
-        text.constrain([
-            text.constraint(.trailing, toView: container),
-            text.constraint(.top, toView: container, constant: buttonPadding),
-            text.constraint(.bottom, toView: container, constant: -buttonPadding),
-            text.leadingAnchor.constraint(equalTo: container.centerXAnchor, constant: C.padding[2]) ])
-        sharePopout.contentView = container
-        or.text = S.Receive.orLabel
-        email.addTarget(self, action: #selector(ReceiveViewController.emailTapped), for: .touchUpInside)
-        text.addTarget(self, action: #selector(ReceiveViewController.textTapped), for: .touchUpInside)
-    }
-
     @objc private func shareTapped() {
-        toggle(alertView: sharePopout, shouldAdjustPadding: true)
-        if addressPopout.isExpanded {
-            toggle(alertView: addressPopout, shouldAdjustPadding: false)
-        }
+        presentShare?(address.text!, qrCode.image!)
     }
 
     @objc private func addressTapped() {
@@ -234,14 +201,6 @@ class ReceiveViewController : UIViewController, Subscriber, Trackable {
         if sharePopout.isExpanded {
             toggle(alertView: sharePopout, shouldAdjustPadding: true)
         }
-    }
-
-    @objc private func emailTapped() {
-        presentEmail?(address.text!, qrCode.image!)
-    }
-
-    @objc private func textTapped() {
-        presentText?(address.text!, qrCode.image!)
     }
 
     private func toggle(alertView: InViewAlert, shouldAdjustPadding: Bool, shouldShrinkAfter: Bool = false) {
