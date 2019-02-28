@@ -188,7 +188,6 @@ class AmountViewController : UIViewController, Trackable {
 
     private func setInitialData() {
         cursor.isHidden = true
-        cursor.startBlinking()
         amountLabel.text = ""
         amountTitle.text = S.Send.amountLabel
         let placeholderAmount = DisplayAmount(amount: Satoshis(0), state: store.state, selectedRate: selectedRate, minimumFractionDigits: minimumFractionDigits)
@@ -220,6 +219,7 @@ class AmountViewController : UIViewController, Trackable {
     private func toggleCurrency() {
         saveEvent("amount.swapCurrency")
         selectedRate = selectedRate == nil ? store.state.currentRate : nil
+        
         updateCurrencyToggleTitle()
     }
 
@@ -232,14 +232,20 @@ class AmountViewController : UIViewController, Trackable {
     }
 
     private func handlePinPadUpdate(output: String) {
-        let currencyDecimalSeparator = NumberFormatter().currencyDecimalSeparator ?? "."
+        var currencyDecimalSeparator = NumberFormatter().currencyDecimalSeparator ?? "."
+        
         placeholder.isHidden = output.utf8.count > 0 ? true : false
         minimumFractionDigits = 0 //set default
+        
         if let decimalLocation = output.range(of: currencyDecimalSeparator)?.upperBound {
             let locationValue = output.distance(from: output.endIndex, to: decimalLocation)
             minimumFractionDigits = abs(locationValue)
         }
-
+        
+        if (store.state.maxDigits == 0 && selectedRate?.code == nil) {
+            currencyDecimalSeparator = ""
+        }
+        
         //If trailing decimal, append the decimal to the output
         hasTrailingDecimal = false //set default
         if let decimalLocation = output.range(of: currencyDecimalSeparator)?.upperBound {
@@ -266,6 +272,10 @@ class AmountViewController : UIViewController, Trackable {
         }
 
         if let newAmount = newAmount {
+            if (store.state.maxDigits == 0 && selectedRate?.code == nil && pinPad.currentOutput.last?.description == ".") {
+                pinPad.removeLast()
+            }
+            
             if newAmount > C.maxMoney {
                 pinPad.removeLast()
             } else {
@@ -354,6 +364,17 @@ class AmountViewController : UIViewController, Trackable {
 
     private func fullRefresh() {
         updateCurrencyToggleTitle()
+        
+        if (selectedRate == nil) {
+            pinPad.setRateCode(rateCode: "")
+            
+            if (store.state.maxDigits == 0) {
+                minimumFractionDigits = 0
+            }
+        } else {
+            pinPad.setRateCode(rateCode: selectedRate!.code)
+        }
+        
         updateBalanceLabel()
         updateAmountLabel()
 
@@ -362,6 +383,7 @@ class AmountViewController : UIViewController, Trackable {
         let currentOutput = amountLabel.text ?? ""
         var set = CharacterSet.decimalDigits
         set.formUnion(CharacterSet(charactersIn: NumberFormatter().currencyDecimalSeparator))
+        
         pinPad.currentOutput = String(String.UnicodeScalarView(currentOutput.unicodeScalars.filter { set.contains($0) }))
     }
 
