@@ -293,6 +293,23 @@ class AmountViewController : UIViewController, Trackable {
         if hasTrailingDecimal {
             output = output.appending(NumberFormatter().currencyDecimalSeparator)
         }
+        
+        if (output.count > 14) {
+            if (output.count > 15 && output.count <= 17) {
+                amountLabel.font = .customBody(size: 24.0)
+            } else if (output.count > 17 && output.count < 19) {
+                amountLabel.font = .customBody(size: 22.0)
+            } else if (output.count >= 19 && output.count < 20) {
+                amountLabel.font = .customBody(size: 20.0)
+            } else if (output.count >= 20 && output.count < 22) {
+                amountLabel.font = .customBody(size: 18.0)
+            } else if (output.count >= 22) {
+                amountLabel.font = .customBody(size: 16.0)
+            }
+        } else if (amountLabel.font.pointSize != 26.0) {
+            amountLabel.font = .customBody(size: 26.0)
+        }
+        
         amountLabel.text = output
         placeholder.isHidden = output.utf8.count > 0 ? true : false
         cursor.isHidden = !placeholder.isHidden

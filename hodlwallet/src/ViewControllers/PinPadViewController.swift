@@ -136,10 +136,6 @@ class PinPadViewController : UICollectionViewController {
                 currentOutput = currentOutput + item
             }
         }
-        
-        if (currentOutput.count > 14) {
-            // TODO Reduce font size of input
-        }
 
         ouputDidUpdate?(currentOutput)
     }
