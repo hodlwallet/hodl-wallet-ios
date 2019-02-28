@@ -294,8 +294,8 @@ class AmountViewController : UIViewController, Trackable {
             output = output.appending(NumberFormatter().currencyDecimalSeparator)
         }
         
-        if (output.count > 14) {
-            if (output.count > 15 && output.count <= 17) {
+        if (output.count > 12) {
+            if (output.count > 12 && output.count <= 17) {
                 amountLabel.font = .customBody(size: 24.0)
             } else if (output.count > 17 && output.count < 19) {
                 amountLabel.font = .customBody(size: 22.0)
