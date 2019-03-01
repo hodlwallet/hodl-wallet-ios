@@ -39,9 +39,17 @@
       "subtype" : "38mm"
     },
     {
+      "size" : "44x44",
+      "idiom" : "watch",
+      "filename" : "Icon88.png",
+      "scale" : "2x",
+      "role" : "appLauncher",
+      "subtype" : "40mm"
+    },
+    {
       "size" : "50x50",
       "idiom" : "watch",
-      "filename" : "Icon80.png",
+      "filename" : "Icon100.png",
       "scale" : "2x",
       "role" : "appLauncher",
       "subtype" : "44mm"
@@ -65,7 +73,7 @@
     {
       "size" : "108x108",
       "idiom" : "watch",
-      "filename" : "Icon196.png",
+      "filename" : "Icon216.png",
       "scale" : "2x",
       "role" : "quickLook",
       "subtype" : "44mm"
