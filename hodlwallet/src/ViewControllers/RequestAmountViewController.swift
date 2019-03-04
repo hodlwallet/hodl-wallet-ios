@@ -16,9 +16,8 @@ private let largeSharePadding: CGFloat = 20.0
 
 class RequestAmountViewController : UIViewController {
 
-    var presentEmail: PresentShare?
-    var presentText: PresentShare?
-
+    var presentShare: PresentShare?
+    
     init(wallet: BRWallet, store: Store) {
         self.wallet = wallet
         amountView = AmountViewController(store: store, isPinPadExpandedAtLaunch: true, isRequesting: true)
@@ -48,7 +47,6 @@ class RequestAmountViewController : UIViewController {
         setData()
         addActions()
         setupCopiedMessage()
-        setupShareButtons()
     }
 
     private func addSubviews() {
@@ -104,10 +102,10 @@ class RequestAmountViewController : UIViewController {
 
     private func setData() {
         view.backgroundColor = .grayBackground
-        address.text = wallet.receiveAddress
+        address.text = UserDefaults.requestAmountAddress
         address.textColor = .whiteTint
         border.backgroundColor = .secondaryGrayText
-        qrCode.image = UIImage.qrCode(data: "\(wallet.receiveAddress)".data(using: .utf8)!, color: CIColor(color: .black))?
+        qrCode.image = UIImage.qrCode(data: "\(UserDefaults.requestAmountAddress)".data(using: .utf8)!, color: CIColor(color: .black))?
             .resize(qrSize)!
         qrCode.backgroundColor = .whiteTint
         share.isToggleable = true
@@ -127,7 +125,7 @@ class RequestAmountViewController : UIViewController {
 
     private func setQrCode(){
         guard let amount = amount else { return }
-        let request = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
+        let request = PaymentRequest.requestString(withAddress: UserDefaults.requestAmountAddress, forAmount: amount.rawValue)
         qrCode.image = UIImage.qrCode(data: request.data(using: .utf8)!, color: CIColor(color: .black))?
             .resize(qrSize)!
         qrCode.backgroundColor = .whiteTint
@@ -141,39 +139,10 @@ class RequestAmountViewController : UIViewController {
         addressPopout.contentView = copiedMessage
     }
 
-    private func setupShareButtons() {
-        let container = UIView()
-        container.translatesAutoresizingMaskIntoConstraints = false
-        let email = ShadowButton(title: S.Receive.emailButton, type: .tertiary, image: #imageLiteral(resourceName: "Email"), imageColor: .gradientStart, backColor: .grayBackground)
-        let text = ShadowButton(title: S.Receive.textButton, type: .tertiary, image: #imageLiteral(resourceName: "Text"), imageColor: .gradientStart, backColor: .grayBackground)
-        let or = UILabel(font: .customBody(size: 16.0), color: .whiteTint)
-        container.addSubview(email)
-        container.addSubview(text)
-        container.addSubview(or)
-        email.constrain([
-            email.constraint(.leading, toView: container),
-            email.constraint(.top, toView: container, constant: buttonPadding),
-            email.constraint(.bottom, toView: container, constant: -buttonPadding),
-            email.trailingAnchor.constraint(equalTo: container.centerXAnchor, constant: -C.padding[2]) ])
-        or.constrain([
-            or.constraint(.centerX, toView: container),
-            or.constraint(.centerY, toView: container) ])
-        text.constrain([
-            text.constraint(.trailing, toView: container),
-            text.constraint(.top, toView: container, constant: buttonPadding),
-            text.constraint(.bottom, toView: container, constant: -buttonPadding),
-            text.leadingAnchor.constraint(equalTo: container.centerXAnchor, constant: C.padding[2]) ])
-        sharePopout.contentView = container
-        or.text = S.Receive.orLabel
-        email.addTarget(self, action: #selector(RequestAmountViewController.emailTapped), for: .touchUpInside)
-        text.addTarget(self, action: #selector(RequestAmountViewController.textTapped), for: .touchUpInside)
-    }
-
     @objc private func shareTapped() {
-        toggle(alertView: sharePopout, shouldAdjustPadding: true)
-        if addressPopout.isExpanded {
-            toggle(alertView: addressPopout, shouldAdjustPadding: false)
-        }
+        guard let amount = amount else { return showErrorMessage(S.RequestAnAmount.noAmount) }
+        let text = PaymentRequest.requestString(withAddress: UserDefaults.requestAmountAddress, forAmount: amount.rawValue)
+        presentShare?(text, qrCode.image!)
     }
 
     @objc private func addressTapped() {
@@ -183,18 +152,6 @@ class RequestAmountViewController : UIViewController {
         if sharePopout.isExpanded {
             toggle(alertView: sharePopout, shouldAdjustPadding: true)
         }
-    }
-
-    @objc private func emailTapped() {
-        guard let amount = amount else { return showErrorMessage(S.RequestAnAmount.noAmount) }
-        let text = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
-        presentEmail?(text, qrCode.image!)
-    }
-
-    @objc private func textTapped() {
-        guard let amount = amount else { return showErrorMessage(S.RequestAnAmount.noAmount) }
-        let text = PaymentRequest.requestString(withAddress: wallet.receiveAddress, forAmount: amount.rawValue)
-        presentText?(text, qrCode.image!)
     }
 
     private func toggle(alertView: InViewAlert, shouldAdjustPadding: Bool, shouldShrinkAfter: Bool = false) {

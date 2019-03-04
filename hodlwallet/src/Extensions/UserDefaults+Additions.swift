@@ -11,6 +11,7 @@ import Foundation
 private let defaults = UserDefaults.standard
 private let isBiometricsEnabledKey = "istouchidenabled"
 private let defaultCurrencyCodeKey = "defaultcurrency"
+private let requestAmountAddressKey = "requestAmountAddress"
 private let hasAquiredShareDataPermissionKey = "has_acquired_permission"
 private let legacyWalletNeedsBackupKey = "WALLET_NEEDS_BACKUP"
 private let writePaperPhraseDateKey = "writepaperphrasedatekey"
@@ -69,13 +70,23 @@ extension UserDefaults {
                 return 8
             }
             let maxDigits = defaults.integer(forKey: maxDigitsKey)
-            if maxDigits == 5 {
-                return 8 //Convert mBTC to BTC
+            if maxDigits == 5 || maxDigits == 2 {
+                return 8 //Convert mBTC and bits to BTC since we remove the default
             } else {
                 return maxDigits
             }
         }
         set { defaults.set(newValue, forKey: maxDigitsKey) }
+    }
+    
+    static var requestAmountAddress: String {
+        get {
+            guard defaults.object(forKey: requestAmountAddressKey) != nil else {
+                return ""
+            }
+            return defaults.string(forKey: requestAmountAddressKey)!
+        }
+        set { defaults.set(newValue, forKey: requestAmountAddressKey) }
     }
 
     static var pushToken: Data? {

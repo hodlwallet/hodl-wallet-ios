@@ -17,11 +17,16 @@ class ReceiveInterfaceController : WKInterfaceController {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(ReceiveInterfaceController.update), name: .ApplicationDataDidUpdateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ReceiveInterfaceController.update(notification:)), name: .ApplicationDataDidUpdateNotification, object: nil)
+
+        update()
+    }
+    
+    @objc private func update(notification: NSNotification) {
         update()
     }
 
-    @objc func update() {
+    private func update() {
         guard let data = WatchDataManager.shared.data else { return }
         image.setImage(data.qrCode)
     }

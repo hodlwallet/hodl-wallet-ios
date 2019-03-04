@@ -48,10 +48,11 @@ class PinPadViewController : UICollectionViewController {
         }
     }
 
-    init(style: PinPadStyle, keyboardType: KeyboardType, maxDigits: Int) {
+    init(style: PinPadStyle, keyboardType: KeyboardType, maxDigits: Int, rateCode: String = "") {
         self.style = style
         self.keyboardType = keyboardType
         self.maxDigits = maxDigits
+        self.rateCode = rateCode
         let layout = UICollectionViewFlowLayout()
         let screenWidth = UIScreen.main.safeWidth
 
@@ -76,6 +77,7 @@ class PinPadViewController : UICollectionViewController {
     private let keyboardType: KeyboardType
     private let items: [String]
     private let maxDigits: Int
+    private var rateCode: String
 
     override func viewDidLoad() {
         switch style {
@@ -137,6 +139,10 @@ class PinPadViewController : UICollectionViewController {
 
         ouputDidUpdate?(currentOutput)
     }
+    
+    func setRateCode(rateCode: String) -> Void {
+        self.rateCode = rateCode
+    }
 
     func shouldAppendChar(char: String) -> Bool {
         let decimalLocation = currentOutput.range(of: currencyDecimalSeparator)?.lowerBound
@@ -144,7 +150,7 @@ class PinPadViewController : UICollectionViewController {
         //Don't allow more that maxDigits decimal points
         if let location = decimalLocation {
             let locationValue = currentOutput.distance(from: currentOutput.endIndex, to: location)
-            if locationValue < -maxDigits {
+            if locationValue < -maxDigits && self.rateCode == "" {
                 return false
             }
         }

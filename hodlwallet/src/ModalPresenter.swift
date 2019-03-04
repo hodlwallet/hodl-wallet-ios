@@ -217,7 +217,7 @@ class ModalPresenter : Subscriber, Trackable {
         topViewController?.present(supportCenter, animated: true, completion: {})
     }
 
-    private func rootModalViewController(_ type: RootModal) -> UIViewController? {
+    private func rootModalViewController(_ type: RootModal, receiveAddress: String = "") -> UIViewController? {
         switch type {
         case .none:
             return nil
@@ -236,14 +236,12 @@ class ModalPresenter : Subscriber, Trackable {
         case .requestAmount:
             guard let wallet = walletManager?.wallet else { return nil }
             let requestVc = RequestAmountViewController(wallet: wallet, store: store)
-            requestVc.presentEmail = { [weak self] bitcoinURL, image in
+
+            requestVc.presentShare =  { [weak self] bitcoinURL, image in
                 self?.messagePresenter.presenter = self?.topViewController
-                self?.messagePresenter.presentMailCompose(bitcoinURL: bitcoinURL, image: image)
+                self?.messagePresenter.presentShareSheet(text: bitcoinURL, image: image)
             }
-            requestVc.presentText = { [weak self] bitcoinURL, image in
-                self?.messagePresenter.presenter = self?.topViewController
-                self?.messagePresenter.presentMessageCompose(bitcoinURL: bitcoinURL, image: image)
-            }
+            
             return ModalViewController(childViewController: requestVc, store: store)
         }
     }
@@ -285,16 +283,13 @@ class ModalPresenter : Subscriber, Trackable {
         guard let wallet = walletManager?.wallet else { return nil }
         let receiveVC = ReceiveViewController(wallet: wallet, store: store, isRequestAmountVisible: isRequestAmountVisible, legacyAddress: legacyAddress)
         let root = ModalViewController(childViewController: receiveVC, store: store)
-        receiveVC.presentEmail = { [weak self, weak root] address, image in
+
+        receiveVC.presentShare = { [weak self, weak root] address, image in
             guard let root = root else { return }
             self?.messagePresenter.presenter = root
-            self?.messagePresenter.presentMailCompose(bitcoinAddress: address, image: image)
+            self?.messagePresenter.presentShareSheet(text: address, image: image)
         }
-        receiveVC.presentText = { [weak self, weak root] address, image in
-            guard let root = root else { return }
-            self?.messagePresenter.presenter = root
-            self?.messagePresenter.presentMessageCompose(address: address, image: image)
-        }
+        
         return root
     }
 
@@ -402,15 +397,10 @@ class ModalPresenter : Subscriber, Trackable {
                 receiveViewController.addCloseNavigationItem(tintColor: .gradientStart)
                 receiveViewController.navigationItem.title = S.Settings.legacyAddressTitle
                 
-                receiveViewController.presentEmail = { [weak self] address, image in
+                receiveViewController.presentShare = { [weak self] address, image in
                     guard let root = self?.topViewController else { return }
                     self?.messagePresenter.presenter = root
-                    self?.messagePresenter.presentMailCompose(bitcoinAddress: address, image: image)
-                }
-                receiveViewController.presentText = { [weak self] address, image in
-                    guard let root = self?.topViewController else { return }
-                    self?.messagePresenter.presenter = root
-                    self?.messagePresenter.presentMessageCompose(address: address, image: image)
+                    self?.messagePresenter.presentShareSheet(text: address, image: image)
                 }
 
                 let faqButton = UIButton.buildFaqButton(store: myself.store, articleId: ArticleIds.receiveBitcoin)

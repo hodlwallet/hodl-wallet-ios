@@ -54,7 +54,7 @@ struct Amount {
     func string(isBtcSwapped: Bool) -> String {
         return isBtcSwapped ? localCurrency : bits
     }
-
+    
     var btcFormat: NumberFormatter {
         let format = NumberFormatter()
         format.isLenient = true
@@ -64,6 +64,11 @@ struct Amount {
         format.currencyCode = "XBT"
 
         switch maxDigits {
+        case 0:
+            format.currencySymbol = "\(S.Symbols.narrowSpace)\(S.Symbols.sat)"
+            format.positiveFormat = "#,##0.00 ¤"
+            format.negativeFormat = "-#,##0.00 ¤"
+            format.maximum = C.maxMoney as NSNumber
         case 2:
             format.currencySymbol = "\(S.Symbols.bits)\(S.Symbols.narrowSpace)"
             format.maximum = (C.maxMoney/C.satoshis)*100000 as NSNumber
@@ -74,7 +79,7 @@ struct Amount {
             format.currencySymbol = "\(S.Symbols.btc)\(S.Symbols.narrowSpace)"
             format.maximum = C.maxMoney/C.satoshis as NSNumber
         default:
-            format.currencySymbol = "\(S.Symbols.bits)\(S.Symbols.narrowSpace)"
+            format.currencySymbol = "\(S.Symbols.btc)\(S.Symbols.narrowSpace)"
         }
 
         format.maximumFractionDigits = maxDigits
@@ -118,7 +123,16 @@ struct DisplayAmount {
     private var bitcoinDescription: String {
         var decimal = Decimal(self.amount.rawValue)
         var amount: Decimal = 0.0
+        
+        if (self.state.maxDigits == 0) {
+            let number = NSDecimalNumber(decimal: decimal)
+            guard let string = btcFormat.string(from: number) else { return "" }
+            
+            return string
+        }
+        
         NSDecimalMultiplyByPowerOf10(&amount, &decimal, Int16(-state.maxDigits), .up)
+        
         let number = NSDecimalNumber(decimal: amount)
         guard let string = btcFormat.string(from: number) else { return "" }
         return string
@@ -150,6 +164,11 @@ struct DisplayAmount {
         format.currencyCode = "XBT"
 
         switch state.maxDigits {
+        case 0:
+            format.currencySymbol = "\(S.Symbols.narrowSpace)\(S.Symbols.sat)"
+            format.positiveFormat = "#,##0.00 ¤"
+            format.negativeFormat = "-#,##0.00 ¤"
+            format.maximum = C.maxMoney as NSNumber
         case 2:
             format.currencySymbol = "\(S.Symbols.bits)\(S.Symbols.narrowSpace)"
             format.maximum = (C.maxMoney/C.satoshis)*100000 as NSNumber

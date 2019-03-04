@@ -159,7 +159,7 @@ extension BRKey {
             let count = BRKeyPrivKey(&self, nil, 0)
             var data = CFDataCreateMutable(secureAllocator, count) as Data
             data.count = count
-            guard data.withUnsafeMutableBytes({ BRKeyPrivKey(&self, $0, data.count) }) != 0 else { return nil }
+            guard data.withUnsafeMutableBytes({ BRKeyPrivKey(&self, $0, count) }) != 0 else { return nil }
             return CFStringCreateFromExternalRepresentation(secureAllocator, data as CFData,
                                                             CFStringBuiltInEncodings.UTF8.rawValue) as String
         }
@@ -174,7 +174,7 @@ extension BRKey {
             let count = BRKeyBIP38Key(&self, nil, 0, nfcPhrase as String)
             var data = CFDataCreateMutable(secureAllocator, count) as Data
             data.count = count
-            guard data.withUnsafeMutableBytes({ BRKeyBIP38Key(&self, $0, data.count, nfcPhrase as String) }) != 0
+            guard data.withUnsafeMutableBytes({ BRKeyBIP38Key(&self, $0, count, nfcPhrase as String) }) != 0
                 else { return nil }
             return CFStringCreateFromExternalRepresentation(secureAllocator, data as CFData,
                                                             CFStringBuiltInEncodings.UTF8.rawValue) as String
@@ -195,10 +195,17 @@ extension BRKey {
         return hash
     }
     
-    // pay-to-pubkey-hash bitcoin address
+    // bech32 bitcoin address
     mutating func address() -> String? {
         var addr = [CChar](repeating: 0, count: MemoryLayout<BRAddress>.size)
         guard BRKeyAddress(&self, &addr, addr.count) > 0 else { return nil }
+        return String(cString: addr)
+    }
+    
+    // p2pkh bitcoin address
+    mutating func legacyAddress() -> String? {
+        var addr = [CChar](repeating: 0, count: MemoryLayout<BRAddress>.size)
+        guard BRKeyLegacyAddr(&self, &addr, addr.count) > 0 else { return nil }
         return String(cString: addr)
     }
     
@@ -366,7 +373,7 @@ class BRWallet {
     
     init?(transactions: [BRTxRef?], masterPubKey: BRMasterPubKey, listener: BRWalletListener) {
         var txRefs = transactions
-        guard let cPtr = BRWalletNew(&txRefs, txRefs.count, masterPubKey) else { return nil }
+        guard let cPtr = BRWalletNew(&txRefs, txRefs.count, masterPubKey, Int32(0)) else { return nil }
         self.listener = listener
         self.cPtr = cPtr
         
@@ -462,7 +469,7 @@ class BRWallet {
     // seed is the master private key (wallet seed) corresponding to the master public key given when wallet was created
     // returns true if all inputs were signed, or false if there was an error or not all inputs were able to be signed
     func signTransaction(_ tx: BRTxRef, forkId: Int = 0, seed: inout UInt512) -> Bool {
-        return BRWalletSignTransaction(cPtr, tx, Int32(forkId), &seed, MemoryLayout<UInt512>.stride) != 0
+        return BRWalletSignTransaction(cPtr, tx, &seed, MemoryLayout<UInt512>.stride) != 0
     }
     
     // true if no previous wallet transaction spends any of the given transaction's inputs, and no inputs are invalid
