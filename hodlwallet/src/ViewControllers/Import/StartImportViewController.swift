@@ -10,11 +10,9 @@ import UIKit
 import BRCore
 
 // FIXME, please replace this with the hodlwallet domain
-private let mainURL = "https://bitcore.guajiro.cash/api/BTC/mainnet/address"
-private let fallbackURL = "https://bitcore.guajiro.cash/api/BTC/mainnet/address"
-// FIXME, please replace `testnetURL` with the testnet url bellow when available
-//private let testnetURL = "https://bitcore.guajiro.cash/api/BTC/testnet/address"
-private let testnetURL = "https://bitcore.guajiro.cash/api/BTC/mainnet/address"
+private let addressApiURL = "https://api.blockcypher.com/v1/btc/main/addrs/%@/full?unspentOnly=true&includeScript=true"
+private let addressApiFalbackURL = "https://api.blockcypher.com/v1/btc/main/addrs/%@/full?unspentOnly=true&includeScript=true"
+private let addressApiTestnetURL = "https://api.blockcypher.com/v1/btc/test3/addrs/%@/full?unspentOnly=true&includeScript=true"
 
 class StartImportViewController : UIViewController {
 
@@ -105,12 +103,14 @@ class StartImportViewController : UIViewController {
         warning.text = S.Import.importWarning
 
         button.tap = { [weak self] in
-            let scan = ScanViewController(scanKeyCompletion: { address in
-                self?.didReceiveAddress(address)
-            }, isValidURI: { (string) -> Bool in
-                return string.isValidPrivateKey || string.isValidBip38Key
-            })
-            self?.parent?.present(scan, animated: true, completion: nil)
+            // TODO Remove this is for testing on testnet only... it should scan this
+            self?.didReceiveAddress("93G3vYsT4TCdFV1XPv1DZFXCgpTm92eZjYkPtMCsUX67HQoBLvY")
+//            let scan = ScanViewController(scanKeyCompletion: { address in
+//                self?.didReceiveAddress(address)
+//            }, isValidURI: { (string) -> Bool in
+//                return string.isValidPrivateKey || string.isValidBip38Key
+//            })
+//            self?.parent?.present(scan, animated: true, completion: nil)
         }
     }
 
@@ -154,27 +154,71 @@ class StartImportViewController : UIViewController {
     }
 
     private func checkBalance(key: BRKey) {
+        var utxos = [SimpleUTXO]()
+        var key = key
+        
+        guard let bech32Address = key.address() else { return }
+        guard let legacyAddress = key.legacyAddress() else { return }
+        
         present(balanceActivity, animated: true, completion: {
-            var key = key
-            guard let address = key.legacyAddress() else { return }
-            let urlString = (E.isTestnet ? testnetURL : mainURL) + "/" + address + "/transactions?unspent=true"
-            let request = NSMutableURLRequest(url: URL(string: urlString)!,
-                                              cachePolicy: .reloadIgnoringLocalCacheData,
-                                              timeoutInterval: 20.0)
-            request.httpMethod = "GET"
-            let task = URLSession.shared.dataTask(with: request as URLRequest) { [weak self] data, response, error in
-                guard let myself = self else { return }
-                guard error == nil else { print("error: \(error!)"); return }
-                guard let data = data,
-                    let jsonData = try? JSONSerialization.jsonObject(with: data, options: []),
-                    let json = jsonData as? [[String: Any]] else { return }
-                myself.handleData(data: json, key: key)
+            for (_, address) in [bech32Address, legacyAddress].enumerated() {
+                NSLog("Looking for outputs for address: %@", address)
+                
+                let urlString = String(format: (E.isTestnet ? addressApiTestnetURL : addressApiURL), address)
+                let request = NSMutableURLRequest(url: URL(string: urlString)!,
+                                                  cachePolicy: .reloadIgnoringLocalCacheData,
+                                                  timeoutInterval: 20.0)
+                request.httpMethod = "GET"
+                let task = (URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
+                    guard error == nil else { print("error: \(error!)"); return }
+                    
+                    guard let data       = data,
+                        let jsonData     = try? JSONSerialization.jsonObject(with: data, options: []),
+                        let jsonRootDict = jsonData as? NSDictionary,
+                        let jsonTxs      = jsonRootDict.value(forKey: "txs") as? NSArray else { return }
+                    
+                    for (_, txData) in jsonTxs.enumerated() {
+                        guard let tx    = txData as? NSDictionary,
+                            let outputs = tx.value(forKey: "outputs") as? NSArray else { return }
+                        
+                        for (outIndex, outputData) in outputs.enumerated() {
+                            guard let output  = outputData as? NSDictionary,
+                                let addresses = output.value(forKey: "addresses") as? NSArray else { return }
+                            
+                            if (addresses.contains(address)) {
+                                NSLog("Found output for address: %@", address)
+
+                                guard let txid       = tx.value(forKey: "hash") as? String,
+                                    let scriptPubKey = output.value(forKey: "script") as? String,
+                                    let satoshis     = output.value(forKey: "value") as? UInt64 else { return }
+                                guard let hashData = txid.hexToData,
+                                    let scriptData = scriptPubKey.hexToData else { return }
+                                
+                                NSLog("Script: %@", scriptPubKey)
+                                NSLog("Amount: %d", satoshis)
+                                NSLog("Index: %d", outIndex)
+                                
+                                utxos.append(SimpleUTXO(
+                                    hash: hashData.reverse.uInt256,
+                                    index: UInt32(outIndex),
+                                    script: [UInt8](scriptData),
+                                    satoshis: satoshis
+                                    )!)
+                            }
+                        }
+                    }
+                    
+                    NSLog("Was checking address: \(address)")
+                    
+                    self.handleData(outputs: utxos, key: key)
+                })
+                
+                task.resume()
             }
-            task.resume()
         })
     }
 
-    private func handleData(data: [[String: Any]], key: BRKey) {
+    private func handleData(outputs: [SimpleUTXO], key: BRKey) {
         var key = key
         guard let tx = UnsafeMutablePointer<BRTransaction>() else { return }
         guard let wallet = walletManager.wallet else { return }
@@ -182,7 +226,6 @@ class StartImportViewController : UIViewController {
         guard !wallet.containsAddress(address) else {
             return showErrorMessage(S.Import.Error.duplicate)
         }
-        let outputs = data.compactMap { SimpleUTXO(json: $0) }
         let balance = outputs.map { $0.satoshis }.reduce(0, +)
         outputs.forEach { output in
             tx.addInput(txHash: output.hash, index: output.index, amount: output.satoshis, script: output.script)
