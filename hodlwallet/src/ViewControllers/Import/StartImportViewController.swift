@@ -106,14 +106,12 @@ class StartImportViewController : UIViewController {
         warning.text = S.Import.importWarning
 
         button.tap = { [weak self] in
-            // TODO Remove this is for testing on testnet only... it should scan this
-            self?.didReceiveAddress("93G3vYsT4TCdFV1XPv1DZFXCgpTm92eZjYkPtMCsUX67HQoBLvY")
-//            let scan = ScanViewController(scanKeyCompletion: { address in
-//                self?.didReceiveAddress(address)
-//            }, isValidURI: { (string) -> Bool in
-//                return string.isValidPrivateKey || string.isValidBip38Key
-//            })
-//            self?.parent?.present(scan, animated: true, completion: nil)
+            let scan = ScanViewController(scanKeyCompletion: { address in
+                self?.didReceiveAddress(address)
+            }, isValidURI: { (string) -> Bool in
+                return string.isValidPrivateKey || string.isValidBip38Key
+            })
+            self?.parent?.present(scan, animated: true, completion: nil)
         }
     }
 
