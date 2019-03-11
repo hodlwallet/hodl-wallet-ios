@@ -29,4 +29,11 @@ struct SimpleUTXO {
         self.script = [UInt8](scriptData)
         self.satoshis = satoshis
     }
+    
+    init?(hash: UInt256, index: UInt32, script: [UInt8], satoshis: UInt64) {
+        self.hash = hash
+        self.index = index
+        self.script = script
+        self.satoshis = satoshis
+    }
 }

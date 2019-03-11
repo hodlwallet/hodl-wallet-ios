@@ -9,12 +9,13 @@
 import UIKit
 import BRCore
 
-// FIXME, please replace this with the hodlwallet domain
-private let mainURL = "https://bitcore.guajiro.cash/api/BTC/mainnet/address"
-private let fallbackURL = "https://bitcore.guajiro.cash/api/BTC/mainnet/address"
-// FIXME, please replace `testnetURL` with the testnet url bellow when available
-//private let testnetURL = "https://bitcore.guajiro.cash/api/BTC/testnet/address"
-private let testnetURL = "https://bitcore.guajiro.cash/api/BTC/mainnet/address"
+private let utxoApiURL = "https://blockstream.info/api/address/%@/utxo"
+private let utxoApiFalbackURL = "https://blockstream.info/api/address/%@/utxo"
+private let utxoApiTestnetURL = "https://blockstream.info/testnet/api/address/%@/utxo"
+
+private let txApiURL = "https://blockstream.info/api/tx/%@"
+private let txApiFalbackURL = "https://blockstream.info/api/tx/%@"
+private let txApiTestnetURL = "https://blockstream.info/testnet/api/tx/%@"
 
 class StartImportViewController : UIViewController {
 
@@ -154,27 +155,114 @@ class StartImportViewController : UIViewController {
     }
 
     private func checkBalance(key: BRKey) {
+        var utxos = [SimpleUTXO]()
+        var key = key
+        
+        guard let bech32Address = key.address() else { return }
+        guard let legacyAddress = key.legacyAddress() else { return }
+        
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
         present(balanceActivity, animated: true, completion: {
-            var key = key
-            guard let address = key.legacyAddress() else { return }
-            let urlString = (E.isTestnet ? testnetURL : mainURL) + "/" + address + "/transactions?unspent=true"
-            let request = NSMutableURLRequest(url: URL(string: urlString)!,
-                                              cachePolicy: .reloadIgnoringLocalCacheData,
-                                              timeoutInterval: 20.0)
-            request.httpMethod = "GET"
-            let task = URLSession.shared.dataTask(with: request as URLRequest) { [weak self] data, response, error in
-                guard let myself = self else { return }
-                guard error == nil else { print("error: \(error!)"); return }
-                guard let data = data,
-                    let jsonData = try? JSONSerialization.jsonObject(with: data, options: []),
-                    let json = jsonData as? [[String: Any]] else { return }
-                myself.handleData(data: json, key: key)
+            for (_, address) in [bech32Address, legacyAddress].enumerated() {
+                dispatchGroup.enter()
+                
+                let utxoUrlString = String(format: (E.isTestnet ? utxoApiTestnetURL : utxoApiURL), address)
+                let utxoRequest = NSMutableURLRequest(url: URL(string: utxoUrlString)!,
+                                                  cachePolicy: .reloadIgnoringLocalCacheData,
+                                                  timeoutInterval: 20.0)
+                utxoRequest.httpMethod = "GET"
+                let utxoTask = (URLSession.shared.dataTask(with: utxoRequest as URLRequest) { data, response, error in
+                    guard error == nil else { print("error: \(error!)"); return }
+                    
+                    guard let data       = data,
+                        let jsonData     = try? JSONSerialization.jsonObject(with: data, options: []),
+                        let jsonRootArray = jsonData as? NSArray else {
+                            self.handleData(outputs: utxos, key: key)
+                            
+                            return
+                        }
+                    
+                    for (_, txData) in jsonRootArray.enumerated() {
+                        guard let tx   = txData as? NSDictionary,
+                            let txid   = tx.value(forKey: "txid") as? String,
+                            let vout   = tx.value(forKey: "vout") as? Int,
+                            let status = tx.value(forKey: "status") as? NSDictionary,
+                            let value  = tx.value(forKey: "value") as? UInt64 else {
+                                self.handleData(outputs: utxos, key: key)
+                                
+                                return
+                            }
+                        
+                        // Check the status is confirmed only add confirmed transactions
+                        if (status.value(forKey: "confirmed") as! Bool) {
+                            dispatchGroup.enter()
+                            
+                            // If the transaction is confirmed we look for the utxo script pub key from the tx api
+                            let txUrlString = String(format: (E.isTestnet ? txApiTestnetURL : txApiURL), txid)
+                            let txRequest = NSMutableURLRequest(url: URL(string: txUrlString)!,
+                                                                  cachePolicy: .reloadIgnoringLocalCacheData,
+                                                                  timeoutInterval: 20.0)
+                            txRequest.httpMethod = "GET"
+                            let txTask = (URLSession.shared.dataTask(with: txRequest as URLRequest) { data, response, error in
+                                guard error == nil else { print("error: \(error!)"); return }
+                                
+                                guard let data       = data,
+                                    let jsonData     = try? JSONSerialization.jsonObject(with: data, options: []),
+                                    let jsonRootDict = jsonData as? NSDictionary,
+                                    let vouts        = jsonRootDict.value(forKey: "vout") as? NSArray else {
+                                        self.handleData(outputs: utxos, key: key)
+                                        
+                                        return
+                                    }
+                                
+                                // Check if the index is valid in the vouts array
+                                if (vouts.count >= (vout + 1)) {
+                                    guard let voutItem   = vouts[vout] as? NSDictionary,
+                                        let scriptPubKey = voutItem.value(forKey: "scriptpubkey") as? String else {
+                                        self.handleData(outputs: utxos, key: key)
+                                        
+                                        return
+                                    }
+                                    
+                                    guard let hashData = txid.hexToData,
+                                        let scriptData = scriptPubKey.hexToData else {
+                                            self.handleData(outputs: utxos, key: key)
+                                            
+                                            return
+                                    }
+                                    
+                                    // Lets finally add the utxo
+                                    utxos.append(SimpleUTXO(
+                                        hash: hashData.reverse.uInt256,
+                                        index: UInt32(vout),
+                                        script: [UInt8](scriptData),
+                                        satoshis: value)!
+                                    )
+                                }
+                                
+                                dispatchGroup.leave()
+                            })
+                            
+                            txTask.resume()
+                        }
+                    }
+                    
+                    dispatchGroup.leave()
+                })
+                
+                utxoTask.resume()
             }
-            task.resume()
+            
+            dispatchGroup.leave()
         })
+        
+        dispatchGroup.notify(queue: DispatchQueue.global()) {
+            self.handleData(outputs: utxos, key: key)
+        }
     }
 
-    private func handleData(data: [[String: Any]], key: BRKey) {
+    private func handleData(outputs: [SimpleUTXO], key: BRKey) {
         var key = key
         guard let tx = UnsafeMutablePointer<BRTransaction>() else { return }
         guard let wallet = walletManager.wallet else { return }
@@ -182,7 +270,6 @@ class StartImportViewController : UIViewController {
         guard !wallet.containsAddress(address) else {
             return showErrorMessage(S.Import.Error.duplicate)
         }
-        let outputs = data.compactMap { SimpleUTXO(json: $0) }
         let balance = outputs.map { $0.satoshis }.reduce(0, +)
         outputs.forEach { output in
             tx.addInput(txHash: output.hash, index: output.index, amount: output.satoshis, script: output.script)
