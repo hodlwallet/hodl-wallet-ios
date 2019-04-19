@@ -21,8 +21,11 @@ struct PaymentRequest {
             if let scheme = url.scheme, let resourceSpecifier = url.resourceSpecifier, url.host == nil {
                 url = NSURL(string: "\(scheme)://\(resourceSpecifier)")!
 
-                if url.scheme == "bitcoin", let host = url.host {
-                    toAddress = host
+                if url.scheme == "bitcoin" {
+                    if url.host != nil {
+                        toAddress = url.host
+                    }
+
                     guard let components = url.query?.components(separatedBy: "&") else { type = .local; return }
                     for component in components {
                         let pair = component.components(separatedBy: "=")
