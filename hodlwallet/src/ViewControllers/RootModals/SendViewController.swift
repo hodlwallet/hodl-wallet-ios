@@ -178,7 +178,7 @@ class SendViewController : UIViewController, Subscriber, ModalPresentable, Track
             let fee = sender.feeForTx(amount: amount.rawValue)
             let feeAmount = DisplayAmount(amount: Satoshis(rawValue: fee), state: store.state, selectedRate: rate, minimumFractionDigits: 2)
             let feeText = feeAmount.description
-            guard let feePerKB = walletManager.wallet?.feePerKb
+            guard (walletManager.wallet?.feePerKb) != nil
                 else {
                     feeOutput = feeText as String
                     if (balance >= fee) && amount.rawValue > (balance - fee) {
