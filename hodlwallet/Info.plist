@@ -17,6 +17,8 @@
 			<array>
 				<string>bitcoin.paymentrequest</string>
 			</array>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeIconFiles</key>
@@ -27,6 +29,8 @@
 			<array>
 				<string>bitcoin.payment</string>
 			</array>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeIconFiles</key>
@@ -37,6 +41,8 @@
 			<array>
 				<string>bitcoin.paymentack</string>
 			</array>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
