@@ -255,7 +255,13 @@ extension BRTxInput {
 
 extension BRTxOutput {
     var swiftAddress: String {
-        get { return String(cString: UnsafeRawPointer([self.address]).assumingMemoryBound(to: CChar.self)) }
+        get {
+            return withUnsafePointer(to: self.address) {
+                $0.withMemoryRebound(to: UInt8.self, capacity: MemoryLayout.size(ofValue: self.address)) {
+                    String(cString: $0)
+                }
+            }
+        }
         set { BRTxOutputSetAddress(&self, newValue) }
     }
     
