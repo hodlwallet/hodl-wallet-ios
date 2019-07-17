@@ -77,9 +77,8 @@ extension BRAPIClient {
                     }
                     handler(array.flatMap { Rate(data: $0) }, nil)
                 } else {
-                    guard let dict = parsedData as? [String: Any],
-                        let array = dict["body"] as? [Any] else {
-                            return self.exchangeRates(isFallback: true, handler)
+                    guard let array = parsedData as? [Any] else {
+                        return self.exchangeRates(isFallback: true, handler)
                     }
                     handler(array.flatMap { Rate(data: $0) }, nil)
                 }
