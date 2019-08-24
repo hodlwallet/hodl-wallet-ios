@@ -46,6 +46,15 @@ We manage all translations with:
 
 [PhraseApp - Start localizing software the simple way](https://phraseapp.com)
 
+
+### Path derivation & recovering your funds in other Bitcoin Wallets.
+
+It may be necessary at somepoint to recover your bitcoin via your Hodl Wallet Backup Recovery Key (seed) by entering it into a diffent bitcoin wallet. In this case it is important to know what path Hodl Wallet derives your addresses from.
+
+
+
+
+
 ### WARNING:
 
 ***Installation on jailbroken devices is strongly discouraged.***
