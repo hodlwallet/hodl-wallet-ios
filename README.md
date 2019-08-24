@@ -49,7 +49,7 @@ We manage all translations with:
 
 ### Recovering your funds with other Bitcoin Wallets.
 
-It may be necessary at somepoint to recover your bitcoin via your Hodl Wallet Backup Recovery Key (seed). This is typically done by entering it into a diffent bitcoin wallet. In this case it is important to know what path Hodl Wallet derives your addresses from. 
+It may be necessary at somepoint to recover your bitcoin via your Hodl Wallet Backup Recovery Key (seed). This is typically done by entering it into a diffent bitcoin wallet. In this case it is important to know what path Hodl Wallet derives your keys from. 
 
 ### Derivation path
 
@@ -57,9 +57,11 @@ BIP32 https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki
 
 Native Segwit Bech 32 - `m/0'`
 
+Legacy - 
+
 ### Recovering funds with Electrum
 
-If you find yourself with the need to recvor your funds with an external app Hodl Wallet reccomends [Electrum](https://electrum.org/#home).
+If you find yourself with the need to recvor your funds with an external app, Hodl Wallet reccomends [Electrum](https://electrum.org/#home).
 
 It's importnat that you make sure you our downloading Electrum from the real source. You can do this by double checking the ssl certificate at the site or building from source.
 
