@@ -56,11 +56,11 @@ It may be necessary at somepoint to recover your bitcoin via your Hodl Wallet Ba
 BIP32 https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki
 
 Legacy
-Bech 32
+Native Segwit Bech 32 - `m/0'`
 
 ### Recovering funds with Electrum
 
-If you find yourself with the need to recvor your funds with an external app Hodl Wallet reccomends Electrum. You can find Electrum at :
+If you find yourself with the need to recvor your funds with an external app Hodl Wallet reccomends[Electrum](https://electrum.org/#home).
 
 It's importnat that you make sure you our downloading Electrum from the real source. You can do this by double checking the ssl certificate at the site or building from source.
 
