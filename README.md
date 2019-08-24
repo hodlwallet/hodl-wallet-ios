@@ -72,7 +72,7 @@ Steps to recovering your bitcoin using Electrum:
 3. Select Standard Wallet
 4. Select "I have the seed" & Enter seed
 5. In options select BIP39
-6. Select Native Segwit & Path m/0'
+6. Select Native Segwit & Path `m/0'`
 
 ### WARNING:
 
