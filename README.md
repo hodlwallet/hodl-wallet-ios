@@ -53,7 +53,7 @@ It may be necessary at somepoint to recover your bitcoin via your Hodl Wallet Ba
 
 ### Derivation path
 
-Hodl Wallet conforms to [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) standard when generating your wallet. 
+Hodl Wallet conforms to [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) standards when generating your wallet. 
 
 Derivation Path - `m/0'`
 
