@@ -49,15 +49,13 @@ We manage all translations with:
 
 ### Recovering your funds with other Bitcoin Wallets.
 
-It may be necessary at somepoint to recover your bitcoin via your Hodl Wallet Backup Recovery Key (seed). This is typically done by entering it into a diffent bitcoin wallet. In this case it is important to know what path Hodl Wallet derives your keys from. 
+It may be necessary at somepoint to recover your bitcoin via your Hodl Wallet Backup Recovery Key (seed) using another Bitcoin wallet. In this case it is important to know what path Hodl Wallet derives your keys from. 
 
 ### Derivation path
 
-BIP32 https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki
+Hodl Wallet conforms to [BIP32] (https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) standard when generating your wallet. 
 
-Native Segwit Bech 32 - `m/0'`
-
-Legacy - 
+Derivation Path - `m/0'`
 
 ### Recovering funds with Electrum
 
@@ -70,9 +68,12 @@ Steps to recovering your bitcoin using Electrum:
 1. Select New/Restore
 2. Name the Wallet
 3. Select Standard Wallet
-4. Select "I have the seed" & Enter seed
+4. Select "I have the seed"
 5. In options select BIP39
-6. Select Native Segwit & Path `m/0'`
+6. Enter the seed
+7. Select Path `m/0'`
+
+**NOTE:** If you wish to recover funds in legacy addresses you must repeat the process in Electrum while the existing wallet showing your balance in the segwit addresses is open. Do this by selecting File --> New/Restore. Electrum allows a user to manage multiple wallets and seeds at once. 
 
 ### WARNING:
 
