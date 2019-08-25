@@ -4,7 +4,7 @@ Hodl is the best way to get started with bitcoin. Our simple, streamlined design
 
 ### Completely decentralized
 
-Unlike other iOS bitcoin wallets, **Hodl** is a standalone bitcoin client. It connects directly to the bitcoin network using [SPV](https://en.bitcoin.it/wiki/Thin_Client_Security#Header-Only_Clients) mode, and doesn't rely on servers that can be hacked or disabled. Even if Bitstop loses its grip and disappears, the app will continue to function, allowing users to access their money at any time.
+Unlike other iOS bitcoin wallets, **Hodl** is a standalone bitcoin client. It connects directly to the bitcoin network using [SPV](https://en.bitcoin.it/wiki/Thin_Client_Security#Header-Only_Clients) mode, and doesn't rely on servers that can be hacked or disabled. Even if Hodl disappears, the app will continue to function, allowing users to access their money at any time.
 
 ### Cutting-edge security
 
