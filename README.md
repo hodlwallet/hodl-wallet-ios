@@ -1,4 +1,4 @@
-## [Hodl Wallet](https://hodlwallet.com/) - The easy and secure Bitcoin wallet for IOS
+## [Hodl Wallet](https://hodlwallet.com/) - The easy and secure bitcoin wallet for IOS
 
 Hodl is the best way to get started with Bitcoin. Our simple, streamlined design is easy for beginners, yet powerful enough for experienced users. You can get it on the app store here: [Download Hodl Wallet IOS](https://apps.apple.com/us/app/hodl-wallet/id1382342568?ls=1)
 
