@@ -1,10 +1,10 @@
 ## The easy and secure bitcoin wallet
 
-Hodl is the best way to get started with bitcoin. Our simple, streamlined design is easy for beginners, yet powerful enough for experienced users.
+Hodl is the best way to get started with Bitcoin. Our simple, streamlined design is easy for beginners, yet powerful enough for experienced users.
 
 ### Completely decentralized
 
-Unlike other iOS bitcoin wallets, **Hodl** is a standalone bitcoin client. It connects directly to the bitcoin network using [SPV](https://en.bitcoin.it/wiki/Thin_Client_Security#Header-Only_Clients) mode, and doesn't rely on servers that can be hacked or disabled. Even if Hodl disappears, the app will continue to function, allowing users to access their money at any time.
+Unlike other iOS Bitcoin wallets, **Hodl** is a standalone Bitcoin client. It connects directly to the Bitcoin network using [SPV](https://en.bitcoin.it/wiki/Thin_Client_Security#Header-Only_Clients) mode, and doesn't rely on servers that can be hacked or disabled. Even if Hodl disappears, the app will continue to function, allowing users to access their money at any time. You can also recover Hodls revoery seed in other Bitcoin wallets if necessary as we follow BIP standards for wallet generation.
 
 ### Cutting-edge security
 
@@ -12,13 +12,13 @@ Unlike other iOS bitcoin wallets, **Hodl** is a standalone bitcoin client. It co
 
 ### Desgined with new users in mind
 
-Simplicity and ease-of-use is **Hodl**'s core design principle. A simple recovery phrase (which we call a paper key) is all that is needed to restore the user's wallet if they ever lose or replace their device. **Hodl** is [deterministic](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki), which means the user's balance and transaction history can be recovered just from the paper key.
+Simplicity and ease-of-use is **Hodl**'s core design principle. A simple recovery phrase (which we call a Backup Recovery Key) is all that is needed to restore the user's wallet if they ever lose or replace their device. **Hodl** is [deterministic](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki), which means the user's balance and transaction history can be recovered just from the backup recovery key.
 
 ### Features
 
 - [Simplified payment verification](https://github.com/bitcoin/bips/blob/master/bip-0037.mediawiki) for fast mobile performance
 - No server to get hacked or go down
-- Single paper key is all that's needed to backup your wallet
+- Single backup recovry key is all that's needed to backup & restore your wallet
 - Private keys never leave your device
 - Save a memo for each transaction (off-chain)
 - Supports importing [password protected](https://github.com/bitcoin/bips/blob/master/bip-0038.mediawiki) paper wallets
@@ -42,10 +42,6 @@ Simplicity and ease-of-use is **Hodl**'s core design principle. A simple recover
 - Spanish
 - Swedish
 
-We manage all translations with:
-
-[PhraseApp - Start localizing software the simple way](https://phraseapp.com)
-
 
 ### Recovering your funds with other Bitcoin Wallets.
 
@@ -55,7 +51,7 @@ It may be necessary at somepoint to recover your bitcoin via your Hodl Wallet Ba
 
 Hodl Wallet conforms to [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) standards when generating your wallet. 
 
-Derivation Path - `m/0'`
+Derivation Path - `m/0'/0`
 
 ### Recovering funds with Electrum
 
@@ -74,6 +70,14 @@ Steps to recovering your bitcoin using Electrum:
 7. Select Path `m/0'`
 
 **NOTE:** If you wish to recover funds in legacy addresses you must repeat the process in Electrum while the existing wallet showing your balance in the segwit addresses is open. Do this by selecting File --> New/Restore. Electrum allows a user to manage multiple wallets and seeds at once. 
+
+
+### Contact
+
+Should you need to get in contact with us for any reason please feel free to write us at support@hodlwallet.com
+
+You can visti our site here: [Hodlwallet.com](https://hodlwallet.com/) 
+
 
 ### WARNING:
 
