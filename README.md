@@ -1,4 +1,4 @@
-## The easy and secure bitcoin wallet
+## [Hodl Wallet](https://hodlwallet.com/) - The easy and secure bitcoin wallet
 
 Hodl is the best way to get started with Bitcoin. Our simple, streamlined design is easy for beginners, yet powerful enough for experienced users.
 
