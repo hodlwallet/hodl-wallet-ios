@@ -1,6 +1,6 @@
-## [Hodl Wallet](https://hodlwallet.com/) - The easy and secure bitcoin wallet
+## [Hodl Wallet](https://hodlwallet.com/) - The easy and secure Bitcoin wallet for IOS
 
-Hodl is the best way to get started with Bitcoin. Our simple, streamlined design is easy for beginners, yet powerful enough for experienced users.
+Hodl is the best way to get started with Bitcoin. Our simple, streamlined design is easy for beginners, yet powerful enough for experienced users. You can get it on the app store here: [Download Hodl Wallet IOS](https://apps.apple.com/us/app/hodl-wallet/id1382342568?ls=1)
 
 ### Completely decentralized
 
@@ -10,7 +10,7 @@ Unlike other iOS Bitcoin wallets, **Hodl** is a standalone Bitcoin client. It co
 
 **Hodl** utilizes AES hardware encryption, app sandboxing, and the latest iOS security features to protect users from malware, browser security holes, and even physical theft. Private keys are stored only in the secure enclave of the user's phone, inaccessible to anyone other than the user.
 
-### Desgined with new users in mind
+### Simple yet robust
 
 Simplicity and ease-of-use is **Hodl**'s core design principle. A simple recovery phrase (which we call a Backup Recovery Key) is all that is needed to restore the user's wallet if they ever lose or replace their device. **Hodl** is [deterministic](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki), which means the user's balance and transaction history can be recovered just from the backup recovery key.
 
