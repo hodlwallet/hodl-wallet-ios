@@ -76,7 +76,7 @@ Steps to recovering your bitcoin using Electrum:
 
 Should you need to get in contact with us for any reason please feel free to write us at support@hodlwallet.com
 
-You can visti our site here: [Hodlwallet.com](https://hodlwallet.com/) 
+You can visit our site here: [Hodlwallet.com](https://hodlwallet.com/) 
 
 
 ### WARNING:
