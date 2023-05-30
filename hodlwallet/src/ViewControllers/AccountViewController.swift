@@ -38,7 +38,7 @@ class AccountViewController : UIViewController, Subscriber {
                 present(loginView, animated: false, completion: {
                     self.tempLoginView.remove()
                     self.attemptShowWelcomeView()
-                    self.attemptShowSegwitView()
+                    // self.attemptShowSegwitView()
                 })
             }
             transactionsTableView.walletManager = walletManager

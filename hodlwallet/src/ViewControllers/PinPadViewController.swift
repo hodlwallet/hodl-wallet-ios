@@ -20,7 +20,7 @@ enum KeyboardType {
 
 let deleteKeyIdentifier = "del"
 
-class PinPadViewController : UICollectionViewController {
+class PinPadViewController: UICollectionViewController {
 
     let currencyDecimalSeparator = NumberFormatter().currencyDecimalSeparator ?? "."
     var isAppendingDisabled = false
@@ -55,6 +55,7 @@ class PinPadViewController : UICollectionViewController {
         self.rateCode = rateCode
         let layout = UICollectionViewFlowLayout()
         let screenWidth = UIScreen.main.safeWidth
+        let itemWidth = (screenWidth / 3.0) - 1.0
 
         layout.minimumLineSpacing = 1.0
         layout.minimumInteritemSpacing = 1.0
@@ -63,10 +64,10 @@ class PinPadViewController : UICollectionViewController {
         switch keyboardType {
         case .decimalPad:
             items = ["1", "2", "3", "4", "5", "6", "7", "8", "9", currencyDecimalSeparator, "0", deleteKeyIdentifier]
-            layout.itemSize = CGSize(width: screenWidth/3.0 - 2.0/3.0, height: 48.0 - 1.0)
+            layout.itemSize = CGSize(width: itemWidth, height: 47.0)
         case .pinPad:
             items = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "", "0", deleteKeyIdentifier]
-            layout.itemSize = CGSize(width: screenWidth/3.0 - 2.0/3.0, height: 54.0 - 0.5)
+            layout.itemSize = CGSize(width: itemWidth, height: 53.5)
         }
 
         super.init(collectionViewLayout: layout)
@@ -102,13 +103,13 @@ class PinPadViewController : UICollectionViewController {
         collectionView?.delegate = self
         collectionView?.dataSource = self
 
-        //Even though this view will never scroll, this stops a gesture recognizer
-        //from listening for scroll events
-        //This prevents a delay in cells highlighting right when they are tapped
+        // Even though this view will never scroll, this stops a gesture recognizer
+        // from listening for scroll events
+        // This prevents a delay in cells highlighting right when they are tapped
         collectionView?.isScrollEnabled = false
     }
 
-    //MARK: - UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
     }
@@ -120,7 +121,7 @@ class PinPadViewController : UICollectionViewController {
         return pinPadCell
     }
 
-    //MARK: - UICollectionViewDelegate
+    // MARK: - UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = items[indexPath.row]
         if item == "del" {
@@ -139,15 +140,15 @@ class PinPadViewController : UICollectionViewController {
 
         ouputDidUpdate?(currentOutput)
     }
-    
-    func setRateCode(rateCode: String) -> Void {
+
+    func setRateCode(rateCode: String) {
         self.rateCode = rateCode
     }
 
     func shouldAppendChar(char: String) -> Bool {
         let decimalLocation = currentOutput.range(of: currencyDecimalSeparator)?.lowerBound
 
-        //Don't allow more that maxDigits decimal points
+        // Don't allow more that maxDigits decimal points
         if let location = decimalLocation {
             let locationValue = currentOutput.distance(from: currentOutput.endIndex, to: location)
             if locationValue < -maxDigits && self.rateCode == "" {
@@ -155,22 +156,22 @@ class PinPadViewController : UICollectionViewController {
             }
         }
 
-        //Don't allow more than 2 decimal separators
+        // Don't allow more than 2 decimal separators
         if currentOutput.contains("\(currencyDecimalSeparator)") && char == currencyDecimalSeparator {
             return false
         }
 
         if keyboardType == .decimalPad {
             if currentOutput == "0" {
-                //Append . to 0
+                // Append . to 0
                 if char == currencyDecimalSeparator {
                     return true
 
-                //Dont append 0 to 0
+                // Dont append 0 to 0
                 } else if char == "0" {
                     return false
 
-                //Replace 0 with any other digit
+                // Replace 0 with any other digit
                 } else {
                     currentOutput = char
                     return false
@@ -180,7 +181,7 @@ class PinPadViewController : UICollectionViewController {
 
         if char == currencyDecimalSeparator {
             if decimalLocation == nil {
-                //Prepend a 0 if the first character is a decimal point
+                // Prepend a 0 if the first character is a decimal point
                 if currentOutput.count == 0 {
                     currentOutput = "0"
                 }
