@@ -3507,7 +3507,7 @@
 					};
 					75A2A78F1DA5934300A983D8 = {
 						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -3526,13 +3526,13 @@
 					};
 					75A2A7A31DA5934300A983D8 = {
 						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Automatic;
 						TestTargetID = 75A2A78F1DA5934300A983D8;
 					};
 					75A2A7AE1DA5934300A983D8 = {
 						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Automatic;
 						TestTargetID = 75A2A78F1DA5934300A983D8;
 					};
@@ -3543,7 +3543,7 @@
 					};
 					75A2A7C61DA5934300A983D8 = {
 						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Automatic;
 					};
 					75A2A7EF1DA5935F00A983D8 = {
@@ -3561,7 +3561,7 @@
 					};
 					75A2A81B1DA5938500A983D8 = {
 						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Automatic;
 					};
 					75C735AE1DAA1C9F00251ECF = {
@@ -3570,7 +3570,7 @@
 					};
 					CEA7E67A1F09A9D2001F8C27 = {
 						CreatedOnToolsVersion = 8.3.3;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Automatic;
 						TestTargetID = 75A2A78F1DA5934300A983D8;
 					};
@@ -4549,6 +4549,7 @@
 					"${SRCROOT}/Modules/breadwallet-core",
 					"${SRCROOT}/Modules/breadwallet-core/secp256k1",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -4563,6 +4564,7 @@
 					"${SRCROOT}/Modules/breadwallet-core",
 					"${SRCROOT}/Modules/breadwallet-core/secp256k1",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -4909,6 +4911,7 @@
 				CODE_SIGN_ENTITLEMENTS = TodayExtension/TodayExtension.entitlements;
 				DEVELOPMENT_TEAM = J829PTGA25;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.TodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4922,6 +4925,7 @@
 				CODE_SIGN_ENTITLEMENTS = TodayExtension/TodayExtension.entitlements;
 				DEVELOPMENT_TEAM = J829PTGA25;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.TodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4934,7 +4938,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = J829PTGA25;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4948,7 +4952,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = J829PTGA25;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5199,6 +5203,7 @@
 				CODE_SIGN_ENTITLEMENTS = TodayExtension/TodayExtension.entitlements;
 				DEVELOPMENT_TEAM = J829PTGA25;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.TodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5211,7 +5216,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = J829PTGA25;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5248,6 +5253,7 @@
 					"${SRCROOT}/Modules/breadwallet-core",
 					"${SRCROOT}/Modules/breadwallet-core/secp256k1",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -5511,6 +5517,7 @@
 				CODE_SIGN_ENTITLEMENTS = TodayExtension/TodayExtension.entitlements;
 				DEVELOPMENT_TEAM = J829PTGA25;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.TodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5523,7 +5530,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = J829PTGA25;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5560,6 +5567,7 @@
 					"${SRCROOT}/Modules/breadwallet-core",
 					"${SRCROOT}/Modules/breadwallet-core/secp256k1",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -5814,6 +5822,7 @@
 				CODE_SIGN_ENTITLEMENTS = TodayExtension/TodayExtension.entitlements;
 				DEVELOPMENT_TEAM = J829PTGA25;
 				INFOPLIST_FILE = TodayExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.TodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5826,7 +5835,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = J829PTGA25;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hodlwallet.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5858,6 +5867,7 @@
 					"${SRCROOT}/Modules/breadwallet-core",
 					"${SRCROOT}/Modules/breadwallet-core/secp256k1",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
