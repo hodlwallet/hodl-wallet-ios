@@ -56,7 +56,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.1.15</string>
+	<string>3.1.16</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -91,7 +91,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>25</string>
+	<string>26</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -105,6 +105,12 @@
 	<string>Used to scan barcodes</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Used to unlock wallet</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Used to determine where you are to show price in local currency never recorded or shared with anyone</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Used to determine where you are to show price in local currency never recorded or shared with anyone</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Used to determine where you are to show price in local currency never recorded or shared with anyone</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Used to scan barcodes</string>
 	<key>UIAppFonts</key>
